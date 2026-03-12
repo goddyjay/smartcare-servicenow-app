@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="medical_department" table="x_1954503_smartc_0_patient" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>medical_department</element>
+            <name>x_1954503_smartc_0_patient</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>medical_department</sys_name>
+            <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+            <sys_update_name>sys_choice_x_1954503_smartc_0_patient_medical_department</sys_update_name>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Pediatrics</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>0</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>pediatrics</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Cardiology</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>cardiology</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Maternity</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>maternity</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Emergency</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>emergency</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Gynaecology</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>gynaecology</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>General Medicine</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>5</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>general_medicine</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Neurology</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>6</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>neurology</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>medical_department</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Radiology</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence>7</sequence>
+            <synonyms/>
+            <sys_created_by>franklin</sys_created_by>
+            <sys_created_on>2026-03-12 12:46:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>franklin</sys_updated_by>
+            <sys_updated_on>2026-03-12 12:46:23</sys_updated_on>
+            <value>radiology</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>
