@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <annotation/>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=8506000,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version>28100</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description>SmartCare Patient Intake Flow</description>
+        <display_name_after_preview/>
+        <flow_priority>MEDIUM</flow_priority>
+        <generation_source/>
+        <internal_name>smartcare_patient_intake</internal_name>
+        <label_cache>[{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.status","label":"1 - Get Catalog Variables➛status","reference":"","reference_display":"status","type":"choice","base_type":"choice","choices":[{"label":"Waiting","value":"waiting","order":100.0},{"label":"Diagnosis","value":"diagnosis","order":100.0},{"label":"Treatment","value":"treatment","order":100.0},{"label":"Admitted","value":"admitted","order":100.0},{"label":"Discharged","value":"discharge","order":100.0},{"label":"Cancelled","value":"cancelled","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["status"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"Created_1.current.severity","label":"Trigger - Record Created➛Patient Record➛Severity","reference":"","reference_display":"Severity","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"severity","choices":[{"label":"Low","image":"","used":false,"reference":false,"rawLabel":"Low","selected":false,"missing":false,"value":"low","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Moderate","image":"","used":false,"reference":false,"rawLabel":"Moderate","selected":false,"missing":false,"value":"moderate","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"High","image":"","used":false,"reference":false,"rawLabel":"High","selected":false,"missing":false,"value":"high","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Critical","image":"","used":false,"reference":false,"rawLabel":"Critical","selected":false,"missing":false,"value":"critical","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["severity"]}},{"name":"Created_1.current.medical_department","label":"Trigger - Record Created➛Patient Record➛Medical Department","reference":"","reference_display":"Medical Department","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"medical_department","choices":[{"label":"Pediatrics","image":"","used":false,"reference":false,"rawLabel":"Pediatrics","selected":false,"missing":false,"value":"pediatrics","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Cardiology","image":"","used":false,"reference":false,"rawLabel":"Cardiology","selected":false,"missing":false,"value":"cardiology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Maternity","image":"","used":false,"reference":false,"rawLabel":"Maternity","selected":false,"missing":false,"value":"maternity","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Emergency","image":"","used":false,"reference":false,"rawLabel":"Emergency","selected":false,"missing":false,"value":"emergency","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Gynaecology","image":"","used":false,"reference":false,"rawLabel":"Gynaecology","selected":false,"missing":false,"value":"gynaecology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"General Medicine","image":"","used":false,"reference":false,"rawLabel":"General Medicine","selected":false,"missing":false,"value":"general_medicine","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Neurology","image":"","used":false,"reference":false,"rawLabel":"Neurology","selected":false,"missing":false,"value":"neurology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Radiology","image":"","used":false,"reference":false,"rawLabel":"Radiology","selected":false,"missing":false,"value":"radiology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["medical_department"]}},{"name":"Created_1.current.symptoms","label":"Trigger - Record Created➛Patient Record➛Symptoms","reference":"","reference_display":"Symptoms","type":"string","base_type":"string","parent_table_name":"x_1954503_smartc_0_patient","column_name":"symptoms","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["symptoms"]}},{"name":"Created_1.current.gender","label":"Trigger - Record Created➛Patient Record➛Gender","reference":"","reference_display":"Gender","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"gender","choices":[{"label":"Male","image":"","used":false,"reference":false,"rawLabel":"Male","selected":false,"missing":false,"value":"male","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Female","image":"","used":false,"reference":false,"rawLabel":"Female","selected":false,"missing":false,"value":"female","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["gender"]}},{"name":"Created_1.current.full_name","label":"Trigger - Record Created➛Patient Record➛Full Name","reference":"","reference_display":"Full Name","type":"string","base_type":"string","parent_table_name":"x_1954503_smartc_0_patient","column_name":"full_name","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["full_name"]}},{"name":"Created_1.current.age","label":"Trigger - Record Created➛Patient Record➛Age","reference":"","reference_display":"Age","type":"integer","base_type":"integer","parent_table_name":"x_1954503_smartc_0_patient","column_name":"age","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["age"]}},{"name":"Created_1.current","label":"Trigger - Record Created➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["record","full_name","symptoms"]},"attributes":{}},{"name":"Service Catalog_1.request_item.number","label":"Trigger - Service Catalog➛Requested Item Record➛Number","reference":"","reference_display":"Number","type":"string","base_type":"string","parent_table_name":"sc_req_item","column_name":"number","usedInstances":{"4181ad01-332c-4634-a0a6-e71223b0dc9d":["age"]}},{"name":"Service Catalog_1.request_item.requested_for.name","label":"Trigger - Service Catalog➛Requested Item Record➛Requested for➛Name","reference":"","reference_display":"Name","type":"string","base_type":"string","parent_table_name":"sys_user","column_name":"name","usedInstances":{"4181ad01-332c-4634-a0a6-e71223b0dc9d":["full_name"]}},{"name":"Service Catalog_1.table_name","label":"Trigger - Service Catalog➛Table Name","type":"table_name","base_type":"table_name","usedInstances":{"aebb408d-c8a3-4cad-b5f6-f923dd2ff98a":["table_name"]},"attributes":{"test_input_hidden":"true"}},{"name":"Service Catalog_1.request_item","label":"Trigger - Service Catalog➛Requested Item Record","reference":"sc_req_item","reference_display":"Requested Item","type":"reference","base_type":"reference","usedInstances":{"93a55584-5357-46dc-88eb-6fc3cadaf4de":["requested_item"]},"attributes":{"default_search_field":"number"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.patient_name","label":"1 - Get Catalog Variables➛patient_name","reference":"","reference_display":"patient_name","type":"string","base_type":"string","usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["full_name"]},"attributes":{"catalogType":"6","catalogTypeLabel":"Single Line Text"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.age","label":"1 - Get Catalog Variables➛age","reference":"","reference_display":"age","type":"string","base_type":"string","usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["age"]},"attributes":{"catalogType":"6","catalogTypeLabel":"Single Line Text"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.gender","label":"1 - Get Catalog Variables➛gender","reference":"","reference_display":"gender","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":100.0},{"label":"Male","value":"male","order":100.0},{"label":"Female","value":"female","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["gender"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.symptoms","label":"1 - Get Catalog Variables➛symptoms","reference":"","reference_display":"symptoms","type":"multi_small","base_type":"multi_small","usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["symptoms"]},"attributes":{"catalogType":"2","catalogTypeLabel":"Multi Line Text"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.medical_department","label":"1 - Get Catalog Variables➛medical_department","reference":"","reference_display":"medical_department","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":100.0},{"label":"Emergency","value":"emergency","order":100.0},{"label":"Cardiology","value":"cardiology","order":100.0},{"label":"Neurology","value":"neurology","order":100.0},{"label":"Orthopedics","value":"orthopedics","order":100.0},{"label":"General Medicine","value":"general_medicine","order":100.0},{"label":"Pediatrics","value":"pediatrics","order":100.0},{"label":"Maternity","value":"maternity","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["medical_department"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.severity","label":"1 - Get Catalog Variables➛severity","reference":"","reference_display":"severity","type":"choice","base_type":"choice","choices":[{"label":"Low","value":"low","order":100.0},{"label":"Moderate","value":"moderate","order":100.0},{"label":"High","value":"high","order":100.0},{"label":"Critical","value":"critical","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["severity"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"2c3a446f-537f-4265-952f-03a66782cf93.record","label":"2 - Create Record➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"7a1b4484-8f04-4616-aea6-367fa7a86452":["patient_name"]},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}}]</label_cache>
+        <master_snapshot>99d788aec3e37a101bf5fe1d050131a6</master_snapshot>
+        <master_snapshot_digest/>
+        <name>SmartCare Patient Intake</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <remote_trigger_id>e1d788aec3e37a101bf5fe1d050131fa</remote_trigger_id>
+        <run_as>user</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>published</status>
+        <substatus/>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:27:20</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>74f408e6c3e37a101bf5fe1d05013121</sys_id>
+        <sys_mod_count>51</sys_mod_count>
+        <sys_name>SmartCare Patient Intake</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_hub_flow_74f408e6c3e37a101bf5fe1d05013121</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:49:08</sys_updated_on>
+        <type>flow</type>
+        <updation_source/>
+        <version>2</version>
+        <version_record>d265a8aec3e77a101bf5fe1d050131a0</version_record>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_variable_value action="delete_multiple" query="document_key=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_flow_catalog_trigger action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <catalog_item/>
+        <name/>
+        <published_version/>
+        <run_flow_in>background</run_flow_in>
+        <sys_class_name>sys_flow_catalog_trigger</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e1d788aec3e37a101bf5fe1d050131fa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:39:56</sys_updated_on>
+        <trigger_definition/>
+    </sys_flow_catalog_trigger>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=74f408e6c3e37a101bf5fe1d05013121^sys_idNOT IN70f44ce6c3e37a101bf5fe1d050131d5"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>74f408e6c3e37a101bf5fe1d05013121</id>
+        <name>SmartCare Patient Intake</name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:27:20</sys_created_on>
+        <sys_id>70f44ce6c3e37a101bf5fe1d050131d5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:27:20</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=70f44ce6c3e37a101bf5fe1d050131d5"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=74f408e6c3e37a101bf5fe1d05013121^sys_idNOT IN092b102ac3a77a101bf5fe1d050131eb,db164caac3e37a101bf5fe1d0501311b"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>default_search_field=number,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=reference,uiTypeLabel=Reference</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>request_item</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="Reference">reference</internal_type>
+        <label>Request Item</label>
+        <mandatory>true</mandatory>
+        <max_length>32</max_length>
+        <model display_value="SmartCare Patient Intake">74f408e6c3e37a101bf5fe1d05013121</model>
+        <model_id>74f408e6c3e37a101bf5fe1d05013121</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_74f408e6c3e37a101bf5fe1d05013121</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference display_value="" name="sc_req_item">sc_req_item</reference>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 13:04:17</sys_created_on>
+        <sys_id>092b102ac3a77a101bf5fe1d050131eb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:04:17</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=092b102ac3a77a101bf5fe1d050131eb"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name,uiTypeLabel=Table Name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value>sc_req_item</default_value>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>40</max_length>
+        <model display_value="SmartCare Patient Intake">74f408e6c3e37a101bf5fe1d05013121</model>
+        <model_id>74f408e6c3e37a101bf5fe1d05013121</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_74f408e6c3e37a101bf5fe1d05013121</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:32:25</sys_created_on>
+        <sys_id>db164caac3e37a101bf5fe1d0501311b</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:49:06</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=db164caac3e37a101bf5fe1d0501311b"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=74f408e6c3e37a101bf5fe1d05013121^sys_idNOT INf4906026c3e77a101bf5fe1d0501317f"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="SmartCare Patient Intake">74f408e6c3e37a101bf5fe1d05013121</flow>
+        <generation_source/>
+        <name>Service Catalog</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 13:28:02</sys_created_on>
+        <sys_id>f4906026c3e77a101bf5fe1d0501317f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:49:06</sys_updated_on>
+        <trigger_definition display_value="Service Catalog">c43a1011c36813002841b63b12d3ae15</trigger_definition>
+        <trigger_inputs>H4sIAAAAAAAA/61TUWvbMBD+K0FPG+TBSdZmyVspBALdCk23lzKMLJ0cMVnyJNmtF/rfd2c7iduZMWjfpNPdfd999+nhwAzPwLA1u6vsZGPc42Rr2ZRpG8Fbbu6bEvBR7J0WgPHucKNDZOuHA1PfuakoIePiZ+5dZSUmqZtBT0U9tZ2cMyYfJChemfiRcrcFz6kDnXdgQESQbK24CYCRb2F4+6JD0DbvA8/TAQHlPPybwMuMN8D+mLKCW8mj8805ybviHorS8AinoPMSPFvPkmTKaiK6a8JWdqiWF4TvK5sSw1ST7PWYnGKvjfRgUXGELrnHykh9D6+eNLW+TFaJWM5Xy+U8WSySRF1kSighlp9nyeXsYoUNx1c+Sii+2v9wIniKYOVAqL9V8cDlrTXnwB6N1c1f8Kegf2PzTwnlKcAxRL+R0zWVOqCkTRfuWITWeeb/LTYqaj9IQiYa6/XCLfWYyY5SkB96tOv3Jzh7M8E5Eeykuy2jdmgWtqDV8sxQTWhCt3APAkvS6HWeYyEWOVMV9uuYL3r2x9+HkSrgtqAkR9CKj99it3ePd8d1brRtKfWPxgluTjceETmrIul3YFzWHCvI0dEjxnPrivRXRRWsZdBjpe1ElNCbZaPB9J8sCK/LeCWiruH0ff8AqHiYq/UEAAA=</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>service_catalog</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=74f408e6c3e37a101bf5fe1d05013121^sys_idNOT INa1e95066c3a77a101bf5fe1d05013173,b7b99822c3a77a101bf5fe1d0501310f"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="Create Record">02f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="SmartCare Patient Intake">74f408e6c3e37a101bf5fe1d05013121</flow>
+        <generation_source/>
+        <order>2</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 12:58:51</sys_created_on>
+        <sys_id>a1e95066c3a77a101bf5fe1d05013173</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-03-13 14:04:23</sys_updated_on>
+        <ui_id>2c3a446f-537f-4265-952f-03a66782cf93</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1WTW/bMAz9K4XOTmDXcZbkNrTIaWuHdcilaw1aohMB8sckOYkX5L+PspU06Ae2ADuswHITyUe9R1Kh73dMCjZj4wjDZBqNeRzF8WUYXk5GUTaOs+hSxIA4YgEroUCKtJApTLtDwNagGmfcptE0GSVhnJoCtOVpmNZgJZaWgoQ0tYJ24WO/HB18JZXQWLLZ/UPAatCU1KJms90z159SVJChotBvjuMblG1bv2r7dIq9uOkdlRaOTxgw3FosBRKRHJTBgBVQCrCVbtnM6oYMGkHclqo9RqwkqZwx5mK3Rv6kayehi8uRlHHsfcdj6uvUm/NrsHBHmblttA/lq0pyNH1NBObQKHt1ausDbmsrq7KHdDI9ulJNUd70JWHHBIe2kKUxRAJrp9Mx9zLyu1W1+XpgOZdlVxLvVBUHdTyBtVpmjXV8dgwVFpQoLaCuZblMa12tZQcmLsVwqegwzFW1oUuNXJZD4I74kMoKwznZrzvzArR0Kj5TGgLvA2Zac6XAmCctVMT0R+OY9Mq8hrQvg4NwLWv7kS5Yo6e7Dw6zLzCcvjlYUfY0SN24m5O5zxuluiH63oRhLHa7aQxJkkxGgyROPgxGY8EHkwlmg3HOYw4C8hFp9k+jA+73j7A8D07xhFo6ifosYA8hrGmL2laFOQt9ABG+QCGp725Y6LW7Jp+V6SXcccI1amnb8zh5kMNbsI1XtAFpaeJe/vf879c/3q8zV8LvX+5hJcwlKmFeecqHfYAFDYrFtH/az3aCd14svNPvhehv7YVoHHa/d7QdenHvfjmcfAe8sSYefgGM8NxVJAkAAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=a1e95066c3a77a101bf5fe1d05013173"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Get Catalog Variables">330ba3abc31013002841b63b12d3aee8</action_type>
+        <action_type_parent display_value="Get Catalog Variables">22f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>330ba3abc31013002841b63b12d3aee8</compiled_snapshot>
+        <display_text/>
+        <flow display_value="SmartCare Patient Intake">74f408e6c3e37a101bf5fe1d05013121</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 12:58:11</sys_created_on>
+        <sys_id>b7b99822c3a77a101bf5fe1d0501310f</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2026-03-13 14:04:23</sys_updated_on>
+        <ui_id>93a55584-5357-46dc-88eb-6fc3cadaf4de</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1W224bNxD9FYHPW2Evulh6Sx0YCNA2RVT4JQiIIXfWIsK9hORKUQX/e4d7kdZSJNtAXaBFHzU7wznnDA9Hn/dMpWzJRBYKSEDIJAqjJAzjm0kkZomI4jQBRGABKyBHyjT4rUbrMOXKYU7xDejaf9jvV2g2SuLoFhzo8oFH4y65SX18pORU2UrD7r6roYhcK50aLNjy85eAVWCojUPDlvuTTy/FqUGgptRVLXLlCOjoU4viCge3q9p4htRPYhf6pTvq0yBemtSjCwOG3x0WKRKsDLTFgOVQpOBKs2NLZ2oKGIT0Y6F3h4y1KlxLO4fvVv1JTZM4GPRdMis5weuBHb7wTrkGTYd+9KFNyt6T4CtqKV1tDrKWNArbSpdiBrV2t8NYm/Cxcqos2hIHQvfVpa7z4rdWLXY4YDC22hIkrLwAnlLHL1uty+1BrTtVNFp1H3UpQQ9SEYxc3ynUfrBFnQvKDRg4Z5Sonce5Z6gxpwY8h6pSxQOvTLlRzaGEMR8/aPoxznS5JTBWPRRjkJ7QmOYA4zuKv2/C92CUZ/crHdN0KWkqPDVlVXWk/cDYY8Dszt5qsPbInUbAv9UeeatEx5m3svkSaVTl3lHjDXb0HoPeV+Lafc2i452kUdJ8HXLZuefEXjDJFphEsUziZA50msimGUZpOKWDo3Rybq7fwSkCOrpdo/z604fi9WZ7Hnxvtj869L33m6tpR2SIUa/9aIXOPs/39VaM3syKjtN1eALQcjqYbzpK3LaUfuTS54X4T9jW9/qnTKssPY15SXem4cyHs2r8S14kIjQVD/EYXFM/burCqRx54yeuCl5WdqNw+3ben1+3z/zohf6G9ffKDn0vZxDPpxd8n8ilv5ZExivIC9wGkxRhNl9cKIDFWcE0WwCKSx0WcFYQJTdiNo9mF56i8KwgmcQYiylc4BCdFcgbIWdicaGDOOeQzFFEIVAHmP/odTwtOH8t/9f5jXR+3c55gWn6ndO/sPcD11wxVLdYrK7tWtTyK7qT1bLyX0Y/95+67RJf3y5d5CXrJYrDMHy6YS7sjn/rcni6Bui5zmjDk3bHOdCdwEZJ1pRQ07daFi969OnSFVLXlJmTFMpQlwNUv6QPaV6aAQg0fGvaToeUylCN2fg/BRqla0j2W6msjey2FkVPPfL3rZ4vfwEz+4gH0A0AAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=b7b99822c3a77a101bf5fe1d0501310f"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>request_item</element>
+        <help/>
+        <hint/>
+        <label>Request Item</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_74f408e6c3e37a101bf5fe1d05013121</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 13:04:17</sys_created_on>
+        <sys_id>012b102ac3a77a101bf5fe1d050131f0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:04:17</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_74f408e6c3e37a101bf5fe1d05013121</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:32:25</sys_created_on>
+        <sys_id>5f164caac3e37a101bf5fe1d05013135</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:32:25</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_74f408e6c3e37a101bf5fe1d05013121"/>
+    <sys_hub_flow_snapshot action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <annotation/>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version>28100</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description>SmartCare Patient Intake Flow</description>
+        <flow_priority>MEDIUM</flow_priority>
+        <internal_name>smartcare_patient_intake</internal_name>
+        <label_cache>[{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.status","label":"1 - Get Catalog Variables➛status","reference":"","reference_display":"status","type":"choice","base_type":"choice","choices":[{"label":"Waiting","value":"waiting","order":100.0},{"label":"Diagnosis","value":"diagnosis","order":100.0},{"label":"Treatment","value":"treatment","order":100.0},{"label":"Admitted","value":"admitted","order":100.0},{"label":"Discharged","value":"discharge","order":100.0},{"label":"Cancelled","value":"cancelled","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["status"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"Created_1.current.severity","label":"Trigger - Record Created➛Patient Record➛Severity","reference":"","reference_display":"Severity","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"severity","choices":[{"label":"Low","image":"","used":false,"reference":false,"rawLabel":"Low","selected":false,"missing":false,"value":"low","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Moderate","image":"","used":false,"reference":false,"rawLabel":"Moderate","selected":false,"missing":false,"value":"moderate","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"High","image":"","used":false,"reference":false,"rawLabel":"High","selected":false,"missing":false,"value":"high","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Critical","image":"","used":false,"reference":false,"rawLabel":"Critical","selected":false,"missing":false,"value":"critical","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["severity"]}},{"name":"Created_1.current.medical_department","label":"Trigger - Record Created➛Patient Record➛Medical Department","reference":"","reference_display":"Medical Department","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"medical_department","choices":[{"label":"Pediatrics","image":"","used":false,"reference":false,"rawLabel":"Pediatrics","selected":false,"missing":false,"value":"pediatrics","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Cardiology","image":"","used":false,"reference":false,"rawLabel":"Cardiology","selected":false,"missing":false,"value":"cardiology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Maternity","image":"","used":false,"reference":false,"rawLabel":"Maternity","selected":false,"missing":false,"value":"maternity","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Emergency","image":"","used":false,"reference":false,"rawLabel":"Emergency","selected":false,"missing":false,"value":"emergency","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Gynaecology","image":"","used":false,"reference":false,"rawLabel":"Gynaecology","selected":false,"missing":false,"value":"gynaecology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"General Medicine","image":"","used":false,"reference":false,"rawLabel":"General Medicine","selected":false,"missing":false,"value":"general_medicine","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Neurology","image":"","used":false,"reference":false,"rawLabel":"Neurology","selected":false,"missing":false,"value":"neurology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Radiology","image":"","used":false,"reference":false,"rawLabel":"Radiology","selected":false,"missing":false,"value":"radiology","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["medical_department"]}},{"name":"Created_1.current.symptoms","label":"Trigger - Record Created➛Patient Record➛Symptoms","reference":"","reference_display":"Symptoms","type":"string","base_type":"string","parent_table_name":"x_1954503_smartc_0_patient","column_name":"symptoms","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["symptoms"]}},{"name":"Created_1.current.gender","label":"Trigger - Record Created➛Patient Record➛Gender","reference":"","reference_display":"Gender","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"gender","choices":[{"label":"Male","image":"","used":false,"reference":false,"rawLabel":"Male","selected":false,"missing":false,"value":"male","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Female","image":"","used":false,"reference":false,"rawLabel":"Female","selected":false,"missing":false,"value":"female","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["gender"]}},{"name":"Created_1.current.full_name","label":"Trigger - Record Created➛Patient Record➛Full Name","reference":"","reference_display":"Full Name","type":"string","base_type":"string","parent_table_name":"x_1954503_smartc_0_patient","column_name":"full_name","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["full_name"]}},{"name":"Created_1.current.age","label":"Trigger - Record Created➛Patient Record➛Age","reference":"","reference_display":"Age","type":"integer","base_type":"integer","parent_table_name":"x_1954503_smartc_0_patient","column_name":"age","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["age"]}},{"name":"Created_1.current","label":"Trigger - Record Created➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"6d2d5e5d-9374-4da9-9bef-632d23bfedf6":["record","full_name","symptoms"]},"attributes":{}},{"name":"Service Catalog_1.request_item.number","label":"Trigger - Service Catalog➛Requested Item Record➛Number","reference":"","reference_display":"Number","type":"string","base_type":"string","parent_table_name":"sc_req_item","column_name":"number","usedInstances":{"4181ad01-332c-4634-a0a6-e71223b0dc9d":["age"]}},{"name":"Service Catalog_1.request_item.requested_for.name","label":"Trigger - Service Catalog➛Requested Item Record➛Requested for➛Name","reference":"","reference_display":"Name","type":"string","base_type":"string","parent_table_name":"sys_user","column_name":"name","usedInstances":{"4181ad01-332c-4634-a0a6-e71223b0dc9d":["full_name"]}},{"name":"Service Catalog_1.table_name","label":"Trigger - Service Catalog➛Table Name","type":"table_name","base_type":"table_name","usedInstances":{"aebb408d-c8a3-4cad-b5f6-f923dd2ff98a":["table_name"]},"attributes":{"test_input_hidden":"true"}},{"name":"Service Catalog_1.request_item","label":"Trigger - Service Catalog➛Requested Item Record","reference":"sc_req_item","reference_display":"Requested Item","type":"reference","base_type":"reference","usedInstances":{"93a55584-5357-46dc-88eb-6fc3cadaf4de":["requested_item"]},"attributes":{"default_search_field":"number"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.patient_name","label":"1 - Get Catalog Variables➛patient_name","reference":"","reference_display":"patient_name","type":"string","base_type":"string","usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["full_name"]},"attributes":{"catalogType":"6","catalogTypeLabel":"Single Line Text"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.age","label":"1 - Get Catalog Variables➛age","reference":"","reference_display":"age","type":"string","base_type":"string","usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["age"]},"attributes":{"catalogType":"6","catalogTypeLabel":"Single Line Text"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.gender","label":"1 - Get Catalog Variables➛gender","reference":"","reference_display":"gender","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":100.0},{"label":"Male","value":"male","order":100.0},{"label":"Female","value":"female","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["gender"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.symptoms","label":"1 - Get Catalog Variables➛symptoms","reference":"","reference_display":"symptoms","type":"multi_small","base_type":"multi_small","usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["symptoms"]},"attributes":{"catalogType":"2","catalogTypeLabel":"Multi Line Text"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.medical_department","label":"1 - Get Catalog Variables➛medical_department","reference":"","reference_display":"medical_department","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":100.0},{"label":"Emergency","value":"emergency","order":100.0},{"label":"Cardiology","value":"cardiology","order":100.0},{"label":"Neurology","value":"neurology","order":100.0},{"label":"Orthopedics","value":"orthopedics","order":100.0},{"label":"General Medicine","value":"general_medicine","order":100.0},{"label":"Pediatrics","value":"pediatrics","order":100.0},{"label":"Maternity","value":"maternity","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["medical_department"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"93a55584-5357-46dc-88eb-6fc3cadaf4de.severity","label":"1 - Get Catalog Variables➛severity","reference":"","reference_display":"severity","type":"choice","base_type":"choice","choices":[{"label":"Low","value":"low","order":100.0},{"label":"Moderate","value":"moderate","order":100.0},{"label":"High","value":"high","order":100.0},{"label":"Critical","value":"critical","order":100.0}],"usedInstances":{"2c3a446f-537f-4265-952f-03a66782cf93":["severity"]},"attributes":{"catalogType":"5","catalogTypeLabel":"Select Box"}},{"name":"2c3a446f-537f-4265-952f-03a66782cf93.record","label":"2 - Create Record➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"7a1b4484-8f04-4616-aea6-367fa7a86452":["patient_name"]},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}}]</label_cache>
+        <master>true</master>
+        <name>SmartCare Patient Intake</name>
+        <natlang/>
+        <outputs/>
+        <parent_flow display_value="SmartCare Patient Intake">74f408e6c3e37a101bf5fe1d05013121</parent_flow>
+        <remote_trigger_id/>
+        <run_as>user</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <status>published</status>
+        <sys_class_name>sys_hub_flow_snapshot</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:55</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>99d788aec3e37a101bf5fe1d050131a6</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:49:08</sys_updated_on>
+        <type>flow</type>
+        <version>2</version>
+    </sys_hub_flow_snapshot>
+    <sys_translated_text action="delete_multiple" query="documentkey=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_variable_value action="delete_multiple" query="document_key=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=99d788aec3e37a101bf5fe1d050131a6^sys_idNOT INd5d788aec3e37a101bf5fe1d050131a8"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>99d788aec3e37a101bf5fe1d050131a6</id>
+        <name>SmartCare Patient Intake</name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:55</sys_created_on>
+        <sys_id>d5d788aec3e37a101bf5fe1d050131a8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:39:55</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=d5d788aec3e37a101bf5fe1d050131a8"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=99d788aec3e37a101bf5fe1d050131a6^sys_idNOT IN5dd788aec3e37a101bf5fe1d050131cc,d5d788aec3e37a101bf5fe1d050131aa"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>default_search_field=number,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=reference</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>request_item</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="Reference">reference</internal_type>
+        <label>Request Item</label>
+        <mandatory>true</mandatory>
+        <max_length>32</max_length>
+        <model display_value="SmartCare Patient Intake">99d788aec3e37a101bf5fe1d050131a6</model>
+        <model_id>99d788aec3e37a101bf5fe1d050131a6</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_99d788aec3e37a101bf5fe1d050131a6</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference display_value="" name="sc_req_item">sc_req_item</reference>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:56</sys_created_on>
+        <sys_id>5dd788aec3e37a101bf5fe1d050131cc</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:49:07</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=5dd788aec3e37a101bf5fe1d050131cc"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value>sc_req_item</default_value>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>40</max_length>
+        <model display_value="SmartCare Patient Intake">99d788aec3e37a101bf5fe1d050131a6</model>
+        <model_id>99d788aec3e37a101bf5fe1d050131a6</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_99d788aec3e37a101bf5fe1d050131a6</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>true</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:56</sys_created_on>
+        <sys_id>d5d788aec3e37a101bf5fe1d050131aa</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:49:07</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=d5d788aec3e37a101bf5fe1d050131aa"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=99d788aec3e37a101bf5fe1d050131a6^sys_idNOT INd1d788aec3e37a101bf5fe1d050131ed"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="SmartCare Patient Intake">99d788aec3e37a101bf5fe1d050131a6</flow>
+        <generation_source/>
+        <name>Service Catalog</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:56</sys_created_on>
+        <sys_id>d1d788aec3e37a101bf5fe1d050131ed</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:20:27</sys_updated_on>
+        <trigger_definition display_value="Service Catalog">c43a1011c36813002841b63b12d3ae15</trigger_definition>
+        <trigger_inputs>H4sIAAAAAAAA/61TUWvbMBD+K0FPG+TBSdZmyVspBALdCk23lzKMLJ0cMVnyJNmtF/rfd2c7iduZMWjfpNPdfd999+nhwAzPwLA1u6vsZGPc42Rr2ZRpG8Fbbu6bEvBR7J0WgPHucKNDZOuHA1PfuakoIePiZ+5dZSUmqZtBT0U9tZ2cMyYfJChemfiRcrcFz6kDnXdgQESQbK24CYCRb2F4+6JD0DbvA8/TAQHlPPybwMuMN8D+mLKCW8mj8805ybviHorS8AinoPMSPFvPkmTKaiK6a8JWdqiWF4TvK5sSw1ST7PWYnGKvjfRgUXGELrnHykh9D6+eNLW+TFaJWM5Xy+U8WSySRF1kSighlp9nyeXsYoUNx1c+Sii+2v9wIniKYOVAqL9V8cDlrTXnwB6N1c1f8Kegf2PzTwnlKcAxRL+R0zWVOqCkTRfuWITWeeb/LTYqaj9IQiYa6/XCLfWYyY5SkB96tOv3Jzh7M8E5Eeykuy2jdmgWtqDV8sxQTWhCt3APAkvS6HWeYyEWOVMV9uuYL3r2x9+HkSrgtqAkR9CKj99it3ePd8d1brRtKfWPxgluTjceETmrIul3YFzWHCvI0dEjxnPrivRXRRWsZdBjpe1ElNCbZaPB9J8sCK/LeCWiruH0ff8AqHiYq/UEAAA=</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>service_catalog</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=99d788aec3e37a101bf5fe1d050131a6^sys_idNOT IN79ded422c3e77a101bf5fe1d05013193,7dded422c3e77a101bf5fe1d05013195"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Get Catalog Variables">330ba3abc31013002841b63b12d3aee8</action_type>
+        <action_type_parent display_value="Get Catalog Variables">22f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>330ba3abc31013002841b63b12d3aee8</compiled_snapshot>
+        <display_text/>
+        <flow display_value="SmartCare Patient Intake">99d788aec3e37a101bf5fe1d050131a6</flow>
+        <generation_source/>
+        <order>1</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 13:20:27</sys_created_on>
+        <sys_id>79ded422c3e77a101bf5fe1d05013193</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:20:27</sys_updated_on>
+        <ui_id>93a55584-5357-46dc-88eb-6fc3cadaf4de</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1W224bNxD9FYHPW2Evulh6Sx0YCNA2RVT4JQiIIXfWIsK9hORKUQX/e4d7kdZSJNtAXaBFHzU7wznnDA9Hn/dMpWzJRBYKSEDIJAqjJAzjm0kkZomI4jQBRGABKyBHyjT4rUbrMOXKYU7xDejaf9jvV2g2SuLoFhzo8oFH4y65SX18pORU2UrD7r6roYhcK50aLNjy85eAVWCojUPDlvuTTy/FqUGgptRVLXLlCOjoU4viCge3q9p4htRPYhf6pTvq0yBemtSjCwOG3x0WKRKsDLTFgOVQpOBKs2NLZ2oKGIT0Y6F3h4y1KlxLO4fvVv1JTZM4GPRdMis5weuBHb7wTrkGTYd+9KFNyt6T4CtqKV1tDrKWNArbSpdiBrV2t8NYm/Cxcqos2hIHQvfVpa7z4rdWLXY4YDC22hIkrLwAnlLHL1uty+1BrTtVNFp1H3UpQQ9SEYxc3ynUfrBFnQvKDRg4Z5Sonce5Z6gxpwY8h6pSxQOvTLlRzaGEMR8/aPoxznS5JTBWPRRjkJ7QmOYA4zuKv2/C92CUZ/crHdN0KWkqPDVlVXWk/cDYY8Dszt5qsPbInUbAv9UeeatEx5m3svkSaVTl3lHjDXb0HoPeV+Lafc2i452kUdJ8HXLZuefEXjDJFphEsUziZA50msimGUZpOKWDo3Rybq7fwSkCOrpdo/z604fi9WZ7Hnxvtj869L33m6tpR2SIUa/9aIXOPs/39VaM3syKjtN1eALQcjqYbzpK3LaUfuTS54X4T9jW9/qnTKssPY15SXem4cyHs2r8S14kIjQVD/EYXFM/burCqRx54yeuCl5WdqNw+3ben1+3z/zohf6G9ffKDn0vZxDPpxd8n8ilv5ZExivIC9wGkxRhNl9cKIDFWcE0WwCKSx0WcFYQJTdiNo9mF56i8KwgmcQYiylc4BCdFcgbIWdicaGDOOeQzFFEIVAHmP/odTwtOH8t/9f5jXR+3c55gWn6ndO/sPcD11wxVLdYrK7tWtTyK7qT1bLyX0Y/95+67RJf3y5d5CXrJYrDMHy6YS7sjn/rcni6Bui5zmjDk3bHOdCdwEZJ1pRQ07daFi969OnSFVLXlJmTFMpQlwNUv6QPaV6aAQg0fGvaToeUylCN2fg/BRqla0j2W6msjey2FkVPPfL3rZ4vfwEz+4gH0A0AAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=79ded422c3e77a101bf5fe1d05013193"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="Create Record">02f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="SmartCare Patient Intake">99d788aec3e37a101bf5fe1d050131a6</flow>
+        <generation_source/>
+        <order>2</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 13:20:27</sys_created_on>
+        <sys_id>7dded422c3e77a101bf5fe1d05013195</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:20:27</sys_updated_on>
+        <ui_id>2c3a446f-537f-4265-952f-03a66782cf93</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1WTW/bMAz9K4XOTmDXcZbkNrTIaWuHdcilaw1aohMB8sckOYkX5L+PspU06Ae2ADuswHITyUe9R1Kh73dMCjZj4wjDZBqNeRzF8WUYXk5GUTaOs+hSxIA4YgEroUCKtJApTLtDwNagGmfcptE0GSVhnJoCtOVpmNZgJZaWgoQ0tYJ24WO/HB18JZXQWLLZ/UPAatCU1KJms90z159SVJChotBvjuMblG1bv2r7dIq9uOkdlRaOTxgw3FosBRKRHJTBgBVQCrCVbtnM6oYMGkHclqo9RqwkqZwx5mK3Rv6kayehi8uRlHHsfcdj6uvUm/NrsHBHmblttA/lq0pyNH1NBObQKHt1ausDbmsrq7KHdDI9ulJNUd70JWHHBIe2kKUxRAJrp9Mx9zLyu1W1+XpgOZdlVxLvVBUHdTyBtVpmjXV8dgwVFpQoLaCuZblMa12tZQcmLsVwqegwzFW1oUuNXJZD4I74kMoKwznZrzvzArR0Kj5TGgLvA2Zac6XAmCctVMT0R+OY9Mq8hrQvg4NwLWv7kS5Yo6e7Dw6zLzCcvjlYUfY0SN24m5O5zxuluiH63oRhLHa7aQxJkkxGgyROPgxGY8EHkwlmg3HOYw4C8hFp9k+jA+73j7A8D07xhFo6ifosYA8hrGmL2laFOQt9ABG+QCGp725Y6LW7Jp+V6SXcccI1amnb8zh5kMNbsI1XtAFpaeJe/vf879c/3q8zV8LvX+5hJcwlKmFeecqHfYAFDYrFtH/az3aCd14svNPvhehv7YVoHHa/d7QdenHvfjmcfAe8sSYefgGM8NxVJAkAAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=7dded422c3e77a101bf5fe1d05013195"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>request_item</element>
+        <help/>
+        <hint/>
+        <label>Request Item</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_99d788aec3e37a101bf5fe1d050131a6</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:56</sys_created_on>
+        <sys_id>59d788aec3e37a101bf5fe1d050131d3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:39:56</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_99d788aec3e37a101bf5fe1d050131a6</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:56</sys_created_on>
+        <sys_id>99d788aec3e37a101bf5fe1d050131bc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:39:56</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_99d788aec3e37a101bf5fe1d050131a6"/>
+    <sys_hub_flow action="UPDATE">
+        <sys_id>74f408e6c3e37a101bf5fe1d05013121</sys_id>
+        <latest_snapshot>99d788aec3e37a101bf5fe1d050131a6</latest_snapshot>
+        <compiler_build>glide-zurich-07-01-2025__patch6-01-16-2026_02-02-2026_1554.zip</compiler_build>
+        <version_record/>
+    </sys_hub_flow>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=74f408e6c3e37a101bf5fe1d05013121^sys_idNOT INe1d788aec3e37a101bf5fe1d050131fb"/>
+    <sys_flow_trigger_plan action="INSERT_OR_UPDATE">
+        <binding_strategy>com.snc.process_flow.engine.binding.RunAlways</binding_strategy>
+        <plan>{"type":"PlanProxy","persistor":{"@class":".ChunkingPlanPersistor","table":"sys_flow_trigger_plan","id":"e1d788aec3e37a101bf5fe1d050131fb","name":"plan","plan_signature":null}}</plan>
+        <plan_id>74f408e6c3e37a101bf5fe1d05013121</plan_id>
+        <snapshot>5de868a6c32b7a101bf5fe1d050131e7</snapshot>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:39:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e1d788aec3e37a101bf5fe1d050131fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:39:56</sys_updated_on>
+        <trigger display_value="">e1d788aec3e37a101bf5fe1d050131fa</trigger>
+    </sys_flow_trigger_plan>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=74f408e6c3e37a101bf5fe1d05013121"/>
+</record_update>

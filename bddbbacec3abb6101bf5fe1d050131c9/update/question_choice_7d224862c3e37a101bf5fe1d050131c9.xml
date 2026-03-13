@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <order>200</order>
+        <published_ref/>
+        <question display_value="Gender">4dea6792c3237a101bf5fe1d050131a9</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 11:15:06</sys_created_on>
+        <sys_id>7d224862c3e37a101bf5fe1d050131c9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Female</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>question_choice_7d224862c3e37a101bf5fe1d050131c9</sys_update_name>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:15:06</sys_updated_on>
+        <text>Female</text>
+        <value>female</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=7d224862c3e37a101bf5fe1d050131c9"/>
+</record_update>

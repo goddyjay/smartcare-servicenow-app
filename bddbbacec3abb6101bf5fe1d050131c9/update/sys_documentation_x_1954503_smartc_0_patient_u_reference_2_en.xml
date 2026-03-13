@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="medical_department" label="Medical Department" language="en" table="x_1954503_smartc_0_patient">
+    <sys_documentation element="u_reference_2" label="Patient ID" language="en" table="x_1954503_smartc_0_patient">
         <sys_documentation action="INSERT_OR_UPDATE">
-            <element>medical_department</element>
+            <element>u_reference_2</element>
             <help/>
             <hint/>
-            <label>Medical Department</label>
+            <label>Patient ID</label>
             <language>en</language>
             <name>x_1954503_smartc_0_patient</name>
-            <plural/>
+            <plural>Patient IDs</plural>
             <sys_class_name>sys_documentation</sys_class_name>
-            <sys_created_by>franklin</sys_created_by>
-            <sys_created_on>2026-03-12 12:46:20</sys_created_on>
-            <sys_mod_count>9</sys_mod_count>
-            <sys_name>Medical Department</sys_name>
+            <sys_created_by>teniola</sys_created_by>
+            <sys_created_on>2026-03-13 08:09:26</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Patient ID</sys_name>
             <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
             <sys_policy/>
             <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-            <sys_update_name>sys_documentation_x_1954503_smartc_0_patient_medical_department_en</sys_update_name>
+            <sys_update_name>sys_documentation_x_1954503_smartc_0_patient_u_reference_2_en</sys_update_name>
             <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:23:57</sys_updated_on>
+            <sys_updated_on>2026-03-13 08:09:26</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

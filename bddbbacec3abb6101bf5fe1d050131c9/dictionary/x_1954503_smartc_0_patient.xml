@@ -11,6 +11,7 @@
             </choice>
         </element>
         <element label="Symptoms" max_length="40" name="symptoms" type="string"/>
+        <element attributes="encode_utf8=false" label="Patient ID" max_length="32" name="u_reference_2" reference="sys_user" type="reference"/>
         <element choice="3" display="true" label="Gender" max_length="40" name="gender" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Male" sequence="0" value="male"/>
@@ -27,7 +28,7 @@
                 <element inactive_on_update="false" label="Admitted" sequence="2" value="admitted"/>
             </choice>
         </element>
-        <element choice="3" label="Medical Department" max_length="40" name="medical_department" type="choice">
+        <element choice="3" default="&#10;" label="Medical Department" max_length="40" name="medical_department" type="choice">
             <choice>
                 <element inactive_on_update="false" label="General Medicine" sequence="5" value="general_medicine"/>
                 <element inactive_on_update="false" label="Emergency" sequence="3" value="emergency"/>
@@ -42,6 +43,9 @@
         <element label="Assigned Doctor" max_length="32" name="assigned_doctor" reference="sys_user" type="reference"/>
         <index name="index">
             <element name="assigned_doctor"/>
+        </index>
+        <index name="index2">
+            <element name="u_reference_2"/>
         </index>
     </element>
 </database>

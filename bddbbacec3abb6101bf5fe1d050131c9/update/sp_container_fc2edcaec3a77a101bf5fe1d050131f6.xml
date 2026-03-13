@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>Intake Home - Container 1</name>
+        <order>1</order>
+        <semantic_tag/>
+        <sp_page display_value="pi_home">1d7d146ec3a77a101bf5fe1d050131de</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-13 13:17:22</sys_created_on>
+        <sys_id>fc2edcaec3a77a101bf5fe1d050131f6</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Intake Home - Container 1</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_container_fc2edcaec3a77a101bf5fe1d050131f6</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:17:55</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+</record_update>

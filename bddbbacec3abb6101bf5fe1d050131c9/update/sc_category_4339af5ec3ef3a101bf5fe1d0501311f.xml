@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_category">
+    <sc_category action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <entitlement_script/>
+        <header_icon/>
+        <homepage_image>1b5684eac3e37a101bf5fe1d05013137</homepage_image>
+        <homepage_renderer display_value="Category Items">47ebe8aa3742300054b6a3549dbe5dfa</homepage_renderer>
+        <icon/>
+        <image/>
+        <location/>
+        <mobile_hide_description>false</mobile_hide_description>
+        <mobile_picture/>
+        <mobile_subcategory_render_type>list</mobile_subcategory_render_type>
+        <module/>
+        <order>0</order>
+        <parent/>
+        <roles/>
+        <sc_catalog display_value="Service Catalog">e0d08b13c3330100c8b837659bba8fb4</sc_catalog>
+        <sys_class_name>sc_category</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-13 09:26:57</sys_created_on>
+        <sys_id>4339af5ec3ef3a101bf5fe1d0501311f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>SmartCare Hospital Services</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sc_category_4339af5ec3ef3a101bf5fe1d0501311f</sys_update_name>
+        <sys_updated_by>utibe</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:33:30</sys_updated_on>
+        <title>SmartCare Hospital Services</title>
+    </sc_category>
+    <sys_translated_text action="delete_multiple" query="documentkey=4339af5ec3ef3a101bf5fe1d0501311f"/>
+    <sys_attachment action="INSERT_OR_UPDATE">
+        <average_image_color>#665e5e</average_image_color>
+        <chunk_size_bytes>700000</chunk_size_bytes>
+        <compressed>true</compressed>
+        <content_type>image/png</content_type>
+        <file_name>homepage_image</file_name>
+        <hash>ad4e20dc49362c45820c9c9107f72c1b60bcf11e0fa48cbb9e8b4760fd7e35ef</hash>
+        <image_height>256</image_height>
+        <image_width>256</image_width>
+        <size_bytes>3786</size_bytes>
+        <size_compressed>3447</size_compressed>
+        <state>available</state>
+        <sys_created_by>utibe</sys_created_by>
+        <sys_created_on>2026-03-13 11:33:30</sys_created_on>
+        <sys_id>1b5684eac3e37a101bf5fe1d05013137</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_updated_by>utibe</sys_updated_by>
+        <sys_updated_on>2026-03-13 11:33:30</sys_updated_on>
+        <table_name>ZZ_YYsc_category</table_name>
+        <table_sys_id>4339af5ec3ef3a101bf5fe1d0501311f</table_sys_id>
+    </sys_attachment>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>H4sIAAAAAAAA/w==</data>
+        <length>16</length>
+        <position>0</position>
+        <sys_attachment display_value="homepage_image" sys_id="1b5684eac3e37a101bf5fe1d05013137">1b5684eac3e37a101bf5fe1d05013137</sys_attachment>
+        <sys_created_by>utibe</sys_created_by>
+        <sys_created_on>2026-03-13 11:33:30</sys_created_on>
+        <sys_id>db5684eac3e37a101bf5fe1d05013137</sys_id>
+    </sys_attachment_doc>
+    <sys_attachment_doc action="INSERT_OR_UPDATE">
+        <data>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</data>
+        <length>4584</length>
+        <position>1</position>
+        <sys_attachment display_value="homepage_image" sys_id="1b5684eac3e37a101bf5fe1d05013137">1b5684eac3e37a101bf5fe1d05013137</sys_attachment>
+        <sys_created_by>utibe</sys_created_by>
+        <sys_created_on>2026-03-13 11:33:30</sys_created_on>
+        <sys_id>9f5684eac3e37a101bf5fe1d05013137</sys_id>
+    </sys_attachment_doc>
+</record_update>
