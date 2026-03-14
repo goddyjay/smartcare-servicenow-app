@@ -12,13 +12,13 @@
         </element>
         <element label="Symptoms" max_length="40" name="symptoms" type="string"/>
         <element attributes="encode_utf8=false" label="Patient ID" max_length="32" name="u_reference_2" reference="sys_user" type="reference"/>
-        <element choice="3" display="true" label="Gender" max_length="40" name="gender" type="choice">
+        <element choice="3" label="Gender" max_length="40" name="gender" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Male" sequence="0" value="male"/>
                 <element inactive_on_update="false" label="Female" sequence="1" value="female"/>
             </choice>
         </element>
-        <element label="Full Name" max_length="40" name="full_name" type="string"/>
+        <element display="true" label="Full Name" max_length="40" name="full_name" type="string"/>
         <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
         <element choice="3" label="Status" max_length="40" name="status" type="choice">
             <choice>

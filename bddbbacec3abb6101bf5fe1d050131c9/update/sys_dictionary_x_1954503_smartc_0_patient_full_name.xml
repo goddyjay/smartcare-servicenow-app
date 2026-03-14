@@ -5,7 +5,7 @@
         <attributes/>
         <audit>false</audit>
         <calculation/>
-        <choice>0</choice>
+        <choice/>
         <choice_field/>
         <choice_table/>
         <column_label>Full Name</column_label>
@@ -16,7 +16,7 @@
         <delete_roles/>
         <dependent/>
         <dependent_on_field/>
-        <display>false</display>
+        <display>true</display>
         <dynamic_creation>false</dynamic_creation>
         <dynamic_creation_script/>
         <dynamic_default_value/>
@@ -52,8 +52,8 @@
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_dictionary_x_1954503_smartc_0_patient_full_name</sys_update_name>
-        <sys_updated_by>franklin</sys_updated_by>
-        <sys_updated_on>2026-03-12 12:57:13</sys_updated_on>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-14 17:46:06</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

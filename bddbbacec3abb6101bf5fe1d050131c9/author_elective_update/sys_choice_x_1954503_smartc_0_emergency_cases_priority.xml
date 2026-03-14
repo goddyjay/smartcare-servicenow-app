@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="priority" table="x_1954503_smartc_0_emergency_cases" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>priority</element>
+            <name>x_1954503_smartc_0_emergency_cases</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>teniola</sys_created_by>
+            <sys_created_on>2026-03-14 16:36:47</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>priority</sys_name>
+            <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+            <sys_update_name>sys_choice_x_1954503_smartc_0_emergency_cases_priority</sys_update_name>
+            <sys_updated_by>teniola</sys_updated_by>
+            <sys_updated_on>2026-03-14 16:36:47</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>priority</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Low</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_emergency_cases</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>teniola</sys_created_by>
+            <sys_created_on>2026-03-14 16:36:47</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>teniola</sys_updated_by>
+            <sys_updated_on>2026-03-14 16:36:53</sys_updated_on>
+            <value>100</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>priority</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Medium</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_emergency_cases</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>teniola</sys_created_by>
+            <sys_created_on>2026-03-14 16:37:14</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>teniola</sys_updated_by>
+            <sys_updated_on>2026-03-14 16:37:46</sys_updated_on>
+            <value>200</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>priority</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>High</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_emergency_cases</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>teniola</sys_created_by>
+            <sys_created_on>2026-03-14 16:37:23</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>teniola</sys_updated_by>
+            <sys_updated_on>2026-03-14 16:37:52</sys_updated_on>
+            <value>300</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>priority</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Critical</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_emergency_cases</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>teniola</sys_created_by>
+            <sys_created_on>2026-03-14 16:37:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>teniola</sys_updated_by>
+            <sys_updated_on>2026-03-14 16:37:57</sys_updated_on>
+            <value>400</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

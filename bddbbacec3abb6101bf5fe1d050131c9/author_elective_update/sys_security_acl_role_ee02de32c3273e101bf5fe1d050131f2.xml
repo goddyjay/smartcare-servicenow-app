@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="DELETE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-14 16:22:14</sys_created_on>
+        <sys_id>ee02de32c3273e101bf5fe1d050131f2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1954503_smartc_0_emergency_case.x_1954503_smartc_0.emergency_case_user</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_security_acl display_value="x_1954503_smartc_0_emergency_case">a602de32c3273e101bf5fe1d050131ed</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_ee02de32c3273e101bf5fe1d050131f2</sys_update_name>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-14 16:22:14</sys_updated_on>
+        <sys_user_role display_value="x_1954503_smartc_0.emergency_case_user" name="x_1954503_smartc_0.emergency_case_user">da025e32c3273e101bf5fe1d05013116</sys_user_role>
+    </sys_security_acl_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sys_security_acl_role_ee02de32c3273e101bf5fe1d050131f2</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role"><sys_security_acl_role action="INSERT_OR_UPDATE"><sys_class_name>sys_security_acl_role</sys_class_name><sys_created_by>teniola</sys_created_by><sys_created_on>2026-03-14 16:22:14</sys_created_on><sys_id>ee02de32c3273e101bf5fe1d050131f2</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_1954503_smartc_0_emergency_case.x_1954503_smartc_0.emergency_case_user</sys_name><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_security_acl display_value="x_1954503_smartc_0_emergency_case">a602de32c3273e101bf5fe1d050131ed</sys_security_acl><sys_update_name>sys_security_acl_role_ee02de32c3273e101bf5fe1d050131f2</sys_update_name><sys_updated_by>teniola</sys_updated_by><sys_updated_on>2026-03-14 16:22:14</sys_updated_on><sys_user_role display_value="x_1954503_smartc_0.emergency_case_user" name="x_1954503_smartc_0.emergency_case_user">da025e32c3273e101bf5fe1d05013116</sys_user_role></sys_security_acl_role></record_update>]]></payload>
+        <payload_hash>1959043068</payload_hash>
+        <record_name>x_1954503_smartc_0_emergency_case.x_1954503_smartc_0.emergency_case_user</record_name>
+        <reverted_from/>
+        <source>9ea01b1ec32f3a101bf5fe1d0501315a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-14 16:22:14</sys_created_on>
+        <sys_id>a202de32c3273e101bf5fe1d050131f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19ced27ce1b0000001</sys_recorded_at>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-14 16:22:14</sys_updated_on>
+        <type>Access Roles</type>
+        <update_guid>6202de32f1273e10d466d43c6e345bf7</update_guid>
+        <update_guid_history>6202de32f1273e10d466d43c6e345bf7:1959043068</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="x_1954503_smartc_0_emergency_case.x_1954503_smartc_0.emergency_case_user">0db2d6b2c3273e101bf5fe1d0501317e</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-14 16:25:09</sys_created_on>
+        <sys_db_object display_value="" name="sys_security_acl_role">sys_security_acl_role</sys_db_object>
+        <sys_id>4017673c3b874f6dbb6318fca9d9c831</sys_id>
+        <sys_metadata>ee02de32c3273e101bf5fe1d050131f2</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1954503_smartc_0_emergency_case.x_1954503_smartc_0.emergency_case_user</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent display_value="">a602de32c3273e101bf5fe1d050131ed</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sys_security_acl_role_ee02de32c3273e101bf5fe1d050131f2</sys_update_name>
+        <sys_update_version display_value="sys_security_acl_role_ee02de32c3273e101bf5fe1d050131f2">a202de32c3273e101bf5fe1d050131f8</sys_update_version>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-14 16:25:09</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

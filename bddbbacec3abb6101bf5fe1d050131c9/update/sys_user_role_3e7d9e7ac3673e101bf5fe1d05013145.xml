@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="INSERT_OR_UPDATE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description/>
+        <elevated_privilege>false</elevated_privilege>
+        <federated_id>tDsmmGvSZ2QOOtDYCNmX3Q51g0gigBge1HRV8/HrEgo=</federated_id>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_1954503_smartc_0.hospital_bed_user</name>
+        <scoped_admin>false</scoped_admin>
+        <suffix>hospital_bed_user</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-14 17:12:14</sys_created_on>
+        <sys_id>3e7d9e7ac3673e101bf5fe1d05013145</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_1954503_smartc_0.hospital_bed_user</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_user_role_3e7d9e7ac3673e101bf5fe1d05013145</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-14 17:12:14</sys_updated_on>
+    </sys_user_role>
+</record_update>

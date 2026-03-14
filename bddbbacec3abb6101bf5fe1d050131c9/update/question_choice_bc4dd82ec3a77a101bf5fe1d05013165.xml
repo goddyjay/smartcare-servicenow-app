@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="question_choice">
+    <question_choice action="INSERT_OR_UPDATE">
+        <inactive>false</inactive>
+        <order>500</order>
+        <published_ref/>
+        <question display_value="Status">37eb10aac3a77a101bf5fe1d050131d4</question>
+        <sys_class_name>question_choice</sys_class_name>
+        <sys_created_by>utibe</sys_created_by>
+        <sys_created_on>2026-03-13 13:13:33</sys_created_on>
+        <sys_id>bc4dd82ec3a77a101bf5fe1d05013165</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Discharged</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>question_choice_bc4dd82ec3a77a101bf5fe1d05013165</sys_update_name>
+        <sys_updated_by>utibe</sys_updated_by>
+        <sys_updated_on>2026-03-13 13:13:33</sys_updated_on>
+        <text>Discharged</text>
+        <value>discharge</value>
+    </question_choice>
+    <fx_price action="delete_multiple" query="id=bc4dd82ec3a77a101bf5fe1d05013165"/>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>misc</field>
+        <id>bc4dd82ec3a77a101bf5fe1d05013165</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>utibe</sys_created_by>
+        <sys_created_on>2026-03-13 14:38:14</sys_created_on>
+        <sys_id>91a0382ac36b7a101bf5fe1d050131ff</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>utibe</sys_updated_by>
+        <sys_updated_on>2026-03-13 14:38:14</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+    <fx_price action="INSERT_OR_UPDATE">
+        <amount>0</amount>
+        <currency display_value="USD">USD</currency>
+        <field>rec_misc</field>
+        <id>bc4dd82ec3a77a101bf5fe1d05013165</id>
+        <parent/>
+        <reference_amount>0</reference_amount>
+        <reference_currency display_value="USD">USD</reference_currency>
+        <sys_created_by>utibe</sys_created_by>
+        <sys_created_on>2026-03-13 14:38:14</sys_created_on>
+        <sys_id>91a0382ac36b7a101bf5fe1d050131fe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>utibe</sys_updated_by>
+        <sys_updated_on>2026-03-13 14:38:14</sys_updated_on>
+        <table>question_choice</table>
+        <type>calculated</type>
+    </fx_price>
+</record_update>

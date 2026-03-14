@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_documentation element="assigned_doctor" label="Assigned Doctor" language="en" table="x_1954503_smartc_0_patient">
+    <sys_documentation element="status" label="Status" language="en" table="x_1954503_smartc_0_hospital_bed">
         <sys_documentation action="INSERT_OR_UPDATE">
-            <element>assigned_doctor</element>
+            <element>status</element>
             <help/>
             <hint/>
-            <label>Assigned Doctor</label>
+            <label>Status</label>
             <language>en</language>
-            <name>x_1954503_smartc_0_patient</name>
-            <plural/>
+            <name>x_1954503_smartc_0_hospital_bed</name>
+            <plural>Status</plural>
             <sys_class_name>sys_documentation</sys_class_name>
-            <sys_created_by>franklin</sys_created_by>
-            <sys_created_on>2026-03-12 12:46:20</sys_created_on>
-            <sys_mod_count>7</sys_mod_count>
-            <sys_name>Assigned Doctor</sys_name>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 17:18:15</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Status</sys_name>
             <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
             <sys_policy/>
             <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-            <sys_update_name>sys_documentation_x_1954503_smartc_0_patient_assigned_doctor_en</sys_update_name>
+            <sys_update_name>sys_documentation_x_1954503_smartc_0_hospital_bed_status_en</sys_update_name>
             <sys_updated_by>godwin</sys_updated_by>
-            <sys_updated_on>2026-03-13 15:19:00</sys_updated_on>
+            <sys_updated_on>2026-03-14 17:18:15</sys_updated_on>
             <url/>
             <url_target/>
         </sys_documentation>

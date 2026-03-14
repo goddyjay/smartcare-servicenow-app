@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_object">
+    <sys_db_object action="DELETE">
+        <access>public</access>
+        <actions_access>false</actions_access>
+        <alter_access>false</alter_access>
+        <caller_access/>
+        <client_scripts_access>false</client_scripts_access>
+        <configuration_access>false</configuration_access>
+        <create_access>false</create_access>
+        <create_access_controls>true</create_access_controls>
+        <delete_access>false</delete_access>
+        <filter_extension/>
+        <is_df_table>false</is_df_table>
+        <is_extendable>false</is_extendable>
+        <label>Emergency case</label>
+        <live_feed_enabled>false</live_feed_enabled>
+        <name>x_1954503_smartc_0_emergency_case</name>
+        <number_ref/>
+        <provider_class/>
+        <read_access>true</read_access>
+        <scriptable_table>false</scriptable_table>
+        <super_class/>
+        <sys_class_name>sys_db_object</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-14 16:22:14</sys_created_on>
+        <sys_id>f0f11e32c3273e101bf5fe1d05013166</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Emergency case</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_db_object_f0f11e32c3273e101bf5fe1d05013166</sys_update_name>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-14 16:22:14</sys_updated_on>
+        <u_medical_department/>
+        <update_access>false</update_access>
+        <user_role display_value="x_1954503_smartc_0.emergency_case_user" name="x_1954503_smartc_0.emergency_case_user">da025e32c3273e101bf5fe1d05013116</user_role>
+        <ws_access>true</ws_access>
+    </sys_db_object>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sys_db_object_f0f11e32c3273e101bf5fe1d05013166</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_object"><sys_db_object action="INSERT_OR_UPDATE"><access>public</access><actions_access>false</actions_access><alter_access>false</alter_access><caller_access/><client_scripts_access>false</client_scripts_access><configuration_access>false</configuration_access><create_access>false</create_access><create_access_controls>true</create_access_controls><delete_access>false</delete_access><filter_extension/><is_df_table>false</is_df_table><is_extendable>false</is_extendable><label>Emergency case</label><live_feed_enabled>false</live_feed_enabled><name>x_1954503_smartc_0_emergency_case</name><number_ref/><provider_class/><read_access>true</read_access><scriptable_table>false</scriptable_table><super_class/><sys_class_name>sys_db_object</sys_class_name><sys_created_by>teniola</sys_created_by><sys_created_on>2026-03-14 16:22:14</sys_created_on><sys_id>f0f11e32c3273e101bf5fe1d05013166</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Emergency case</sys_name><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>sys_db_object_f0f11e32c3273e101bf5fe1d05013166</sys_update_name><sys_updated_by>teniola</sys_updated_by><sys_updated_on>2026-03-14 16:22:14</sys_updated_on><u_medical_department/><update_access>false</update_access><user_role display_value="x_1954503_smartc_0.emergency_case_user" name="x_1954503_smartc_0.emergency_case_user">da025e32c3273e101bf5fe1d05013116</user_role><ws_access>true</ws_access></sys_db_object></record_update>]]></payload>
+        <payload_hash>867680401</payload_hash>
+        <record_name>Emergency case</record_name>
+        <reverted_from/>
+        <source>9ea01b1ec32f3a101bf5fe1d0501315a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-14 16:22:15</sys_created_on>
+        <sys_id>32021272c3273e101bf5fe1d05013179</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19ced27d1850000001</sys_recorded_at>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-14 16:22:15</sys_updated_on>
+        <type>Table</type>
+        <update_guid>fe02127272273e1003a866014e53fa77</update_guid>
+        <update_guid_history>fe02127272273e1003a866014e53fa77:867680401</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>teniola</sys_created_by>
+        <sys_created_on>2026-03-14 16:25:08</sys_created_on>
+        <sys_db_object display_value="" name="sys_db_object">sys_db_object</sys_db_object>
+        <sys_id>02edf16d5aa446e287b3d7ea8298dff1</sys_id>
+        <sys_metadata>f0f11e32c3273e101bf5fe1d05013166</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Emergency case</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sys_db_object_f0f11e32c3273e101bf5fe1d05013166</sys_update_name>
+        <sys_update_version display_value="sys_db_object_f0f11e32c3273e101bf5fe1d05013166">32021272c3273e101bf5fe1d05013179</sys_update_version>
+        <sys_updated_by>teniola</sys_updated_by>
+        <sys_updated_on>2026-03-14 16:25:08</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

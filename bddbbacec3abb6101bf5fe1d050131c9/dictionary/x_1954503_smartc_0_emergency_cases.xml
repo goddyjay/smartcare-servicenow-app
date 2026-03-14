@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="0bb2dab2c3273e101bf5fe1d05013104" label="Emergency Cases " max_length="40" name="x_1954503_smartc_0_emergency_cases" type="collection">
+        <element choice="1" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="In progress" value="200"/>
+                <element inactive_on_update="false" label="Open" value="100"/>
+                <element inactive_on_update="false" label="Resolved" value="300"/>
+            </choice>
+        </element>
+        <element label="Patient" max_length="32" name="patient" reference="x_1954503_smartc_0_patient" type="reference"/>
+        <element choice="1" label="Priority" max_length="40" name="priority" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Low" value="100"/>
+                <element inactive_on_update="false" label="Critical" value="400"/>
+                <element inactive_on_update="false" label="Medium" value="200"/>
+                <element inactive_on_update="false" label="High" value="300"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="patient"/>
+        </index>
+    </element>
+</database>
