@@ -3,70 +3,42 @@
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>full_name</element>
             <position>0</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-13 08:26:37</sys_created_on>
-            <sys_id>fd9b1b92c3af3a101bf5fe1d05013137</sys_id>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 19:07:07</sys_created_on>
+            <sys_id>75c772b2c36b3e101bf5fe1d050131fc</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">17f90f46c32fb6101bf5fe1d050131ce</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:26:37</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-14 19:07:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>age</element>
             <position>1</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-13 08:26:37</sys_created_on>
-            <sys_id>7d9b1b92c3af3a101bf5fe1d05013138</sys_id>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 19:07:07</sys_created_on>
+            <sys_id>b9c7b2b2c36b3e101bf5fe1d05013109</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">17f90f46c32fb6101bf5fe1d050131ce</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:26:37</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-14 19:07:07</sys_updated_on>
             <sys_user/>
             <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.split</element>
-            <position>2</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-13 08:26:37</sys_created_on>
-            <sys_id>f99b1b92c3af3a101bf5fe1d05013139</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">17f90f46c32fb6101bf5fe1d050131ce</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:26:37</sys_updated_on>
-            <sys_user/>
-            <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>gender</element>
-            <position>3</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-13 08:26:37</sys_created_on>
-            <sys_id>799b1b92c3af3a101bf5fe1d0501313a</sys_id>
+            <position>2</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 19:07:07</sys_created_on>
+            <sys_id>39c7b2b2c36b3e101bf5fe1d0501310a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">17f90f46c32fb6101bf5fe1d050131ce</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:26:37</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>symptoms</element>
-            <position>4</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-13 08:26:37</sys_created_on>
-            <sys_id>f59b1b92c3af3a101bf5fe1d0501313b</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">17f90f46c32fb6101bf5fe1d050131ce</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:26:37</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-14 19:07:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

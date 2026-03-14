@@ -3,28 +3,42 @@
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>assigned_doctor</element>
             <position>0</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-13 08:23:57</sys_created_on>
-            <sys_id>f6fa1752c3af3a101bf5fe1d05013183</sys_id>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 19:07:07</sys_created_on>
+            <sys_id>b9c7b2b2c36b3e101bf5fe1d05013124</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Hospital assignment" display_value="Hospital assignment" name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">22fa1752c3af3a101bf5fe1d05013168</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:23:57</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-14 19:07:07</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>status</element>
+            <position>1</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 19:07:07</sys_created_on>
+            <sys_id>39c7b2b2c36b3e101bf5fe1d05013125</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Hospital assignment" display_value="Hospital assignment" name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">22fa1752c3af3a101bf5fe1d05013168</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-14 19:07:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>check_in_time</element>
-            <position>1</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-13 08:23:58</sys_created_on>
-            <sys_id>76fa1752c3af3a101bf5fe1d05013184</sys_id>
+            <position>2</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 19:07:07</sys_created_on>
+            <sys_id>b5c7b2b2c36b3e101bf5fe1d05013126</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Hospital assignment" display_value="Hospital assignment" name="x_1954503_smartc_0_patient" sys_domain="global" view="Default view">22fa1752c3af3a101bf5fe1d05013168</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-13 08:23:58</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-14 19:07:07</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

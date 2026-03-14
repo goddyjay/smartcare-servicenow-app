@@ -3,7 +3,7 @@
         <abort_action>false</abort_action>
         <access>package_private</access>
         <action_delete>false</action_delete>
-        <action_insert>true</action_insert>
+        <action_insert>false</action_insert>
         <action_query>false</action_query>
         <action_update>true</action_update>
         <active>true</active>
@@ -18,7 +18,7 @@
         <filter_condition/>
         <is_rest>false</is_rest>
         <message/>
-        <name>SmartCare Bed Assignment</name>
+        <name>SmartCare Bed Release</name>
         <order>100</order>
         <priority>100</priority>
         <rest_method/>
@@ -29,34 +29,19 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous) {
 
-    if (current.getValue('status') == 'admitted') {
+    if (current.getValue('status') == 'discharged') {
 
-        // Check if patient already has a bed
-        var existingBed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
-        existingBed.addQuery('assigned_patient', current.getUniqueValue());
-        existingBed.query();
-
-        if (existingBed.next()) {
-            gs.addInfoMessage("Patient already has a bed assigned.");
-            return;
-        }
-
-        // Find an available bed
         var bed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
-        bed.addQuery('status', 'available');
+        bed.addQuery('assigned_patient', current.getUniqueValue());
         bed.query();
 
-        if (bed.next()) {
+        while (bed.next()) {
 
-            bed.setValue('status', 'occupied');
-            bed.setValue('assigned_patient', current.getUniqueValue());
+            bed.setValue('status', 'available');
+            bed.setValue('assigned_patient', '');
             bed.update();
 
-            gs.addInfoMessage("Bed " + bed.getValue('bed_id') + " assigned successfully.");
-
-        } else {
-
-            gs.addErrorMessage("No available beds.");
+            gs.addInfoMessage("Bed " + bed.getValue('bed_id') + " released.");
 
         }
 
@@ -65,21 +50,21 @@
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-14 17:30:01</sys_created_on>
+        <sys_created_on>2026-03-14 19:17:34</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>9540a632c3a73e101bf5fe1d05013173</sys_id>
-        <sys_mod_count>12</sys_mod_count>
-        <sys_name>SmartCare Bed Assignment</sys_name>
+        <sys_id>4b797a76c36b3e101bf5fe1d050131c8</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>SmartCare Bed Release</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_update_name>sys_script_9540a632c3a73e101bf5fe1d05013173</sys_update_name>
+        <sys_update_name>sys_script_4b797a76c36b3e101bf5fe1d050131c8</sys_update_name>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-14 20:31:46</sys_updated_on>
+        <sys_updated_on>2026-03-14 20:33:32</sys_updated_on>
         <template/>
-        <when>before</when>
+        <when>after</when>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=9540a632c3a73e101bf5fe1d05013173"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=4b797a76c36b3e101bf5fe1d050131c8"/>
 </record_update>
