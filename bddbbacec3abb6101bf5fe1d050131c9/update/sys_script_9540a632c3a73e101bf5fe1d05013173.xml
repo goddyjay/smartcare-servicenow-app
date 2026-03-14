@@ -31,7 +31,7 @@
 
     if (current.getValue('status') == 'admitted') {
 
-        // Check if patient already has a bed
+        // Prevent assigning multiple beds
         var existingBed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
         existingBed.addQuery('assigned_patient', current.getUniqueValue());
         existingBed.query();
@@ -41,9 +41,31 @@
             return;
         }
 
-        // Find an available bed
+        // Determine patient's severity and department
+        var severity = current.getValue('severity');
+        var department = current.getValue('medical_department');
+
+        var wardToSearch = '';
+
+        // TRIAGE LOGIC
+        if (severity == 'critical') {
+
+            wardToSearch = 'ICU';
+
+        } else if (severity == 'high') {
+
+            wardToSearch = 'Emergency';
+
+        } else {
+
+            wardToSearch = department;
+
+        }
+
+        // Find available bed in correct ward
         var bed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
         bed.addQuery('status', 'available');
+        bed.addQuery('ward', wardToSearch);
         bed.query();
 
         if (bed.next()) {
@@ -52,11 +74,11 @@
             bed.setValue('assigned_patient', current.getUniqueValue());
             bed.update();
 
-            gs.addInfoMessage("Bed " + bed.getValue('bed_id') + " assigned successfully.");
+            gs.addInfoMessage("Bed " + bed.getValue('bed_id') + " assigned in " + wardToSearch + " ward.");
 
         } else {
 
-            gs.addErrorMessage("No available beds.");
+            gs.addErrorMessage("No available beds in " + wardToSearch + " ward.");
 
         }
 
@@ -69,7 +91,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>9540a632c3a73e101bf5fe1d05013173</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>SmartCare Bed Assignment</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
@@ -77,7 +99,7 @@
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_script_9540a632c3a73e101bf5fe1d05013173</sys_update_name>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-14 20:31:46</sys_updated_on>
+        <sys_updated_on>2026-03-14 21:06:27</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

@@ -6,6 +6,7 @@
                 <element inactive_on_update="false" label="Neurology" value="300"/>
                 <element inactive_on_update="false" label="Orthopedics" value="400"/>
                 <element inactive_on_update="false" label="General Medicine" value="500"/>
+                <element inactive_on_update="false" label="ICU" sequence="100" value="ICU"/>
                 <element inactive_on_update="false" label="Emergency" value="100"/>
                 <element inactive_on_update="false" label="Cardiology" value="200"/>
                 <element inactive_on_update="false" label="Maternity" value="600"/>

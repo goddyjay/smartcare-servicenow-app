@@ -129,5 +129,24 @@
             <sys_updated_on>2026-03-14 17:15:53</sys_updated_on>
             <value>600</value>
         </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>ward</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>ICU</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_hospital_bed</name>
+            <sequence>100</sequence>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-14 21:14:36</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-14 21:14:36</sys_updated_on>
+            <value>ICU</value>
+        </sys_choice>
     </sys_choice>
 </record_update>
