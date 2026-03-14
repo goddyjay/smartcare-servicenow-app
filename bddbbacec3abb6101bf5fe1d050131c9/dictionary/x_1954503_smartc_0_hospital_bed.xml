@@ -13,9 +13,9 @@
         </element>
         <element choice="1" label="Status" max_length="40" name="status" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Available" value="100"/>
-                <element inactive_on_update="false" label="Maintenace" value="300"/>
-                <element inactive_on_update="false" label="Occupied" value="200"/>
+                <element inactive_on_update="false" label="Available" value="available"/>
+                <element inactive_on_update="false" label="Maintenace" value="maintenace"/>
+                <element inactive_on_update="false" label="Occupied" value="occupied"/>
             </choice>
         </element>
         <element choice="1" label="Bed Type" max_length="40" name="bed_type" type="choice">
