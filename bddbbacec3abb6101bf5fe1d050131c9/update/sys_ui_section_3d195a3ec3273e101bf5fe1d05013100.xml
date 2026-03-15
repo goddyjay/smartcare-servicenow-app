@@ -3,86 +3,86 @@
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.begin_split</element>
             <position>0</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-14 16:53:03</sys_created_on>
-            <sys_id>3d195efec3273e101bf5fe1d05013141</sys_id>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-15 16:57:08</sys_created_on>
+            <sys_id>eb93e387c3efbe101bf5fe1d05013130</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1954503_smartc_0_emergency_cases" sys_domain="global" view="Default view">3d195a3ec3273e101bf5fe1d05013100</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-14 16:53:03</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-15 16:57:08</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>patient</element>
             <position>1</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-14 16:53:03</sys_created_on>
-            <sys_id>39195efec3273e101bf5fe1d05013143</sys_id>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-15 16:57:08</sys_created_on>
+            <sys_id>6b93e387c3efbe101bf5fe1d05013131</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1954503_smartc_0_emergency_cases" sys_domain="global" view="Default view">3d195a3ec3273e101bf5fe1d05013100</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-14 16:53:03</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>status</element>
-            <position>2</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-14 16:53:03</sys_created_on>
-            <sys_id>b5195efec3273e101bf5fe1d05013144</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_1954503_smartc_0_emergency_cases" sys_domain="global" view="Default view">3d195a3ec3273e101bf5fe1d05013100</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-14 16:53:03</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-15 16:57:08</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>3</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-14 16:53:03</sys_created_on>
-            <sys_id>35195efec3273e101bf5fe1d05013145</sys_id>
+            <position>2</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-15 16:57:08</sys_created_on>
+            <sys_id>e793e387c3efbe101bf5fe1d05013132</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1954503_smartc_0_emergency_cases" sys_domain="global" view="Default view">3d195a3ec3273e101bf5fe1d05013100</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-14 16:53:03</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-15 16:57:08</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>priority</element>
-            <position>4</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-14 16:53:03</sys_created_on>
-            <sys_id>b1195efec3273e101bf5fe1d05013146</sys_id>
+            <position>3</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-15 16:57:08</sys_created_on>
+            <sys_id>6793e387c3efbe101bf5fe1d05013133</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1954503_smartc_0_emergency_cases" sys_domain="global" view="Default view">3d195a3ec3273e101bf5fe1d05013100</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-14 16:53:03</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-15 16:57:08</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>5</position>
-            <sys_created_by>teniola</sys_created_by>
-            <sys_created_on>2026-03-14 16:53:03</sys_created_on>
-            <sys_id>31195efec3273e101bf5fe1d05013147</sys_id>
+            <position>4</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-15 16:57:08</sys_created_on>
+            <sys_id>e393e387c3efbe101bf5fe1d05013134</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1954503_smartc_0_emergency_cases" sys_domain="global" view="Default view">3d195a3ec3273e101bf5fe1d05013100</sys_ui_section>
-            <sys_updated_by>teniola</sys_updated_by>
-            <sys_updated_on>2026-03-14 16:53:03</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-15 16:57:08</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>patient.medical_department</element>
+            <position>5</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-15 16:57:08</sys_created_on>
+            <sys_id>6393e387c3efbe101bf5fe1d05013135</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1954503_smartc_0_emergency_cases" sys_domain="global" view="Default view">3d195a3ec3273e101bf5fe1d05013100</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-15 16:57:08</sys_updated_on>
+            <sys_user/>
+            <type/>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>

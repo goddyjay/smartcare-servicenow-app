@@ -8,7 +8,7 @@
             </choice>
         </element>
         <element label="Patient" max_length="32" name="patient" reference="x_1954503_smartc_0_patient" type="reference"/>
-        <element choice="1" label="Priority" max_length="40" name="priority" type="choice">
+        <element choice="1" label="Priority" mandatory="true" max_length="40" name="priority" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Low" value="100"/>
                 <element inactive_on_update="false" label="Critical" value="400"/>
