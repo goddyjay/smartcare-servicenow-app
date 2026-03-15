@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_visibility">
+    <par_dashboard_visibility action="DELETE">
+        <dashboard display_value="SmartCare Hospital Dashboard">66404c03c3a37e101bf5fe1d050131ef</dashboard>
+        <experience display_value="Platform Analytics">08c73d60537101100834ddeeff7b1287</experience>
+        <sys_class_name>par_dashboard_visibility</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:23:57</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b2400443c3a37e101bf5fe1d0501316a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>par_dashboard_visibility_b2400443c3a37e101bf5fe1d0501316a</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:23:57</sys_updated_on>
+    </par_dashboard_visibility>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>par_dashboard_visibility_b2400443c3a37e101bf5fe1d0501316a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_visibility"><par_dashboard_visibility action="INSERT_OR_UPDATE"><dashboard display_value="SmartCare Hospital Dashboard">66404c03c3a37e101bf5fe1d050131ef</dashboard><experience display_value="Platform Analytics">08c73d60537101100834ddeeff7b1287</experience><sys_class_name>par_dashboard_visibility</sys_class_name><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-15 00:23:57</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>b2400443c3a37e101bf5fe1d0501316a</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_overrides/><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>par_dashboard_visibility_b2400443c3a37e101bf5fe1d0501316a</sys_update_name><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-15 00:23:57</sys_updated_on></par_dashboard_visibility></record_update>]]></payload>
+        <payload_hash>802364982</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>0ed3b6bac32b3e101bf5fe1d050131c9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:23:57</sys_created_on>
+        <sys_id>7a400443c3a37e101bf5fe1d05013187</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19ceee0d1fb0000001</sys_recorded_at>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:23:57</sys_updated_on>
+        <type>PAR Dashboard Visibility</type>
+        <update_guid>7a400443a2a37e10aca8ea538ffb706d</update_guid>
+        <update_guid_history>7a400443a2a37e10aca8ea538ffb706d:802364982</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">e2b28487c3a37e101bf5fe1d05013163</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:34:35</sys_created_on>
+        <sys_db_object display_value="" name="par_dashboard_visibility">par_dashboard_visibility</sys_db_object>
+        <sys_id>0cad162c50ac47a4bc45fbcefd8e8844</sys_id>
+        <sys_metadata>b2400443c3a37e101bf5fe1d0501316a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>par_dashboard_visibility_b2400443c3a37e101bf5fe1d0501316a</sys_update_name>
+        <sys_update_version display_value="par_dashboard_visibility_b2400443c3a37e101bf5fe1d0501316a">7a400443c3a37e101bf5fe1d05013187</sys_update_version>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:34:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

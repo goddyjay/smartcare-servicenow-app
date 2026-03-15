@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_permission">
+    <par_dashboard_permission action="DELETE">
+        <can_read>true</can_read>
+        <can_share>true</can_share>
+        <can_write>true</can_write>
+        <dashboard display_value="SmartCare Hospital Dashboard">66404c03c3a37e101bf5fe1d050131ef</dashboard>
+        <group/>
+        <owner>true</owner>
+        <role/>
+        <sys_class_name>par_dashboard_permission</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:23:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>62404c03c3a37e101bf5fe1d050131f5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>66404c03c3a37e101bf5fe1d050131ef</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>par_dashboard_permission_62404c03c3a37e101bf5fe1d050131f5</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:23:56</sys_updated_on>
+        <user display_value="Godwin Godwin">2b068efdc32736101bf5fe1d050131bb</user>
+    </par_dashboard_permission>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>par_dashboard_permission_62404c03c3a37e101bf5fe1d050131f5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_permission"><par_dashboard_permission action="INSERT_OR_UPDATE"><can_read>true</can_read><can_share>true</can_share><can_write>true</can_write><dashboard display_value="SmartCare Hospital Dashboard">66404c03c3a37e101bf5fe1d050131ef</dashboard><group/><owner>true</owner><role/><sys_class_name>par_dashboard_permission</sys_class_name><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-15 00:23:56</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>62404c03c3a37e101bf5fe1d050131f5</sys_id><sys_mod_count>0</sys_mod_count><sys_name>66404c03c3a37e101bf5fe1d050131ef</sys_name><sys_overrides/><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>par_dashboard_permission_62404c03c3a37e101bf5fe1d050131f5</sys_update_name><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-15 00:23:56</sys_updated_on><user display_value="Godwin Godwin">2b068efdc32736101bf5fe1d050131bb</user></par_dashboard_permission></record_update>]]></payload>
+        <payload_hash>1986440824</payload_hash>
+        <record_name>66404c03c3a37e101bf5fe1d050131ef</record_name>
+        <reverted_from/>
+        <source>0ed3b6bac32b3e101bf5fe1d050131c9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:23:56</sys_created_on>
+        <sys_id>2e400443c3a37e101bf5fe1d05013140</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19ceee0d09c0000001</sys_recorded_at>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:23:56</sys_updated_on>
+        <type>PAR Dashboard Permission</type>
+        <update_guid>aa400443cea37e10ab7f77f186dca63f</update_guid>
+        <update_guid_history>aa400443cea37e10ab7f77f186dca63f:1986440824</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">e2b28487c3a37e101bf5fe1d0501314c</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:34:35</sys_created_on>
+        <sys_db_object display_value="" name="par_dashboard_permission">par_dashboard_permission</sys_db_object>
+        <sys_id>08c5d953125841108064fd0ebf17af90</sys_id>
+        <sys_metadata>62404c03c3a37e101bf5fe1d050131f5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>66404c03c3a37e101bf5fe1d050131ef</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>par_dashboard_permission_62404c03c3a37e101bf5fe1d050131f5</sys_update_name>
+        <sys_update_version display_value="par_dashboard_permission_62404c03c3a37e101bf5fe1d050131f5">2e400443c3a37e101bf5fe1d05013140</sys_update_version>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:34:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

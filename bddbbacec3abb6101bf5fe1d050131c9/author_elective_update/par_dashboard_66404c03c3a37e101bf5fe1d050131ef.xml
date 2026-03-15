@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard">
+    <par_dashboard action="DELETE">
+        <active>true</active>
+        <base_dashboard/>
+        <certified>false</certified>
+        <description>Dashboard showing Reports in the hospital</description>
+        <experience/>
+        <grid>48</grid>
+        <name>SmartCare Hospital Dashboard</name>
+        <sys_class_name>par_dashboard</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:23:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>66404c03c3a37e101bf5fe1d050131ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SmartCare Hospital Dashboard</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>par_dashboard_66404c03c3a37e101bf5fe1d050131ef</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:23:56</sys_updated_on>
+        <sys_ux_app_config/>
+        <sys_ux_app_route/>
+        <sys_ux_macroponent/>
+        <sys_ux_screen/>
+        <sys_ux_screen_type/>
+    </par_dashboard>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>par_dashboard_66404c03c3a37e101bf5fe1d050131ef</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard"><par_dashboard action="INSERT_OR_UPDATE"><active>true</active><base_dashboard/><certified>false</certified><description>Dashboard showing Reports in the hospital</description><experience/><grid>48</grid><name>SmartCare Hospital Dashboard</name><sys_class_name>par_dashboard</sys_class_name><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-15 00:23:56</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>66404c03c3a37e101bf5fe1d050131ef</sys_id><sys_mod_count>0</sys_mod_count><sys_name>SmartCare Hospital Dashboard</sys_name><sys_overrides/><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>par_dashboard_66404c03c3a37e101bf5fe1d050131ef</sys_update_name><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-15 00:23:56</sys_updated_on><sys_ux_app_config/><sys_ux_app_route/><sys_ux_macroponent/><sys_ux_screen/><sys_ux_screen_type/></par_dashboard></record_update>]]></payload>
+        <payload_hash>-1513563420</payload_hash>
+        <record_name>SmartCare Hospital Dashboard</record_name>
+        <reverted_from/>
+        <source>0ed3b6bac32b3e101bf5fe1d050131c9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:23:56</sys_created_on>
+        <sys_id>66404c03c3a37e101bf5fe1d050131f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19ceee0d04e0000001</sys_recorded_at>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:23:56</sys_updated_on>
+        <type>PAR Dashboard</type>
+        <update_guid>e2404c036ea37e103319a3588a882af3</update_guid>
+        <update_guid_history>e2404c036ea37e103319a3588a882af3:-1513563420</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="SmartCare Hospital Dashboard">26b28087c3a37e101bf5fe1d050131b9</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-15 00:34:35</sys_created_on>
+        <sys_db_object display_value="" name="par_dashboard">par_dashboard</sys_db_object>
+        <sys_id>29b5924be98f4d52b51a46cfee4784e4</sys_id>
+        <sys_metadata>66404c03c3a37e101bf5fe1d050131ef</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SmartCare Hospital Dashboard</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>par_dashboard_66404c03c3a37e101bf5fe1d050131ef</sys_update_name>
+        <sys_update_version display_value="par_dashboard_66404c03c3a37e101bf5fe1d050131ef">66404c03c3a37e101bf5fe1d050131f4</sys_update_version>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-15 00:34:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
