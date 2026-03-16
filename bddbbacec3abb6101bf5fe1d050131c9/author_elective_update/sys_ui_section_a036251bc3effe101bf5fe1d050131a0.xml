@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section action="DELETE" caption="Doctor Profile" section_id="a036251bc3effe101bf5fe1d050131a0" sys_domain="global" table="sys_user" version="3" view="Doctor_Veiw">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>first_name</element>
+            <position>0</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-16 02:35:38</sys_created_on>
+            <sys_id>dd08eddbc3effe101bf5fe1d05013171</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-16 02:35:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>last_name</element>
+            <position>1</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-16 02:35:38</sys_created_on>
+            <sys_id>9908eddbc3effe101bf5fe1d05013173</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-16 02:35:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>user_name</element>
+            <position>2</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-16 02:35:38</sys_created_on>
+            <sys_id>1908eddbc3effe101bf5fe1d05013174</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-16 02:35:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>title</element>
+            <position>3</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-16 02:35:38</sys_created_on>
+            <sys_id>9508eddbc3effe101bf5fe1d05013175</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-16 02:35:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_medical_department</element>
+            <position>4</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-16 02:35:38</sys_created_on>
+            <sys_id>1508eddbc3effe101bf5fe1d05013176</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-16 02:35:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>active</element>
+            <position>5</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-16 02:35:38</sys_created_on>
+            <sys_id>9108eddbc3effe101bf5fe1d05013177</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-16 02:35:38</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="DELETE">
+            <caption>Doctor Profile</caption>
+            <header>false</header>
+            <name>sys_user</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-16 02:27:39</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a036251bc3effe101bf5fe1d050131a0</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>sys_user</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+            <sys_update_name>sys_ui_section_a036251bc3effe101bf5fe1d050131a0</sys_update_name>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-16 02:35:37</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Doctor Veiw" name="Doctor_Veiw">e036251bc3effe101bf5fe1d05013133</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sys_ui_section_a036251bc3effe101bf5fe1d050131a0</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update><sys_ui_section caption="Doctor Profile" section_id="a036251bc3effe101bf5fe1d050131a0" sys_domain="global" table="sys_user" version="3" view="Doctor_Veiw"><sys_ui_element action="INSERT_OR_UPDATE"><element>first_name</element><position>0</position><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-16 02:35:38</sys_created_on><sys_id>dd08eddbc3effe101bf5fe1d05013171</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-16 02:35:38</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>last_name</element><position>1</position><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-16 02:35:38</sys_created_on><sys_id>9908eddbc3effe101bf5fe1d05013173</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-16 02:35:38</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>user_name</element><position>2</position><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-16 02:35:38</sys_created_on><sys_id>1908eddbc3effe101bf5fe1d05013174</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-16 02:35:38</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>title</element><position>3</position><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-16 02:35:38</sys_created_on><sys_id>9508eddbc3effe101bf5fe1d05013175</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-16 02:35:38</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>u_medical_department</element><position>4</position><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-16 02:35:38</sys_created_on><sys_id>1508eddbc3effe101bf5fe1d05013176</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-16 02:35:38</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_element action="INSERT_OR_UPDATE"><element>active</element><position>5</position><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-16 02:35:38</sys_created_on><sys_id>9108eddbc3effe101bf5fe1d05013177</sys_id><sys_mod_count>0</sys_mod_count><sys_ui_formatter/><sys_ui_section caption="Doctor Profile" display_value="Doctor Profile" name="sys_user" sys_domain="global" view="e036251bc3effe101bf5fe1d05013133">a036251bc3effe101bf5fe1d050131a0</sys_ui_section><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-16 02:35:38</sys_updated_on><sys_user/><type/></sys_ui_element><sys_ui_section action="INSERT_OR_UPDATE"><caption>Doctor Profile</caption><header>false</header><name>sys_user</name><roles/><sys_class_name>sys_ui_section</sys_class_name><sys_created_by>godwin</sys_created_by><sys_created_on>2026-03-16 02:27:39</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>a036251bc3effe101bf5fe1d050131a0</sys_id><sys_mod_count>1</sys_mod_count><sys_name>sys_user</sys_name><sys_overrides/><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>sys_ui_section_a036251bc3effe101bf5fe1d050131a0</sys_update_name><sys_updated_by>godwin</sys_updated_by><sys_updated_on>2026-03-16 02:35:37</sys_updated_on><sys_user/><title>false</title><view display_value="Doctor Veiw" name="Doctor_Veiw">e036251bc3effe101bf5fe1d05013133</view><view_name/></sys_ui_section></sys_ui_section></record_update>]]></payload>
+        <payload_hash>-711021307</payload_hash>
+        <record_name>User</record_name>
+        <reverted_from/>
+        <source>0ed3b6bac32b3e101bf5fe1d050131c9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-16 02:35:38</sys_created_on>
+        <sys_id>a508eddbc3effe101bf5fe1d0501317b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19cf47fbd420000001</sys_recorded_at>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-16 02:35:38</sys_updated_on>
+        <type>Form Layout</type>
+        <update_guid>a508eddb2beffe10bf80ff1a3afbe07a</update_guid>
+        <update_guid_history>a508eddb2beffe10bf80ff1a3afbe07a:-711021307,5d08eddb27effe105dad73e58235a062:-578209926,a036251ba4effe10f267da36d445dda7:864474293</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-16 08:01:37</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_section">sys_ui_section</sys_db_object>
+        <sys_id>12f94fb9fe2c4c38a325af77cfe6ae40</sys_id>
+        <sys_metadata>a036251bc3effe101bf5fe1d050131a0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Doctor Profile</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent display_value="Sys User">e03bea02183232108bb255f46a373ab3</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sys_ui_section_a036251bc3effe101bf5fe1d050131a0</sys_update_name>
+        <sys_update_version display_value="sys_ui_section_a036251bc3effe101bf5fe1d050131a0">a508eddbc3effe101bf5fe1d0501317b</sys_update_version>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:01:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
