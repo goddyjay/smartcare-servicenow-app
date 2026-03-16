@@ -22,5 +22,13 @@
         <element choice="1" label="Status" max_length="40" name="x_1954503_smartc_0_status" type="choice">
             <choice/>
         </element>
+        <element choice="1" label="Availability" max_length="40" name="x_1954503_smartc_0_availability" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Off Shift" value="off_shift"/>
+                <element inactive_on_update="false" label="On Leave" value="on_leave"/>
+                <element inactive_on_update="false" label="Available" value="available"/>
+                <element inactive_on_update="false" label="On Duty" value="on_duty"/>
+            </choice>
+        </element>
     </element>
 </database>
