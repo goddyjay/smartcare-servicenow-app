@@ -5,7 +5,7 @@
         <action_delete>false</action_delete>
         <action_insert>true</action_insert>
         <action_query>false</action_query>
-        <action_update>false</action_update>
+        <action_update>true</action_update>
         <active>true</active>
         <add_message>false</add_message>
         <advanced>true</advanced>
@@ -29,69 +29,19 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous) {
 
-var department = current.getValue('medical_department');
+    if (current.assigned_doctor)
+        return;
 
-var doctorWorkload = {};
-var doctorList = [];
+    var dept = current.medical_department;
 
+    var doctor = new GlideRecord('sys_user');
+    doctor.addQuery('title', 'Doctor');
+    doctor.addQuery('u_medical_department', dept); // Correct field
+    doctor.query();
 
-// Find doctors in same department
-var doctor = new GlideRecord('sys_user');
-doctor.addQuery('title', 'Doctor');
-doctor.addQuery('medical_department', department);
-doctor.query();
-
-
-while (doctor.next()) {
-
-    doctorList.push(doctor.sys_id.toString());
-    doctorWorkload[doctor.sys_id.toString()] = 0;
-
-}
-
-
-// Count patients per doctor
-var patient = new GlideRecord('x_1954503_smartc_0_patient');
-patient.addQuery('status', '!=', 'discharged');
-patient.query();
-
-while (patient.next()) {
-
-    var assignedDoctor = patient.getValue('assigned_doctor');
-
-    if (doctorWorkload[assignedDoctor] != undefined) {
-
-        doctorWorkload[assignedDoctor]++;
-
+    if (doctor.next()) {
+        current.assigned_doctor = doctor.sys_id;
     }
-
-}
-
-
-// Find doctor with least patients
-var selectedDoctor = null;
-var lowestLoad = 999;
-
-for (var i = 0; i < doctorList.length; i++) {
-
-    var doc = doctorList[i];
-
-    if (doctorWorkload[doc] < lowestLoad) {
-
-        lowestLoad = doctorWorkload[doc];
-        selectedDoctor = doc;
-
-    }
-
-}
-
-
-// Assign doctor
-if (selectedDoctor) {
-
-    current.setValue('assigned_doctor', selectedDoctor);
-
-}
 
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -100,7 +50,7 @@ if (selectedDoctor) {
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>7811170ec36fb6101bf5fe1d050131c7</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Auto Assign Doctor</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
@@ -108,7 +58,7 @@ if (selectedDoctor) {
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_script_7811170ec36fb6101bf5fe1d050131c7</sys_update_name>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-16 02:22:12</sys_updated_on>
+        <sys_updated_on>2026-03-16 09:50:49</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

@@ -28,15 +28,13 @@
                 <element inactive_on_update="false" label="Admitted" sequence="2" value="admitted"/>
             </choice>
         </element>
-        <element choice="3" default="&#10;" label="Medical Department" max_length="40" name="medical_department" type="choice">
+        <element choice="3" default="&#10;" label="Medical Department" mandatory="true" max_length="40" name="medical_department" type="choice">
             <choice>
                 <element inactive_on_update="false" label="General Medicine" sequence="5" value="general_medicine"/>
                 <element inactive_on_update="false" label="Emergency" sequence="3" value="emergency"/>
-                <element inactive_on_update="false" label="Radiology" sequence="7" value="radiology"/>
                 <element inactive_on_update="false" label="Cardiology" sequence="1" value="cardiology"/>
                 <element inactive_on_update="false" label="Pediatrics" sequence="0" value="pediatrics"/>
-                <element inactive_on_update="false" label="Neurology" sequence="6" value="neurology"/>
-                <element inactive_on_update="false" label="Gynaecology" sequence="4" value="gynaecology"/>
+                <element inactive_on_update="false" label="Orthopedics" sequence="6" value="orthopedics"/>
                 <element inactive_on_update="false" label="Maternity" sequence="2" value="maternity"/>
             </choice>
         </element>
