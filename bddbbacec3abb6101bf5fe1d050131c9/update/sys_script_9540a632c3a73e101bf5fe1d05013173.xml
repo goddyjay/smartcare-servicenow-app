@@ -29,60 +29,99 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous) {
 
-    if (current.getValue('status') == 'admitted') {
+if (current.getValue('status') != 'admitted')
+    return;
 
-        // Prevent assigning multiple beds
-        var existingBed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
-        existingBed.addQuery('assigned_patient', current.getUniqueValue());
-        existingBed.query();
 
-        if (existingBed.next()) {
-            gs.addInfoMessage("Patient already has a bed assigned.");
-            return;
-        }
+// Prevent assigning multiple beds
+var existingBed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
+existingBed.addQuery('assigned_patient', current.getUniqueValue());
+existingBed.query();
 
-        // Determine patient's severity and department
-        var severity = current.getValue('severity');
-        var department = current.getValue('medical_department');
+if (existingBed.next()) {
+    gs.addInfoMessage("Patient already has a bed assigned.");
+    return;
+}
 
-        var wardToSearch = '';
 
-        // TRIAGE LOGIC
-        if (severity == 'critical') {
+// Determine severity and department
+var severity = current.getValue('severity');
+var department = current.getValue('medical_department');
 
-            wardToSearch = 'ICU';
 
-        } else if (severity == 'high') {
+// Build ward priority list
+var wardsToTry = [];
 
-            wardToSearch = 'Emergency';
 
-        } else {
+if (severity == 'critical') {
 
-            wardToSearch = department;
+    wardsToTry.push('ICU');
+    wardsToTry.push('Emergency');
+    wardsToTry.push(department);
 
-        }
+}
+else if (severity == 'high') {
 
-        // Find available bed in correct ward
-        var bed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
-        bed.addQuery('status', 'available');
-        bed.addQuery('ward', wardToSearch);
-        bed.query();
+    wardsToTry.push('Emergency');
+    wardsToTry.push(department);
 
-        if (bed.next()) {
+}
+else {
 
-            bed.setValue('status', 'occupied');
-            bed.setValue('assigned_patient', current.getUniqueValue());
-            bed.update();
+    wardsToTry.push(department);
 
-            gs.addInfoMessage("Bed " + bed.getValue('bed_id') + " assigned in " + wardToSearch + " ward.");
+}
 
-        } else {
 
-            gs.addErrorMessage("No available beds in " + wardToSearch + " ward.");
+// Search beds in priority order
+var bedFound = false;
 
-        }
+for (var i = 0; i < wardsToTry.length; i++) {
+
+    var bed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
+    bed.addQuery('status', 'Available');
+    bed.addQuery('ward', wardsToTry[i]);
+    bed.query();
+
+    if (bed.next()) {
+
+        bed.setValue('status', 'Occupied');
+        bed.setValue('assigned_patient', current.getUniqueValue());
+        bed.update();
+
+        gs.addInfoMessage("Bed " + bed.getValue('bed_id') + " assigned in " + wardsToTry[i] + " ward.");
+
+        bedFound = true;
+        break;
 
     }
+
+}
+
+
+// FINAL FALLBACK — ANY BED
+if (!bedFound) {
+
+    var anyBed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
+    anyBed.addQuery('status', 'Available');
+    anyBed.query();
+
+    if (anyBed.next()) {
+
+        anyBed.setValue('status', 'Occupied');
+        anyBed.setValue('assigned_patient', current.getUniqueValue());
+        anyBed.update();
+
+        gs.addInfoMessage("No ward bed available. Patient assigned to general available bed.");
+
+    }
+    else {
+
+        gs.addErrorMessage("Hospital is fully occupied. No beds available.");
+
+    }
+
+}
 
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -91,7 +130,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>9540a632c3a73e101bf5fe1d05013173</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>SmartCare Bed Assignment</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
@@ -99,7 +138,7 @@
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_script_9540a632c3a73e101bf5fe1d05013173</sys_update_name>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-14 21:06:27</sys_updated_on>
+        <sys_updated_on>2026-03-16 02:13:19</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
