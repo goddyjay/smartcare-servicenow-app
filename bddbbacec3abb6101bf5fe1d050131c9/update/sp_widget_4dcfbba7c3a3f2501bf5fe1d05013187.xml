@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function() {
+  var c = this;
+  
+  
+  c.patient = {};
+
+  c.submitForm = function() {
+    c.data.action = 'createPatient';
+    c.data.newPatient = c.patient;
+    
+    c.server.update().then(function() {
+      //clear
+      c.data.action = null; 
+    });
+  };
+
+  c.clearForm = function() {
+    c.patient = {};
+    c.data.successMessage = null;
+  };
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* ── FORM CONTAINER ── */&#13;
+.form-container {&#13;
+  background: #ffffff;&#13;
+  border-radius: 24px;&#13;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);&#13;
+  max-width: 850px;&#13;
+  margin: 40px auto;&#13;
+  font-family: 'Inter', system-ui, sans-serif;&#13;
+  overflow: hidden;&#13;
+  border: 1px solid #f1f5f9;&#13;
+}&#13;
+&#13;
+/* ── HEADER ── */&#13;
+.form-header { padding: 32px 40px 20px 40px; background: #ffffff; }&#13;
+.form-header h3 { margin: 0; color: #1e293b; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }&#13;
+.form-header p { margin: 8px 0 0 0; color: #94a3b8; font-size: 14px; }&#13;
+&#13;
+/* ── FORM ELEMENTS ── */&#13;
+form { padding: 0 40px 30px 40px; }&#13;
+.form-row { display: flex; gap: 24px; margin-bottom: 20px; }&#13;
+.form-group { flex: 1; display: flex; flex-direction: column; }&#13;
+&#13;
+label {&#13;
+  font-size: 13px; font-weight: 600; color: #475569;&#13;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 4px;&#13;
+}&#13;
+.required { color: #f43f5e; }&#13;
+&#13;
+/* ── FIXED INPUTS &amp; SELECTS (No Cropping) ── */&#13;
+.form-control {&#13;
+  height: 48px; /* Fixed height ensures no vertical cropping */&#13;
+  padding: 0 16px; /* Removed top/bottom padding to let line-height center the text */&#13;
+  line-height: 48px; /* Matches height exactly to center text */&#13;
+  border: 1px solid #e2e8f0;&#13;
+  border-radius: 14px;&#13;
+  font-size: 14px;&#13;
+  color: #1e293b;&#13;
+  background-color: #f8fafc;&#13;
+  transition: all 0.2s ease;&#13;
+  box-sizing: border-box; /* Crucial for height calculation */&#13;
+}&#13;
+&#13;
+/* Adjust Textarea since it needs to be taller */&#13;
+textarea.form-control { &#13;
+  height: auto; &#13;
+  padding: 12px 16px; &#13;
+  line-height: 1.5; &#13;
+}&#13;
+&#13;
+.form-control:focus {&#13;
+  border-color: #6366f1;&#13;
+  background-color: #ffffff;&#13;
+  outline: none;&#13;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);&#13;
+}&#13;
+&#13;
+/* ── FOOTER &amp; BUTTONS ── */&#13;
+.form-footer {&#13;
+  padding: 24px 40px;&#13;
+  background-color: #fbfcfe;&#13;
+  display: flex;&#13;
+  justify-content: flex-end;&#13;
+  align-items: center;&#13;
+  gap: 16px;&#13;
+  border-top: 1px solid #f1f5f9;&#13;
+}&#13;
+&#13;
+.btn-clear {&#13;
+  background: transparent; border: none; color: #94a3b8;&#13;
+  padding: 12px 20px; font-weight: 600; cursor: pointer;&#13;
+}&#13;
+&#13;
+.btn-submit {&#13;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);&#13;
+  border: none; color: #ffffff;&#13;
+  padding: 0 32px; /* Horizontal padding only */&#13;
+  height: 48px; /* Matches input height for consistency */&#13;
+  line-height: 48px;&#13;
+  border-radius: 14px;&#13;
+  font-weight: 600;&#13;
+  cursor: pointer;&#13;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);&#13;
+  transition: all 0.2s;&#13;
+}&#13;
+&#13;
+.btn-submit:hover {&#13;
+  transform: translateY(-1px);&#13;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>sads</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>sads</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  if (input && input.action == 'createPatient') {
+    var pGR = new GlideRecord('x_1954503_smartc_0_patient');
+    pGR.initialize();
+    
+    pGR.setValue('full_name', input.newPatient.full_name);
+    pGR.setValue('age', input.newPatient.age);
+    // Note: Ensure the department string matches your backend choice value
+    pGR.setValue('medical_department', input.newPatient.department); 
+  //  pGR.setValue('severity', input.newPatient.severity);
+    pGR.setValue('symptoms', input.newPatient.symptoms);
+    
+    //seting status
+   // pGR.setValue('status', 'admitted'); 
+    
+    var newSysId = pGR.insert();
+    
+    if (newSysId) {
+      data.successMessage = "Patient " + input.newPatient.full_name + " successfully Registerd. .";
+    }
+  }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 08:17:31</sys_created_on>
+        <sys_id>4dcfbba7c3a3f2501bf5fe1d05013187</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>sads</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_widget_4dcfbba7c3a3f2501bf5fe1d05013187</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-18 12:49:05</sys_updated_on>
+        <template><![CDATA[<div class="form-container">
+  <div class="form-header">
+    <h3>New Patient Registration</h3>
+    <p>Enter patient details for immediate triage and bed assignment.</p>
+  </div>
+
+  <div class="alert-success" ng-if="c.data.successMessage">
+    {{c.data.successMessage}}
+  </div>
+
+  <form ng-submit="c.submitForm()" ng-if="!c.data.successMessage">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name <span class="required">*</span></label>
+        <input type="text" ng-model="c.patient.full_name" required class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Age <span class="required">*</span></label>
+        <input type="number" ng-model="c.patient.age" required class="form-control">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Medical Department <span class="required">*</span></label>
+        <select ng-model="c.patient.department" required class="form-control">
+          <option value="">Select Department...</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="General Medicine">General Medicine</option>
+          <option value="Pediatrics">Pediatrics</option>
+          <option value="Emergency">Emergency</option>
+        </select>
+      </div>
+      
+    </div>
+
+    
+
+    <div class="form-footer">
+      <button type="button" class="btn-clear" ng-click="c.clearForm()">Clear</button>
+      <button type="submit" class="btn-submit">Register Patient</button>
+    </div>
+  </form>
+  
+  <div class="form-footer" ng-if="c.data.successMessage">
+     <button type="button" class="btn-submit" ng-click="c.clearForm()">Register Another Patient</button>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_theme">
+    <sp_theme action="INSERT_OR_UPDATE">
+        <css_variables>&#13;
+body {&#13;
+    padding-left: 250px !important;&#13;
+    background-color: #f4f6f7;&#13;
+}&#13;
+&#13;
+section.page, main.body, .sp-page-root {&#13;
+    margin: 0 !important;&#13;
+    width: 100% !important;&#13;
+}&#13;
+&#13;
+&#13;
+.container {&#13;
+    width: 100% !important;&#13;
+    max-width: 100% !important;&#13;
+    padding: 20px 40px !important; &#13;
+}</css_variables>
+        <footer/>
+        <footer_fixed>true</footer_fixed>
+        <header display_value="SmartCare Sidebar Wrapper">6f2a4bd7c32f32501bf5fe1d050131b6</header>
+        <matching_now_experience_theme/>
+        <name>SmartCare Ward Theme</name>
+        <navbar_fixed>true</navbar_fixed>
+        <sys_class_name>sp_theme</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 09:48:51</sys_created_on>
+        <sys_id>b7da835bc32f32501bf5fe1d050131b1</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>SmartCare Ward Theme</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_theme_b7da835bc32f32501bf5fe1d050131b1</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 10:01:18</sys_updated_on>
+        <turn_off_scss_compilation>false</turn_off_scss_compilation>
+    </sp_theme>
+</record_update>

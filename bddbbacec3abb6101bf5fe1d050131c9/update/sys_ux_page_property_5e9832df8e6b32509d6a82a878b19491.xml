@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ux_page_property">
+    <sys_ux_page_property action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Tabs Configuration</description>
+        <name>chrome_tab</name>
+        <page display_value="SmartCare Nurse Workspace">129832dfe46b325027c70d843a30fda4</page>
+        <required_translations>[ {
+  "message" : "New Emergency Cases ",
+  "code" : "",
+  "comment" : ""
+}, {
+  "message" : "New Hospital Bed ",
+  "code" : "",
+  "comment" : ""
+}, {
+  "message" : "New Patient",
+  "code" : "",
+  "comment" : ""
+} ]</required_translations>
+        <route/>
+        <suffix/>
+        <sys_class_name>sys_ux_page_property</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 08:27:41</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>global</sys_domain_path>
+        <sys_id>5e9832df8e6b32509d6a82a878b19491</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>chrome_tab</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_ux_page_property_5e9832df8e6b32509d6a82a878b19491</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:27:46</sys_updated_on>
+        <type>json</type>
+        <unique_name>x_1954503_smartc_0.129832dfe46b325027c70d843a30fda4.root.global.chrome_tab</unique_name>
+        <value>{"contextual":["record"],"newTabMenu":[{"label":{"translatable":true,"message":"New Patient"},"routeInfo":{"route":"record","fields":{"table":"x_1954503_smartc_0_patient","sysId":"-1"},"multiInstField":"sysId"},"condition":{"tableDescription":{"table":"x_1954503_smartc_0_patient","canCreate":true}}},{"label":{"translatable":true,"message":"New Hospital Bed "},"routeInfo":{"route":"record","fields":{"table":"x_1954503_smartc_0_hospital_bed","sysId":"-1"},"multiInstField":"sysId"},"condition":{"tableDescription":{"table":"x_1954503_smartc_0_hospital_bed","canCreate":true}}},{"label":{"translatable":true,"message":"New Emergency Cases "},"routeInfo":{"route":"record","fields":{"table":"x_1954503_smartc_0_emergency_cases","sysId":"-1"},"multiInstField":"sysId"},"condition":{"tableDescription":{"table":"x_1954503_smartc_0_emergency_cases","canCreate":true}}}],"maxMainTabLimit":10,"maxTotalSubTabLimit":30}</value>
+    </sys_ux_page_property>
+    <sys_translated_text action="delete_multiple" query="documentkey=5e9832df8e6b32509d6a82a878b19491"/>
+</record_update>

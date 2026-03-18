@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $window) {
+  var c = this;
+  
+  c.showUserMenu = false;
+  c.showNotifTray = false;
+
+  // Toggle Notifications
+  c.toggleNotifTray = function(e) {
+    e.stopPropagation();
+    c.showNotifTray = !c.showNotifTray;
+    c.showUserMenu = false;
+  };
+
+  // Toggle User Menu
+  c.toggleUserMenu = function(e) {
+    e.stopPropagation();
+    c.showUserMenu = !c.showUserMenu;
+    c.showNotifTray = false;
+  };
+
+  // Clear Logic
+  c.clearNotifications = function() {
+    c.server.get({
+      action: 'clear_notifications'
+    }).then(function(response) {
+      c.data.notifications = [];
+    });
+  };
+
+  // Logout Logic
+  c.logout = function() {
+    $window.location.href = '/logout.do';
+  };
+
+  // Close everything on outside click
+  $window.addEventListener('click', function() {
+    c.showUserMenu = false;
+    c.showNotifTray = false;
+    $scope.$apply();
+  });
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* ── 1. SIDEBAR SHELL ── */&#13;
+.ward-sidebar {&#13;
+  position: fixed;&#13;
+  top: 0; left: 0;&#13;
+  width: 260px;&#13;
+  height: 100vh;&#13;
+  background: #ffffff;&#13;
+  border-right: 1px solid #f0f2f5;&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  font-family: 'Inter', system-ui, sans-serif;&#13;
+  z-index: 1000;&#13;
+  box-sizing: border-box;&#13;
+}&#13;
+&#13;
+/* ── 2. BRANDING &amp; LOGO ── */&#13;
+.sidebar-brand { &#13;
+  padding: 30px 24px; &#13;
+}&#13;
+&#13;
+.brand-logo { &#13;
+  display: flex; &#13;
+  align-items: center; &#13;
+  gap: 12px; &#13;
+}&#13;
+&#13;
+/* Update these specific sections in your stylesheet */&#13;
+&#13;
+.brand-icon {&#13;
+  width: 42px;&#13;
+  height: 42px;&#13;
+  background: #ffffff; /* Replaced gradient with clean white */&#13;
+  border-radius: 12px;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  justify-content: center;&#13;
+  overflow: hidden;&#13;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer, neutral shadow */&#13;
+  border: 1px solid #f0f2f5; /* Subtle border to define the white box */&#13;
+  flex-shrink: 0;&#13;
+}&#13;
+&#13;
+.brand-icon img {&#13;
+  width: 100%;&#13;
+  height: 100%;&#13;
+  object-fit: contain; /* Professional scaling for transparent logos */&#13;
+  padding: 6px;        /* Balance the logo inside the box */&#13;
+}&#13;
+&#13;
+.brand-text {&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  justify-content: center;&#13;
+}&#13;
+&#13;
+.brand-name { font-weight: 700; font-size: 18px; color: #1e293b; line-height: 1.1; }&#13;
+.brand-tag { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }&#13;
+&#13;
+/* ── 3. NAVIGATION ── */&#13;
+.nav-section-label {&#13;
+  font-size: 11px; font-weight: 700; color: #cbd5e1;&#13;
+  text-transform: uppercase; letter-spacing: 1.5px;&#13;
+  padding: 10px 24px;&#13;
+}&#13;
+&#13;
+.sidebar-nav { list-style: none; padding: 0 14px; margin: 0; flex: 1; }&#13;
+&#13;
+.sidebar-nav li a {&#13;
+  display: flex; align-items: center; gap: 12px;&#13;
+  padding: 12px;&#13;
+  color: #64748b; text-decoration: none;&#13;
+  font-size: 14px; font-weight: 500;&#13;
+  border-radius: 10px;&#13;
+  transition: all 0.2s ease;&#13;
+}&#13;
+&#13;
+.nav-icon {&#13;
+  width: 32px; height: 32px;&#13;
+  display: flex; align-items: center; justify-content: center;&#13;
+  border-radius: 8px; background: #f8fafc;&#13;
+  transition: 0.2s;&#13;
+}&#13;
+&#13;
+/* Hover &amp; Active States */&#13;
+.sidebar-nav li a:hover { background: #fdf2f8; color: #db2777; }&#13;
+.sidebar-nav li.active a { background: #eef2ff; color: #4f46e5; }&#13;
+.sidebar-nav li.active .nav-icon { background: #4f46e5; color: #fff; }&#13;
+.nav-divider { height: 1px; background: #f1f5f9; margin: 15px 10px; list-style: none; }&#13;
+&#13;
+/* ── 4. USER CARD &amp; FOOTER ── */&#13;
+.sidebar-footer { padding: 20px 14px; border-top: 1px solid #f1f5f9; }&#13;
+.user-card {&#13;
+  display: flex; align-items: center; gap: 12px;&#13;
+  padding: 12px; background: #f8fafc; border-radius: 14px;&#13;
+  position: relative;&#13;
+}&#13;
+.user-avatar {&#13;
+  width: 36px; height: 36px;&#13;
+  background: #e0e7ff; color: #4338ca;&#13;
+  border-radius: 10px; font-weight: 700; font-size: 13px;&#13;
+  display: flex; align-items: center; justify-content: center;&#13;
+}&#13;
+.user-name { font-size: 13px; font-weight: 600; color: #1e293b; }&#13;
+.user-role { font-size: 11px; color: #64748b; }&#13;
+.user-status {&#13;
+  position: absolute; bottom: 12px; left: 42px;&#13;
+  width: 10px; height: 10px;&#13;
+  background: #22c55e; border: 2px solid #fff; border-radius: 50%;&#13;
+}&#13;
+&#13;
+/* ── 5. PATIENT REGISTRATION FORM (Fixes Cropping) ── */&#13;
+.form-container {&#13;
+  background: #ffffff;&#13;
+  border-radius: 24px;&#13;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);&#13;
+  max-width: 850px;&#13;
+  margin: 40px auto;&#13;
+  border: 1px solid #f1f5f9;&#13;
+  overflow: hidden;&#13;
+}&#13;
+&#13;
+.form-header { padding: 32px 40px 20px; }&#13;
+.form-header h3 { margin: 0; color: #1e293b; font-size: 24px; font-weight: 700; }&#13;
+.form-header p { margin: 8px 0 0; color: #94a3b8; font-size: 14px; }&#13;
+&#13;
+form { padding: 0 40px 30px; }&#13;
+.form-row { display: flex; gap: 24px; margin-bottom: 20px; }&#13;
+.form-group { flex: 1; display: flex; flex-direction: column; }&#13;
+&#13;
+label { font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px; }&#13;
+.required { color: #f43f5e; }&#13;
+&#13;
+/* Fixed Inputs to prevent vertical cropping */&#13;
+.form-control {&#13;
+  height: 48px;&#13;
+  padding: 0 16px;&#13;
+  line-height: 48px;&#13;
+  border: 1px solid #e2e8f0;&#13;
+  border-radius: 14px;&#13;
+  font-size: 14px;&#13;
+  color: #1e293b;&#13;
+  background-color: #f8fafc;&#13;
+  transition: all 0.2s ease;&#13;
+  box-sizing: border-box;&#13;
+}&#13;
+&#13;
+/* Custom adjustment for Select dropdowns to center text */&#13;
+select.form-control {&#13;
+  padding-right: 30px;&#13;
+  cursor: pointer;&#13;
+}&#13;
+&#13;
+textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#13;
+&#13;
+.form-control:focus {&#13;
+  border-color: #6366f1;&#13;
+  background-color: #ffffff;&#13;
+  outline: none;&#13;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);&#13;
+}&#13;
+&#13;
+.form-footer {&#13;
+  padding: 24px 40px;&#13;
+  background-color: #fbfcfe;&#13;
+  display: flex;&#13;
+  justify-content: flex-end;&#13;
+  gap: 16px;&#13;
+  border-top: 1px solid #f1f5f9;&#13;
+}&#13;
+&#13;
+.btn-clear { background: transparent; border: none; color: #94a3b8; font-weight: 600; cursor: pointer; }&#13;
+&#13;
+.btn-submit {&#13;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);&#13;
+  border: none; color: #ffffff;&#13;
+  height: 48px; padding: 0 32px;&#13;
+  border-radius: 14px; font-weight: 600;&#13;
+  cursor: pointer;&#13;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);&#13;
+  transition: all 0.2s;&#13;
+}&#13;
+&#13;
+.btn-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3); }&#13;
+/* ── FOOTER CONTAINER ── */&#13;
+.sidebar-footer {&#13;
+  padding: 16px;&#13;
+  border-top: 1px solid #f1f5f9;&#13;
+  margin-top: auto; /* Pushes footer to bottom */&#13;
+  position: relative;&#13;
+  background: #fff;&#13;
+}&#13;
+&#13;
+.footer-grid {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: 10px;&#13;
+}&#13;
+&#13;
+/* ── BUTTONS &amp; BADGES ── */&#13;
+.btn-icon-round {&#13;
+  width: 42px; height: 42px;&#13;
+  border-radius: 12px;&#13;
+  background: #f8fafc;&#13;
+  border: 1px solid #e2e8f0;&#13;
+  color: #64748b;&#13;
+  cursor: pointer;&#13;
+  position: relative;&#13;
+  display: flex; align-items: center; justify-content: center;&#13;
+}&#13;
+&#13;
+.btn-icon-round:hover { background: #f1f5f9; color: #6366f1; }&#13;
+&#13;
+.badge-dot {&#13;
+  position: absolute; top: 10px; right: 10px;&#13;
+  width: 8px; height: 8px;&#13;
+  background: #f43f5e;&#13;
+  border-radius: 50%;&#13;
+  border: 2px solid #fff;&#13;
+}&#13;
+&#13;
+/* ── PROFILE TRIGGER ── */&#13;
+.profile-trigger {&#13;
+  display: flex; align-items: center; gap: 8px;&#13;
+  padding: 6px; background: #f8fafc;&#13;
+  border-radius: 12px; cursor: pointer; flex: 1;&#13;
+}&#13;
+&#13;
+.user-avatar-circle {&#13;
+  width: 32px; height: 32px;&#13;
+  background: #6366f1; color: #fff;&#13;
+  border-radius: 8px; font-weight: 700; font-size: 11px;&#13;
+  display: flex; align-items: center; justify-content: center;&#13;
+}&#13;
+&#13;
+.user-full-name { font-size: 12px; font-weight: 700; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }&#13;
+.user-status-text { font-size: 9px; color: #94a3b8; text-transform: uppercase; }&#13;
+&#13;
+/* ── RIGHT-SIDE FLYOUTS (FIXED) ── */&#13;
+.side-tray {&#13;
+  position: fixed;&#13;
+  left: 270px; /* Sidebar Width (260px) + Gap */&#13;
+  bottom: 20px;&#13;
+  width: 280px;&#13;
+  background: #ffffff;&#13;
+  border-radius: 16px;&#13;
+  box-shadow: 10px 10px 40px rgba(0,0,0,0.1);&#13;
+  border: 1px solid #f1f5f9;&#13;
+  z-index: 9999;&#13;
+  animation: traySlide 0.3s ease-out;&#13;
+}&#13;
+&#13;
+@keyframes traySlide {&#13;
+  from { opacity: 0; transform: translateX(-15px); }&#13;
+  to { opacity: 1; transform: translateX(0); }&#13;
+}&#13;
+&#13;
+.tray-title {&#13;
+  padding: 14px 18px;&#13;
+  font-weight: 800; font-size: 14px; color: #1e293b;&#13;
+  border-bottom: 1px solid #f1f5f9; background: #fbfcfe;&#13;
+  border-radius: 16px 16px 0 0;&#13;
+}&#13;
+&#13;
+.tray-inner { padding: 10px; max-height: 350px; overflow-y: auto; }&#13;
+&#13;
+.alert-card {&#13;
+  padding: 10px; border-radius: 10px; margin-bottom: 4px;&#13;
+}&#13;
+.alert-card:hover { background: #f8fafc; }&#13;
+.alert-card strong { font-size: 13px; display: block; color: #1e293b; }&#13;
+.alert-card p { font-size: 12px; color: #64748b; margin: 4px 0 0; line-height: 1.4; }&#13;
+.alert-card small { font-size: 10px; color: #cbd5e1; display: block; margin-top: 5px; }&#13;
+&#13;
+/* ── TRAY ACTIONS ── */&#13;
+.tray-action {&#13;
+  width: 100%; padding: 12px; border: none; background: transparent;&#13;
+  text-align: left; font-size: 13px; font-weight: 600;&#13;
+  border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px;&#13;
+  color: #475569;&#13;
+}&#13;
+.tray-action:hover { background: #f1f5f9; color: #6366f1; }&#13;
+.tray-action.logout-danger { color: #f43f5e; margin-top: 5px; }&#13;
+.tray-action.logout-danger:hover { background: #fff1f2; }&#13;
+&#13;
+.tray-title {&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+  align-items: center;&#13;
+  padding: 14px 18px;&#13;
+  background: #fbfcfe;&#13;
+  border-bottom: 1px solid #f1f5f9;&#13;
+}&#13;
+&#13;
+.clear-all-link {&#13;
+  background: none;&#13;
+  border: none;&#13;
+  color: #6366f1;&#13;
+  font-size: 11px;&#13;
+  font-weight: 700;&#13;
+  text-transform: uppercase;&#13;
+  cursor: pointer;&#13;
+  padding: 4px 8px;&#13;
+  border-radius: 6px;&#13;
+  transition: 0.2s;&#13;
+}&#13;
+&#13;
+.clear-all-link:hover {&#13;
+  background: #eef2ff;&#13;
+  color: #4338ca;&#13;
+}&#13;
+&#13;
+.empty-tray-msg {&#13;
+  text-align: center;&#13;
+  padding: 40px 20px;&#13;
+  color: #cbd5e1;&#13;
+}&#13;
+&#13;
+.empty-tray-msg i {&#13;
+  font-size: 32px;&#13;
+  margin-bottom: 10px;&#13;
+  color: #f1f5f9;&#13;
+}&#13;
+&#13;
+.empty-tray-msg p {&#13;
+  font-size: 13px;&#13;
+  margin: 0;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>SmartCare Sidebar Wrapper</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    var user = gs.getUser();
+    data.userName = user.getDisplayName();
+    data.userRole = gs.hasRole('admin') ? 'Administrator' : 'Ward Staff';
+    data.userId = gs.getUserID();
+    
+    var first = user.getFirstName() ? user.getFirstName().charAt(0) : "S";
+    var last = user.getLastName() ? user.getLastName().charAt(0) : "C";
+    data.userInitials = (first + last).toUpperCase();
+
+    /* Logic to handle clearing notifications */
+    if (input && input.action == 'clear_notifications') {
+        var clearGr = new GlideRecord('live_notification');
+        clearGr.addQuery('user', data.userId);
+        clearGr.query();
+        clearGr.deleteMultiple(); // This physically clears them from the table
+    }
+
+    data.notifications = [];
+    var gr = new GlideRecord('live_notification'); 
+    if (gr.isValid()) {
+        gr.addQuery('user', data.userId);
+        gr.orderByDesc('sys_created_on');
+        gr.setLimit(5);
+        gr.query();
+        while (gr.next()) {
+            data.notifications.push({
+                title: "System Alert",
+                desc: gr.getDisplayValue('message'),
+                time: gr.getDisplayValue('sys_created_on')
+            });
+        }
+    }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <static>false</static>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 09:47:15</sys_created_on>
+        <sys_id>6f2a4bd7c32f32501bf5fe1d050131b6</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>SmartCare Sidebar Wrapper</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_header_footer_6f2a4bd7c32f32501bf5fe1d050131b6</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:40:12</sys_updated_on>
+        <template><![CDATA[<div class="ward-sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-logo">
+      <div class="brand-icon">
+        <img src="logo.png" alt="SmartCare">
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">SmartCare</span>
+        <span class="brand-tag">Hospital System</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-section-label">Main Menu</div>
+
+  <ul class="sidebar-nav">
+    <li>
+      <a href="?id=smartcare_hostpital_dashboard">
+        <span class="nav-icon"><i class="fa fa-th-large"></i></span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a href="?id=register_new_patient">
+        <span class="nav-icon"><i class="fa fa-user-plus"></i></span>
+        <span class="nav-label">Register Patient</span>
+      </a>
+    </li>
+    <li>
+      <a href="?id=view_patient_page">
+        <span class="nav-icon"><i class="fa fa-users"></i></span>
+        <span class="nav-label">View Patients</span>
+      </a>
+    </li>
+    <div class="nav-divider"></div>
+    <li>
+      <a href="?id=ward_bed_board">
+        <span class="nav-icon"><i class="fa fa-bed"></i></span>
+        <span class="nav-label">Bed Management</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="?id=smartcare_my_patients_page">
+        <span class="nav-icon"><i class="fa fa-bed"></i></span>
+        <span class="nav-label">My Patients</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <div class="footer-grid">
+      
+      <button class="btn-icon-round" ng-click="c.toggleNotifTray($event)">
+        <i class="fa fa-bell"></i>
+        <span class="badge-dot" ng-if="data.notifications.length > 0"></span>
+      </button>
+
+      <div class="profile-trigger" ng-click="c.toggleUserMenu($event)">
+        <div class="user-avatar-circle">{{data.userInitials}}</div>
+        <div class="user-meta">
+          <div class="user-full-name">{{data.userName}}</div>
+          <div class="user-status-text">{{data.userRole}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-tray" ng-if="c.showNotifTray">
+      <div class="tray-title">
+        <span>Notifications</span>
+        <button class="clear-all-link" ng-if="data.notifications.length > 0" ng-click="c.clearNotifications()">Clear All</button>
+      </div>
+      <div class="tray-inner">
+        <div class="alert-card" ng-repeat="n in data.notifications">
+          <strong>{{n.title}}</strong>
+          <p>{{n.desc}}</p>
+          <small>{{n.time}}</small>
+        </div>
+        <div class="empty-tray-msg" ng-if="data.notifications.length == 0">
+          <i class="fa fa-check-circle"></i>
+          <p>All caught up!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-tray user-tray" ng-if="c.showUserMenu">
+      <div class="tray-title">Account Settings</div>
+      <div class="tray-inner">
+        <button class="tray-action"><i class="fa fa-user-circle"></i> View Profile</button>
+        <button class="tray-action logout-danger" ng-click="c.logout()">
+          <i class="fa fa-sign-out"></i> Sign Out
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>]]></template>
+    </sp_header_footer>
+</record_update>

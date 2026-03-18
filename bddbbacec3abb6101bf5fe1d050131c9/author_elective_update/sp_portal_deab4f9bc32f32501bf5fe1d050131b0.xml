@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal">
+    <sp_portal action="DELETE">
+        <alternate_portal/>
+        <communication_channels/>
+        <css_variables/>
+        <dark_theme/>
+        <default>false</default>
+        <embeddable_macroponents/>
+        <enable_ais>false</enable_ais>
+        <enable_certificate_based_authentication>false</enable_certificate_based_authentication>
+        <enable_embeddables>false</enable_embeddables>
+        <enable_favorites>false</enable_favorites>
+        <hide_portal_name>false</hide_portal_name>
+        <homepage display_value="ward_bed_board">eceb47dbc32f32501bf5fe1d050131ea</homepage>
+        <icon/>
+        <inactive>false</inactive>
+        <kb_knowledge_base/>
+        <kb_knowledge_page/>
+        <login_page/>
+        <logo/>
+        <logo_alt_text/>
+        <notfound_page/>
+        <quick_start_config/>
+        <rtl_enabled>false</rtl_enabled>
+        <sc_catalog/>
+        <sc_catalog_page display_value="sc_cat_item">9f12251147132100ba13a5554ee490f4</sc_catalog_page>
+        <sc_category_page/>
+        <search_application/>
+        <search_results_configuration/>
+        <sp_chat_queue/>
+        <sp_rectangle_menu/>
+        <sys_class_name>sp_portal</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 09:53:26</sys_created_on>
+        <sys_id>deab4f9bc32f32501bf5fe1d050131b0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SmartCare Ward</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_portal_deab4f9bc32f32501bf5fe1d050131b0</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 09:53:26</sys_updated_on>
+        <theme display_value="SmartCare Ward Theme">b7da835bc32f32501bf5fe1d050131b1</theme>
+        <title>SmartCare Ward</title>
+        <ts_index_group/>
+        <url_suffix>ward</url_suffix>
+    </sp_portal>
+    <sys_translated_text action="DELETE" query="documentkey=deab4f9bc32f32501bf5fe1d050131b0"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sp_portal_deab4f9bc32f32501bf5fe1d050131b0</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal"><sp_portal action="INSERT_OR_UPDATE"><alternate_portal/><communication_channels/><css_variables/><dark_theme/><default>false</default><embeddable_macroponents/><enable_ais>false</enable_ais><enable_certificate_based_authentication>false</enable_certificate_based_authentication><enable_embeddables>false</enable_embeddables><enable_favorites>false</enable_favorites><hide_portal_name>false</hide_portal_name><homepage display_value="ward_bed_board">eceb47dbc32f32501bf5fe1d050131ea</homepage><icon/><inactive>false</inactive><kb_knowledge_base/><kb_knowledge_page/><login_page/><logo/><logo_alt_text/><notfound_page/><quick_start_config/><rtl_enabled>false</rtl_enabled><sc_catalog/><sc_catalog_page display_value="sc_cat_item">9f12251147132100ba13a5554ee490f4</sc_catalog_page><sc_category_page/><search_application/><search_results_configuration/><sp_chat_queue/><sp_rectangle_menu/><sys_class_name>sp_portal</sys_class_name><sys_created_by>yeabsira</sys_created_by><sys_created_on>2026-03-16 09:53:26</sys_created_on><sys_id>deab4f9bc32f32501bf5fe1d050131b0</sys_id><sys_mod_count>0</sys_mod_count><sys_name>SmartCare Ward</sys_name><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>sp_portal_deab4f9bc32f32501bf5fe1d050131b0</sys_update_name><sys_updated_by>yeabsira</sys_updated_by><sys_updated_on>2026-03-16 09:53:26</sys_updated_on><theme display_value="SmartCare Ward Theme">b7da835bc32f32501bf5fe1d050131b1</theme><title>SmartCare Ward</title><ts_index_group/><url_suffix>ward</url_suffix></sp_portal><sys_translated_text action="delete_multiple" query="documentkey=deab4f9bc32f32501bf5fe1d050131b0"/></record_update>]]></payload>
+        <payload_hash>-845325031</payload_hash>
+        <record_name>SmartCare Ward</record_name>
+        <reverted_from/>
+        <source>2db308d7c3e3fe101bf5fe1d05013116</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 09:53:27</sys_created_on>
+        <sys_id>763c831fc32f32501bf5fe1d0501311d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19cf61092360000001</sys_recorded_at>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 09:53:27</sys_updated_on>
+        <type>Service Portal</type>
+        <update_guid>fe3c431f882f32504601aa551d4357f6</update_guid>
+        <update_guid_history>fe3c431f882f32504601aa551d4357f6:-845325031</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="SmartCare Ward">cd05f323c363f2501bf5fe1d05013134</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 07:30:07</sys_created_on>
+        <sys_db_object display_value="" name="sp_portal">sp_portal</sys_db_object>
+        <sys_id>01c3875a75114b5482e1ef6ff5bbbb10</sys_id>
+        <sys_metadata>deab4f9bc32f32501bf5fe1d050131b0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SmartCare Ward</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sp_portal_deab4f9bc32f32501bf5fe1d050131b0</sys_update_name>
+        <sys_update_version display_value="sp_portal_deab4f9bc32f32501bf5fe1d050131b0">763c831fc32f32501bf5fe1d0501311d</sys_update_version>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-17 07:30:07</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

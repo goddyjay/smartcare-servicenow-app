@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function ($scope, spUtil) {
+	var c = this;
+	if (!c.options.table)
+		return;
+	
+	spUtil.recordWatch($scope, c.options.table, c.options.filter);
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* ── MAIN CARD CONTAINER ── */
+.smartcare-count-card {
+  background: #ffffff !important;
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 20px;
+}
+
+.smartcare-count-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.1);
+  border-color: #e2e8f0;
+}
+
+/* ── LAYOUT ── */
+.smartcare-count-card .card-link {
+  text-decoration: none !important;
+  display: block;
+}
+
+.smartcare-count-card .card-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ── ICON STYLING ── */
+.smartcare-count-card .icon-box {
+  width: 52px;
+  height: 52px;
+  background: #f5f3ff; /* Soft Blush/Indigo tint */
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.smartcare-count-card .icon-box i {
+  color: #6366f1; /* Indigo */
+  font-size: 22px;
+}
+
+.smartcare-count-card:hover .icon-box {
+  background: #6366f1;
+}
+
+.smartcare-count-card:hover .icon-box i {
+  color: #ffffff;
+}
+
+/* ── DATA STYLING ── */
+.smartcare-count-card .data-section {
+  flex: 1;
+}
+
+.smartcare-count-card .count-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1;
+  margin-bottom: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+.smartcare-count-card .count-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}</css>
+        <data_table>sp_instance_table</data_table>
+        <demo_data>{
+  "data": {
+    "table": "incident",
+    "count": 25
+  },
+  "options": {
+		"color": "success",
+		"glyph": "cogs",
+    "title": "Incidents"
+  }
+}</demo_data>
+        <description/>
+        <docs/>
+        <field_list>table,filter,title,color,glyph,sp_page</field_list>
+        <has_preview>true</has_preview>
+        <id>count2</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>count2</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	if (!options.table)
+		return;
+	
+	// Default filter if none provided
+	data.filter = options.filter || 'sys_id!=NULL';
+	
+	// Standard Scoped GlideRecord
+	var gr = new GlideRecord(options.table);
+	gr.addEncodedQuery(data.filter);
+	gr.query();
+	
+	// Get the total number of records
+	data.count = gr.getRowCount();	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 19:49:00</sys_created_on>
+        <sys_id>a42e52b7c3a736501bf5fe1d050131c1</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>count2</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_widget_a42e52b7c3a736501bf5fe1d050131c1</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-17 19:57:24</sys_updated_on>
+        <template><![CDATA[<div class="smartcare-count-card label-{{::c.options.color}}" ng-if="c.options.table">  
+  <a ng-href="?id={{::c.options.sp_page_dv}}&table={{::c.options.table}}&filter={{::c.options.filter}}" class="card-link">
+    <div class="card-content">
+      <div class="icon-section">
+        <div class="icon-box">
+          <i class="fa fa-{{::c.options.glyph}}"></i>
+        </div>
+      </div>
+      <div class="data-section">
+        <div class="count-value">{{c.data.count}}</div>
+        <div class="count-title">{{::c.options.title}}</div>
+      </div>
+    </div>
+  </a>
+</div>]]></template>
+    </sp_widget>
+</record_update>

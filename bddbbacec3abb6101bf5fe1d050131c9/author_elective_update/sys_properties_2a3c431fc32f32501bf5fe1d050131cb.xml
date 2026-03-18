@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="DELETE">
+        <choices/>
+        <description>If true, portal css would be in rem units</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>glide.service_portal.resize_text.ward.enable_rem_conversion</name>
+        <read_roles/>
+        <suffix/>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 09:53:26</sys_created_on>
+        <sys_id>2a3c431fc32f32501bf5fe1d050131cb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>glide.service_portal.resize_text.ward.enable_rem_conversion</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_properties_2a3c431fc32f32501bf5fe1d050131cb</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 09:53:26</sys_updated_on>
+        <type>boolean</type>
+        <value>true</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="DELETE" query="documentkey=2a3c431fc32f32501bf5fe1d050131cb"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sys_properties_2a3c431fc32f32501bf5fe1d050131cb</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties"><sys_properties action="INSERT_OR_UPDATE"><choices/><description>If true, portal css would be in rem units</description><ignore_cache>true</ignore_cache><is_private>false</is_private><name>glide.service_portal.resize_text.ward.enable_rem_conversion</name><read_roles/><suffix/><sys_class_name>sys_properties</sys_class_name><sys_created_by>yeabsira</sys_created_by><sys_created_on>2026-03-16 09:53:26</sys_created_on><sys_id>2a3c431fc32f32501bf5fe1d050131cb</sys_id><sys_mod_count>0</sys_mod_count><sys_name>glide.service_portal.resize_text.ward.enable_rem_conversion</sys_name><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>sys_properties_2a3c431fc32f32501bf5fe1d050131cb</sys_update_name><sys_updated_by>yeabsira</sys_updated_by><sys_updated_on>2026-03-16 09:53:26</sys_updated_on><type>boolean</type><value>true</value><write_roles/></sys_properties><sys_translated_text action="delete_multiple" query="documentkey=2a3c431fc32f32501bf5fe1d050131cb"/></record_update>]]></payload>
+        <payload_hash>-303296804</payload_hash>
+        <record_name>glide.service_portal.resize_text.ward.enable_rem_conversion</record_name>
+        <reverted_from/>
+        <source>2db308d7c3e3fe101bf5fe1d05013116</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 09:53:26</sys_created_on>
+        <sys_id>723c431fc32f32501bf5fe1d050131ef</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19cf61091ba0000001</sys_recorded_at>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 09:53:26</sys_updated_on>
+        <type>System Property</type>
+        <update_guid>323c431ff92f3250f60942df1d0af4ee</update_guid>
+        <update_guid_history>323c431ff92f3250f60942df1d0af4ee:-303296804</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 07:30:07</sys_created_on>
+        <sys_db_object display_value="" name="sys_properties">sys_properties</sys_db_object>
+        <sys_id>3923afc38ae44c9a9c69415913749a99</sys_id>
+        <sys_metadata>2a3c431fc32f32501bf5fe1d050131cb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>glide.service_portal.resize_text.ward.enable_rem_conversion</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sys_properties_2a3c431fc32f32501bf5fe1d050131cb</sys_update_name>
+        <sys_update_version display_value="sys_properties_2a3c431fc32f32501bf5fe1d050131cb">723c431fc32f32501bf5fe1d050131ef</sys_update_version>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-17 07:30:07</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

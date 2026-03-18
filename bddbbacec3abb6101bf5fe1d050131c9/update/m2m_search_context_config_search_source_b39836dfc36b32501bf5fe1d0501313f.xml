@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_search_context_config_search_source">
+    <m2m_search_context_config_search_source action="INSERT_OR_UPDATE">
+        <order>300</order>
+        <search_context_config display_value="SmartCare Nurse Workspace - Workspace Search">5e9832df156b3250acd20662f1c7f699</search_context_config>
+        <source display_value="SmartCare Nurse Workspace - x_1954503_smartc_0_eme">239836dfc36b32501bf5fe1d05013126</source>
+        <sys_class_name>m2m_search_context_config_search_source</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 08:27:46</sys_created_on>
+        <sys_id>b39836dfc36b32501bf5fe1d0501313f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>m2m_search_context_config_search_source_b39836dfc36b32501bf5fe1d0501313f</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:27:46</sys_updated_on>
+    </m2m_search_context_config_search_source>
+</record_update>

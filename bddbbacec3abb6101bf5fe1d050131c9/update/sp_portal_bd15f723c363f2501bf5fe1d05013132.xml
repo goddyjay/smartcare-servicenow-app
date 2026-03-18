@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_portal">
+    <sp_portal action="INSERT_OR_UPDATE">
+        <alternate_portal/>
+        <communication_channels/>
+        <css_variables/>
+        <dark_theme/>
+        <default>false</default>
+        <embeddable_macroponents/>
+        <enable_ais>false</enable_ais>
+        <enable_certificate_based_authentication>false</enable_certificate_based_authentication>
+        <enable_embeddables>false</enable_embeddables>
+        <enable_favorites>false</enable_favorites>
+        <hide_portal_name>false</hide_portal_name>
+        <homepage display_value="smartcare_hostpital_dashboard">203fccb7c327f2501bf5fe1d05013194</homepage>
+        <icon/>
+        <inactive>false</inactive>
+        <kb_knowledge_base/>
+        <kb_knowledge_page/>
+        <login_page/>
+        <logo/>
+        <logo_alt_text>SmartCare Hospital Portal</logo_alt_text>
+        <notfound_page/>
+        <quick_start_config/>
+        <rtl_enabled>false</rtl_enabled>
+        <sc_catalog/>
+        <sc_catalog_page display_value="sc_cat_item">9f12251147132100ba13a5554ee490f4</sc_catalog_page>
+        <sc_category_page/>
+        <search_application/>
+        <search_results_configuration/>
+        <sp_chat_queue/>
+        <sp_rectangle_menu display_value="SP Header Menu">d150fd31cb10020000f8d856634c9ce6</sp_rectangle_menu>
+        <sys_class_name>sp_portal</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 07:32:51</sys_created_on>
+        <sys_id>bd15f723c363f2501bf5fe1d05013132</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>SmartCare Hospital Portal</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_portal_bd15f723c363f2501bf5fe1d05013132</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-17 20:25:49</sys_updated_on>
+        <theme display_value="SmartCare Ward Theme">b7da835bc32f32501bf5fe1d050131b1</theme>
+        <title>SmartCare Hospital Portal</title>
+        <ts_index_group/>
+        <url_suffix>smartcare</url_suffix>
+    </sp_portal>
+    <sys_translated_text action="delete_multiple" query="documentkey=bd15f723c363f2501bf5fe1d05013132"/>
+</record_update>

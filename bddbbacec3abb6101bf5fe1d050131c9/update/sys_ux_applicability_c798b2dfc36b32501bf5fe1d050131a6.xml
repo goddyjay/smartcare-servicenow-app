@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ux_applicability">
+    <sys_ux_applicability action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <api_name>x_1954503_smartc_0.Audience for app smartcare-nurse-workspace</api_name>
+        <description/>
+        <name>Audience for app smartcare-nurse-workspace</name>
+        <role_names/>
+        <roles>8edbfacec3abb6101bf5fe1d05013118,75ec7e42c3ebb6101bf5fe1d0501310c,df73d2f2c3273e101bf5fe1d050131a9,da025e32c3273e101bf5fe1d05013116,0a3df682c3ebb6101bf5fe1d05013136,3e7d9e7ac3673e101bf5fe1d05013145,431df282c3ebb6101bf5fe1d05013175,ce2d3682c3ebb6101bf5fe1d050131ef,4edbfacec3abb6101bf5fe1d05013124</roles>
+        <sys_class_name>sys_ux_applicability</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 08:27:44</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>c798b2dfc36b32501bf5fe1d050131a6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Audience for app smartcare-nurse-workspace</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_ux_applicability_c798b2dfc36b32501bf5fe1d050131a6</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:27:44</sys_updated_on>
+    </sys_ux_applicability>
+</record_update>

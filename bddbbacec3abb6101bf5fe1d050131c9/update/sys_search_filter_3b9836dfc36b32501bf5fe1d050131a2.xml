@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_search_filter">
+    <sys_search_filter action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <ais_search_source display_value="Patient">739836dfc36b32501bf5fe1d0501316c</ais_search_source>
+        <label>Patient</label>
+        <name>Patient</name>
+        <order>100</order>
+        <search_context_config display_value="SmartCare Nurse Workspace AI Search Configuration">569832dfda6b3250c21ee10cce673c9a</search_context_config>
+        <sys_class_name>sys_search_filter</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 08:27:47</sys_created_on>
+        <sys_id>3b9836dfc36b32501bf5fe1d050131a2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Patient</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_search_filter_3b9836dfc36b32501bf5fe1d050131a2</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:27:47</sys_updated_on>
+    </sys_search_filter>
+</record_update>

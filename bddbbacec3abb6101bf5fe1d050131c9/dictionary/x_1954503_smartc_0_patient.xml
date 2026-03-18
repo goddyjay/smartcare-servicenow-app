@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element db_object_id="a2f90f4ec32fb6101bf5fe1d05013167" label="Patient" max_length="40" name="x_1954503_smartc_0_patient" type="collection">
+    <element db_object_id="a2f90f4ec32fb6101bf5fe1d05013167" label="Patient" max_length="40" name="x_1954503_smartc_0_patient" text_index="true" type="collection">
         <element label="Check-In time" max_length="40" name="check_in_time" type="glide_date_time"/>
         <element label="Age" max_length="40" name="age" type="integer"/>
         <element label="Assigned Nurse " max_length="32" name="u_assigned_nurse" reference="sys_user" type="reference"/>

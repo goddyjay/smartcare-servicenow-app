@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_search_source">
+    <sys_search_source action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition table="x_1954503_smartc_0_hospital_bed">active=true</condition>
+        <group/>
+        <name>SmartCare Nurse Workspace - x_1954503_smartc_0_hos</name>
+        <roles/>
+        <source_table>x_1954503_smartc_0_hospital_bed</source_table>
+        <sys_class_name>sys_search_source</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 08:27:46</sys_created_on>
+        <sys_id>6b9836dfc36b32501bf5fe1d05013115</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SmartCare Nurse Workspace - x_1954503_smartc_0_hos</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_search_source_6b9836dfc36b32501bf5fe1d05013115</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:27:46</sys_updated_on>
+    </sys_search_source>
+</record_update>

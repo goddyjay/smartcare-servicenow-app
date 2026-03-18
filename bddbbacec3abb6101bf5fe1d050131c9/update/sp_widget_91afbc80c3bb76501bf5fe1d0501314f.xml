@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function(spUtil) {
+  var c = this;
+
+  c.showEditView = false;
+  c.selectedPatient = {};
+
+  // Open Edit View & Fetch Native Form
+  c.selectPatient = function(patient) {
+    c.selectedPatient = patient; 
+    c.showEditView = true; 
+
+    // THE MAGIC: Fetch the native form widget for this specific patient
+    spUtil.get('widget-form', {
+      table: 'x_1954503_smartc_0_patient',
+      sys_id: patient.sys_id,
+      view: 'default', // You can change this if you made a specific 'portal' view
+      hideRelatedLists: true // Keeps the UI clean
+    }).then(function(response) {
+      c.embeddedForm = response; // Store the fetched widget
+    });
+  };
+
+  // Cancel and return to List
+  c.backToList = function() {
+    c.selectedPatient = {};
+    c.embeddedForm = null; // Clear the embedded form
+    c.showEditView = false; 
+  };
+  
+  // Notice we deleted c.saveChanges()! The native form handles saving natively.
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* --- Global Wrapper &amp; Typography --- */
+.sc-doc-wrapper {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #1e293b;
+  background-color: #f8fafc;
+  padding: 30px;
+}
+
+/* --- The Main Panel (Card) --- */
+.sc-doc-panel {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid #eef2f6;
+}
+
+.sc-doc-panel-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  background-color: #ffffff;
+}
+
+/* --- 1. TABLE BEAUTIFICATION (Keeping your awesome table) --- */
+.sc-doc-table { width: 100%; border-collapse: collapse; }
+.sc-doc-table th { background-color: #f8fafc; color: #64748b; font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 16px 24px; border-bottom: 2px solid #f1f5f9; }
+.sc-doc-table td { padding: 18px 24px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+.sc-doc-table tbody tr:hover { background-color: #fcfdfe; }
+
+/* Badges */
+.sc-doc-text-critical, .sc-doc-text-high, .sc-doc-text-moderate, .sc-doc-text-low { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; text-transform: uppercase; }
+.sc-doc-text-critical { background-color: #fee2e2; color: #b91c1c; }
+.sc-doc-text-high { background-color: #ffedd5; color: #9a3412; }
+.sc-doc-text-moderate { background-color: #dbeafe; color: #1e40af; }
+.sc-doc-text-low { background-color: #dcfce7; color: #15803d; }
+
+
+/* --- 2. THE ULTIMATE REFERENCE FIELD FIX (Assigned Doctor/Nurse) --- */
+
+/* Force all inputs to a clean height and remove overlap */
+.sc-doc-wrapper .form-control,
+.sc-doc-wrapper input,
+.sc-doc-wrapper select {
+  height: 38px !important; /* Slightly reduced height for elegance */
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+}
+
+/* Fix for the Reference Group (The container for the icon + input) */
+.sc-doc-wrapper .input-group {
+  display: flex !important;
+  width: 100% !important;
+  border: 1px solid #e2e8f0 !important; /* Outer border only */
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+
+/* Reset internal elements of the input group */
+.sc-doc-wrapper .input-group .form-control {
+  border: none !important; /* Remove internal borders causing the overlap lines */
+  margin: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+/* The "i" icon button area */
+.sc-doc-wrapper .input-group-btn {
+  display: flex !important;
+  background-color: #f8fafc !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sc-doc-wrapper .input-group-btn .btn {
+  border: none !important;
+  background: transparent !important;
+  height: 38px !important;
+  padding: 0 12px !important;
+  color: #64748b !important;
+  box-shadow: none !important;
+}
+
+/* The dropdown arrow area */
+.sc-doc-wrapper .input-group-btn:last-child {
+  border-left: 1px solid #f1f5f9 !important;
+}
+
+/* Hover/Focus effect for the whole box */
+.sc-doc-wrapper .input-group:hover {
+  border-color: #cbd5e1 !important;
+}
+
+.sc-doc-wrapper .input-group:focus-within {
+  border-color: #0052cc !important;
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1) !important;
+}
+
+/* --- 3. SPACING &amp; BUTTONS --- */
+.sc-doc-panel-body { padding: 24px; }
+
+.sc-doc-info-grid {
+  display: flex; gap: 40px; background: #f1f5f9; padding: 15px 20px; border-radius: 8px; margin-bottom: 25px;
+}
+
+.sc-doc-wrapper label {
+  font-weight: 600 !important; color: #475569 !important; font-size: 12px !important; margin-bottom: 6px !important;
+}
+
+/* Buttons */
+.sc-doc-btn-link, .sc-doc-wrapper .btn-primary {
+  background: #0052cc !important; border: none !important; color: #fff !important;
+  padding: 8px 16px !important; border-radius: 6px !important; font-weight: 600 !important;
+}
+
+.sc-doc-btn-default, .sc-doc-wrapper .btn-default {
+  background: #fff !important; border: 1px solid #e2e8f0 !important; color: #64748b !important;
+  padding: 8px 16px !important; border-radius: 6px !important;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>smartcare_my_patient</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>SmartCare My Patient</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    var userId = gs.getUserID();
+    
+  
+    var isDoctor = gs.hasRole('x_1954503_smartc_0.doctor');
+    
+  
+    var isNurse = gs.hasRole('x_1954503_smartc_0.nurse');
+
+    
+    if (input && input.action == 'updatePatient') {
+        var updateGR = new GlideRecord('x_1954503_smartc_0_patient');
+        if (updateGR.get(input.patientUpdate.sys_id)) {
+            updateGR.setValue('severity', input.patientUpdate.severity);
+            updateGR.setValue('state', input.patientUpdate.state);
+            updateGR.setValue('symptoms', input.patientUpdate.symptoms);
+          
+            updateGR.update();
+        }
+    }
+
+   
+    data.myPatients = [];
+    var pGR = new GlideRecord('x_1954503_smartc_0_patient');
+
+    
+    if (isDoctor) {
+        pGR.addQuery('assigned_doctor', userId);
+    } else if (isNurse) {
+       
+        pGR.addQuery('u_assigned_nurse', userId); 
+    } else {
+   
+        if (!gs.hasRole('admin')) {
+            return; 
+        }
+    }
+
+    pGR.orderByDesc('sys_created_on');
+    pGR.query();
+
+    while (pGR.next()) {
+        data.myPatients.push({
+            sys_id: pGR.getUniqueValue(),
+            full_name: pGR.getValue('full_name') || 'Unknown',
+            age: pGR.getValue('age') || '',
+            department: pGR.getDisplayValue('medical_department') || '',
+            state: pGR.getValue('state') || 'waiting',
+            severity: pGR.getValue('severity') || 'low',
+            symptoms: pGR.getValue('symptoms') || '',
+          
+            assigned_doctor: pGR.getDisplayValue('assigned_doctor'),
+            assigned_nurse: pGR.getDisplayValue('assigned_nurse')
+        });
+    }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-18 07:35:33</sys_created_on>
+        <sys_id>91afbc80c3bb76501bf5fe1d0501314f</sys_id>
+        <sys_mod_count>30</sys_mod_count>
+        <sys_name>SmartCare My Patient</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_widget_91afbc80c3bb76501bf5fe1d0501314f</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-18 13:54:27</sys_updated_on>
+        <template><![CDATA[<div class="sc-doc-wrapper">
+  
+  <div class="sc-doc-panel" ng-if="!c.showEditView">
+    <div class="sc-doc-panel-header">
+      <h3 class="sc-doc-panel-title">My Assigned Patients</h3>
+    </div>
+    
+    <table class="sc-doc-table" ng-if="data.myPatients.length > 0">
+      <thead>
+        <tr>
+          <th>Patient Name</th>
+          <th>Age</th>
+          <th>Department</th>
+          <th>Severity</th>
+          <th>State</th> 
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="patient in data.myPatients">
+          <td class="sc-doc-fw-bold">{{patient.full_name}}</td>
+          <td>{{patient.age}}</td>
+          <td>{{patient.department}}</td>
+       <td>
+  <span class="sc-doc-text-{{patient.severity}}">
+    {{patient.severity}}
+  </span>
+</td>
+          <td class="sc-doc-text-capitalize">{{patient.state}}</td> 
+          <td>
+            <button class="sc-doc-btn-link" ng-click="c.selectPatient(patient)">View / Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="sc-doc-empty-status" ng-if="data.myPatients.length == 0">
+      <p>You have no assigned patients at the moment</p>
+    </div>
+  </div>
+
+  <div class="sc-doc-panel" ng-if="c.showEditView">
+    <div class="sc-doc-panel-header sc-doc-flex-between">
+      <h3 class="sc-doc-panel-title">Patient Record: {{c.selectedPatient.full_name}}</h3>
+      <button class="sc-doc-btn-default" ng-click="c.backToList()">Back to List</button>
+    </div>
+    
+    <div class="sc-doc-panel-body">
+      <div class="sc-doc-info-grid">
+        <div class="sc-doc-info-block">
+          <label>Age</label>
+          <p>{{c.selectedPatient.age}}</p>
+        </div>
+        <div class="sc-doc-info-block">
+          <label>Department</label>
+          <p>{{c.selectedPatient.department}}</p>
+        </div>
+      </div>
+
+     <hr class="sc-doc-divider">
+
+      <div class="sc-doc-embedded-form" ng-if="c.embeddedForm">
+        <sp-widget widget="c.embeddedForm"></sp-widget>
+      </div>
+      
+      <div ng-if="!c.embeddedForm" style="text-align: center; padding: 20px; color: #5e6c84;">
+        <i class="fa fa-spinner fa-spin fa-2x"></i>
+        <p>Loading patient record...</p>
+      </div>
+    </div>
+  </div>
+
+</div>]]></template>
+    </sp_widget>
+</record_update>

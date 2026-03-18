@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="ais_search_profile_ais_search_source_m2m">
+    <ais_search_profile_ais_search_source_m2m action="INSERT_OR_UPDATE">
+        <exclude_attachments_in_now_assist_genius_results>false</exclude_attachments_in_now_assist_genius_results>
+        <exclude_in_now_assist_genius_results>false</exclude_in_now_assist_genius_results>
+        <exclude_in_regular_search>false</exclude_in_regular_search>
+        <profile display_value="smartcare-nurse-workspace Search Profile">1e9832df8c6b325099cdcead38e7c3a3</profile>
+        <search_source display_value="Patient">739836dfc36b32501bf5fe1d0501316c</search_source>
+        <sys_class_name>ais_search_profile_ais_search_source_m2m</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 08:27:46</sys_created_on>
+        <sys_id>b79836dfc36b32501bf5fe1d05013172</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>smartcare-nurse-workspace Search Profile.Patient</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>ais_search_profile_ais_search_source_m2m_b79836dfc36b32501bf5fe1d05013172</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:27:46</sys_updated_on>
+    </ais_search_profile_ais_search_source_m2m>
+</record_update>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function(spModal, spUtil) {
+    var c = this;
+
+    // initialze the object
+    c.search = {
+        bedId: '',
+        statusValue: '',
+        ward: '',
+        bedTypeValue: ''
+    };
+
+    // clear filter Logic
+    c.clearFilters = function() {
+        c.search = {
+            bedId: '',
+            statusValue: '',
+            ward: '',
+            bedTypeValue: ''
+        };
+    };
+
+    // discharge Logic
+    c.confirmDischarge = function(bed) {
+        bed.showMenu = false; // hide the menu overlay when clicked
+        
+        spModal.confirm("Are you sure you want to discharge " + bed.patientName + "? This will make the bed available.").then(function(confirmed) {
+            if (confirmed) {
+                c.data.action = 'dischargePatient';
+                c.data.targetPatient = bed.patientSysId;
+                
+                c.server.update().then(function() {
+                    c.data.action = null; 
+                    spUtil.addInfoMessage(bed.patientName + " has been discharged.");
+                });
+            }
+        });
+    };
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* ── DASHBOARD BASE ── */
+.hospital-dashboard { 
+  padding: 30px; 
+  background: #f8fafc; 
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── CONTROLS PANEL (SEARCH &amp; FILTERS) ── */
+.controls-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+}
+
+.search-wrapper { flex: 1; position: relative; }
+.filters-wrapper { display: flex; gap: 12px; align-items: center; }
+
+.filter-input, .filter-select {
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #1e293b;
+  background-color: #f8fafc;
+  transition: 0.2s;
+}
+
+.filter-input:focus, .filter-select:focus {
+  border-color: #6366f1;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.clear-btn {
+  background: #fff;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  padding: 0 16px;
+  height: 42px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.clear-btn:hover { background: #f1f5f9; color: #1e293b; }
+
+/* ── GRID &amp; MODERN CARDS ── */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+  gap: 20px; 
+}
+
+.modern-card {
+  min-height: 150px; 
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modern-card:hover { 
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+}
+
+/* Status Accents */
+.status-available { border-top: 4px solid #22c55e; } /* Emerald Green */
+.status-occupied { border-top: 4px solid #6366f1; } /* Indigo */
+
+/* ── CARD HEADER ── */
+.card-header-modern {
+  padding: 12px 16px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(248, 250, 252, 0.5);
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.bed-id-pill {
+  background: #1e293b;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.bed-type-text {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── CARD BODY ── */
+.card-body-modern { 
+  padding: 16px; 
+  flex-grow: 1;
+}
+
+.patient-name-modern {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.dept-label-modern {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Severity Indicators */
+.severity-pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.critical { background: #fff1f2; color: #e11d48; } 
+.high { background: #fff7ed; color: #ea580c; }  
+.moderate { background: #eff6ff; color: #2563eb; }
+.low { background: #f0fdf4; color: #16a34a; }
+
+/* Available State Visuals */
+.available-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  color: #22c55e;
+}
+
+.status-dot {
+  width: 10px; height: 10px;
+  background-color: #22c55e; 
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.vacant-text-modern { font-size: 14px; font-weight: 600; color: #16a34a; margin: 0; }
+
+/* ── CONTEXT MENU (KEBAB) ── */
+.menu-container { position: relative; }
+.kebab-icon {
+  cursor: pointer;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.kebab-icon:hover { background: #e2e8f0; }
+
+.context-menu {
+  position: absolute;
+  top: 32px; right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  z-index: 100;
+  min-width: 160px;
+  padding: 8px;
+}
+
+.context-item {
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.text-danger { color: #e11d48; }
+.context-item:hover { background-color: #fff1f2; }</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>sc_bed_tile</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>SmartCare Bed Tile</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    /* action logic discharge patient */
+    if (input && input.action == 'dischargePatient') {
+        var pGR = new GlideRecord('x_1954503_smartc_0_patient');
+        if (pGR.get(input.targetPatient)) {
+            pGR.setValue('status', 'discharged');
+            pGR.update();
+        }
+    }
+
+    /* core data fetch logic */
+    data.beds = [];
+    var bedGR = new GlideRecord('x_1954503_smartc_0_hospital_bed');
+    bedGR.orderBy('bed_id');
+    bedGR.query();
+
+    while (bedGR.next()) {
+        var bedObj = {};
+        bedObj.bedId = bedGR.getValue('bed_id') || "N/A";
+        bedObj.ward = (bedGR.getValue('ward') || '').toLowerCase();
+        
+        bedObj.bedTypeValue = bedGR.getValue('bed_type') || ''; 
+        bedObj.bedTypeLabel = bedGR.getDisplayValue('bed_type') || '';
+        
+        var patientSysId = bedGR.getValue('assigned_patient');
+        
+        if (patientSysId) {
+            bedObj.statusValue = 'occupied'; 
+            
+            var patientGR = new GlideRecord('x_1954503_smartc_0_patient');
+            if (patientGR.get(patientSysId)) {
+                bedObj.patientSysId = patientSysId; 
+                bedObj.patientName = patientGR.getValue('full_name');
+                bedObj.dept = patientGR.getDisplayValue('medical_department');
+                bedObj.severity = (patientGR.getValue('severity') || 'low').toLowerCase();
+            }
+        } else {
+            bedObj.statusValue = 'available';
+        }
+        
+        data.beds.push(bedObj);
+    }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-15 21:01:29</sys_created_on>
+        <sys_id>b27b1097c3a7fe101bf5fe1d05013153</sys_id>
+        <sys_mod_count>32</sys_mod_count>
+        <sys_name>SmartCare Bed Tile</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_widget_b27b1097c3a7fe101bf5fe1d05013153</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-17 14:54:04</sys_updated_on>
+        <template><![CDATA[<div class="hospital-dashboard">
+  
+  <div class="controls-panel">
+    <div class="search-wrapper">
+      <input type="text" ng-model="c.search.bedId" placeholder="Search Bed ID..." class="filter-input">
+    </div>
+    <div class="filters-wrapper">
+      <select ng-model="c.search.statusValue" class="filter-select">
+        <option value="">All Statuses</option>
+        <option value="available">Available</option>
+        <option value="occupied">Occupied</option>
+      </select>
+
+      <select ng-model="c.search.ward" class="filter-select">
+        <option value="">All Wards</option>
+        <option value="icu">ICU</option>
+        <option value="emergency">Emergency</option>
+        <option value="general">General Ward</option>
+      </select>
+
+      <select ng-model="c.search.bedTypeValue" class="filter-select">
+        <option value="">All Bed Types</option>
+        <option value="100">General</option>
+        <option value="200">ICU</option>
+        <option value="300">Isolation</option>
+        <option value="400">Pediatrics</option>
+      </select>
+
+      <button class="clear-btn" ng-click="c.clearFilters()">Clear Filters</button>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div ng-repeat="bed in data.beds | filter:{bedId: c.search.bedId, statusValue: c.search.statusValue, ward: c.search.ward, bedTypeValue: c.search.bedTypeValue}" 
+         class="modern-card ward-{{bed.ward}}" 
+         ng-class="{'status-available': bed.statusValue == 'available', 'status-occupied': bed.statusValue == 'occupied'}">
+      
+      <div class="card-header-modern">
+        <div class="header-left">
+          <span class="bed-id-pill">{{bed.bedId}}</span>
+          <span class="bed-type-text">{{bed.bedTypeLabel}}</span>
+        </div>
+        
+        <div class="menu-container" ng-if="bed.statusValue == 'occupied'">
+          <div class="kebab-icon" ng-click="bed.showMenu = !bed.showMenu">&#8942;</div>
+          
+          <div class="context-menu" ng-show="bed.showMenu">
+            <button class="context-item text-danger" ng-click="c.confirmDischarge(bed)">
+              Discharge Patient
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body-modern">
+        <div ng-if="bed.patientName" class="occupied-state">
+          <h2 class="patient-name-modern">{{bed.patientName}}</h2>
+          <p class="dept-label-modern">{{bed.dept}}</p>
+          <span class="severity-pill" ng-class="bed.severity">{{bed.severity}}</span>
+        </div>
+        
+        <div ng-if="!bed.patientName" class="available-state">
+          <div class="status-dot"></div>
+          <h3 class="vacant-text-modern">Ready for Admission</h3>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element db_object_id="186d5e7ac3673e101bf5fe1d0501315b" label="Hospital Bed " max_length="40" name="x_1954503_smartc_0_hospital_bed" type="collection">
+    <element db_object_id="186d5e7ac3673e101bf5fe1d0501315b" label="Hospital Bed " max_length="40" name="x_1954503_smartc_0_hospital_bed" text_index="true" type="collection">
         <element label="Bed ID" max_length="45" name="bed_id" type="string"/>
         <element choice="1" label="Ward" max_length="40" name="ward" type="choice">
             <choice>

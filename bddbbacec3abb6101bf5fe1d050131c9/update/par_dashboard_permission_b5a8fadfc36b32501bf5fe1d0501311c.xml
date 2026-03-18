@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_permission">
+    <par_dashboard_permission action="INSERT_OR_UPDATE">
+        <can_read>true</can_read>
+        <can_share>false</can_share>
+        <can_write>false</can_write>
+        <dashboard display_value="SmartCare Nurse Workspace">d9a87adfc36b32501bf5fe1d05013155</dashboard>
+        <group/>
+        <owner>false</owner>
+        <role display_value="x_1954503_smartc_0.technician" name="x_1954503_smartc_0.technician">ce2d3682c3ebb6101bf5fe1d050131ef</role>
+        <sys_class_name>par_dashboard_permission</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-16 08:27:55</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b5a8fadfc36b32501bf5fe1d0501311c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>d9a87adfc36b32501bf5fe1d05013155</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>par_dashboard_permission_b5a8fadfc36b32501bf5fe1d0501311c</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-16 08:27:55</sys_updated_on>
+        <user/>
+    </par_dashboard_permission>
+</record_update>
