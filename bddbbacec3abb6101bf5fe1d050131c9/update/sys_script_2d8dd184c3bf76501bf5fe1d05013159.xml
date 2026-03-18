@@ -18,8 +18,8 @@
         <filter_condition/>
         <is_rest>false</is_rest>
         <message/>
-        <name>Auto Assign Doctor</name>
-        <order>150</order>
+        <name>Auto Assign Nurse</name>
+        <order>100</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -29,40 +29,55 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous) {
 
-    if (current.assigned_doctor)
+    // Skip if already assigned
+    if (current.u_assigned_nurse) {
         return;
-
-    var dept = current.medical_department;
-
-    var doctor = new GlideRecord('sys_user');
-    doctor.addQuery('title', 'Doctor');
-    doctor.addQuery('u_medical_department', dept); // Correct field
-    doctor.query();
-
-    if (doctor.next()) {
-        current.assigned_doctor = doctor.sys_id;
     }
 
-})(current, previous);
+    var nurse = new GlideRecord('sys_user');
 
-]]></script>
+    // Try matching department first
+    if (current.medical_department) {
+        nurse.addQuery('u_medical_department', current.medical_department);
+    }
+
+    nurse.addQuery('title', 'Nurse');
+    nurse.query();
+
+    if (nurse.next()) {
+        current.u_assigned_nurse = nurse.sys_id;
+    } else {
+
+        // Fallback: assign ANY nurse
+        var fallback = new GlideRecord('sys_user');
+        fallback.addQuery('title', 'Nurse');
+        fallback.query();
+
+        if (fallback.next()) {
+            current.u_assigned_nurse = fallback.sys_id;
+        }
+    }
+
+    current.update(); // IMPORTANT for AFTER rule
+
+})(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
-        <sys_created_by>utibe</sys_created_by>
-        <sys_created_on>2026-03-12 13:06:06</sys_created_on>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:46:22</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>7811170ec36fb6101bf5fe1d050131c7</sys_id>
-        <sys_mod_count>17</sys_mod_count>
-        <sys_name>Auto Assign Doctor</sys_name>
+        <sys_id>2d8dd184c3bf76501bf5fe1d05013159</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Auto Assign Nurse</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_update_name>sys_script_7811170ec36fb6101bf5fe1d050131c7</sys_update_name>
+        <sys_update_name>sys_script_2d8dd184c3bf76501bf5fe1d05013159</sys_update_name>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 12:34:18</sys_updated_on>
+        <sys_updated_on>2026-03-18 11:45:22</sys_updated_on>
         <template/>
-        <when>before</when>
+        <when>after</when>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=7811170ec36fb6101bf5fe1d050131c7"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=2d8dd184c3bf76501bf5fe1d05013159"/>
 </record_update>

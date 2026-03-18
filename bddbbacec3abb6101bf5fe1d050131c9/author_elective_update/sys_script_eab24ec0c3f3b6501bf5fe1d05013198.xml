@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="DELETE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>false</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection/>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name/>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	// Add your code here
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 12:27:45</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>eab24ec0c3f3b6501bf5fe1d05013198</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_script_eab24ec0c3f3b6501bf5fe1d05013198</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 12:27:45</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="DELETE" query="documentkey=eab24ec0c3f3b6501bf5fe1d05013198"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sys_script_eab24ec0c3f3b6501bf5fe1d05013198</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;false&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;false&lt;/action_update&gt;&lt;active&gt;true&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;false&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection/&gt;&lt;condition/&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition/&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name/&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	// Add your code here
+
+})(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;godwin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-03-18 12:27:45&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;eab24ec0c3f3b6501bf5fe1d05013198&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0"&gt;bddbbacec3abb6101bf5fe1d050131c9&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="SmartCare Health Managment System"&gt;bddbbacec3abb6101bf5fe1d050131c9&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_eab24ec0c3f3b6501bf5fe1d05013198&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;godwin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-03-18 12:27:45&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;before&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=eab24ec0c3f3b6501bf5fe1d05013198"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>592065884</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>0ed3b6bac32b3e101bf5fe1d050131c9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 12:27:45</sys_created_on>
+        <sys_id>eeb24ec0c3f3b6501bf5fe1d0501319e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d00ea8ec90000001</sys_recorded_at>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 12:27:45</sys_updated_on>
+        <type>Business Rule</type>
+        <update_guid>2eb24ec03df3b6501ae952cc7b4efb9d</update_guid>
+        <update_guid_history>2eb24ec03df3b6501ae952cc7b4efb9d:592065884</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 12:28:12</sys_created_on>
+        <sys_db_object display_value="" name="sys_script">sys_script</sys_db_object>
+        <sys_id>84beab78fd3e46a48886a3b2df7e9541</sys_id>
+        <sys_metadata>eab24ec0c3f3b6501bf5fe1d05013198</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sys_script_eab24ec0c3f3b6501bf5fe1d05013198</sys_update_name>
+        <sys_update_version display_value="sys_script_eab24ec0c3f3b6501bf5fe1d05013198">eeb24ec0c3f3b6501bf5fe1d0501319e</sys_update_version>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 12:28:12</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

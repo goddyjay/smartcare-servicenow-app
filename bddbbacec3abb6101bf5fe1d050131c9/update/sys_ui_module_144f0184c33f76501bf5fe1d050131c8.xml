@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_module">
+    <sys_ui_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Lab Test">184f0184c33f76501bf5fe1d050131c2</application>
+        <filter/>
+        <name>Lab Tests</name>
+        <order/>
+        <path/>
+        <path_relative_to_root>false</path_relative_to_root>
+        <roles>x_1954503_smartc_0.lab_test_user</roles>
+        <sys_class_name>sys_ui_module</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:42:52</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>144f0184c33f76501bf5fe1d050131c8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Lab Tests</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_ui_module_144f0184c33f76501bf5fe1d050131c8</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:42:52</sys_updated_on>
+        <table>x_1954503_smartc_0_lab_test</table>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+    </sys_ui_module>
+</record_update>

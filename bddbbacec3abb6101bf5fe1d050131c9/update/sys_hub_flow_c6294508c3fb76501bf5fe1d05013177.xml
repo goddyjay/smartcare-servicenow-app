@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_hub_flow">
+    <sys_hub_flow action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <annotation/>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=2805000,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version>28100</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <display_name_after_preview/>
+        <flow_priority>MEDIUM</flow_priority>
+        <generation_source/>
+        <internal_name>patient_workflow_automation</internal_name>
+        <label_cache>[{"name":"Created or Updated_1.current.state","label":"Trigger - Record Created or Updated➛Patient Record➛State","reference":"","reference_display":"State","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"state","choices":[{"label":"-- None --","image":"","used":false,"reference":false,"rawLabel":"-- None --","selected":false,"missing":false,"value":""},{"label":"Admitted","image":"","used":false,"reference":false,"rawLabel":"Admitted","selected":false,"missing":false,"value":"admitted","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Consultation","image":"","used":false,"reference":false,"rawLabel":"Consultation","selected":false,"missing":false,"value":"consultation","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Discharged","image":"","used":false,"reference":false,"rawLabel":"Discharged","selected":false,"missing":false,"value":"discharged","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Registered","image":"","used":false,"reference":false,"rawLabel":"Registered","selected":false,"missing":false,"value":"register","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Testing","image":"","used":false,"reference":false,"rawLabel":"Testing","selected":false,"missing":false,"value":"testing","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Treatment","image":"","used":false,"reference":false,"rawLabel":"Treatment","selected":false,"missing":false,"value":"treatment","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Triage","image":"","used":false,"reference":false,"rawLabel":"Triage","selected":false,"missing":false,"value":"triage","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Waiting","image":"","used":false,"reference":false,"rawLabel":"Waiting","selected":false,"missing":false,"value":"waiting","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"e568426b-adc8-4505-9d7c-2086a7eff853":["condition"],"357f234e-dad1-4aa2-8700-af3adff06302":["condition"],"7018949b-61c3-4837-bcf2-1355ef5a59ad":["condition"]}},{"name":"Created or Updated_1.current","label":"Trigger - Record Created or Updated➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"1fd62ac9-e480-4f06-8da4-2dfab547c498":["patient"],"5f633222-4a19-4f11-96a7-108c957a99c9":["record"]},"attributes":{}},{"name":"Created or Updated_1.current.u_reference_2.email","label":"Trigger - Record Created or Updated➛Patient Record➛Patient ID➛Email","reference":"","reference_display":"Email","type":"email","base_type":"email","parent_table_name":"sys_user","column_name":"email","usedInstances":{"5f633222-4a19-4f11-96a7-108c957a99c9":["ah_to"]}}]</label_cache>
+        <master_snapshot>0bd35d00c37f76501bf5fe1d050131f4</master_snapshot>
+        <master_snapshot_digest/>
+        <name>Patient Workflow Automation</name>
+        <natlang/>
+        <outputs/>
+        <pre_compiled>false</pre_compiled>
+        <remote_trigger_id>b3d39d00c37f76501bf5fe1d050131fd</remote_trigger_id>
+        <run_as>user</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <show_draft_actions>false</show_draft_actions>
+        <show_triggered_flows>false</show_triggered_flows>
+        <status>published</status>
+        <substatus/>
+        <sys_class_name>sys_hub_flow</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:13</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>c6294508c3fb76501bf5fe1d05013177</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>Patient Workflow Automation</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_hub_flow_c6294508c3fb76501bf5fe1d05013177</sys_update_name>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:02</sys_updated_on>
+        <type>flow</type>
+        <updation_source/>
+        <version>2</version>
+        <version_record>08e3dd00c37f76501bf5fe1d050131cb</version_record>
+    </sys_hub_flow>
+    <sys_translated_text action="delete_multiple" query="documentkey=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_variable_value action="delete_multiple" query="document_key=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_flow_record_trigger action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition table="x_1954503_smartc_0_patient">stateVALCHANGES<item display_value="-- None --" endquery="false" field="state" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+        </condition>
+        <name/>
+        <on_delete>false</on_delete>
+        <on_insert>true</on_insert>
+        <on_update>true</on_update>
+        <published_version/>
+        <run_flow_in>background</run_flow_in>
+        <run_on_extended>false</run_on_extended>
+        <run_when_setting>both</run_when_setting>
+        <run_when_user_list/>
+        <run_when_user_setting>any</run_when_user_setting>
+        <sys_class_name>sys_flow_record_trigger</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:02</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b3d39d00c37f76501bf5fe1d050131fd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:02</sys_updated_on>
+        <table>x_1954503_smartc_0_patient</table>
+        <trigger_definition/>
+    </sys_flow_record_trigger>
+    <sys_trigger_runner_mapping action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <data>{"run_flow_in":"background","run_when_user_list":[],"run_when_setting":"both","run_when_user_setting":"any","run_on_extended":"false"}</data>
+        <identifier>c6294508c3fb76501bf5fe1d05013177</identifier>
+        <runner>FDTriggerRunner</runner>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:02</sys_created_on>
+        <sys_id>fbd39d00c37f76501bf5fe1d050131fe</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:02</sys_updated_on>
+        <trigger display_value="">b3d39d00c37f76501bf5fe1d050131fd</trigger>
+    </sys_trigger_runner_mapping>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=c6294508c3fb76501bf5fe1d05013177^sys_idNOT INfbd39d00c37f76501bf5fe1d050131fe"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=c6294508c3fb76501bf5fe1d05013177^sys_idNOT IN8e294508c3fb76501bf5fe1d0501317b"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>c6294508c3fb76501bf5fe1d05013177</id>
+        <name>Patient Workflow Automation</name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:13</sys_created_on>
+        <sys_id>8e294508c3fb76501bf5fe1d0501317b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:16:13</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=8e294508c3fb76501bf5fe1d0501317b"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=c6294508c3fb76501bf5fe1d05013177^sys_idNOT IN81398548c3fb76501bf5fe1d050131a1,91398548c3fb76501bf5fe1d050131ea,d9398548c3fb76501bf5fe1d050131e0"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name,uiTypeLabel=Table Name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</model>
+        <model_id>c6294508c3fb76501bf5fe1d05013177</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_c6294508c3fb76501bf5fe1d05013177</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:26</sys_created_on>
+        <sys_id>81398548c3fb76501bf5fe1d050131a1</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:48:15</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=81398548c3fb76501bf5fe1d050131a1"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>child_label=FDChangeDetails,child_name=FDChangeDetails,child_type=object,child_type_label=Object,co_type_name=FDCollection,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=array.object,uiTypeLabel=Array.Object</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>changed_fields</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Changed Fields</label>
+        <mandatory>false</mandatory>
+        <max_length>4000</max_length>
+        <model display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</model>
+        <model_id>c6294508c3fb76501bf5fe1d05013177</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_c6294508c3fb76501bf5fe1d05013177</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:26</sys_created_on>
+        <sys_id>91398548c3fb76501bf5fe1d050131ea</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:16:26</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=91398548c3fb76501bf5fe1d050131ea"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=document_id,uiTypeLabel=Document ID</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</model>
+        <model_id>c6294508c3fb76501bf5fe1d05013177</model_id>
+        <model_table>sys_hub_flow</model_table>
+        <name>var__m_sys_hub_flow_input_c6294508c3fb76501bf5fe1d05013177</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:26</sys_created_on>
+        <sys_id>d9398548c3fb76501bf5fe1d050131e0</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:48:15</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=d9398548c3fb76501bf5fe1d050131e0"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=c6294508c3fb76501bf5fe1d05013177^sys_idNOT INc9398548c3fb76501bf5fe1d05013196"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</flow>
+        <generation_source/>
+        <name>Created or Updated</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:25</sys_created_on>
+        <sys_id>c9398548c3fb76501bf5fe1d05013196</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:02:58</sys_updated_on>
+        <trigger_definition display_value="Created or Updated">a45d9180c32222002841b63b12d3aea7</trigger_definition>
+        <trigger_inputs>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</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_create_or_update</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=c6294508c3fb76501bf5fe1d05013177^sys_idNOT IN7d72554cc33f76501bf5fe1d050131d2,aa5dc548c3fb76501bf5fe1d05013117,b5de4144c33f76501bf5fe1d05013197"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Send Email">c1806bf4a70323008299b39f087901cb</action_type>
+        <action_type_parent display_value="Send Email">98c181d20b100300d97d8bf637673ab5</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>c1806bf4a70323008299b39f087901cb</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</flow>
+        <generation_source/>
+        <order>6</order>
+        <parent_ui_id>7018949b-61c3-4837-bcf2-1355ef5a59ad</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:56:53</sys_created_on>
+        <sys_id>7d72554cc33f76501bf5fe1d050131d2</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:06:21</sys_updated_on>
+        <ui_id>5f633222-4a19-4f11-96a7-108c957a99c9</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+2X2W7bOBSGX4XQtePKe5y71kGQAumC2tNB0RQCRVIRJ5SoIak4nsDvPodavWRcOXZnEkzuJK7/Ofw/Lt8fHE6dM6dPT92hH/TxyO11e6572h2P/d44cE9HY7dDqNNyYhwxaKkYkcr+32GR2oKHh4li2DCKpEK/JdR+ep02SZVisVkuoSnlOhF48bXoASUk5IJCvXP2/UfLSbCCwQ1TztnDRlVTdQL7TEDTGVY3zKAvpcpN1WaR2H8qSRqBPI+XhVfFAOdFDXp/DjXQyapyWw67NyymDOQEWGjWciIcQ6xSLaoSSAP9FIu6IOSxgSHfai0Jh7xoZEKGWIS5QHNuQoRRLqzt2PHuNf8LxPW6dqiAQQ6I1cpjwikoclaKvSKlUP2+rg7OscFTo1JiUlVlWnLCdJ5NygKcCjNZLcsbfEoMl3HexWBflL2lSKP4Y55EpxpgZSVTDWJYYnNjg4XJIfBgGsr5l1LsBY+zLBZZEZJgUf0FU4YVCS84E3ap4zTyoW3LwcYo7qfGygRTCGhVz+NlUu1c0JIJli1lhJOExzdeouQdzyYE+VH7RsBPOxByDv01v4nbmNhY27B6uH0B5edZ8VesuA38AwwDnZctRy/0RGCt6/Ah/96fqVWfJ2Ndju3tZYaznYniiXkLU92xIthlq6CtM97lZ9qvfbsyZk3cvdcZD/oDt+fpCCtDPNdLsOG5BzZY+1xV7IdcA4k1ctYuj0sucNsqu1rtiz7mFQVsnT1hyy1XsDYDwEy+B+RoIVPIq/g6ddf5+geungdPFSWNgVoH59fAASbRXu7wIrZs8idA8zNU3OHQ94f+YNSrfTgmAR35wRCPSK/23Rw2WAU83HrZBrvCS2cbi2Lr2I+JBlpKJmBTFill6PdS1C6dBSS+lLDLxZuEgNI3F1l2K0K6Bx1HuTWRkQgWUyzgEKok2cL6iDIhNohrpGG12mgmES+iWunRQguZoijVBpoZqFmDb+1c6z9f7go7FKXnj3rlRYB5fAAHuw8CXBsbh56RjS+G7dSrV7/bzhy3XKJtVJ86zH5sNwizOu/kdswFwhpWOL7ZIHhaFhb09nbTmx9nW/CuHF/u8wXppXBihQse8cwQOeHHR4fu9BRz12xEyAo6R3gzNZi8NPRksq1kH0P3n3YcvTr6xTm6s/MhzoZrPvKPbekGs5eWfrfhaX9vUw9eTf0/MfVgt63ImpF06v/BiFkxNtwWSWgvvWiaRnAlXqATNLXv8glWDF1KnXCDxbb9G/fb8yLz82hKSKZVLI/Ftw8sw9crzX/OyvHBwDutFHTXd1hJFytUXKeu2yMJsppPDI8XEWFKSuNDYm6zSnrtXOfN2CUTQrbyLm+SvOw63muIb/AKDfEdQz5jMdIpgbXXQSrgfUtL0CgKlIwegax90NSf4dWuGQokBDG3z2GFEsVsYn2YMmKUE2zXTyMgAoEVYA3yZnmXkzSxL3EJr3Nri8PEzEIc39rRDxumztGM4Wh9qO2trBi6wWL+wsX6VxejYbIbJXO//b0BlNUlKEdyi9FiZw9NJDb29cvZh6t6Vx8deAUaDga94eu+fvAdKJnTLlUySYrYjnwP+vE38DEhywUcAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=7d72554cc33f76501bf5fe1d050131d2"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create or Update Record">ab575ae253b3230034c6ddeeff7b12f1</action_type>
+        <action_type_parent display_value="Create or Update Record">e057d2e253b3230034c6ddeeff7b1261</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>ab575ae253b3230034c6ddeeff7b12f1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</flow>
+        <generation_source/>
+        <order>2</order>
+        <parent_ui_id>e568426b-adc8-4505-9d7c-2086a7eff853</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:34:33</sys_created_on>
+        <sys_id>aa5dc548c3fb76501bf5fe1d05013117</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:06:21</sys_updated_on>
+        <ui_id>d6ff9c76-4eec-45b6-98f8-a519b7912182</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/9VUTW/bMAz9K4HORmDHcbLlVrToaW2HtcilKQRaohMB8sdkOU0W5L+Psuw0SLOtBYoBvVnko/j4KL/HHVOSzdhomkwTwFESp/EoDsN4LCZSImbZNI1G2ZgFrIAcCWkh1cjbQ8DWoBsX3PDoazJOwpjXORgreMgrsAoLSyCp6krDdt5hvx8SYqW0NFiw2eNTwCowdKlFw2a7k9RbKWpIURP0wXEc3HqO53jbbXU29u3cBaWRjlQYMNxYLCQSmwx0jQHLoZBgS7NlM2saChgEeVfo7QGxUjTqjDGH3dTqF7X9EjpchjSeQJ87HHknlg9nV2Dhnm4WtjEdVKxKJbD2wkjMoNH28jjmAXeVVWXhS9oxu+pSN3lx6yVhhwv63VCkqYkEVm5Ox7wbI7tflc8/epbXqmgl6ZK6FKAPJ7DWqLSxjs+ONerhjNY+2qvtpKMgasypJ8+hqlSx5JUp16rtQ7Tz4VLTYZjp8pn41WpZDEG4GYe0ARheU/yqDc/BKNfrhq6h4n3A6m19qaGuX8YmvfnPxpH2InTjcq+YKxFGVfaCGqyxm2wf9P9K+teHCC9vLlOoZX30nxAJYoiSy1LQs1k0VC13i/4XWbDZgt2A2Q4uiE6zhAULFr64TUGYJjHIqYgn1DoJozRLMoxkSJ9xlIoW3grdwmluTus0bdgdlHzjNfvXv+1nov5OY/n3Pntjue4Xerrg3lAwJzEscr/wE1PpkoN5l+yMJfooY5kkYfiZvMVP9gHWcqr6f7QXalbRO7Xco/t273edI3/8g/88/Qbsjs0BrQcAAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=aa5dc548c3fb76501bf5fe1d05013117"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="Create Record">02f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</flow>
+        <generation_source/>
+        <order>4</order>
+        <parent_ui_id>357f234e-dad1-4aa2-8700-af3adff06302</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:41:03</sys_created_on>
+        <sys_id>b5de4144c33f76501bf5fe1d05013197</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:06:21</sys_updated_on>
+        <ui_id>1fd62ac9-e480-4f06-8da4-2dfab547c498</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/9VUTW8aMRD9K8jnFdplAQVuFRGnNJGalEuaWrPrASx5P2rPEijiv3e8XghKgtpKuYQTns/3HvN43AutxFSME4xHk2Scp0maDuJ4cDVMsnGaJQOVAuJQRKKEArmSIDMo20ckNmAaH9zKZDIajuJUugIs5TKWBjJJ6IirlHa1gd2iK76BrPcQMvlaG2WxFNPHp0jUYHksoRXT/avUv4LkrWi49MGjvACadvW7sZvz3t5tSFRWeTxxJHBLWCpkIEswDiNRQKmAKrsTU7INByyCuivN7lSx1iXxQOFrt07/5rVXsa9bIjPLMeROT9kJFcLLayC458k5NbYrzdeVztEFTRQuoTE0O4+FgruadFWGlpZm112ZpihvgyTiNOD4u3CkcQwCa8/TI+9oLO/X1fO3I8q5LltJuqSpcjCnFxBZnTXk8ewFGix4kCygrnW5krWtNrptZixFf2X40V+a6pmXOr0q+5B74H2WFfpzjl+34QVY7Vl85THcfIiE27mZAedeuLCI8lfjkQRmHQcZZPAtudU1feEFG+zgHqLj9SuMJxcPK8leDqk9eHd2+TWQ5j0/mjhO1X4/4xsgVL3K9r7Xyn+VST9vLCtHh8NPR0CNC8UeIYvy1h8fMfI/jfV3/kdjzTUa5d4R5OgqLJgLoQwCvXJWl+wtumTnruSj3JWM4/bziTwWyH16i539m14w29Mflb2LmmwGAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=b5de4144c33f76501bf5fe1d05013197"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=c6294508c3fb76501bf5fe1d05013177^sys_idNOT IN9ff1550cc33f76501bf5fe1d050131e9,e12c81ccc3fb76501bf5fe1d050131f9,e53ec5c0c33f76501bf5fe1d050131e2"/>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">32d35d00c37f76501bf5fe1d0501315f</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>5</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:54:48</sys_created_on>
+        <sys_id>9ff1550cc33f76501bf5fe1d050131e9</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:02:58</sys_updated_on>
+        <ui_id>7018949b-61c3-4837-bcf2-1355ef5a59ad</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1VTW/bMAz9K4HOhuGPJlhzK1oUKLCtwNr1shUGLdGJMFnyJDlpFuS/j/JHGrQpFhQ79mY9iuTj0yO8Zab1TevdvblwTi40m/94jJjUAaPvLZOCzVmVQJWe85Tn2SzPkiT7dJaWs7xMM5EDQs4ipqFGusmNFtJLo4sOiNgKVBsCV9LxJdhFwIR0jYLNw5EQX0olLA48GrBUxaNl8+2LkN80WCgoUVGFO2+lXlD6qWzHxMuR7uRzh7w9R+hHuBs7GSsCrTSJGD551AKpdQXKYcRq0AK8sZs9YhHErVbPwFJqT+VYuPzk5B+qnU2n4WKFNCPHPrg/FoNmPcyXRnK8bQLBHvFQqiGHG9XW+ms/R1AbK2iVH9UmpHVUD5tAOrAYKFV3S7P+Nja8lrobcAgqw0HtT+BJhrL16MLDoMKaChU1NA2JUzTWrGSXTFzqeKHoEFfKrKlp8FgMPBCPSSOIrwm/6uAHsDJM8YXKUHJPswQnedH5kcp5SyPsOlmK320g1A84jFL0atAFx61s/AX1WeHAehcNZj6HaTVNk+lxe5zNjpjgwMfb7SU9pkcxMXbyvRHhs0hj3lqSzcfOE7Db/WyTJBdiNLZ4bfp31/kfG3KCBK825Lgsb6xF9o+1CA954lYkSfKxFodrIV3R23uYrWv+7q14DNbuO7jeNwK5dETkPmA3458gBDZkAMkPobWxv8IIz9juL3Zw7ilTBgAA</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">1f709148c33f76501bf5fe1d050131f9</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>1</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:29:18</sys_created_on>
+        <sys_id>e12c81ccc3fb76501bf5fe1d050131f9</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:02:58</sys_updated_on>
+        <ui_id>e568426b-adc8-4505-9d7c-2086a7eff853</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1UXW/TQBD8K5GfLct2moj2rQqqhARUIqUvUFnru3Vy4nxn7s5JQ5T/zq4/0oimgIBH3nyze7szcyPvI9uGpg3+zl57r1Ymuvr0EEfKMEbf+8hAjdFVJKyRKihrig6Iow3olgsLa3yrA3Btsgyw4qJUvtGwu/9Zj1grLR0OGxtwNDegi672P5TCrsFCQ4maRi2DU2ZF15WkU5VClV2KTEzz+TRP0/zVRVbOp2WWyykgTKlvvLgYBUzedkj8ojLeR7gfN1knmVaWxhE+BjQSaXUF2mMc1WAkBOt2R8QhyFujn4C1MoHGRdz86NU3mp3PZtxYIWkU2BePx2Iwr4fF2iqBtw0T7JEApR7uCKvb2rzvdbDtWAH5PNpOSOtpHjZMmlkMlKrl2m4/jAtvlOkEDkVtBejjCQLZULYBPT8MaqxpUFFD05A5RePsRnWXiUudrDQdkkrbLS3lNCUgmHhCHkFyQ/jrDr4Hp1jFOxpDl3uaJXglii55NC44knDobCm+tkyoFzhIKXo3qMELp5pwTXs2OLA+xM9je5LY/X5BjxRQTqybfGwkfxZZIlpHdoTEU07xcPjcpulUipPkPs/1X0z6F+m/hFk1y9LZ+fRfzM+l/0zuX458/ovI8yP9ZuLTNP0f+dPIK1/00R20dcv/OPEPHO9+g+9zI1EoT0TuGHsz/s+5sKMAKHEKba37whKesMN3d/vDBxkGAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">db709148c33f76501bf5fe1d050131fe</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>3</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:38:18</sys_created_on>
+        <sys_id>e53ec5c0c33f76501bf5fe1d050131e2</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:02:58</sys_updated_on>
+        <ui_id>357f234e-dad1-4aa2-8700-af3adff06302</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1UXWvbMBT9K8HPxvijCWveSkdhsK2wZH3ZirmWrhMxWfIkOWkW8t93ZdlpaBM2yh73Zp2re+45VwfvI925tnN2qW+sFSsVzb89xpFQHqPvfaSgwWgeMa24cEKrsgfiaAOy84UlWifUarJwsPI4F7aVsHu4UGZrIbnBYU4Lhtgcmmi+f1FyuxZLCRVKYlk4QyTULjid6hTq7JplrMhnRZ6m+burrJoVVZbzAhAKujc23o6yJx97JL7ox88j3I6TtOFeVpbGET45VBxpdA3SYhw1oDg4bXZHxCDweyWfgbVQjugif/nJil/EnU+n/mKN5JFhKB6P5bC3ALO1FgzvWy8wIA4qOfQwLbtGfQ4+/Maxhk66ceOEdJb4sPWivYpBUr1Y6+2XceCdUL3BoSg1A3k8gaM1VJ1D6x8GJTZEVDbQtrScsjV6I/pm0tIkK0mHpJZ6S0N9hhJgXnhCO4LkjvD3PfwARngXn4iGmoPMCqxgZZ83onOGLBz6tZQ/Oy8oGByslGEbdMEyI1p3Q3M2OKg+xK/DepLT/f6WHskhn2gz+dpy/1lmCesMrcMl1hFwOHzv0rTgLoT2dZrfRvIvMn8N03qapdPzmb+ancv8mbRfDnr+h6D7p/nLnKdp+j/op0EXtgyBHbz1w9+c80cf6jDBhtxwZMKSkKXHPoz/bl/YUQAEO4W22vzwFp6xw294AEywBQYAAA==</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_c6294508c3fb76501bf5fe1d05013177</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:26</sys_created_on>
+        <sys_id>5d398548c3fb76501bf5fe1d050131dc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:16:26</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_c6294508c3fb76501bf5fe1d05013177</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:26</sys_created_on>
+        <sys_id>95398548c3fb76501bf5fe1d050131e6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:16:26</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>changed_fields</element>
+        <help/>
+        <hint/>
+        <label>Changed Fields</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_c6294508c3fb76501bf5fe1d05013177</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 08:16:26</sys_created_on>
+        <sys_id>9939c548c3fb76501bf5fe1d05013109</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 08:16:26</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_c6294508c3fb76501bf5fe1d05013177"/>
+    <sys_hub_flow_snapshot action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <acls/>
+        <active>true</active>
+        <annotation/>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,viewActivatedIn=naturalLanguage</attributes>
+        <authored_on_release_version>28100</authored_on_release_version>
+        <callable_by_client_api>false</callable_by_client_api>
+        <category/>
+        <copied_from/>
+        <copied_from_name/>
+        <description/>
+        <flow_priority>MEDIUM</flow_priority>
+        <internal_name>patient_workflow_automation</internal_name>
+        <label_cache>[{"name":"Created or Updated_1.current.state","label":"Trigger - Record Created or Updated➛Patient Record➛State","reference":"","reference_display":"State","type":"choice","base_type":"choice","parent_table_name":"x_1954503_smartc_0_patient","column_name":"state","choices":[{"label":"-- None --","image":"","used":false,"reference":false,"rawLabel":"-- None --","selected":false,"missing":false,"value":""},{"label":"Admitted","image":"","used":false,"reference":false,"rawLabel":"Admitted","selected":false,"missing":false,"value":"admitted","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Consultation","image":"","used":false,"reference":false,"rawLabel":"Consultation","selected":false,"missing":false,"value":"consultation","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Discharged","image":"","used":false,"reference":false,"rawLabel":"Discharged","selected":false,"missing":false,"value":"discharged","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Registered","image":"","used":false,"reference":false,"rawLabel":"Registered","selected":false,"missing":false,"value":"register","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Testing","image":"","used":false,"reference":false,"rawLabel":"Testing","selected":false,"missing":false,"value":"testing","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Treatment","image":"","used":false,"reference":false,"rawLabel":"Treatment","selected":false,"missing":false,"value":"treatment","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Triage","image":"","used":false,"reference":false,"rawLabel":"Triage","selected":false,"missing":false,"value":"triage","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}},{"label":"Waiting","image":"","used":false,"reference":false,"rawLabel":"Waiting","selected":false,"missing":false,"value":"waiting","parameters":{"name":"x_1954503_smartc_0_patient","dependent_values":[""]}}],"usedInstances":{"e568426b-adc8-4505-9d7c-2086a7eff853":["condition"],"357f234e-dad1-4aa2-8700-af3adff06302":["condition"],"7018949b-61c3-4837-bcf2-1355ef5a59ad":["condition"]}},{"name":"Created or Updated_1.current","label":"Trigger - Record Created or Updated➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"1fd62ac9-e480-4f06-8da4-2dfab547c498":["patient"],"5f633222-4a19-4f11-96a7-108c957a99c9":["record"]},"attributes":{}},{"name":"Created or Updated_1.current.u_reference_2.email","label":"Trigger - Record Created or Updated➛Patient Record➛Patient ID➛Email","reference":"","reference_display":"Email","type":"email","base_type":"email","parent_table_name":"sys_user","column_name":"email","usedInstances":{"5f633222-4a19-4f11-96a7-108c957a99c9":["ah_to"]}}]</label_cache>
+        <master>true</master>
+        <name>Patient Workflow Automation</name>
+        <natlang/>
+        <outputs/>
+        <parent_flow display_value="Patient Workflow Automation">c6294508c3fb76501bf5fe1d05013177</parent_flow>
+        <remote_trigger_id/>
+        <run_as>user</run_as>
+        <run_with_roles/>
+        <sc_callable>false</sc_callable>
+        <status>published</status>
+        <sys_class_name>sys_hub_flow_snapshot</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:02:59</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>0bd35d00c37f76501bf5fe1d050131f4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:02:59</sys_updated_on>
+        <type>flow</type>
+        <version>2</version>
+    </sys_hub_flow_snapshot>
+    <sys_translated_text action="delete_multiple" query="documentkey=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_variable_value action="delete_multiple" query="document_key=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_hub_flow_stage action="delete_multiple" query="flow=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_flow_cat_variable_model action="delete_multiple" query="id=0bd35d00c37f76501bf5fe1d050131f4^sys_idNOT INc7d35d00c37f76501bf5fe1d050131f6"/>
+    <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
+        <id>0bd35d00c37f76501bf5fe1d050131f4</id>
+        <name>Patient Workflow Automation</name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:02:59</sys_created_on>
+        <sys_id>c7d35d00c37f76501bf5fe1d050131f6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:02:59</sys_updated_on>
+    </sys_flow_cat_variable_model>
+    <sys_flow_cat_variable action="delete_multiple" query="flow_catalog_model=c7d35d00c37f76501bf5fe1d050131f6"/>
+    <sys_hub_flow_input action="delete_multiple" query="model=0bd35d00c37f76501bf5fe1d050131f4^sys_idNOT IN4fd35d00c37f76501bf5fe1d050131f8,9bd39d00c37f76501bf5fe1d0501316f,9fd39d00c37f76501bf5fe1d05013132"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,uiType=document_id,uiTypeLabel=Document ID</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent>table_name</dependent>
+        <dependent_on_field>table_name</dependent_on_field>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>current</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">document_id</internal_type>
+        <label>Record</label>
+        <mandatory>true</mandatory>
+        <max_length>200</max_length>
+        <model display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</model>
+        <model_id>0bd35d00c37f76501bf5fe1d050131f4</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_0bd35d00c37f76501bf5fe1d050131f4</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:02:59</sys_created_on>
+        <sys_id>4fd35d00c37f76501bf5fe1d050131f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:02:59</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>true</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=4fd35d00c37f76501bf5fe1d050131f8"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,test_input_hidden=true,uiType=table_name,uiTypeLabel=Table Name</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>table_name</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="">table_name</internal_type>
+        <label>Table Name</label>
+        <mandatory>false</mandatory>
+        <max_length>200</max_length>
+        <model display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</model>
+        <model_id>0bd35d00c37f76501bf5fe1d050131f4</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_0bd35d00c37f76501bf5fe1d050131f4</name>
+        <next_element/>
+        <order>101</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>9bd39d00c37f76501bf5fe1d0501316f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=9bd39d00c37f76501bf5fe1d0501316f"/>
+    <sys_hub_flow_input action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <array>false</array>
+        <array_denormalized>false</array_denormalized>
+        <attributes>child_label=FDChangeDetails,child_name=FDChangeDetails,child_type=object,child_type_label=Object,element_mapping_provider=com.glide.flow_design.action.data.FlowDesignVariableMapper,pwd2droppable=true,uiType=array.object,uiTypeLabel=Array.Object</attributes>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label/>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>changed_fields</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <help/>
+        <hint/>
+        <internal_type display_value="String">string</internal_type>
+        <label>Changed Fields</label>
+        <mandatory>false</mandatory>
+        <max_length>4000</max_length>
+        <model display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</model>
+        <model_id>0bd35d00c37f76501bf5fe1d050131f4</model_id>
+        <model_table>sys_hub_flow_snapshot</model_table>
+        <name>var__m_sys_hub_flow_input_0bd35d00c37f76501bf5fe1d050131f4</name>
+        <next_element/>
+        <order>100</order>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <sizeclass/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_hub_flow_input</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>9fd39d00c37f76501bf5fe1d05013132</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_hub_flow_input>
+    <sys_hub_action_input_action_instance action="delete_multiple" query="action_input=9fd39d00c37f76501bf5fe1d05013132"/>
+    <sys_hub_flow_output action="delete_multiple" query="model=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_hub_trigger_instance_v2 action="delete_multiple" query="flow=0bd35d00c37f76501bf5fe1d050131f4^sys_idNOT IN67d39d00c37f76501bf5fe1d050131b3"/>
+    <sys_hub_trigger_instance_v2 action="INSERT_OR_UPDATE">
+        <comment/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</flow>
+        <generation_source/>
+        <name>Created or Updated</name>
+        <published_version/>
+        <remote_sys_id/>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:01</sys_created_on>
+        <sys_id>67d39d00c37f76501bf5fe1d050131b3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:01</sys_updated_on>
+        <trigger_definition display_value="Created or Updated">a45d9180c32222002841b63b12d3aea7</trigger_definition>
+        <trigger_inputs>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</trigger_inputs>
+        <trigger_outputs/>
+        <trigger_type>record_create_or_update</trigger_type>
+        <updation_source/>
+    </sys_hub_trigger_instance_v2>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=0bd35d00c37f76501bf5fe1d050131f4^sys_idNOT IN2bd39d00c37f76501bf5fe1d050131b0,6fd39d00c37f76501bf5fe1d050131ad,ebd39d00c37f76501bf5fe1d0501319f"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Send Email">c1806bf4a70323008299b39f087901cb</action_type>
+        <action_type_parent display_value="Send Email">98c181d20b100300d97d8bf637673ab5</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>c1806bf4a70323008299b39f087901cb</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</flow>
+        <generation_source/>
+        <order>6</order>
+        <parent_ui_id>7018949b-61c3-4837-bcf2-1355ef5a59ad</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:01</sys_created_on>
+        <sys_id>2bd39d00c37f76501bf5fe1d050131b0</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:01</sys_updated_on>
+        <ui_id>5f633222-4a19-4f11-96a7-108c957a99c9</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+2X2W7bOBSGX4XQtePKe5y71kGQAumC2tNB0RQCRVIRJ5SoIak4nsDvPodavWRcOXZnEkzuJK7/Ofw/Lt8fHE6dM6dPT92hH/TxyO11e6572h2P/d44cE9HY7dDqNNyYhwxaKkYkcr+32GR2oKHh4li2DCKpEK/JdR+ep02SZVisVkuoSnlOhF48bXoASUk5IJCvXP2/UfLSbCCwQ1TztnDRlVTdQL7TEDTGVY3zKAvpcpN1WaR2H8qSRqBPI+XhVfFAOdFDXp/DjXQyapyWw67NyymDOQEWGjWciIcQ6xSLaoSSAP9FIu6IOSxgSHfai0Jh7xoZEKGWIS5QHNuQoRRLqzt2PHuNf8LxPW6dqiAQQ6I1cpjwikoclaKvSKlUP2+rg7OscFTo1JiUlVlWnLCdJ5NygKcCjNZLcsbfEoMl3HexWBflL2lSKP4Y55EpxpgZSVTDWJYYnNjg4XJIfBgGsr5l1LsBY+zLBZZEZJgUf0FU4YVCS84E3ap4zTyoW3LwcYo7qfGygRTCGhVz+NlUu1c0JIJli1lhJOExzdeouQdzyYE+VH7RsBPOxByDv01v4nbmNhY27B6uH0B5edZ8VesuA38AwwDnZctRy/0RGCt6/Ah/96fqVWfJ2Ndju3tZYaznYniiXkLU92xIthlq6CtM97lZ9qvfbsyZk3cvdcZD/oDt+fpCCtDPNdLsOG5BzZY+1xV7IdcA4k1ctYuj0sucNsqu1rtiz7mFQVsnT1hyy1XsDYDwEy+B+RoIVPIq/g6ddf5+geungdPFSWNgVoH59fAASbRXu7wIrZs8idA8zNU3OHQ94f+YNSrfTgmAR35wRCPSK/23Rw2WAU83HrZBrvCS2cbi2Lr2I+JBlpKJmBTFill6PdS1C6dBSS+lLDLxZuEgNI3F1l2K0K6Bx1HuTWRkQgWUyzgEKok2cL6iDIhNohrpGG12mgmES+iWunRQguZoijVBpoZqFmDb+1c6z9f7go7FKXnj3rlRYB5fAAHuw8CXBsbh56RjS+G7dSrV7/bzhy3XKJtVJ86zH5sNwizOu/kdswFwhpWOL7ZIHhaFhb09nbTmx9nW/CuHF/u8wXppXBihQse8cwQOeHHR4fu9BRz12xEyAo6R3gzNZi8NPRksq1kH0P3n3YcvTr6xTm6s/MhzoZrPvKPbekGs5eWfrfhaX9vUw9eTf0/MfVgt63ImpF06v/BiFkxNtwWSWgvvWiaRnAlXqATNLXv8glWDF1KnXCDxbb9G/fb8yLz82hKSKZVLI/Ftw8sw9crzX/OyvHBwDutFHTXd1hJFytUXKeu2yMJsppPDI8XEWFKSuNDYm6zSnrtXOfN2CUTQrbyLm+SvOw63muIb/AKDfEdQz5jMdIpgbXXQSrgfUtL0CgKlIwegax90NSf4dWuGQokBDG3z2GFEsVsYn2YMmKUE2zXTyMgAoEVYA3yZnmXkzSxL3EJr3Nri8PEzEIc39rRDxumztGM4Wh9qO2trBi6wWL+wsX6VxejYbIbJXO//b0BlNUlKEdyi9FiZw9NJDb29cvZh6t6Vx8deAUaDga94eu+fvAdKJnTLlUySYrYjnwP+vE38DEhywUcAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=2bd39d00c37f76501bf5fe1d050131b0"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create Record">2de05916c31332002841b63b12d3aee1</action_type>
+        <action_type_parent display_value="Create Record">02f0b88cc3c632002841b63b12d3aeff</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>2de05916c31332002841b63b12d3aee1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</flow>
+        <generation_source/>
+        <order>4</order>
+        <parent_ui_id>357f234e-dad1-4aa2-8700-af3adff06302</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:01</sys_created_on>
+        <sys_id>6fd39d00c37f76501bf5fe1d050131ad</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:01</sys_updated_on>
+        <ui_id>1fd62ac9-e480-4f06-8da4-2dfab547c498</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/9VUTW8aMRD9K8jnFdplAQVuFRGnNJGalEuaWrPrASx5P2rPEijiv3e8XghKgtpKuYQTns/3HvN43AutxFSME4xHk2Scp0maDuJ4cDVMsnGaJQOVAuJQRKKEArmSIDMo20ckNmAaH9zKZDIajuJUugIs5TKWBjJJ6IirlHa1gd2iK76BrPcQMvlaG2WxFNPHp0jUYHksoRXT/avUv4LkrWi49MGjvACadvW7sZvz3t5tSFRWeTxxJHBLWCpkIEswDiNRQKmAKrsTU7INByyCuivN7lSx1iXxQOFrt07/5rVXsa9bIjPLMeROT9kJFcLLayC458k5NbYrzdeVztEFTRQuoTE0O4+FgruadFWGlpZm112ZpihvgyTiNOD4u3CkcQwCa8/TI+9oLO/X1fO3I8q5LltJuqSpcjCnFxBZnTXk8ewFGix4kCygrnW5krWtNrptZixFf2X40V+a6pmXOr0q+5B74H2WFfpzjl+34QVY7Vl85THcfIiE27mZAedeuLCI8lfjkQRmHQcZZPAtudU1feEFG+zgHqLj9SuMJxcPK8leDqk9eHd2+TWQ5j0/mjhO1X4/4xsgVL3K9r7Xyn+VST9vLCtHh8NPR0CNC8UeIYvy1h8fMfI/jfV3/kdjzTUa5d4R5OgqLJgLoQwCvXJWl+wtumTnruSj3JWM4/bziTwWyH16i539m14w29Mflb2LmmwGAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=6fd39d00c37f76501bf5fe1d050131ad"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Create or Update Record">ab575ae253b3230034c6ddeeff7b12f1</action_type>
+        <action_type_parent display_value="Create or Update Record">e057d2e253b3230034c6ddeeff7b1261</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>ab575ae253b3230034c6ddeeff7b12f1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</flow>
+        <generation_source/>
+        <order>2</order>
+        <parent_ui_id>e568426b-adc8-4505-9d7c-2086a7eff853</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:01</sys_created_on>
+        <sys_id>ebd39d00c37f76501bf5fe1d0501319f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:01</sys_updated_on>
+        <ui_id>d6ff9c76-4eec-45b6-98f8-a519b7912182</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/9VUTW/bMAz9K4HORmDHcbLlVrToaW2HtcilKQRaohMB8sdkOU0W5L+Psuw0SLOtBYoBvVnko/j4KL/HHVOSzdhomkwTwFESp/EoDsN4LCZSImbZNI1G2ZgFrIAcCWkh1cjbQ8DWoBsX3PDoazJOwpjXORgreMgrsAoLSyCp6krDdt5hvx8SYqW0NFiw2eNTwCowdKlFw2a7k9RbKWpIURP0wXEc3HqO53jbbXU29u3cBaWRjlQYMNxYLCQSmwx0jQHLoZBgS7NlM2saChgEeVfo7QGxUjTqjDGH3dTqF7X9EjpchjSeQJ87HHknlg9nV2Dhnm4WtjEdVKxKJbD2wkjMoNH28jjmAXeVVWXhS9oxu+pSN3lx6yVhhwv63VCkqYkEVm5Ox7wbI7tflc8/epbXqmgl6ZK6FKAPJ7DWqLSxjs+ONerhjNY+2qvtpKMgasypJ8+hqlSx5JUp16rtQ7Tz4VLTYZjp8pn41WpZDEG4GYe0ARheU/yqDc/BKNfrhq6h4n3A6m19qaGuX8YmvfnPxpH2InTjcq+YKxFGVfaCGqyxm2wf9P9K+teHCC9vLlOoZX30nxAJYoiSy1LQs1k0VC13i/4XWbDZgt2A2Q4uiE6zhAULFr64TUGYJjHIqYgn1DoJozRLMoxkSJ9xlIoW3grdwmluTus0bdgdlHzjNfvXv+1nov5OY/n3Pntjue4Xerrg3lAwJzEscr/wE1PpkoN5l+yMJfooY5kkYfiZvMVP9gHWcqr6f7QXalbRO7Xco/t273edI3/8g/88/Qbsjs0BrQcAAA==</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=ebd39d00c37f76501bf5fe1d0501319f"/>
+    <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=0bd35d00c37f76501bf5fe1d050131f4^sys_idNOT IN27d39d00c37f76501bf5fe1d0501319e,abd39d00c37f76501bf5fe1d0501319a,afd39d00c37f76501bf5fe1d0501319c"/>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">32d35d00c37f76501bf5fe1d0501315f</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>5</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>27d39d00c37f76501bf5fe1d0501319e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <ui_id>7018949b-61c3-4837-bcf2-1355ef5a59ad</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1Vy27bMBD8FYNnQdAjNhrfAhsBCqQN0KS5tIGwIimbKEWqfNhxBf97l3o4RuKiTttjb+bscjkz2oFbor1rvLP3+spasVJk/uUxIkIFDH+3RDAyJ1UCVXpJU5pnszxLkuzdRVrO8jLNWA4cchIRBTXHTqoVE05oVXRARDYgfSgshaVrMKuAMWEbCbuHEyW6FpIZPvBowOAUxw2Zty9K5/KSUHKJrYuR2OSmQ37N2O2agFtnhFoN55thyt0IasMCqzSJCH9yXDGOfCqQlkekBsXAabM7IIYDu1XyGVgL5XAcCc1PVvzAB7PpNDRWHCVS3hcPx2KwrIerJThAKp46b4ZWutaCctubw3gFXrrFMdY33DZBan/FQSnH21r6Wn3sHSGHAeMXQsRbJMGboDRQH3RUd2u9/TSyvBaqc2UoSk1BHk7g0LvSu8CnJVzyGgcVNTQNOlo0Rm9Edxm51PFK4iGupN7io2EvY6CBeIzGQnyN+LKDH8CIoOIDjsHLPc0SrKBFt8M4Dm3iZB8Ru7MLCdY+i0R3i+8+UOwlD+KK3p9whRrRuCt8ecMHHftoiMQlTKtpmkxPr97F7MSCHaWhbRe4E46ziTaTzw0LP4s0pt6gkS62DoH9/qtPkpyxMR7sdXT+eM7bcnaG2Fc5O23AW8KV/SZc4cuema0kSf6H66/DJWzRR2LQ1j3+D7P1GALSv3nwmgqL1O4D9n78VwqFHS6XoMfQVptvQdQztv8JPJzsd98GAAA=</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">1f709148c33f76501bf5fe1d050131f9</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>1</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>abd39d00c37f76501bf5fe1d0501319a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <ui_id>e568426b-adc8-4505-9d7c-2086a7eff853</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1Vy27bMBD8FYNnQZCs2Gh8CxwEKJA2QJ3m0gbCiqRsohSp8mHHFfzvXYryA4n7CNJjb+YsuTsz2oE7or1rvbP3+spasVRk9uUxIUIFDH93REHDyYxQrZhwQquyBxKyBulDYa6V9dJBqI0WDpahyIRtJWwffneHroRkhg8TWzDY13FDZt2zkmDYos6gzi9pTovxtBhn2fjdRV5NiyofswI4FNhQQsVlnBapjm57JPmlBrdtA26dEWo5nG+HLos9qA0LrPIsIfzJccU48qlBWp6QBhQDp832gBgO7E7JI7ASymE7Ei4/WfEDB44nk3Cx5iiR8lg8HMvBuwjX1+AAqXjqvBmu0pUWlNtoDuM1oLXzUyxeuGuD1PjEQSX3r7X0jfoYHSGHBvtPhYi3SIK3QWmgPuioFyu9+bRneSNU78pQlJqCPJzAoXeVd4FPR7jkDTYqG2hbdLRsjV6L/jFyadKlxENaS73BoWEDU6CBeIrGQnqD+HUPP4ARQcUHbIOPI80KrKBlv63YDm3iZJcQu7VzCdYeRaK75XcfKEbJg7gy+hOeUCNad4WT13zQsUteLv/J3nfdHL+142ykzehzy8LPMk+pN2iQSy1uO9/tvvosKxg92f+X6XhDp9dl6BIm9STPJuczdDE9l6Ez6XllcMZ/CE74an+ZmyzL/gfnzcERtozrPmjrh//D3DyGkMSZB6+psEjtPmDv9/8tobDF5RL0FNpo8y2IOmK7n36KXialBgAA</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
+        <attributes/>
+        <block display_value="">db709148c33f76501bf5fe1d050131fe</block>
+        <comment/>
+        <connected_to/>
+        <decision_table/>
+        <display_text/>
+        <flow display_value="Patient Workflow Automation">0bd35d00c37f76501bf5fe1d050131f4</flow>
+        <flow_variables_assigned/>
+        <generation_source/>
+        <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
+        <order>3</order>
+        <outputs_assigned/>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>afd39d00c37f76501bf5fe1d0501319c</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <ui_id>357f234e-dad1-4aa2-8700-af3adff06302</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1Vy27bMBD8FYNnQdAjNprcAgcBCqQNULu5tIGwIimbKCWqfNhxBf97l6JkG4mDNm2PvYmz3N3Z4Q7UEeVs66xZqmtjxKohV18eIyIaj+F3RxqoObkiVDVMWKGaogcisgHpfGDJjRXNarKwsPI4E6aVsHt4JUzXQjLNhz4taKxmuSZX3bOQYJhdJVCllzSleTbLsyTJ3l2k5Swv04zlwCHHghJKLvHqfCQ4ueuR6FXmdtd63FiNxIbz3VBlMYJKM88qTSLCnyxvGEc+FUjDI1JDw8AqvTsgmgO7b+QRWIvGYjniLz8Z8QMbZtOpv1hxHJHyEDwci0G2AFc3YAGpOGqdHq7StRKUmyAO4xU4aeenWLhw3/pRQ4qFUo7ZSrq6+RgUIYcC4ysh4gyS4K2f1FMf5qgWa7X9NLK8FU2vyhCUioI8nMCidqWznk9HuOQ1FipqaFtUtGi12og+GbnU8UriIa6k2mJTv3cxUE88RmEhvkX8pocfQAs/xQcsg8mBZglG0KLfUSyHMnGyj4jZmbkEY45DorrFd+cphpGH4Yqgj0+hWrT2Gjtv+DDHPnq58ifb3nVzfGvL2UTpyeeW+c8ijanTKJCNjUVgv//qkiRnNqz+S0/8WZG3OecSptU0TabnnXMxO+ecM555o12yX9jFv9VvuiVJkv92+Wu7CFOEJR9m65v/Q7c8emuEngetqTBIbemx9+N/xAd2uFyCnkJbpb/5oY7Y/icxgNaikQYAAA==</values>
+        <workflow_reference/>
+    </sys_hub_flow_logic_instance_v2>
+    <sys_hub_pill_compound action="delete_multiple" query="attached_to=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_hub_flow_variable action="delete_multiple" query="model=0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>current</element>
+        <help/>
+        <hint/>
+        <label>Record</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_0bd35d00c37f76501bf5fe1d050131f4</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>5fd39d00c37f76501bf5fe1d05013109</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>changed_fields</element>
+        <help/>
+        <hint/>
+        <label>Changed Fields</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_0bd35d00c37f76501bf5fe1d050131f4</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>93d39d00c37f76501bf5fe1d0501313a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_documentation action="INSERT_OR_UPDATE">
+        <element>table_name</element>
+        <help/>
+        <hint/>
+        <label>Table Name</label>
+        <language>en</language>
+        <name>var__m_sys_hub_flow_input_0bd35d00c37f76501bf5fe1d050131f4</name>
+        <plural/>
+        <sys_class_name>sys_documentation</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:00</sys_created_on>
+        <sys_id>d7d39d00c37f76501bf5fe1d05013176</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:00</sys_updated_on>
+        <url/>
+        <url_target/>
+    </sys_documentation>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_input_0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_choice action="delete_multiple" query="name=var__m_sys_hub_flow_output_0bd35d00c37f76501bf5fe1d050131f4"/>
+    <sys_hub_flow action="UPDATE">
+        <sys_id>c6294508c3fb76501bf5fe1d05013177</sys_id>
+        <latest_snapshot>0bd35d00c37f76501bf5fe1d050131f4</latest_snapshot>
+        <compiler_build>glide-zurich-07-01-2025__patch6-01-16-2026_02-02-2026_1554.zip</compiler_build>
+        <version_record/>
+    </sys_hub_flow>
+    <sys_flow_trigger_plan action="delete_multiple" query="plan_id=c6294508c3fb76501bf5fe1d05013177^sys_idNOT INb7d3dd00c37f76501bf5fe1d05013101"/>
+    <sys_flow_trigger_plan action="INSERT_OR_UPDATE">
+        <binding_strategy>com.snc.process_flow.engine.binding.RunAlways</binding_strategy>
+        <plan>{"type":"PlanProxy","persistor":{"@class":".ChunkingPlanPersistor","table":"sys_flow_trigger_plan","id":"b7d3dd00c37f76501bf5fe1d05013101","name":"plan","plan_signature":null}}</plan>
+        <plan_id>c6294508c3fb76501bf5fe1d05013177</plan_id>
+        <snapshot>10a49980c37f76501bf5fe1d050131c4</snapshot>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 09:03:02</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b7d3dd00c37f76501bf5fe1d05013101</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_overrides/>
+        <sys_scope/>
+        <sys_updated_by>godwin</sys_updated_by>
+        <sys_updated_on>2026-03-18 09:03:02</sys_updated_on>
+        <trigger display_value="">b3d39d00c37f76501bf5fe1d050131fd</trigger>
+    </sys_flow_trigger_plan>
+    <sys_flow_subflow_plan action="delete_multiple" query="plan_id=c6294508c3fb76501bf5fe1d05013177"/>
+</record_update>

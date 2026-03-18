@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="3f2f8d44c33f76501bf5fe1d05013136" label="Lab Test" max_length="40" name="x_1954503_smartc_0_lab_test" type="collection">
+        <element label="Test Type" max_length="45" name="test_type" type="string"/>
+        <element label="Patient" max_length="32" name="patient" reference="x_1954503_smartc_0_patient" type="reference"/>
+        <element choice="1" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Pending" value="pending"/>
+                <element inactive_on_update="false" label="Completed" value="completed"/>
+                <element inactive_on_update="false" label="In Progress" value="in progress"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="patient"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="state" table="x_1954503_smartc_0_patient" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <name>x_1954503_smartc_0_patient</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:30:15</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>state</sys_name>
+            <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+            <sys_update_name>sys_choice_x_1954503_smartc_0_patient_state</sys_update_name>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:30:15</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Admitted</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:32:26</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:32:57</sys_updated_on>
+            <value>admitted</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Billing Issue</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 12:55:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 12:55:29</sys_updated_on>
+            <value>billing_issue</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Billing Pending</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 12:54:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 12:54:55</sys_updated_on>
+            <value>billing_pending</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Consultation</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:31:02</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:31:09</sys_updated_on>
+            <value>consultation</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Discharged</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:32:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 08:10:32</sys_updated_on>
+            <value>discharged</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Discharge Requested</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 12:53:52</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 12:54:04</sys_updated_on>
+            <value>discharge_requested</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Registered</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:30:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:30:30</sys_updated_on>
+            <value>register</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Testing</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:31:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:31:22</sys_updated_on>
+            <value>testing</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Treatment</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:32:12</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:32:19</sys_updated_on>
+            <value>treatment</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Triage</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:30:36</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:30:41</sys_updated_on>
+            <value>triage</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>state</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Waiting</label>
+            <language>en</language>
+            <name>x_1954503_smartc_0_patient</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-18 07:30:47</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-18 07:30:53</sys_updated_on>
+            <value>waiting</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>
