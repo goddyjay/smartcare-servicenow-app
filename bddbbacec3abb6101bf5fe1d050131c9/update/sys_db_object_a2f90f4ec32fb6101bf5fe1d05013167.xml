@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_object">
     <sys_db_object action="INSERT_OR_UPDATE">
-        <access/>
+        <access>public</access>
         <actions_access>true</actions_access>
         <alter_access>true</alter_access>
         <caller_access/>
@@ -24,14 +24,14 @@
         <sys_created_by>franklin</sys_created_by>
         <sys_created_on>2026-03-12 12:31:12</sys_created_on>
         <sys_id>a2f90f4ec32fb6101bf5fe1d05013167</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Patient</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_db_object_a2f90f4ec32fb6101bf5fe1d05013167</sys_update_name>
         <sys_updated_by>franklin</sys_updated_by>
-        <sys_updated_on>2026-03-12 12:31:12</sys_updated_on>
+        <sys_updated_on>2026-03-18 08:05:58</sys_updated_on>
         <u_medical_department/>
         <update_access>true</update_access>
         <user_role/>
