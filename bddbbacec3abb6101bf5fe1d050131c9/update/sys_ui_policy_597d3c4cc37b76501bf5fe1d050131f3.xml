@@ -16,29 +16,28 @@
 
 }]]></script_false>
         <script_true><![CDATA[function onCondition() {
-if (g_user.hasRole('x_1954503_smartc_0.nurse')) {
-    g_form.setReadOnly('severity', false);
-} else {
-    g_form.setReadOnly('severity', true);
-}
+var canEdit = g_user.hasRole('x_1954503_smartc_0.nurse') || 
+              g_user.hasRole('x_1954503_smartc_0.doctor');
+
+g_form.setReadOnly('severity', !canEdit);
 }]]></script_true>
         <set_values/>
-        <short_description>Make Severity read-only except for nurses</short_description>
+        <short_description>Make Severity read-only except for nurses and doctors</short_description>
         <sys_class_name>sys_ui_policy</sys_class_name>
         <sys_created_by>franklin</sys_created_by>
         <sys_created_on>2026-03-18 07:32:54</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>597d3c4cc37b76501bf5fe1d050131f3</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>Make Severity read-only except for nurses</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Make Severity read-only except for nurses and doctors</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_ui_policy_597d3c4cc37b76501bf5fe1d050131f3</sys_update_name>
         <sys_updated_by>franklin</sys_updated_by>
-        <sys_updated_on>2026-03-18 07:53:23</sys_updated_on>
+        <sys_updated_on>2026-03-18 14:28:22</sys_updated_on>
         <table>x_1954503_smartc_0_patient</table>
         <ui_type>10</ui_type>
         <view/>
