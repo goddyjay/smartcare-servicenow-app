@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="82dd0754c33f3a501bf5fe1d050131cc" label="SmartCare Appointment" max_length="40" name="x_1954503_smartc_0_smartcare_appointment" type="collection">
+        <element choice="1" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Completed" value="completed"/>
+                <element inactive_on_update="false" label="Scheduled" value="scheduled"/>
+                <element inactive_on_update="false" label="Cancelled" value="cancelled"/>
+            </choice>
+        </element>
+        <element label="Notes" max_length="1000" name="notes" type="string"/>
+        <element label="Appointment Time" max_length="40" name="appointment_time" type="glide_time"/>
+        <element label="Doctor" max_length="32" name="doctor" reference="sys_user" type="reference"/>
+        <element label="Appointment Date" max_length="40" name="appointment_date" type="glide_date"/>
+        <element label="Patient" max_length="32" name="patient" reference="x_1954503_smartc_0_patient" type="reference"/>
+        <index name="index">
+            <element name="doctor"/>
+        </index>
+        <index name="index2">
+            <element name="patient"/>
+        </index>
+    </element>
+</database>
