@@ -186,7 +186,7 @@
 .moderate { background: #eff6ff; color: #2563eb; }
 .low { background: #f0fdf4; color: #16a34a; }
 
-/* Available State Visuals */
+/* avaiable bed */
 .available-state {
   display: flex;
   flex-direction: column;
@@ -201,8 +201,6 @@
   width: 10px; height: 10px;
   background-color: #22c55e; 
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
-  animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -213,7 +211,7 @@
 
 .vacant-text-modern { font-size: 14px; font-weight: 600; color: #16a34a; margin: 0; }
 
-/* ── CONTEXT MENU (KEBAB) ── */
+/* context */
 .menu-container { position: relative; }
 .kebab-icon {
   cursor: pointer;
@@ -313,14 +311,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-15 21:01:29</sys_created_on>
         <sys_id>b27b1097c3a7fe101bf5fe1d05013153</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>34</sys_mod_count>
         <sys_name>SmartCare Bed Tile</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_b27b1097c3a7fe101bf5fe1d05013153</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-17 14:54:04</sys_updated_on>
+        <sys_updated_on>2026-03-18 20:43:55</sys_updated_on>
         <template><![CDATA[<div class="hospital-dashboard">
   
   <div class="controls-panel">
@@ -383,7 +381,7 @@
         </div>
         
         <div ng-if="!bed.patientName" class="available-state">
-          <div class="status-dot"></div>
+       <!--   <div class="status-dot"></div> -->
           <h3 class="vacant-text-modern">Ready for Admission</h3>
         </div>
       </div>

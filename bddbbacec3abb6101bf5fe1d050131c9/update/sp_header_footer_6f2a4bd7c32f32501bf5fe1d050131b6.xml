@@ -387,34 +387,46 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
         <roles/>
         <script><![CDATA[(function() {
     var user = gs.getUser();
+    var userId = gs.getUserID();
+    
+    // User Profile Metadata
     data.userName = user.getDisplayName();
     data.userRole = gs.hasRole('admin') ? 'Administrator' : 'Ward Staff';
-    data.userId = gs.getUserID();
+    data.userId = userId;
     
     var first = user.getFirstName() ? user.getFirstName().charAt(0) : "S";
     var last = user.getLastName() ? user.getLastName().charAt(0) : "C";
     data.userInitials = (first + last).toUpperCase();
 
-    /* Logic to handle clearing notifications */
+    /* Logic to handle clearing/marking as read */
     if (input && input.action == 'clear_notifications') {
-        var clearGr = new GlideRecord('live_notification');
-        clearGr.addQuery('user', data.userId);
+        var clearGr = new GlideRecord('x_1954503_smartc_0_smartcare_notification');
+        clearGr.addQuery('user', userId);
+        clearGr.addQuery('read', false);
         clearGr.query();
-        clearGr.deleteMultiple(); // This physically clears them from the table
+        while (clearGr.next()) {
+            clearGr.read = true; // Set read to true instead of deleting
+            clearGr.update();
+        }
     }
 
+    /* Fetching from your custom SmartCare table */
     data.notifications = [];
-    var gr = new GlideRecord('live_notification'); 
+    var gr = new GlideRecord('x_1954503_smartc_0_smartcare_notification'); 
+    
     if (gr.isValid()) {
-        gr.addQuery('user', data.userId);
+        gr.addQuery('user', userId);
+        gr.addQuery('read', false); // Only fetch unread
         gr.orderByDesc('sys_created_on');
-        gr.setLimit(5);
+        gr.setLimit(5); // Keep the limit to prevent UI clutter
         gr.query();
+        
         while (gr.next()) {
             data.notifications.push({
-                title: "System Alert",
-                desc: gr.getDisplayValue('message'),
-                time: gr.getDisplayValue('sys_created_on')
+                title: "SmartCare Alert",
+                message: gr.getValue('message'),
+                time: gr.getDisplayValue('sys_created_on'),
+                sys_id: gr.getUniqueValue()
             });
         }
     }
@@ -425,14 +437,14 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-16 09:47:15</sys_created_on>
         <sys_id>6f2a4bd7c32f32501bf5fe1d050131b6</sys_id>
-        <sys_mod_count>28</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>SmartCare Sidebar Wrapper</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_header_footer_6f2a4bd7c32f32501bf5fe1d050131b6</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-18 08:40:12</sys_updated_on>
+        <sys_updated_on>2026-03-18 20:06:47</sys_updated_on>
         <template><![CDATA[<div class="ward-sidebar">
   <div class="sidebar-brand">
     <div class="brand-logo">
@@ -481,6 +493,12 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
         <span class="nav-label">My Patients</span>
       </a>
     </li>
+    <li>
+      <a href="?id=reception_approval_page">
+        <span class="nav-icon"><i class="fa fa-bed"></i></span>
+        <span class="nav-label">Reception Approval</span>
+      </a>
+    </li>
   </ul>
 
   <div class="sidebar-footer">
@@ -508,7 +526,7 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
       <div class="tray-inner">
         <div class="alert-card" ng-repeat="n in data.notifications">
           <strong>{{n.title}}</strong>
-          <p>{{n.desc}}</p>
+          <p>{{n.message}}</p>
           <small>{{n.time}}</small>
         </div>
         <div class="empty-tray-msg" ng-if="data.notifications.length == 0">

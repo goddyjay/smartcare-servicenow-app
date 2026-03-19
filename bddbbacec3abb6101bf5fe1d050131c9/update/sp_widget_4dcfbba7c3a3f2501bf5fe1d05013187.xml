@@ -4,7 +4,6 @@
         <client_script><![CDATA[api.controller = function() {
   var c = this;
   
-  
   c.patient = {};
 
   c.submitForm = function() {
@@ -12,7 +11,6 @@
     c.data.newPatient = c.patient;
     
     c.server.update().then(function() {
-      //clear
       c.data.action = null; 
     });
   };
@@ -20,97 +18,191 @@
   c.clearForm = function() {
     c.patient = {};
     c.data.successMessage = null;
+    c.data.newP = null;
+  };
+
+  // print functions
+  c.printID = function() {
+    // gram html and print
+    var printContents = document.getElementById('printable-id').innerHTML;
+    
+    // temp wind
+    var printWindow = window.open('', '_blank', 'width=800,height=600');
+    
+    
+printWindow.document.write('<html><head><title>Print Patient ID</title>');
+    printWindow.document.write('<style>');
+    printWindow.document.write('body { margin: 0; padding: 40px; display: flex; justify-content: center; font-family: sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }');
+    printWindow.document.write('.id-card-wrapper { position: relative; width: 600px; height: 380px; border-radius: 15px; overflow: hidden; }');
+    printWindow.document.write('.id-bg-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }');
+    
+    
+    printWindow.document.write('.id-barcode { position: absolute; bottom: 35px; left: 20px; width: 180px; height: 45px; z-index: 2; mix-blend-mode: multiply; }');
+    
+    printWindow.document.write('.id-text { position: absolute; z-index: 2; color: #1e293b; font-weight: bold; }');
+    
+    
+    printWindow.document.write('.id-number { top: 120px; left: 250px; font-size: 18px; }');
+    printWindow.document.write('.id-fullname { top: 175px; left: 250px; font-size: 18px; }');
+    printWindow.document.write('.id-age { top: 232px; left: 250px; font-size: 18px; }');
+    printWindow.document.write('.id-gender { top: 232px; left: 350px; font-size: 18px; }');
+    printWindow.document.write('.id-date { top: 290px; left: 250px; font-size: 18px; }');
+    
+  
+    printWindow.document.write('.id-footer { bottom: 16px; left: 15px; font-size: 10.5px; width: 570px; text-align: center; }');
+    
+    printWindow.document.write('</style></head><body>');
+   
+    printWindow.document.write(printContents);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    
+    // wait for the bg image to sho first
+    setTimeout(function() {
+      printWindow.focus();
+      printWindow.print();
+    }, 800);
   };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* ── FORM CONTAINER ── */&#13;
-.form-container {&#13;
-  background: #ffffff;&#13;
-  border-radius: 24px;&#13;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);&#13;
-  max-width: 850px;&#13;
-  margin: 40px auto;&#13;
-  font-family: 'Inter', system-ui, sans-serif;&#13;
-  overflow: hidden;&#13;
-  border: 1px solid #f1f5f9;&#13;
-}&#13;
-&#13;
-/* ── HEADER ── */&#13;
-.form-header { padding: 32px 40px 20px 40px; background: #ffffff; }&#13;
-.form-header h3 { margin: 0; color: #1e293b; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }&#13;
-.form-header p { margin: 8px 0 0 0; color: #94a3b8; font-size: 14px; }&#13;
-&#13;
-/* ── FORM ELEMENTS ── */&#13;
-form { padding: 0 40px 30px 40px; }&#13;
-.form-row { display: flex; gap: 24px; margin-bottom: 20px; }&#13;
-.form-group { flex: 1; display: flex; flex-direction: column; }&#13;
-&#13;
-label {&#13;
-  font-size: 13px; font-weight: 600; color: #475569;&#13;
-  margin-bottom: 8px; display: flex; align-items: center; gap: 4px;&#13;
-}&#13;
-.required { color: #f43f5e; }&#13;
-&#13;
-/* ── FIXED INPUTS &amp; SELECTS (No Cropping) ── */&#13;
-.form-control {&#13;
-  height: 48px; /* Fixed height ensures no vertical cropping */&#13;
-  padding: 0 16px; /* Removed top/bottom padding to let line-height center the text */&#13;
-  line-height: 48px; /* Matches height exactly to center text */&#13;
-  border: 1px solid #e2e8f0;&#13;
-  border-radius: 14px;&#13;
-  font-size: 14px;&#13;
-  color: #1e293b;&#13;
-  background-color: #f8fafc;&#13;
-  transition: all 0.2s ease;&#13;
-  box-sizing: border-box; /* Crucial for height calculation */&#13;
-}&#13;
-&#13;
-/* Adjust Textarea since it needs to be taller */&#13;
-textarea.form-control { &#13;
-  height: auto; &#13;
-  padding: 12px 16px; &#13;
-  line-height: 1.5; &#13;
-}&#13;
-&#13;
-.form-control:focus {&#13;
-  border-color: #6366f1;&#13;
-  background-color: #ffffff;&#13;
-  outline: none;&#13;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);&#13;
-}&#13;
-&#13;
-/* ── FOOTER &amp; BUTTONS ── */&#13;
-.form-footer {&#13;
-  padding: 24px 40px;&#13;
-  background-color: #fbfcfe;&#13;
-  display: flex;&#13;
-  justify-content: flex-end;&#13;
-  align-items: center;&#13;
-  gap: 16px;&#13;
-  border-top: 1px solid #f1f5f9;&#13;
-}&#13;
-&#13;
-.btn-clear {&#13;
-  background: transparent; border: none; color: #94a3b8;&#13;
-  padding: 12px 20px; font-weight: 600; cursor: pointer;&#13;
-}&#13;
-&#13;
-.btn-submit {&#13;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);&#13;
-  border: none; color: #ffffff;&#13;
-  padding: 0 32px; /* Horizontal padding only */&#13;
-  height: 48px; /* Matches input height for consistency */&#13;
-  line-height: 48px;&#13;
-  border-radius: 14px;&#13;
-  font-weight: 600;&#13;
-  cursor: pointer;&#13;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);&#13;
-  transition: all 0.2s;&#13;
-}&#13;
-&#13;
-.btn-submit:hover {&#13;
-  transform: translateY(-1px);&#13;
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);&#13;
+        <css>/* form general containerr */
+.form-container {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  max-width: 850px;
+  margin: 40px auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+}
+
+.form-header { padding: 32px 40px 20px 40px; background: #ffffff; }
+.form-header h3 { margin: 0; color: #1e293b; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+.form-header p { margin: 8px 0 0 0; color: #94a3b8; font-size: 14px; }
+
+form { padding: 0 40px 30px 40px; }
+.form-row { display: flex; gap: 24px; margin-bottom: 20px; }
+.form-group { flex: 1; display: flex; flex-direction: column; }
+
+label {
+  font-size: 13px; font-weight: 600; color: #475569;
+  margin-bottom: 8px; display: flex; align-items: center; gap: 4px;
+}
+.required { color: #f43f5e; }
+
+.form-control {
+  height: 48px; 
+  padding: 0 16px; 
+  line-height: 48px; 
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #1e293b;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+  box-sizing: border-box; 
+}
+
+.form-control:focus {
+  border-color: #6366f1;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.form-footer {
+  padding: 24px 40px;
+  background-color: #fbfcfe;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.btn-clear {
+  background: transparent; border: 1px solid #e2e8f0; color: #475569;
+  padding: 12px 20px; font-weight: 600; cursor: pointer; border-radius: 14px;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border: none; color: #ffffff;
+  padding: 0 32px; 
+  height: 48px; 
+  line-height: 48px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  transition: all 0.2s;
+}
+
+.btn-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3); }
+
+.alert-success { padding: 20px 40px; background-color: #ffffff; }
+
+/* the id card css */
+.id-card-preview {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.id-card-wrapper {
+  position: relative;
+  width: 600px;
+  height: 380px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.id-bg-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+
+.id-barcode {
+  position: absolute;
+  bottom: 80px;
+  left: 35px;
+  width: 180px;
+  height: 45px;
+  z-index: 2;
+  mix-blend-mode: multiply;
+  transform: scale(0.8);
+  transform-origin: left bottom; 
+}
+
+.id-text {
+  position: absolute;
+  z-index: 2;
+  color: #1e293b;
+  font-weight: bold; 
+}
+
+
+.id-number   { top: 120px; left: 250px; font-size: 18px; } 
+.id-fullname { top: 175px; left: 250px; font-size: 18px; } 
+.id-age      { top: 228px; left: 250px; font-size: 18px; } 
+.id-gender   { top: 228px; left: 350px; font-size: 18px; } 
+.id-date     { top: 290px; left: 250px; font-size: 18px; } 
+
+
+.id-footer {
+  bottom: 18px;
+  left: 15px;
+  font-size: 13px; 
+  font-weight: 500;
+  width: 570px;
+  text-align: center;
+  color: #1e293b;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -134,18 +226,35 @@ textarea.form-control { &#13;
     
     pGR.setValue('full_name', input.newPatient.full_name);
     pGR.setValue('age', input.newPatient.age);
-    // Note: Ensure the department string matches your backend choice value
+    pGR.setValue('gender', input.newPatient.gender); 
     pGR.setValue('medical_department', input.newPatient.department); 
-  //  pGR.setValue('severity', input.newPatient.severity);
-    pGR.setValue('symptoms', input.newPatient.symptoms);
-    
-    //seting status
-   // pGR.setValue('status', 'admitted'); 
+   // pGR.setValue('symptoms', input.newPatient.symptoms);
     
     var newSysId = pGR.insert();
     
     if (newSysId) {
-      data.successMessage = "Patient " + input.newPatient.full_name + " successfully Registerd. .";
+      // fetch the newly created record to get auto-generated fields
+      var fetchNew = new GlideRecord('x_1954503_smartc_0_patient');
+      fetchNew.get(newSysId);
+      
+      // 2. format the date as the 
+      var gd = new GlideDate();
+      gd.setValue(fetchNew.getValue('sys_created_on'));
+      var formattedDate = gd.getByFormat("dd MMM yyyy");
+
+      // data for the id
+      data.newP = {
+        number: fetchNew.getValue('number'),
+        full_name: fetchNew.getValue('full_name'),
+        age: fetchNew.getValue('age'),
+        gender: fetchNew.getValue('gender'),
+        registered_date: formattedDate,
+        department: fetchNew.getDisplayValue('medical_department') || 'Pending',
+        doctor: fetchNew.getDisplayValue('assigned_doctor') || 'Pending',
+        nurse: fetchNew.getDisplayValue('u_assigned_nurse') || 'Pending'
+      };
+
+      data.successMessage = "Patient " + input.newPatient.full_name + " successfully Registered.";
     }
   }
 })();]]></script>
@@ -154,14 +263,14 @@ textarea.form-control { &#13;
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-17 08:17:31</sys_created_on>
         <sys_id>4dcfbba7c3a3f2501bf5fe1d05013187</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>sads</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_4dcfbba7c3a3f2501bf5fe1d05013187</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-18 12:49:05</sys_updated_on>
+        <sys_updated_on>2026-03-18 19:37:45</sys_updated_on>
         <template><![CDATA[<div class="form-container">
   <div class="form-header">
     <h3>New Patient Registration</h3>
@@ -169,7 +278,25 @@ textarea.form-control { &#13;
   </div>
 
   <div class="alert-success" ng-if="c.data.successMessage">
-    {{c.data.successMessage}}
+    <p style="margin-bottom: 20px;"><strong>{{c.data.successMessage}}</strong></p>
+    
+    <div id="printable-id" class="id-card-preview">
+      <div class="id-card-wrapper">
+        <img src="smartcare_id_bg.jpg" class="id-bg-img" alt="ID Background">
+        
+        <img ng-src="https://bwipjs-api.metafloor.com/?bcid=code128&text={{c.data.newP.number}}&scale=2&includetext=false" class="id-barcode" alt="Barcode">
+
+        <div class="id-text id-number">{{c.data.newP.number}}</div>
+        <div class="id-text id-fullname">{{c.data.newP.full_name}}</div>
+        <div class="id-text id-age">{{c.data.newP.age}}</div>
+        <div class="id-text id-gender">{{c.data.newP.gender}}</div>
+        <div class="id-text id-date">{{c.data.newP.registered_date}}</div>
+        
+        <div class="id-text id-footer">
+          Assigned Doctor: {{c.data.newP.doctor}} | Assigned Nurse: {{c.data.newP.nurse}} <br> Medical Department: {{c.data.newP.department}}
+        </div>
+      </div>
+    </div>
   </div>
 
   <form ng-submit="c.submitForm()" ng-if="!c.data.successMessage">
@@ -186,6 +313,14 @@ textarea.form-control { &#13;
 
     <div class="form-row">
       <div class="form-group">
+        <label>Gender <span class="required">*</span></label>
+        <select ng-model="c.patient.gender" required class="form-control">
+          <option value="">Select Gender...</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label>Medical Department <span class="required">*</span></label>
         <select ng-model="c.patient.department" required class="form-control">
           <option value="">Select Department...</option>
@@ -195,10 +330,7 @@ textarea.form-control { &#13;
           <option value="Emergency">Emergency</option>
         </select>
       </div>
-      
     </div>
-
-    
 
     <div class="form-footer">
       <button type="button" class="btn-clear" ng-click="c.clearForm()">Clear</button>
@@ -207,7 +339,8 @@ textarea.form-control { &#13;
   </form>
   
   <div class="form-footer" ng-if="c.data.successMessage">
-     <button type="button" class="btn-submit" ng-click="c.clearForm()">Register Another Patient</button>
+     <button type="button" class="btn-clear" ng-click="c.clearForm()">Register Another Patient</button>
+     <button type="button" class="btn-submit" ng-click="c.printID()">Print ID Card</button>
   </div>
 </div>]]></template>
     </sp_widget>
