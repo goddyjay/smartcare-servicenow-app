@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="12381740c3bfb6501bf5fe1d0501311b" label="SmartCare Notification" max_length="40" name="x_1954503_smartc_0_smartcare_notification" type="collection">
+        <element label="Related Record" max_length="32" name="related_record" reference="x_1954503_smartc_0_patient" type="reference"/>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Critical" sequence="300" value="critical"/>
+                <element inactive_on_update="false" label="Info" sequence="100" value="info"/>
+                <element inactive_on_update="false" label="Warning" sequence="200" value="warning"/>
+            </choice>
+        </element>
+        <element label="User" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <element label="Read" max_length="40" name="read" type="boolean"/>
+        <element label="Message" max_length="10000" name="message" type="string"/>
+        <index name="index">
+            <element name="related_record"/>
+        </index>
+        <index name="index2">
+            <element name="user"/>
+        </index>
+    </element>
+</database>
