@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+    c.searchText = ''; // Bind for the search input in the detailed list section.
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.joint-dashboard-wrapper {&#13;
+  margin-top: 15px;&#13;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;&#13;
+  &#13;
+  .sc-unauthorized-msg {&#13;
+    padding: 60px 20px;&#13;
+    background: #ffffff;&#13;
+    border-radius: 16px;&#13;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);&#13;
+    color: #64748b;&#13;
+    &#13;
+    i { font-size: 40px; color: #cbd5e1; margin-bottom: 15px; }&#13;
+    p { font-size: 15px; margin: 0; color: #1e293b;}&#13;
+  }&#13;
+&#13;
+  .dashboard-header {&#13;
+    margin-bottom: 24px;&#13;
+    display: flex;&#13;
+    align-items: center;&#13;
+    &#13;
+    h4 {&#13;
+      margin: 0;&#13;
+      color: #1e293b;&#13;
+      font-weight: 700;&#13;
+      font-size: 18px;&#13;
+    }&#13;
+    &#13;
+    .role-badge {&#13;
+      color: #1961ED;&#13;
+      background: #eff6ff;&#13;
+      padding: 4px 10px;&#13;
+      border-radius: 8px;&#13;
+      font-size: 13px;&#13;
+      vertical-align: middle;&#13;
+    }&#13;
+  }&#13;
+&#13;
+  // Grid styles for Metric Cards&#13;
+  .sc-metrics-grid {&#13;
+    display: flex;&#13;
+    flex-wrap: wrap;&#13;
+    margin-right: -10px;&#13;
+    margin-left: -10px;&#13;
+    &#13;
+    .sc-metric-card-container {&#13;
+      padding: 10px;&#13;
+    }&#13;
+    &#13;
+    .sc-metric-card {&#13;
+      background-color: #ffffff;&#13;
+      border: 1px solid #e2e8f0;&#13;
+      border-radius: 16px;&#13;
+      padding: 25px 20px;&#13;
+      transition: all 0.2s ease-in-out;&#13;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);&#13;
+&#13;
+      &amp;:hover {&#13;
+        transform: translateY(-4px);&#13;
+        box-shadow: 0 12px 20px rgba(0,0,0,0.06);&#13;
+        border-color: #cbd5e1;&#13;
+      }&#13;
+      &#13;
+      .sc-metric-icon-box {&#13;
+        display: inline-flex;&#13;
+        align-items: center;&#13;
+        justify-content: center;&#13;
+        width: 56px;&#13;
+        height: 56px;&#13;
+        border-radius: 14px;&#13;
+        margin-bottom: 16px;&#13;
+&#13;
+        i {&#13;
+          font-size: 24px;&#13;
+        }&#13;
+      }&#13;
+      &#13;
+      .sc-metric-value {&#13;
+        font-size: 36px;&#13;
+        font-weight: 800;&#13;
+        color: #1e293b;&#13;
+        margin-bottom: 6px;&#13;
+        line-height: 1;&#13;
+      }&#13;
+      &#13;
+      .sc-metric-label {&#13;
+        font-size: 11px;&#13;
+        font-weight: 700;&#13;
+        letter-spacing: 0.5px;&#13;
+        color: #64748b; &#13;
+        white-space: nowrap;&#13;
+        overflow: hidden;&#13;
+        text-overflow: ellipsis;&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+// Custom Aethestic Colors for the 12 States&#13;
+.bg-light-primary { background-color: rgba(25, 97, 237, 0.1) !important; }&#13;
+.text-primary { color: #1961ED !important; }&#13;
+&#13;
+.bg-light-gray { background-color: rgba(100, 116, 139, 0.1) !important; }&#13;
+.text-gray { color: #64748b !important; }&#13;
+&#13;
+.bg-light-purple { background-color: rgba(139, 92, 246, 0.1) !important; }&#13;
+.text-purple { color: #8b5cf6 !important; }&#13;
+&#13;
+.bg-light-orange { background-color: rgba(245, 158, 11, 0.1) !important; }&#13;
+.text-orange { color: #f59e0b !important; }&#13;
+&#13;
+.bg-light-teal { background-color: rgba(20, 184, 166, 0.1) !important; }&#13;
+.text-teal { color: #14b8a6 !important; }&#13;
+&#13;
+.bg-light-indigo { background-color: rgba(99, 102, 241, 0.1) !important; }&#13;
+.text-indigo { color: #6366f1 !important; }&#13;
+&#13;
+.bg-light-blue { background-color: rgba(59, 130, 246, 0.1) !important; }&#13;
+.text-blue { color: #3b82f6 !important; }&#13;
+&#13;
+.bg-light-pink { background-color: rgba(236, 72, 153, 0.1) !important; }&#13;
+.text-pink { color: #ec4899 !important; }&#13;
+&#13;
+.bg-light-yellow { background-color: rgba(234, 179, 8, 0.1) !important; }&#13;
+.text-yellow { color: #d97706 !important; }&#13;
+&#13;
+.bg-light-danger { background-color: rgba(239, 68, 68, 0.1) !important; }&#13;
+.text-danger { color: #ef4444 !important; }&#13;
+&#13;
+.bg-light-green { background-color: rgba(34, 197, 94, 0.1) !important; }&#13;
+.text-green { color: #22c55e !important; }</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>doc_nurse_dashbaord</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    // 1. Get the logged-in user's information
+    var userId = gs.getUserID();
+    var isDoctor = gs.hasRole('x_1954503_smartc_0.doctor');
+    var isNurse = gs.hasRole('x_1954503_smartc_0.nurse');
+
+    // 2. Validate authorization
+    data.isAuthorized = false;
+    if (isDoctor || isNurse) {
+        data.isAuthorized = true;
+        data.userRoleName = isDoctor ? 'Doctor' : 'Nurse';
+    } else {
+        return; // Early exit
+    }
+
+    data.metrics = [];
+
+    // 3. Define all metrics based on your exact choice list
+    var statsToCount = [
+        { label: 'Total Assigned Patients', query: '', icon: 'fa fa-users', color: 'primary' },
+        { label: 'Registered', query: "state=register", icon: 'fa fa-id-card-o', color: 'gray' },
+        { label: 'Triage', query: "state=triage", icon: 'fa fa-heartbeat', color: 'purple' },
+        { label: 'Waiting', query: "state=waiting", icon: 'fa fa-clock-o', color: 'orange' },
+        { label: 'Consultation', query: "state=consultation", icon: 'fa fa-user-md', color: 'teal' },
+        { label: 'Testing', query: "state=testing", icon: 'fa fa-flask', color: 'indigo' },
+        { label: 'Admitted', query: "state=admitted", icon: 'fa fa-bed', color: 'blue' },
+        { label: 'Treatment', query: "state=treatment", icon: 'fa fa-medkit', color: 'pink' },
+        { label: 'Discharge Requested', query: "state=discharge_requested", icon: 'fa fa-file-text-o', color: 'yellow' },
+        { label: 'Billing Pending', query: "state=billing_pending", icon: 'fa fa-hourglass-half', color: 'orange' },
+        { label: 'Billing Issue', query: "state=billing_issue", icon: 'fa fa-exclamation-circle', color: 'danger' },
+        { label: 'Discharged', query: "state=discharged", icon: 'fa fa-check-square-o', color: 'green' }
+    ];
+
+    // 4. Build and execute scoped aggregate queries for each metric card
+    for (var i = 0; i < statsToCount.length; i++) {
+        var stat = statsToCount[i];
+        var ga = new GlideAggregate('x_1954503_smartc_0_patient');
+        
+        // Correct way to get a total count in ServiceNow
+        ga.addAggregate('COUNT');
+
+        // Apply dynamic scoping to the current user's assignments
+        if (isDoctor) {
+            ga.addQuery('assigned_doctor', userId);
+        } else if (isNurse) {
+            ga.addQuery('u_assigned_nurse', userId);
+        }
+
+        // Add specific condition for the individual metric
+        if (stat.query) {
+            ga.addEncodedQuery(stat.query);
+        }
+
+        ga.query();
+        var countResult = 0;
+        if (ga.next()) {
+            countResult = ga.getAggregate('COUNT') || 0;
+        }
+        
+        data.metrics.push({
+            label: stat.label,
+            value: countResult,
+            icon: stat.icon,
+            color: stat.color
+        });
+    }
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-20 11:39:00</sys_created_on>
+        <sys_id>e64a0cb4c337fa501bf5fe1d05013159</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>doc_nurse_dashbaord</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_widget_e64a0cb4c337fa501bf5fe1d05013159</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-20 12:04:57</sys_updated_on>
+        <template><![CDATA[<div class="joint-dashboard-wrapper">
+  
+  <div ng-if="!data.isAuthorized" class="sc-unauthorized-msg text-center">
+    <i class="fa fa-lock"></i>
+    <p><strong>Authorization Required:</strong> Only logged-in Doctors or Nurses can view this dashboard.</p>
+  </div>
+
+  <div ng-if="data.isAuthorized">
+    <div class="dashboard-header">
+      <h4>My Workload Overview • <span class="role-badge">{{data.userRoleName}}</span></h4>
+    </div>
+
+    <div class="row sc-metrics-grid">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 sc-metric-card-container" ng-repeat="metric in data.metrics">
+        <div class="sc-metric-card text-center">
+          <div class="sc-metric-icon-box bg-light-{{metric.color}}">
+            <i class="{{metric.icon}} text-{{metric.color}}"></i>
+          </div>
+          <div class="sc-metric-value">{{metric.value}}</div>
+          <div class="sc-metric-label text-uppercase">{{metric.label}}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

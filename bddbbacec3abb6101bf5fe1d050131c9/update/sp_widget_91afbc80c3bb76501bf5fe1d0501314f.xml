@@ -444,7 +444,7 @@
             symptoms: pGR.getValue('symptoms') || '',
           
             assigned_doctor: pGR.getDisplayValue('assigned_doctor') || 'Pending',
-            assigned_nurse: pGR.getDisplayValue('assigned_nurse') || 'Pending'
+            assigned_nurse: pGR.getDisplayValue('u_assigned_nurse') || 'Pending'
         });
     }
 })();]]></script>
@@ -453,14 +453,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-18 07:35:33</sys_created_on>
         <sys_id>91afbc80c3bb76501bf5fe1d0501314f</sys_id>
-        <sys_mod_count>47</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>SmartCare My Patient</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_91afbc80c3bb76501bf5fe1d0501314f</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-19 09:56:21</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:22:29</sys_updated_on>
         <template><![CDATA[<div class="sc-doc-wrapper">
   
   <div class="sc-doc-panel" ng-if="!c.showEditView">

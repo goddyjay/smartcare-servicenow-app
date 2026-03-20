@@ -303,11 +303,11 @@
     data.showDashboard = data.isAdmin;
     data.showRegister = data.isAdmin;
     data.showViewPatients = data.isAdmin;
-    data.showReceptionApproval = data.isAdmin;
+    data.showReceptionApproval = data.isAdmin || data.isDoctor || data.isNurse;
     
     // Doctors, Nurses, and Admins can all see Bed Management
     data.showBedManagement = data.isAdmin || data.isDoctor || data.isNurse;
-    
+    data.showDocDashboard = !isSystemAdmin && (data.isDoctor || data.isNurse );
     // ONLY Doctors and Nurses can see My Patients
     data.showMyPatients = data.isDoctor || data.isNurse;
 
@@ -369,14 +369,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-16 09:47:15</sys_created_on>
         <sys_id>6f2a4bd7c32f32501bf5fe1d050131b6</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>49</sys_mod_count>
         <sys_name>SmartCare Sidebar Wrapper</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_header_footer_6f2a4bd7c32f32501bf5fe1d050131b6</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-19 13:13:18</sys_updated_on>
+        <sys_updated_on>2026-03-20 12:45:55</sys_updated_on>
         <template><![CDATA[<div class="ward-sidebar">
   <div class="sidebar-brand">
     <div class="brand-logo">
@@ -395,6 +395,12 @@
   <ul class="sidebar-nav">
     <li ng-if="data.showDashboard" ng-class="{ 'active': c.pageId == 'smartcare_hostpital_dashboard' }">
       <a href="?id=smartcare_hostpital_dashboard" ng-click="c.navigate('smartcare_hostpital_dashboard', $event)">
+        <span class="nav-icon"><i class="fa fa-th-large"></i></span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+    </li>
+     <li ng-if="data.showDocDashboard" ng-class="{ 'active': c.pageId == 'doc_nurse_dashboard' }">
+      <a href="?id=doc_nurse_dashboard" ng-click="c.navigate('doc_nurse_dashboard', $event)">
         <span class="nav-icon"><i class="fa fa-th-large"></i></span>
         <span class="nav-label">Dashboard</span>
       </a>

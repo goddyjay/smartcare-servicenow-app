@@ -266,11 +266,18 @@
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
+    var userId = gs.getUserID();
+    
+    // 1. Define Roles securely
+    var isAdmin = gs.hasRole('admin') || gs.hasRole('x_1954503_smartc_0.admin');
+    var isDoctor = gs.hasRole('x_1954503_smartc_0.doctor');
+    var isNurse = gs.hasRole('x_1954503_smartc_0.nurse');
+
     /* action logic discharge patient */
     if (input && input.action == 'dischargePatient') {
         var pGR = new GlideRecord('x_1954503_smartc_0_patient');
         if (pGR.get(input.targetPatient)) {
-            pGR.setValue('status', 'discharged');
+            pGR.setValue('state', 'discharge_requested');
             pGR.update();
         }
     }
@@ -282,6 +289,32 @@
     bedGR.query();
 
     while (bedGR.next()) {
+        var patientSysId = bedGR.getValue('assigned_patient');
+        var patientGR = null;
+        var isMyPatient = false;
+
+        // 2. If the bed is occupied, fetch the patient record to check assignments
+        if (patientSysId) {
+            patientGR = new GlideRecord('x_1954503_smartc_0_patient');
+            if (patientGR.get(patientSysId)) {
+                // Check if the logged-in user is the assigned doctor or nurse
+                if (isDoctor && patientGR.getValue('assigned_doctor') == userId) {
+                    isMyPatient = true;
+                } else if (isNurse && (patientGR.getValue('assigned_nurse') == userId || patientGR.getValue('u_assigned_nurse') == userId)) {
+                    isMyPatient = true; // Checking both nurse fields just to be safe based on your previous scripts
+                }
+            }
+        }
+
+        // 3. --- ROLE-BASED FILTERING LOGIC ---
+        // If the user is NOT an admin, they ONLY get to see the bed IF it is occupied by their assigned patient.
+        if (!isAdmin) {
+            if (!isMyPatient) {
+                continue; // This skips the bed entirely and moves to the next one in the database
+            }
+        }
+
+        // 4. If we pass the security filter, build the bed object for the UI
         var bedObj = {};
         bedObj.bedId = bedGR.getValue('bed_id') || "N/A";
         bedObj.ward = (bedGR.getValue('ward') || '').toLowerCase();
@@ -289,18 +322,12 @@
         bedObj.bedTypeValue = bedGR.getValue('bed_type') || ''; 
         bedObj.bedTypeLabel = bedGR.getDisplayValue('bed_type') || '';
         
-        var patientSysId = bedGR.getValue('assigned_patient');
-        
-        if (patientSysId) {
+        if (patientSysId && patientGR) {
             bedObj.statusValue = 'occupied'; 
-            
-            var patientGR = new GlideRecord('x_1954503_smartc_0_patient');
-            if (patientGR.get(patientSysId)) {
-                bedObj.patientSysId = patientSysId; 
-                bedObj.patientName = patientGR.getValue('full_name');
-                bedObj.dept = patientGR.getDisplayValue('medical_department');
-                bedObj.severity = (patientGR.getValue('severity') || 'low').toLowerCase();
-            }
+            bedObj.patientSysId = patientSysId; 
+            bedObj.patientName = patientGR.getValue('full_name');
+            bedObj.dept = patientGR.getDisplayValue('medical_department');
+            bedObj.severity = (patientGR.getValue('severity') || 'low').toLowerCase();
         } else {
             bedObj.statusValue = 'available';
         }
@@ -313,14 +340,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-15 21:01:29</sys_created_on>
         <sys_id>b27b1097c3a7fe101bf5fe1d05013153</sys_id>
-        <sys_mod_count>43</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>SmartCare Bed Tile</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_b27b1097c3a7fe101bf5fe1d05013153</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-19 08:45:44</sys_updated_on>
+        <sys_updated_on>2026-03-20 12:29:25</sys_updated_on>
         <template><![CDATA[<div class="sc-bed-dashboard">
   
   <div class="sc-bed-controls-header">
