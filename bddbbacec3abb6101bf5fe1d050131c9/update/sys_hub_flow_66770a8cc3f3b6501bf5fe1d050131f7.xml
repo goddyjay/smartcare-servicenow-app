@@ -4,7 +4,7 @@
         <acls/>
         <active>true</active>
         <annotation/>
-        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=4477000,viewActivatedIn=naturalLanguage</attributes>
+        <attributes>browserActivatedIn=chrome,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=176436000,viewActivatedIn=naturalLanguage</attributes>
         <authored_on_release_version>28100</authored_on_release_version>
         <callable_by_client_api>false</callable_by_client_api>
         <category/>
@@ -15,14 +15,14 @@
         <flow_priority>MEDIUM</flow_priority>
         <generation_source/>
         <internal_name>patient_discharge_approval_flow</internal_name>
-        <label_cache>[{"name":"Updated_1.current.u_assigned_nurse","label":"Trigger - Record Updated➛Patient Record➛Assigned Nurse ","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"u_assigned_nurse","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["approval_conditions"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current.assigned_doctor","label":"Trigger - Record Updated➛Patient Record➛Assigned Doctor","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"assigned_doctor","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["approval_conditions"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current","label":"Trigger - Record Updated➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["record"],"024f2c2a-b1e9-45cc-9037-e07b88292d54":["record"],"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["record"],"f377bebc-5a0e-4828-b0d5-18f5661a2427":["record"],"48971e3d-84d4-40dc-9576-e120b6972d10":["record"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["record","notification"]},"attributes":{}},{"name":"{{static.35bc0648c337b6501bf5fe1d050131e1}}","label":"Receptionist Group","reference":"sys_user_group","reference_display":"Group","type":"reference","base_type":"reference","usedInstances":{"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["approval_conditions"]}},{"name":"522a1196-cd67-48e4-9bb9-61183d1cf450.approval_state","label":"2 - Ask For Approval➛Approval State","reference_display":"Approval State","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":0.0},{"label":"Not Yet Requested","value":"not requested","order":1.0},{"label":"Requested","value":"requested","order":2.0},{"label":"Approved","value":"approved","order":3.0},{"label":"Rejected","value":"rejected","order":4.0},{"label":"Cancelled","value":"cancelled","order":5.0},{"label":"No Longer Required","value":"not_required","order":6.0},{"label":"Skipped","value":"skipped","order":7.0}],"usedInstances":{"705193ea-0ce6-4dac-bdfb-296d159ad603":["condition"]},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}},{"name":"Updated_1.changed_fields","label":"Trigger - Record Updated➛Changed Fields","type":"array.object","base_type":"array.object","usedInstances":{},"attributes":{"uiTypeLabel":"Array.Object","co_type_name":"FDCollection","child_label":"FDChangeDetails","child_type_label":"Object","element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper","pwd2droppable":"true","uiType":"array.object","child_type":"object","child_name":"FDChangeDetails"}},{"name":"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6.email","label":"1 - Send Email➛email","reference":"sys_email","reference_display":"Email","type":"reference","base_type":"reference","usedInstances":{},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}}]</label_cache>
+        <label_cache>[{"name":"Updated_1.current.email","label":"Trigger - Record Updated➛Patient Record➛Email","reference":"","reference_display":"Email","type":"string","base_type":"string","parent_table_name":"x_1954503_smartc_0_patient","column_name":"email","usedInstances":{}},{"name":"Updated_1.changed_fields","label":"Trigger - Record Updated➛Changed Fields","type":"array.object","base_type":"array.object","usedInstances":{},"attributes":{"uiTypeLabel":"Array.Object","co_type_name":"FDCollection","child_label":"FDChangeDetails","child_type_label":"Object","element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper","pwd2droppable":"true","uiType":"array.object","child_type":"object","child_name":"FDChangeDetails"}},{"name":"522a1196-cd67-48e4-9bb9-61183d1cf450.approval_state","label":"1 - Ask For Approval➛Approval State","reference_display":"Approval State","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":0.0},{"label":"Not Yet Requested","value":"not requested","order":1.0},{"label":"Requested","value":"requested","order":2.0},{"label":"Approved","value":"approved","order":3.0},{"label":"Rejected","value":"rejected","order":4.0},{"label":"Cancelled","value":"cancelled","order":5.0},{"label":"No Longer Required","value":"not_required","order":6.0},{"label":"Skipped","value":"skipped","order":7.0}],"usedInstances":{"705193ea-0ce6-4dac-bdfb-296d159ad603":["condition"]},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}},{"name":"{{static.35bc0648c337b6501bf5fe1d050131e1}}","label":"Receptionist Group","reference":"sys_user_group","reference_display":"Group","type":"reference","base_type":"reference","usedInstances":{"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["approval_conditions"]}},{"name":"Updated_1.current","label":"Trigger - Record Updated➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["record"],"024f2c2a-b1e9-45cc-9037-e07b88292d54":["record"],"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["record"],"f377bebc-5a0e-4828-b0d5-18f5661a2427":["record"],"48971e3d-84d4-40dc-9576-e120b6972d10":["record"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["record","notification"]},"attributes":{}},{"name":"Updated_1.current.assigned_doctor","label":"Trigger - Record Updated➛Patient Record➛Assigned Doctor","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"assigned_doctor","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["approval_conditions"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current.u_assigned_nurse","label":"Trigger - Record Updated➛Patient Record➛Assigned Nurse ","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"u_assigned_nurse","usedInstances":{"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current.assigned_doctor.email","label":"Trigger - Record Updated➛Patient Record➛Assigned Doctor➛Email","reference":"","reference_display":"Email","type":"email","base_type":"email","parent_table_name":"sys_user","column_name":"email","usedInstances":{}},{"name":"Updated_1.current.u_assigned_nurse.email","label":"Trigger - Record Updated➛Patient Record➛Assigned Nurse ➛Email","reference":"","reference_display":"Email","type":"email","base_type":"email","parent_table_name":"sys_user","column_name":"email","usedInstances":{}}]</label_cache>
         <master_snapshot>cd9f02ccc337b6501bf5fe1d05013187</master_snapshot>
         <master_snapshot_digest/>
         <name>Patient Discharge Approval flow</name>
         <natlang/>
         <outputs/>
         <pre_compiled>false</pre_compiled>
-        <remote_trigger_id>44981680c3b7b6501bf5fe1d0501315e</remote_trigger_id>
+        <remote_trigger_id>5a88e43cc33bfa501bf5fe1d050131ee</remote_trigger_id>
         <run_as>user</run_as>
         <run_with_roles/>
         <sc_callable>false</sc_callable>
@@ -36,7 +36,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>66770a8cc3f3b6501bf5fe1d050131f7</sys_id>
-        <sys_mod_count>37</sys_mod_count>
+        <sys_mod_count>57</sys_mod_count>
         <sys_name>Patient Discharge Approval flow</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
@@ -44,11 +44,11 @@
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_hub_flow_66770a8cc3f3b6501bf5fe1d050131f7</sys_update_name>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:09</sys_updated_on>
         <type>flow</type>
         <updation_source/>
         <version>2</version>
-        <version_record>ac985680c3b7b6501bf5fe1d05013110</version_record>
+        <version_record>7a88283cc33bfa501bf5fe1d05013164</version_record>
     </sys_hub_flow>
     <sys_translated_text action="delete_multiple" query="documentkey=66770a8cc3f3b6501bf5fe1d050131f7"/>
     <sys_variable_value action="delete_multiple" query="document_key=66770a8cc3f3b6501bf5fe1d050131f7"/>
@@ -68,15 +68,15 @@
         <run_when_user_setting>any</run_when_user_setting>
         <sys_class_name>sys_flow_record_trigger</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 14:03:09</sys_created_on>
+        <sys_created_on>2026-03-20 13:49:08</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>44981680c3b7b6501bf5fe1d0501315e</sys_id>
+        <sys_id>5a88e43cc33bfa501bf5fe1d050131ee</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_overrides/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <table>x_1954503_smartc_0_patient</table>
         <trigger_definition/>
     </sys_flow_record_trigger>
@@ -86,14 +86,14 @@
         <identifier>66770a8cc3f3b6501bf5fe1d050131f7</identifier>
         <runner>FDTriggerRunner</runner>
         <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 14:03:09</sys_created_on>
-        <sys_id>88981680c3b7b6501bf5fe1d0501315f</sys_id>
+        <sys_created_on>2026-03-20 13:49:08</sys_created_on>
+        <sys_id>5688e43cc33bfa501bf5fe1d050131ef</sys_id>
         <sys_mod_count>1</sys_mod_count>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
-        <trigger display_value="">44981680c3b7b6501bf5fe1d0501315e</trigger>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
+        <trigger display_value="">5a88e43cc33bfa501bf5fe1d050131ee</trigger>
     </sys_trigger_runner_mapping>
-    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=66770a8cc3f3b6501bf5fe1d050131f7^sys_idNOT IN88981680c3b7b6501bf5fe1d0501315f"/>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=66770a8cc3f3b6501bf5fe1d050131f7^sys_idNOT IN5688e43cc33bfa501bf5fe1d050131ef"/>
     <sys_hub_flow_stage action="delete_multiple" query="flow=66770a8cc3f3b6501bf5fe1d050131f7"/>
     <sys_flow_cat_variable_model action="delete_multiple" query="id=66770a8cc3f3b6501bf5fe1d050131f7^sys_idNOT IN2a770a8cc3f3b6501bf5fe1d050131fb"/>
     <sys_flow_cat_variable_model action="INSERT_OR_UPDATE">
@@ -385,37 +385,13 @@
         <trigger_type>record_update</trigger_type>
         <updation_source/>
     </sys_hub_trigger_instance_v2>
-    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=66770a8cc3f3b6501bf5fe1d050131f7^sys_idNOT IN0b3bc284c337b6501bf5fe1d05013155,1b79c680c337b6501bf5fe1d0501318b,3a7e4e0cc337b6501bf5fe1d05013100,64ee8a4cc337b6501bf5fe1d0501311f,c89b8e84c337b6501bf5fe1d0501313b,d2471accc377b6501bf5fe1d05013170"/>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=66770a8cc3f3b6501bf5fe1d050131f7^sys_idNOT IN0b3bc284c337b6501bf5fe1d05013155,1b79c680c337b6501bf5fe1d0501318b,3a7e4e0cc337b6501bf5fe1d05013100,64ee8a4cc337b6501bf5fe1d0501311f,c89b8e84c337b6501bf5fe1d0501313b"/>
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
         <action_type display_value="Update Record">f9d01dd2c31332002841b63b12d3aea1</action_type>
         <action_type_parent/>
         <attributes/>
         <comment/>
-        <compiled_snapshot/>
-        <display_text/>
-        <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
-        <generation_source/>
-        <order>3</order>
-        <parent_ui_id/>
-        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
-        <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 13:04:55</sys_created_on>
-        <sys_id>0b3bc284c337b6501bf5fe1d05013155</sys_id>
-        <sys_mod_count>6</sys_mod_count>
-        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 13:57:34</sys_updated_on>
-        <ui_id>024f2c2a-b1e9-45cc-9037-e07b88292d54</ui_id>
-        <updation_source/>
-        <values>H4sIAAAAAAAA/+2SUWvbMBDHv0rQszF2nIQmb4MQ2MPa0W196YqQpUsikGVPltNkId99J1l20nYNoXSMwfxidHe6+/9Pv/s9kYLMyAhEkk7TCc/SLBsmyfBqlOaTLE+HImMAKYmIZgVgpQFeGoHnDVONC+z33yrBLAiaxrwxBrQ9HDAvZF0ptrsLZRjha6kE5sns/iEiFTPY0YIhs/2zlN1VQBXLQeHFecmbApsOPs6xx6Vqu9u3ndzn8t0MPIvQnUoXxJTTkyYRga0FLQDHLZmqISIF02izNDsys6bBgAEmbrTa9RVrqW3rtGDbWv7E/qPE1S0BrfGwhf5Iw4a65ZSSw01lZanbiGW56jZXqqbQ160Ft1tYskbZk902NfaDykl2IlqFyy/r8vG2m7eQ2rsLalXJmepPzFoj88ZC7Z4DFPilFKyqpF7RypQb6S+jlCJeKTzES1U+4sxarnTMuNMd44JYvMD43IfvmJHOxCdsg5cP3jz90bi5rY0gmHrP3jD1D4WlNTeysh+w8QaCzEMUcE2GZwGA43t7SusTXGuLrH5vkiQTuVTKu0MR+H/J7Nnat9H8FQqcYGHQzogu9tM1WEhQov6NwQC0DQPoJgzomX43qNNJ4r//aP8BtPPxORT49PjyJz2PeG9pOh2PxklG64IZy2lCK2al29wLvD/3iTey7AQMrlsBl4p/cvkVMx3Kp7GA8fjdKL76S/wGRf8YwK9h+/ALmunU7kIIAAA=</values>
-    </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=0b3bc284c337b6501bf5fe1d05013155"/>
-    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
-        <action_type display_value="Ask For Approval">f8f2e9920b10030085c083eb37673abd</action_type>
-        <action_type_parent/>
-        <attributes/>
-        <comment/>
-        <compiled_snapshot/>
+        <compiled_snapshot>f9d01dd2c31332002841b63b12d3aea1</compiled_snapshot>
         <display_text/>
         <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
         <generation_source/>
@@ -423,95 +399,23 @@
         <parent_ui_id/>
         <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 12:57:17</sys_created_on>
-        <sys_id>1b79c680c337b6501bf5fe1d0501318b</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_created_on>2026-03-18 13:04:55</sys_created_on>
+        <sys_id>0b3bc284c337b6501bf5fe1d05013155</sys_id>
+        <sys_mod_count>18</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 13:57:52</sys_updated_on>
-        <ui_id>522a1196-cd67-48e4-9bb9-61183d1cf450</ui_id>
+        <sys_updated_by>Elizabeth Carpenter</sys_updated_by>
+        <sys_updated_on>2026-03-20 13:49:58</sys_updated_on>
+        <ui_id>024f2c2a-b1e9-45cc-9037-e07b88292d54</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/+1XbU/bMBD+KyifS+c0TUj5hoSQNu1NvH2hyHLtC3hynSyJN1jV/75z4rxQWKlGgU3iS1Wffb7nHj/nnC8WnhTevgfjKAjxZy8JiD/ySQxRHPMJYTyOonAceANPszngSpZlefqDKZoDK1KNEzgwdgb/Cllkit2edxZ+LZXIQXv7F5cDL2M57lJC7u0vVqbK2wyoYjNQ6HhS5lJfofum4BrHA4du57hB90fYNiBOFE2oNBcW12jgwU0JWgCGTpgqYODNmRasTPPb1oK7iC9adYZrqcs64zm7KeQv3NqPiF2YAObIHR3tkDqqGpZSyeFLVkqEVllKNlMNhakyc/25zsOSDAkzquyRbArcDzIL2qJwkJKT6/TncRPwSOoqPzepUs5UO2IlsjAzJRT2YIw8XeGmtnxcPR1QMMeIdI7sooVaimUVBUHPh1cKB8NEpT8RXSGv9JBxm+EQyWTDI7QfVuZzlkub7ifcBp1tuDMtvxt4b08/Gs2iCYnFrkjIbHccB+Eu40B2IfJDCEXEQz/wlhW19LuxSdUkOTpozSguKHgus/IAIfwAl/ly4PRP/GQEk8mIzHxCAkLikJM4gFmwF+0FTMQPCCmRoMTzyP/Ibr1TnfhgY3z3SuDIAfwTcFcA1ZDqOtjWiyAm5JWqoMzNU4rgebT9mE7rhB8RK18rBuhd1t9Sk+uX1uoG8BrnDzW+Vamuwl6j1OBNqf+wUvfidVLgpDvyHDieaE+ii8VZhghBUH/ITY6klMvlFnV7mHJjadt5f9gIdwO0jfdxA3cVvpOqcLtTKTqtkvVarWWwiVSD0ZtQt3ylhuuOPpl0Jy0MUoK67Et16tVIp97+1NOphqk3mHp2FbV6qMy4AhG2E5VtsVgua4vJmdvA7w07b8Fui2plwa9BGFVb71hqZTv7NivlxAXYOUTc705l76Z/nLW23Ezt/yCRTSveZFIzJ/v3fLi1e378n3blz9ds06Y1tNWCJf7kbnq8VhfQE0HblPJUC2nxFr3CqltZKI7hG/CyOFDq7OKB78KQFTYzNOG1i3pYIpAHVhnartMmR7jLy/tV8hIh/64Mu6ctlkjRlOAGVLffLOe3lnpXit1z2Tm5Mhxv6xP2et3Wv1mHTy25GV/bu/Du3GvuuiK7of4kHIckoMWc5SWnhGb49bFc3auOr+3E32n41Ma+81jYAPcd5/t5OMVWw5XHgb/Fx8GbWJ8u1svf9E+67W8UAAA=</values>
+        <values>H4sIAAAAAAAA/+1TXW/aMBT9K5WfUZQQQIW3qQhpUtdObcdLV1mOfQOWnI/ZDoUh/vuuEydQ2iEq9WGVxgvy/bDPOTnncUukIBMyABFG42jE4yiO+2HYvxxEyShOor6IGUBEeiRnGeCkBl5ogecVU5UrbLc/SsEsCBoFvNIacrvbYV9IUyq2mfsxrPClVAL7ZPL41CMl03ijBU0m26PWuZAUS0Dh6F2L6Rij3ZTuLApeZYiLyrZ47TenvnPxdYodXHJworBHYG0hF4BAUqYM9EjGcmRZ6A2ZWF1hQQMTt7nadBNLmduGaMbWRv7Glwehm0sBmXEvQnekXqCmnE6ZZfd4M7eV7vQqJAfTaCIgZZWyV4e1ZuC2tLLImxXLEtVuF6rK8ptGEdJdcPA9KoMgoHQ8HfKGVnq/LJ7vWpAzmdeSeIqq4Ex1J2atlkllHZwtAQW1xhkrS5kvaKmLlayXEUoWLBQeglQVz/imkYs8YNzhDlBVFsywPq3Lc6alI/ENr8HlXY+YjblSzJg9FdSQ/qockoaYp0BrFWoJaO0Et8y1LO0XfGoFHviu500f9k86DPaGqr1uDkxvLDr+ZxWGsUikUjVfBIH/r51/cvZ9mTgDcZuJmQQlzBsUfCYsZAjSAm0ovYzFg29ezH2zS8aHRSMahfXvf0D+3YAkw1N24+O9uw7u3IdkTaPxcDAMY2oypi2nIS2ZlU7LVyH53jXel4gzILaJeKg//duQ21Ac164Pdy9umoYPw/DDsnD5mVLgaXz6GPzN/E9/ABlRA4cUCQAA</values>
     </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=1b79c680c337b6501bf5fe1d0501318b"/>
-    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
-        <action_type display_value="Update Record">f9d01dd2c31332002841b63b12d3aea1</action_type>
-        <action_type_parent display_value="Update Record">baf174c8c3c232002841b63b12d3aee4</action_type_parent>
-        <attributes/>
-        <comment/>
-        <compiled_snapshot/>
-        <display_text/>
-        <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
-        <generation_source/>
-        <order>6</order>
-        <parent_ui_id>705193ea-0ce6-4dac-bdfb-296d159ad603</parent_ui_id>
-        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
-        <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 13:19:06</sys_created_on>
-        <sys_id>3a7e4e0cc337b6501bf5fe1d05013100</sys_id>
-        <sys_mod_count>8</sys_mod_count>
-        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:02:00</sys_updated_on>
-        <ui_id>f377bebc-5a0e-4828-b0d5-18f5661a2427</ui_id>
-        <updation_source/>
-        <values>H4sIAAAAAAAA/+1UUWvbMBD+K0XPxthxEpq8DUJgD2tHt/WlK0KWLolAljVJTpOF/PedbDlN27ULJTAG05tOd9993+nj7nZECjIlQxBZPsnHvMiLYpBlg8thXo6LMh+IggHkJCGaVYCZFnhtBd7XTDUhsNt9M4J5EDRPeWMtaL/f47uQzii2vY1pGOErqQS+k+ndfUIMs4jowZLp7tmT3xqgipWgsHBW86ZC0IuPM8Q4lW1ffdPTfU4/9MC7iOhUhiA+BT55lhDYeNACsN2CKQcJqZhGmbXdkqm3DQYsMHGt1faQsZLad0ortnHyJ+IPs5C3AJTG4xQOVxon1A+nlhyujZe17iKelaqfXK2aSl91EsJsYcEa5Y9m2zjEAxMoBxIdw8WXVf1w0/ebS92qi2xVzZk63Jj3VpaNBxe+AxS0Q6mYMVIvqbH1WrbFSKVKlwov6ULVD9jTyaVOGQ+8UxwQS+cYn7XhW2ZlEPEJYbB434qnP5rQt5MRCdNWcyuYth+FqY5bafwHBF5DpLlPol3L0VsG4JPH/z7CfLTshuaT0XCUFdRVzHpOM2qYl2FyL3z7+fDwPvt+DQQurjoCp5J/UvyKmGjgJ7Ho39HZ/Hv5l/wbGf1jBv6TbbPBm3vr6Kdbp7ojyzqPK/Z7k2WFwLHzFbNLEC/d+lraO70LFYJ7uOjgk5NV9ABzCUq438jqzRsb0HVscFjAZ3NwPs7a838Pn3EP3/8CCDuY4jgIAAA=</values>
-    </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=3a7e4e0cc337b6501bf5fe1d05013100"/>
-    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
-        <action_type display_value="Update Record">f9d01dd2c31332002841b63b12d3aea1</action_type>
-        <action_type_parent display_value="Update Record">baf174c8c3c232002841b63b12d3aee4</action_type_parent>
-        <attributes/>
-        <comment/>
-        <compiled_snapshot/>
-        <display_text/>
-        <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
-        <generation_source/>
-        <order>8</order>
-        <parent_ui_id>77b9cdc8-baaf-479d-9aa7-8bd2564baeeb</parent_ui_id>
-        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
-        <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 13:20:51</sys_created_on>
-        <sys_id>64ee8a4cc337b6501bf5fe1d0501311f</sys_id>
-        <sys_mod_count>8</sys_mod_count>
-        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:02:00</sys_updated_on>
-        <ui_id>48971e3d-84d4-40dc-9576-e120b6972d10</ui_id>
-        <updation_source/>
-        <values>H4sIAAAAAAAA/+1UTYvbMBD9K8FnY+w4CZvcCiHQQ3fLtt3LdhGyNEkEsuzqI5s05L93ZMve7EfTsARKobppNPPmvdFj7veR4NEsGgFPs2k2YXmW58M0HV6NsmKSF9mQ5xQgi+JI0RIwUwOrNMf7hkrnA/v9t5pTC5xkCXNag7KHA75zYWpJd3chDSNsLSTH92h2/xBHNdWIaEFHs/2LJ7urgUhagMTCecVciaCDj3PEOJdtV33b0X1J3/fAOw/oRPggPnk+WRpHsLWgOGC7JZUG4qikCmVWehfNrHYY0ED5jZK7PmMtlG2VlnRrxE/EH6U+bwkojYUp9FcSJtQNpxIMbmorKtVGLC1kN7lKulJdtxL8bGFJnbRHs3UG8aD2lD2JluHyy7p6vO36LYRq1AW2smJU9jdqrRaFs2D8d4CEZiglrWuhVqTW1UY0xUilTFYSL8lSVo/Y04iVSijzvBMcEE0WGJ834TuqhRfxCWGw+NCIJz+c79vKCIRJo7kRTJqPwlTDtKjtBwTeQKB5iINdi/EpA7Dp038fYT5Zdkuy6Xg0TnNiSqotIympqRV+cq98+7l/eJ99v3oCg+uWwLnknxX/Rkww8LNY8O/4Yv69+kv+DYz+MQP/ybbp8OTeOvrpxqnmyLLG4or97tI054WQ0msSxjh4bdgTme90MJSIb2HQdojP1tIBLARIbt4Q11k4NCCb0KBfwxfzcTZJm/N/G19wGz/8AvnEXKs+CAAA</values>
-    </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=64ee8a4cc337b6501bf5fe1d0501311f"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=0b3bc284c337b6501bf5fe1d05013155"/>
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
         <action_type display_value="Ask For Approval">f8f2e9920b10030085c083eb37673abd</action_type>
         <action_type_parent/>
         <attributes/>
         <comment/>
-        <compiled_snapshot/>
-        <display_text/>
-        <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
-        <generation_source/>
-        <order>4</order>
-        <parent_ui_id/>
-        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
-        <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 13:06:21</sys_created_on>
-        <sys_id>c89b8e84c337b6501bf5fe1d0501313b</sys_id>
-        <sys_mod_count>8</sys_mod_count>
-        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:02:00</sys_updated_on>
-        <ui_id>af3e825a-f7dc-489c-8776-b4b6ec5646a3</ui_id>
-        <updation_source/>
-        <values>H4sIAAAAAAAA/+1X227bMAz9lcLPaSbHseP0rUDRYcNuaLu9NIUhS3SrQZE9W96aBfn3UZYcu+mWBmu6C9CXIKJE8vDoUGEul57g3pEH4ygI8WOSBcQf+SSGKI7ZlFAWR1E4DryBp+gc8CQtijL/SmVSAq1yhRu4qM0OfuWiKiRdfOos7EZIXoLyji6vBl5BS4yiofSOlhtbelFAImkKEh3PdSnUNbrvCq51PHboDs5adL+EbRLiRtWmyktucI0GHtxqUBwwdUZlBQNvThWnOi8XawtG4e+V7Aw3Qmlb8ZzeVuI7hvYjYg5mgDUyR8d6mTiqWpZyweB9oQVCayyaprKlMJf1XL2zdRiSIaO11D2S6wrjQWFAGxQOUnZ+k387axOeCtXU5zZlzqhcr6hGFtJaQ2UuphYXG9xYy5vN2wEJc8yYzJFdtCSGYtFkQdDz4bXExTCT+TdEV4lrNaTMVDhEMunwFO0njfkTLYUp9y2GQWeT7qMSX2p4ZW4/GqXRlMT8kGckPRzHQXhIGZBDiPwQQh6x0A+8VUNt8qU2RVmSHB2JZRQPVKwUhT5GCF/BVb4aOP0TPxvBdDoiqU9IQEgcMhIHkAaTaBJQHv9ESJkAyZ9G/qcm9EFz44Od8d1rgVMH8FfAXQM0y0TZZHtvgpiQv9QFuqwf0wRPo+2HdGoLfkCsbKsYoPdYf87rUv1pre4Ar3V+bfFtSnUT9halBs9K/YeVOom3SYGR7spLYHijPYkulx8LRAg88YesLpEUvVrtUbcnOasNbQevTlrh7oC29T5r4W7Cd1LlLnoieKdVsl2rVga7SDUYPQt1z09quO3qs2l307xGSlCXfanOPIt05h3NPJUrmHmDmWdOJUYPjRlPIML1RmNbLlcra6lL6gL4vWXnzemiak5W7AZ4La31jsUq29n32SnnLsHBCeJ+cSF6L/3DrK3brbb+PyWyHcXbSixzov/Oh3t758f/6VT+dMN20o6GpluwxR89TY+36gJ6IlgPpSxXXBi8Va+x7CgL1Rl8BqarY7V4eblcVhqbgw2DMGUkGscsCCZpFBI/zcIMfE7wa+CDv1pd3W+CPUT8vSbq/piiwKu2gXYgav2L4/y2Eucaqfuz65xcE4339QP092alf7OLHtswKds6ebDu3i13XYvcJv40HIckSKo5LTVLSFKgmA1X98T/Yb3xexq+MLnvjPo74L7jfL8Op9hmuTHa+3sc7Z/F+nixXv0ASBVZGS0UAAA=</values>
-    </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=c89b8e84c337b6501bf5fe1d0501313b"/>
-    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
-        <action_type display_value="Send Email">c1806bf4a70323008299b39f087901cb</action_type>
-        <action_type_parent display_value="Send Email">98c181d20b100300d97d8bf637673ab5</action_type_parent>
-        <attributes/>
-        <comment/>
-        <compiled_snapshot/>
+        <compiled_snapshot>f8f2e9920b10030085c083eb37673abd</compiled_snapshot>
         <display_text/>
         <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
         <generation_source/>
@@ -519,17 +423,89 @@
         <parent_ui_id/>
         <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 13:57:34</sys_created_on>
-        <sys_id>d2471accc377b6501bf5fe1d05013170</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_created_on>2026-03-18 12:57:17</sys_created_on>
+        <sys_id>1b79c680c337b6501bf5fe1d0501318b</sys_id>
+        <sys_mod_count>20</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 13:57:52</sys_updated_on>
-        <ui_id>7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6</ui_id>
+        <sys_updated_by>Elizabeth Carpenter</sys_updated_by>
+        <sys_updated_on>2026-03-20 13:49:58</sys_updated_on>
+        <ui_id>522a1196-cd67-48e4-9bb9-61183d1cf450</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/+2Y227bOBCGX4XQtevK5zh3aYNgC2wPSL3di6YQKJKyuKVElaTieoO8+w4l6hQnjmEnQRbwnTXiDP/hfEOK/n7jceqdemN64k/DaIxn/mg48v2T4XwejuaRfzKb+wNCvZ6X4oTBSMWIVPb5GovcGuAn5ToTeP2tsZCYC6pY6p1+/9HzMqzA2TDlnd7ceWXWGQsEDpkAx3NJ8oSlBn04hxi7Cqu8F1gtmUGXlcC7gu1U8EzdJAG3RnhlZfk9j/02LKUMJo2w0KznJTil2Ei1ri2KYfo5FY0h5qmBkGdaS8KxYRqZmCGWYC7QipsYYVRO3/dsvN+a/wsSRkMbKmKwCMQq4inhFBR5LXPg1hRef2hek1hywj5nhsu0XGiDQ1GtuRR5kn4qs7ZVYRHOhWlVJdcQl2U2TavbqBxyiL7GcnVZzXvB02JBXIJCEizqJ2yM4mEOeRaFFAyrJl5QSLIxYSYmWLHGCc4yni6DTMlrXgQGmUl/KeChHwm5An/Nl2kfE5tTHxYc9y/Afl6Yv2HFbYIfIQw43xYLFPzKraYyxe7kdmxQ1B2GaqJ4Zs4g8DVzKdz2HO+D+Tas6LjBpxXzWZhf2PjoUxl/V20d5we0Otw7Nkf74CDaF4C4KXuthBsZJ6Mm/MTvEv4A2U9OtBO6N9LPgy3UVQcljS63YvJHcX4MYn86DcNpOJmNGlDmJKKzMJriGRk1YKxgb1IJVj+DYm9qkTzYRNm18J44g/PbiyK93s4qK2fY6UROGfq7krstA8d3KCXsQ2kD9/AguEsSkZEIaifWsIHXM1tjs72bGBvENdJQrj5aSMSd+JZHD61ljpJcGxhm4E2nbTpnwvhFOsaV1lnP7637/6KlDm2dyfY9Fjfg4TgwstUwNzd/ZaCN0WDQJ7lStvx5gLUVCcY0VzDNLbpvWD0IPkEARhi12XxPHX6/Lv4KFUyXVQfvsFh1+8vNlXONqquYrk9H2/u0/DjZaNPWEeMfD5nOIUOZ4Akvilv28qFNQrfWnfmdUhPyPN9HXRR3kFQ5vn+/qe8BFMf7HRlHFl+OxcHWeyCbdmodvgyMO2iqHN/doTHchuPkiONrx3GyvfSkU2ydh/8wYlpIfsGG2/854AuMxPabEJ1lNlcs0CX7lXPF6Ca1uzk9yYH/eHa1Y53bffk+APj0ePS/po9hvLXc0bC7c0m6bpF8lfv+iGTIKnxjeLpOCFNSmhCW4Wfxkl55V+UwdoYqhuHiZOu7RpFUiNZAAwNgL1jW9u6k7C2sQLxfTvQ2KyNdpW7i8vELXAE1Q0Iu4Rpm72mKXXO2KuKVEVhxdbOxmTZ3gm22Wif461W9X6//sfj4Z9XpO5S+PsLKwm+Q4Ho8NoloOnx24BE2nUxG02OPt8+wbEWHVMksc7kddI79+A9pCnwa+RcAAA==</values>
+        <values>H4sIAAAAAAAA/+1YXW/aPBT+K5WvKa9DSBp6Vw1V2rR3m/qxm1JFxj5pPZkki5OtDPHfdxw7JIOO0ZVK7dQbhI+/nvP4eTg2VwsiBTkmMAz9AD+OEp96A49GEEYRH1HGozAMhj7pkZTNAEeyPC+yb0zFBTCdpdiBjcr04Fchda7Y/HMb4bdSiQJScnx13SM5K3CVEgpyvFjr2hWGYlNQOPTE4Tg4a3D8FmA5z02HLguZ3rj2e7fMeRPMCmFgDXoE7kpIBSCehCkNPTJjqWBlVsxXEVxafExVG7iVaWkTnrE7LX/gfl5IzcAEMEXu2Fg1Y8eUDSdjVjJEUvGyKlbEZZKDtuQISFilyjfdmB3wMS8lJllPKdlUNbMzVc3SD5YRslqgczCVRhCQm0wNdJdHcn6bfT9rUJ7KtCbFdaqMM7VqsRKpm1alwbMglbxYY9lGNngGBTPcMZ7hOWEkNocl610Q9Kx/o7DRT1T2HdFpeZP2GTcZ9vEEWP8U4+M6/JkV0qT7Py6Dk812l6n8WsFbo6NwMA1HNBKHIqHTw2HkB4eMAz2E0AsgECEPPJ8se0TP9RvFtG6JwhOKv1YmTUubIyi2HJspvJB5eYKgvoHjYtlzLqJeMoDRaECnHqU+pVHAaeTD1D8Kj3wmontEmkhQYr8m2gHFholOHYzfwXMWqptxPehXG9XzDz7Yjr1bKaL0JXkJN3+MlZ7GIQ9Xu6XgD5LnW8UGncLxJauK9GkUvwOIRvHvLIp1wa+D+xu9+696//f1fhRtkxqnraQK4CiMjtAXi8scMYOIvT6vCqSpXC73oP4dIDXqP2swrWN0ehcZr+qzkGJN8GPXc/B23Cqeble81cUugvcHr3J/lnLnwTZtJaNWSqJCklDdXcFPiMU+IccTkmYpTEhvQsyo2GirDuMIRLjqqGOLxXJpI1XB3AJep9nOFmyu65Ga34KolI3+Eolr8bv4Pvy2AyeN38YVHIwtKZs0Nc+SBqflRW7UmnM3oF7pvwvZrTnB3mrO8CVVnMe+Vp7uERI3V2fjMPyheIJXxnCr/qAjttU1nmepkCYD3bGnvfyDPoMvwEt9otTl1T01qo/IMVcMYXVAWS2X15smetRaD7PfDumvyh26Rv+JDmfD9m8DN6lrwfbPBtfp7DfcVwF8YTe+5+m//VttyrderXirLctma6672BsFw4D6sZ6xouQxjXOsXYa9DfN8WnU8zAk7oGuccOHgraF12q+b9z1z6mlrzxzvgSXHmuBezb8q/tko/vonUvcSKgoWAAA=</values>
     </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=d2471accc377b6501bf5fe1d05013170"/>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=1b79c680c337b6501bf5fe1d0501318b"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Update Record">f9d01dd2c31332002841b63b12d3aea1</action_type>
+        <action_type_parent display_value="Update Record">baf174c8c3c232002841b63b12d3aee4</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>f9d01dd2c31332002841b63b12d3aea1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
+        <generation_source/>
+        <order>5</order>
+        <parent_ui_id>705193ea-0ce6-4dac-bdfb-296d159ad603</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 13:19:06</sys_created_on>
+        <sys_id>3a7e4e0cc337b6501bf5fe1d05013100</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>Elizabeth Carpenter</sys_updated_by>
+        <sys_updated_on>2026-03-20 13:49:58</sys_updated_on>
+        <ui_id>f377bebc-5a0e-4828-b0d5-18f5661a2427</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+VVXW/aMBT9K5WfEUoIoMLbVIQ0qWunduOlq6Ib+wYsOR+zHQpD/PfdJE6IoO2o1Bc03nw/nHNOziFPOyYFm7IhCs+f+GMe+EEw8LzB9dCPxkHkD0QAiD7rsRQSpEmNPNOCzmtQRVnY7X7mAiyK0O/zQmtM7X5PfSFNrmC7cGNU4SupBPXZ9Om5x3LQdKNFzaa7o9a5kBREqGj0ocF0jNFu8/IsMl4khCuUTfHWbc5c5+rrjDq0VMLxvR7DjcVUIAGJQRnssQRSYpnpLZtaXVBBI4j7VG3biZVMbU00gY2Rf+jJQ6+ci5GYcSdCewydQHU5noGFR7qZ20K3emWSo6k1ERhDoexNt1YP3OdWZmm9YiFSzXamiiS9qxVh7QWd91EYAoF5ybNEXtOKH1fZy0MDci7TShJHUWUcVHsCa7WMClvC2TFUWGmcQJ7LdBnmOlvLapmgJP2lokM/VtkLPdPIZdoHXuLuk6rQn1N9VpUXoGVJ4htdQ8v7HjNbc6PAmAMV0jD8XZRIamKOQlipUEkQVk4ol7mWuf1Cj1qjA77vOdNHo/ccxicHQ3XuPBh/E/qT0XDkBaFJQFseemEOVpZanrj/e9v4WAjOgNiE4Ef16l+H7HJwUrvt7l7d1Q2XgtGnpeD6klLgaFx8DP5lfm/w7t9rx0mV303H+MbS3/2vwvMCQW+Pr0AvUZx6/q2xjyXgDJxNAuYSlTCvAG/sjwnhsxjWRI4i4JpXC9dsPwaflgN/7FW/C0rDf/NNeP4Lu8LfAQoJAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=3a7e4e0cc337b6501bf5fe1d05013100"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Update Record">f9d01dd2c31332002841b63b12d3aea1</action_type>
+        <action_type_parent display_value="Update Record">baf174c8c3c232002841b63b12d3aee4</action_type_parent>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>f9d01dd2c31332002841b63b12d3aea1</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
+        <generation_source/>
+        <order>7</order>
+        <parent_ui_id>77b9cdc8-baaf-479d-9aa7-8bd2564baeeb</parent_ui_id>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 13:20:51</sys_created_on>
+        <sys_id>64ee8a4cc337b6501bf5fe1d0501311f</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>Elizabeth Carpenter</sys_updated_by>
+        <sys_updated_on>2026-03-20 13:49:58</sys_updated_on>
+        <ui_id>48971e3d-84d4-40dc-9576-e120b6972d10</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+VVXW/aMBT9K5WfoyghgApvUxHSpK6d2o2Xrooc+wYsOR+zHQpD/PddJ06IoGJU6gta3u6Xfc7JPcnLjghOpmQIPAgn4ZhFYRQNgmBwOwyTcZSEAx5RgJB4JKcZYKcCViiO8ZrKyiZ2u58lpwZ4HPqsUgpys99jnQtdSrpduDbMsJWQHOtk+vLqkZIqPNGAItPdUelSSJImILH1qcV0jNFsSxvzglUZ4opFm7x3kzNXufk6wwoOWThh4BHYGMg5IJCUSg0eyWiOLAu1JVOjKkwooPwxl9uuYyVy0xDN6EaLP3jzMLB9KSAz5kTowtgJ1KTTGTX0GU9mplKdXoVgoBtNOKS0kuaun2saHksjirwZMTSR7XQhqyx/aBQh3QG991FpBAGl5WmRN7TS51Xx9tSCnIu8lsRRlAWjsouoMUoklbFwdgQk1BpntCxFvoxLVaxFPYxQMn8pMfBTWbzhnVosc58yi9tHVak/x/ysTi+oEpbENzwGh/ce0Vt9J6nWByqoYfy7skgaYo5CXKtQSxDXm2CHmRKl+YJXrcEB33tu6ZPRuQ1jk8NC9c48LP4mDiej4SiIYp1RZVgcxCU1wmp5sv3fu8LHTHABxNYEP+pX/z5k54OT3H1/9uahKTgXjD7NBbfX5AJH4+pt8K/lDwZnP6+9Tar3XfcWXxv83P+qgiDiiZDSshRaV3C69mc6P+aDC9C2PpgLkFy/A781AWQI0UDc0DkygiveLFyx+yV8mhvCcVA/V+SJ/+bP8PoXCbMtNRAJAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=64ee8a4cc337b6501bf5fe1d0501311f"/>
+    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
+        <action_type display_value="Ask For Approval">f8f2e9920b10030085c083eb37673abd</action_type>
+        <action_type_parent/>
+        <attributes/>
+        <comment/>
+        <compiled_snapshot>f8f2e9920b10030085c083eb37673abd</compiled_snapshot>
+        <display_text/>
+        <flow display_value="Patient Discharge Approval flow">66770a8cc3f3b6501bf5fe1d050131f7</flow>
+        <generation_source/>
+        <order>3</order>
+        <parent_ui_id/>
+        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
+        <sys_created_by>godwin</sys_created_by>
+        <sys_created_on>2026-03-18 13:06:21</sys_created_on>
+        <sys_id>c89b8e84c337b6501bf5fe1d0501313b</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_updated_by>Elizabeth Carpenter</sys_updated_by>
+        <sys_updated_on>2026-03-20 13:49:58</sys_updated_on>
+        <ui_id>af3e825a-f7dc-489c-8776-b4b6ec5646a3</ui_id>
+        <updation_source/>
+        <values>H4sIAAAAAAAA/+1Y227bOBD9lYDPjpeyLFnOW1AjRYtuWyRpX+JAoMhRwkKWVFFq4xr+9x2K1KV26jpbB0iKvBjmDC9nDs8xSV+tiBTkhMDYdz38mMQudUYODcAPAj6ljAe+741dMiApWwD2ZHleZN9YEhbAVJZiAhuVzuBXIVWesOXnLsJvZSIKSMnJ1fWA5KzAWUooyMlqI7UvjIRFkGDXU4vj6LzB8UuA5TLXCVUWMr2x7Xd2mosmmBVCwxoNCNyVkApAPDFLFAzIgqWClVmxbCM4tfiQJl3gVqalKXjB7pT8ges5PtUdY8ASuWWjbYaWKROOZ6xkiKTiZVW0xGWSgzLkCIhZlZSv+jHT4UNeSiyyHlKyKGlGZ0m1SN8bRkg7QW9jKoUgINeVaui2jvjiNvt+3qA8k2lNik0mGWdJ22IlUhdVpcazIpW83GDZRLZ4hgQWuGK4wH3CSKg3S9arIOjF8CbBxjBOsu+ITsmbdMi4rnCIO8CGZxif1eHPrJC63H9xGhysl/uUyq8VvNE68keRP6WBOBYxjY7HgesdMw70GHzHA0/43HNcsh4QtVSvEqZURxTuUPi10mUa2ixBoeFYD+GFzMtTBPUNLBfrgXURdeIRTKcjGjmUupQGHqeBC5E78ScuE8E9Io0lJOKwJtoDxZaJziyMX8GzFqqbYd3pZxvV44/em8TBrRRQ+py8hIv/iZUexyEPV7uh4DeS5zvFBr2D40tWFenjKH4PEI3i3xoUm4LfBPd/9O6+6P3v1/sk2CU1TjtJFcBRGD2hr1afcsQMInSGvCqQpnK9PoD694DUqP+8wbSJ0epdZLyq90KKDcHPbObozaxTPN2teKOLfQTvjl7k/iTlzr1d2oqnnZREhSShuvuCnxODfU5O5iTNUpiTwZzoXqHWVh3GHoiwTdSx1Wq9NpGqYHYCp9fsRgu2VHVPxW9BVImJ/hQJa/Hb+CH8tgcnjd9mFRzNDCnbNDXPkgan4UVunTUXtkM90z+Xsn/meAc7c8bP6cT509fK4z1CwubqrB2GPxSP8MoY79Qf9MTWXuN5lgqpK1A9e5rLP6hz+AK8VKfp8vXVaqVKtBgful7EqT8OuOtOIt+jThR7MTiC4lfXAWe9vt620gFmfJgV96CiPfrQQep31FhLdn8h2EF9O3Z/PNikteL4UIfhM7v9PU0vHt52Ed95zeKdtgybndHuQmfqjT3qhmrBipKHNMzREpq9LQt9bBMPc8Ie6BonXFp4G2it9uvmfU+eetjGk8d54PFjTHCv5l8U/2QUf/0fg+entxYWAAA=</values>
+    </sys_hub_action_instance_v2>
+    <sys_hub_alias_mapping action="delete_multiple" query="source_id=c89b8e84c337b6501bf5fe1d0501313b"/>
     <sys_hub_sub_flow_instance_v2 action="delete_multiple" query="flow=66770a8cc3f3b6501bf5fe1d050131f7"/>
     <sys_hub_flow_logic_instance_v2 action="delete_multiple" query="flow=66770a8cc3f3b6501bf5fe1d050131f7^sys_idNOT IN7f0e8ec8c337b6501bf5fe1d05013171,bbce064cc337b6501bf5fe1d05013180"/>
     <sys_hub_flow_logic_instance_v2 action="INSERT_OR_UPDATE">
@@ -543,17 +519,17 @@
         <flow_variables_assigned/>
         <generation_source/>
         <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
-        <order>5</order>
+        <order>4</order>
         <outputs_assigned/>
         <parent_ui_id/>
         <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:17:16</sys_created_on>
         <sys_id>7f0e8ec8c337b6501bf5fe1d05013171</sys_id>
-        <sys_mod_count>13</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:07</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:06</sys_updated_on>
         <ui_id>705193ea-0ce6-4dac-bdfb-296d159ad603</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+1UXW/TMBT9KyjPaWQnTVj7NoEmIQGT2LQXmKIb22ktHDvYTrtS9b9znY+2Yp1AaI+8xce5955zcm72kel823l3b66dkysdLb8+xpHUAcPnfaShEdEyYkZz6aXRZQ/E0QZUFy7wkUvXKtg9nBC2lopbMXZrwWKNFzZa7n+78rtWlAoqobDwzlupV1guOZ5qAjVdMMqytMhSQtKrOa2KrKIpz0BAhu9Nhe8mcm8+9kj8IuswD3E3TTKWB1qUxJF48kJzgaNrUE7EUQOagzd2d0SsAH6r1QlYS+0HxQ08OfkTe6d5Hl6sBWpkox3HYzlaNblkJBO3bSA4IB4qNVloVNfoz4OOYLKooVP+zOTOYT/RBtKBxUipvlub7Zdp4I3UvcDxUhkG6ngCjzZUnRcufBihRIONygbaFs0pW2s2si9GLk2yUnhIamW2ODQkJQEWiCfoESQ3iL/v4QewMqj4hG2weKBZgZOs7FOF7bxFCYfelvJHFwgNAkcp5eAGvuCYla2/xjkbMbI+xM8jeZbG/T5PU6B0UcwYL97O5ldiPltU1WJWUHqVccrqeU4S5IbqQJXOgxeHw7eOkIwPKCbgWaRfq+1r7MUC8jqnJL+8F/Pi0l5c2IiXlyH9wzKEz/eXu0AI+b8M58sgXTmEetTWD//nXXgMwR8muCE3XDDpkMh9wD5Mf/FwscMASHYObY39HiScsMMvfGENrg8GAAA=</values>
@@ -570,17 +546,17 @@
         <flow_variables_assigned/>
         <generation_source/>
         <logic_definition display_value="Else">1f781bf3c32232002841b63b12d3aee6</logic_definition>
-        <order>7</order>
+        <order>6</order>
         <outputs_assigned/>
         <parent_ui_id/>
         <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:20:32</sys_created_on>
         <sys_id>bbce064cc337b6501bf5fe1d05013180</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:07</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:06</sys_updated_on>
         <ui_id>77b9cdc8-baaf-479d-9aa7-8bd2564baeeb</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
@@ -673,7 +649,7 @@
         <description/>
         <flow_priority>MEDIUM</flow_priority>
         <internal_name>patient_discharge_approval_flow</internal_name>
-        <label_cache>[{"name":"Updated_1.current.u_assigned_nurse","label":"Trigger - Record Updated➛Patient Record➛Assigned Nurse ","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"u_assigned_nurse","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["approval_conditions"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current.assigned_doctor","label":"Trigger - Record Updated➛Patient Record➛Assigned Doctor","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"assigned_doctor","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["approval_conditions"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current","label":"Trigger - Record Updated➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["record"],"024f2c2a-b1e9-45cc-9037-e07b88292d54":["record"],"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["record"],"f377bebc-5a0e-4828-b0d5-18f5661a2427":["record"],"48971e3d-84d4-40dc-9576-e120b6972d10":["record"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["record","notification"]},"attributes":{}},{"name":"{{static.35bc0648c337b6501bf5fe1d050131e1}}","label":"Receptionist Group","reference":"sys_user_group","reference_display":"Group","type":"reference","base_type":"reference","usedInstances":{"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["approval_conditions"]}},{"name":"522a1196-cd67-48e4-9bb9-61183d1cf450.approval_state","label":"2 - Ask For Approval➛Approval State","reference_display":"Approval State","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":0.0},{"label":"Not Yet Requested","value":"not requested","order":1.0},{"label":"Requested","value":"requested","order":2.0},{"label":"Approved","value":"approved","order":3.0},{"label":"Rejected","value":"rejected","order":4.0},{"label":"Cancelled","value":"cancelled","order":5.0},{"label":"No Longer Required","value":"not_required","order":6.0},{"label":"Skipped","value":"skipped","order":7.0}],"usedInstances":{"705193ea-0ce6-4dac-bdfb-296d159ad603":["condition"]},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}},{"name":"Updated_1.changed_fields","label":"Trigger - Record Updated➛Changed Fields","type":"array.object","base_type":"array.object","usedInstances":{},"attributes":{"uiTypeLabel":"Array.Object","co_type_name":"FDCollection","child_label":"FDChangeDetails","child_type_label":"Object","element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper","pwd2droppable":"true","uiType":"array.object","child_type":"object","child_name":"FDChangeDetails"}},{"name":"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6.email","label":"1 - Send Email➛email","reference":"sys_email","reference_display":"Email","type":"reference","base_type":"reference","usedInstances":{},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}}]</label_cache>
+        <label_cache>[{"name":"Updated_1.current.email","label":"Trigger - Record Updated➛Patient Record➛Email","reference":"","reference_display":"Email","type":"string","base_type":"string","parent_table_name":"x_1954503_smartc_0_patient","column_name":"email","usedInstances":{}},{"name":"Updated_1.changed_fields","label":"Trigger - Record Updated➛Changed Fields","type":"array.object","base_type":"array.object","usedInstances":{},"attributes":{"uiTypeLabel":"Array.Object","co_type_name":"FDCollection","child_label":"FDChangeDetails","child_type_label":"Object","element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper","pwd2droppable":"true","uiType":"array.object","child_type":"object","child_name":"FDChangeDetails"}},{"name":"522a1196-cd67-48e4-9bb9-61183d1cf450.approval_state","label":"1 - Ask For Approval➛Approval State","reference_display":"Approval State","type":"choice","base_type":"choice","choices":[{"label":"-- None --","value":"","order":0.0},{"label":"Not Yet Requested","value":"not requested","order":1.0},{"label":"Requested","value":"requested","order":2.0},{"label":"Approved","value":"approved","order":3.0},{"label":"Rejected","value":"rejected","order":4.0},{"label":"Cancelled","value":"cancelled","order":5.0},{"label":"No Longer Required","value":"not_required","order":6.0},{"label":"Skipped","value":"skipped","order":7.0}],"usedInstances":{"705193ea-0ce6-4dac-bdfb-296d159ad603":["condition"]},"attributes":{"element_mapping_provider":"com.glide.flow_design.action.data.FlowDesignVariableMapper"}},{"name":"{{static.35bc0648c337b6501bf5fe1d050131e1}}","label":"Receptionist Group","reference":"sys_user_group","reference_display":"Group","type":"reference","base_type":"reference","usedInstances":{"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["approval_conditions"]}},{"name":"Updated_1.current","label":"Trigger - Record Updated➛Patient Record","reference":"x_1954503_smartc_0_patient","reference_display":"Patient","type":"reference","base_type":"reference","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["record"],"024f2c2a-b1e9-45cc-9037-e07b88292d54":["record"],"af3e825a-f7dc-489c-8776-b4b6ec5646a3":["record"],"f377bebc-5a0e-4828-b0d5-18f5661a2427":["record"],"48971e3d-84d4-40dc-9576-e120b6972d10":["record"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["record","notification"]},"attributes":{}},{"name":"Updated_1.current.assigned_doctor","label":"Trigger - Record Updated➛Patient Record➛Assigned Doctor","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"assigned_doctor","usedInstances":{"522a1196-cd67-48e4-9bb9-61183d1cf450":["approval_conditions"],"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current.u_assigned_nurse","label":"Trigger - Record Updated➛Patient Record➛Assigned Nurse ","reference":"sys_user","reference_display":"User","type":"reference","base_type":"reference","parent_table_name":"x_1954503_smartc_0_patient","column_name":"u_assigned_nurse","usedInstances":{"e111245f-cac3-4c9a-a0be-ebe4601025c8":["notification"],"7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6":["ah_to"]}},{"name":"Updated_1.current.assigned_doctor.email","label":"Trigger - Record Updated➛Patient Record➛Assigned Doctor➛Email","reference":"","reference_display":"Email","type":"email","base_type":"email","parent_table_name":"sys_user","column_name":"email","usedInstances":{}},{"name":"Updated_1.current.u_assigned_nurse.email","label":"Trigger - Record Updated➛Patient Record➛Assigned Nurse ➛Email","reference":"","reference_display":"Email","type":"email","base_type":"email","parent_table_name":"sys_user","column_name":"email","usedInstances":{}}]</label_cache>
         <master>true</master>
         <name>Patient Discharge Approval flow</name>
         <natlang/>
@@ -690,7 +666,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>cd9f02ccc337b6501bf5fe1d05013187</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name/>
         <sys_overrides/>
         <sys_package/>
@@ -698,7 +674,7 @@
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name/>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <type>flow</type>
         <version>2</version>
     </sys_hub_flow_snapshot>
@@ -866,14 +842,14 @@
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>819f02ccc337b6501bf5fe1d050131a9</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name/>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:08</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -950,14 +926,14 @@
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>899f02ccc337b6501bf5fe1d0501318b</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name/>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:08</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -995,7 +971,7 @@
         <trigger_type>record_update</trigger_type>
         <updation_source/>
     </sys_hub_trigger_instance_v2>
-    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=cd9f02ccc337b6501bf5fe1d05013187^sys_idNOT IN1d9f02ccc337b6501bf5fe1d050131ce,5d9f02ccc337b6501bf5fe1d050131cf,7b88d280c3b7b6501bf5fe1d050131d4,9d9f02ccc337b6501bf5fe1d050131cb,9d9f02ccc337b6501bf5fe1d050131d0,d99f02ccc337b6501bf5fe1d050131cd"/>
+    <sys_hub_action_instance_v2 action="delete_multiple" query="flow=cd9f02ccc337b6501bf5fe1d05013187^sys_idNOT IN1d9f02ccc337b6501bf5fe1d050131ce,5d9f02ccc337b6501bf5fe1d050131cf,9d9f02ccc337b6501bf5fe1d050131cb,9d9f02ccc337b6501bf5fe1d050131d0,d99f02ccc337b6501bf5fe1d050131cd"/>
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
         <action_type display_value="Ask For Approval">f8f2e9920b10030085c083eb37673abd</action_type>
         <action_type_parent display_value="Ask For Approval">bae0a1120b10030085c083eb37673a92</action_type_parent>
@@ -1005,16 +981,16 @@
         <display_text/>
         <flow display_value="Patient Discharge Approval flow">cd9f02ccc337b6501bf5fe1d05013187</flow>
         <generation_source/>
-        <order>4</order>
+        <order>3</order>
         <parent_ui_id/>
         <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>1d9f02ccc337b6501bf5fe1d050131ce</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <ui_id>af3e825a-f7dc-489c-8776-b4b6ec5646a3</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+1Y227bOBD9lYDPjpeyLFnOW1AjRYtuWyRpX+JAoMhRwkKWVFFq4xr+9x2K1KV26jpbB0iKvBjmDC9nDs8xSV+tiBTkhMDYdz38mMQudUYODcAPAj6ljAe+741dMiApWwD2ZHleZN9YEhbAVJZiAhuVzuBXIVWesOXnLsJvZSIKSMnJ1fWA5KzAWUooyMlqI7UvjIRFkGDXU4vj6LzB8UuA5TLXCVUWMr2x7Xd2mosmmBVCwxoNCNyVkApAPDFLFAzIgqWClVmxbCM4tfiQJl3gVqalKXjB7pT8ges5PtUdY8ASuWWjbYaWKROOZ6xkiKTiZVW0xGWSgzLkCIhZlZSv+jHT4UNeSiyyHlKyKGlGZ0m1SN8bRkg7QW9jKoUgINeVaui2jvjiNvt+3qA8k2lNik0mGWdJ22IlUhdVpcazIpW83GDZRLZ4hgQWuGK4wH3CSKg3S9arIOjF8CbBxjBOsu+ITsmbdMi4rnCIO8CGZxif1eHPrJC63H9xGhysl/uUyq8VvNE68keRP6WBOBYxjY7HgesdMw70GHzHA0/43HNcsh4QtVSvEqZURxTuUPi10mUa2ixBoeFYD+GFzMtTBPUNLBfrgXURdeIRTKcjGjmUupQGHqeBC5E78ScuE8E9Io0lJOKwJtoDxZaJziyMX8GzFqqbYd3pZxvV44/em8TBrRRQ+py8hIv/iZUexyEPV7uh4DeS5zvFBr2D40tWFenjKH4PEI3i3xoUm4LfBPd/9O6+6P3v1/sk2CU1TjtJFcBRGD2hr1afcsQMInSGvCqQpnK9PoD694DUqP+8wbSJ0epdZLyq90KKDcHPbObozaxTPN2teKOLfQTvjl7k/iTlzr1d2oqnnZREhSShuvuCnxODfU5O5iTNUpiTwZzoXqHWVh3GHoiwTdSx1Wq9NpGqYHYCp9fsRgu2VHVPxW9BVImJ/hQJa/Hb+CH8tgcnjd9mFRzNDCnbNDXPkgan4UVunTUXtkM90z+Xsn/meAc7c8bP6cT509fK4z1CwubqrB2GPxSP8MoY79Qf9MTWXuN5lgqpK1A9e5rLP6hz+AK8VKfp8vXVaqVKtBgful7EqT8OuOtOIt+jThR7MTiC4lfXAWe9vt620gFmfJgV96CiPfrQQep31FhLdn8h2EF9O3Z/PNikteL4UIfhM7v9PU0vHt52Ed95zeKdtgybndHuQmfqjT3qhmrBipKHNMzREpq9LQt9bBMPc8Ie6BonXFp4G2it9uvmfU+eetjGk8d54PFjTHCv5l8U/2QUf/0fg+entxYWAAA=</values>
@@ -1029,45 +1005,21 @@
         <display_text/>
         <flow display_value="Patient Discharge Approval flow">cd9f02ccc337b6501bf5fe1d05013187</flow>
         <generation_source/>
-        <order>6</order>
+        <order>5</order>
         <parent_ui_id>705193ea-0ce6-4dac-bdfb-296d159ad603</parent_ui_id>
         <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>5d9f02ccc337b6501bf5fe1d050131cf</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <ui_id>f377bebc-5a0e-4828-b0d5-18f5661a2427</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+VVXW/aMBT9K5WfEUoIoMLbVIQ0qWunduOlq6Ib+wYsOR+zHQpD/PfdJE6IoO2o1Bc03nw/nHNOziFPOyYFm7IhCs+f+GMe+EEw8LzB9dCPxkHkD0QAiD7rsRQSpEmNPNOCzmtQRVnY7X7mAiyK0O/zQmtM7X5PfSFNrmC7cGNU4SupBPXZ9Om5x3LQdKNFzaa7o9a5kBREqGj0ocF0jNFu8/IsMl4khCuUTfHWbc5c5+rrjDq0VMLxvR7DjcVUIAGJQRnssQRSYpnpLZtaXVBBI4j7VG3biZVMbU00gY2Rf+jJQ6+ci5GYcSdCewydQHU5noGFR7qZ20K3emWSo6k1ERhDoexNt1YP3OdWZmm9YiFSzXamiiS9qxVh7QWd91EYAoF5ybNEXtOKH1fZy0MDci7TShJHUWUcVHsCa7WMClvC2TFUWGmcQJ7LdBnmOlvLapmgJP2lokM/VtkLPdPIZdoHXuLuk6rQn1N9VpUXoGVJ4htdQ8v7HjNbc6PAmAMV0jD8XZRIamKOQlipUEkQVk4ol7mWuf1Cj1qjA77vOdNHo/ccxicHQ3XuPBh/E/qT0XDkBaFJQFseemEOVpZanrj/e9v4WAjOgNiE4Ef16l+H7HJwUrvt7l7d1Q2XgtGnpeD6klLgaFx8DP5lfm/w7t9rx0mV303H+MbS3/2vwvMCQW+Pr0AvUZx6/q2xjyXgDJxNAuYSlTCvAG/sjwnhsxjWRI4i4JpXC9dsPwaflgN/7FW/C0rDf/NNeP4Lu8LfAQoJAAA=</values>
     </sys_hub_action_instance_v2>
     <sys_hub_alias_mapping action="delete_multiple" query="source_id=5d9f02ccc337b6501bf5fe1d050131cf"/>
-    <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
-        <action_type display_value="Send Email">c1806bf4a70323008299b39f087901cb</action_type>
-        <action_type_parent display_value="Send Email">98c181d20b100300d97d8bf637673ab5</action_type_parent>
-        <attributes/>
-        <comment/>
-        <compiled_snapshot>c1806bf4a70323008299b39f087901cb</compiled_snapshot>
-        <display_text/>
-        <flow display_value="Patient Discharge Approval flow">cd9f02ccc337b6501bf5fe1d05013187</flow>
-        <generation_source/>
-        <order>1</order>
-        <parent_ui_id/>
-        <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
-        <sys_created_by>godwin</sys_created_by>
-        <sys_created_on>2026-03-18 14:03:08</sys_created_on>
-        <sys_id>7b88d280c3b7b6501bf5fe1d050131d4</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:08</sys_updated_on>
-        <ui_id>7f8e9ec9-2b3f-4753-aa2d-2758ef14eaa6</ui_id>
-        <updation_source/>
-        <values>H4sIAAAAAAAA/+1Y23LbNhD9FQyfVYW6W35zrfE0M85lbDd9iDMcEABFNCDBAKAV1eN/74IEb5KrSLE6tad+ExfA4uzinF1An+89Tr1Tb0xP/GkYjfHMHw1Hvn8ynM/D0TzyT2Zzf0Co1/NSnDCYqRiRyn7fYZFbA/ykXGcCrz81FhJzQRVLvdPPX3pehhUsNkx5p/cbQ/vuLnDIBEy9wWrJDLqqUGyiMuvMflNJ8oSlJuCV8dI5WLgR9HYBI7DIovJ7HvtuWEoZwImw0KznJTil2Ei1ri2KYfohFY0h5qkBl2daS8KxYRqZmCGWYC7QipsYYVQC63vW33fN/wJwo6F1FTHIAbFYeUo4BUReyxy4lMLw22Y4WmCDr43KiclVnWnJCdNlNimLcC7MedtWTviQGS7TconBoahWS5En6fsyiV7toHWSuQYwLLO5scHC5hB4dB3L1VUF9oKnRRZdVoQkWNRf0TXDisQXnAl71GmehDC352FjFA9zY2ECKQTMavYJCqh2L5jJBCuOMsFZxtNlkCl5x4sNAX7SXwr46EdCrmC95su0j4mNtQ+nh/sXYF8U5k9YcRv4O3ADix96nl7rc4G1bsKH/Affcou+TEYXjl0dFISzi4nimTmDre6YC/ah59Q0mO/iMx03vG35PKqi9kDQKMqy4XFETk1btsv2WvS+HHBaGhyopZJRTko3oB9TSrxUDjIOXi2fE78rn3+QzfOQSy2CvfXS1cW/w30giQ5KArvYis1/QhM/UoI/nYbhNJzMRg0P5ySiszCa4hkZNbxbQf1UCVZfg6J+tuQw2NaDqwyHaWIPLJUmoOaKnDL0RwVqF04nklBKKGLppkIA6ZuLIru1QoZP6jYlNZGRCA5TrKHH1JCsselAJsYGcY00nFYf3UjEXVStFT20ljlKcm1gmoGRjvg6bWv8fHXn6OCsi0e58iKEeXwBTnY3AtwQG8eBkS3Z3d//ngFaRoNBn+RKWRblASAD2GBMcwXbPKDHptWT4BoGnIZZ2xI+tvvDasEeaan7o9zOkZO8Bkakyw3FX1dGp/bRbrWX7W9L7K125z9f4b0UXVnggie8IERZEY4vNbqTU8zv0IiQ41749ti8IvT5+TaSQwg9/rn29croF8fowc53OZt2eBQem9J77F5R+tcNTocHk3rySur/Caknu2lFOkTSefgnI6ZF7I/YcPv3EdwySWwvy+gss9Fjga7Yt5wrRre5v9+iA68wP46jksd1HcVjkR0ik+nrZeY/V8nxJYF3UikadmurpOuWHm5z3x+RDFnMvxierhPClJQmhMR8LQbprXdbTmNnqFICvEstTdYokgrRWhZAJbAXitD2aarsI7cQSr/c6E1WerpN3cbl50d4emuGhFzCK9c+gxW742xV+Cs9sOJlbH0zbTacbQu24/z5oj6sYuxxzHVDLQ9569RdrYhNIjYqxW837y6bOjF7YjudTiaj6WuleHI/zVZ0SJXMMhfbkXvql78BweL/MkAaAAA=</values>
-    </sys_hub_action_instance_v2>
-    <sys_hub_alias_mapping action="delete_multiple" query="source_id=7b88d280c3b7b6501bf5fe1d050131d4"/>
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
         <action_type display_value="Ask For Approval">f8f2e9920b10030085c083eb37673abd</action_type>
         <action_type_parent display_value="Ask For Approval">bae0a1120b10030085c083eb37673a92</action_type_parent>
@@ -1077,19 +1029,19 @@
         <display_text/>
         <flow display_value="Patient Discharge Approval flow">cd9f02ccc337b6501bf5fe1d05013187</flow>
         <generation_source/>
-        <order>2</order>
+        <order>1</order>
         <parent_ui_id/>
         <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>9d9f02ccc337b6501bf5fe1d050131cb</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <ui_id>522a1196-cd67-48e4-9bb9-61183d1cf450</ui_id>
         <updation_source/>
-        <values>H4sIAAAAAAAA/+1YXW/bIBT9KxXPaYbj2HX6Vi2qtGlf6tdLU1kEcMtEbM+YrVmU/76LwR9Lsizd0qmd+hKFywUOh3NyIdcLJBg6RnwY+gF8HCU+9gYejngYRXSECY3CMBj6qIdSMuOQSfK8yL4SGRecqCyFDmho0wNfmVC5JPOrNkLvhGQFT9Hx9U0P5aSAWUpeoOPFSteuMCSZcgmpJw7HwVmN45cAy3luOlRZiPTWtd+5ac7rYFYwA2vQQ/y+5CnjgCchUvEempGUkTIr5k0EpmYfU9kG7kRa2g3PyL0S32E9L8QmMeGwRerYaJqxY8qGkzEpCSDRtNRFQ1wmKFeWHMYTomX5uhuzCR/zUsAmqyElmcp6dCb1LP1gGUHNBJ2D0QpA8Nzs1EB3+0jO77JvZzXKU5FWpLhOmVEimxYpgbqpLg2eBdLiYoVlG1njmUs+gxXjGZwTRGJzWKJaBUDP+rcSGv1EZt8AnRK3aZ9Qs8M+nADpn0J8XIWvSCHMdt/DNDDYLHeZii+avzE6CgfTcIQjdsgSPD0cRn5wSCjHhzz0Ah6wkAaej5Y9pObqtSRKtUTBCcVftNmmpc0RFFuOzRBaiLw8AVBfueNi2XMuwl4y4KPRAE89jH2Mo4DiyOdT/yg88gmLNog0EVyy/ZpoBxRrJjp1MH4Fz1moasZV0s82qsYffLAde7dShPFz8hIs/jdWehyHPFztloLfSJ5uFRvvFI7PmS7Sx1H8DiBqxb+1KFYFvwruT/Tuv+j9/9f7UbRNahS3kio4BWF0hL5YXOaAmbPY61NdAE3lcrkH9e8AqVb/WY1pFaPTO8uors5CsBXBj13PwZtxq3i8XfFWF7sI3h+8yP1Jyp0G27SVjFopMQ0kgbq7gp8gi32CjicozVI+Qb0JMlmx0VYVhgxA2HRUscViubQRXRA3gddptqMZmasqU9E7zrS00Z8icSV+F9+H33bgpPbbWPODsSVlnab6WVLjtLyItVpz7hKqmV5diG7NCfZWc4bPqeL87Wvl8R4hcX11Ng6DH4pHeGUMt+qPd8TWXONpljJhdqA69rSXf67O+GdOS3Ui5eX1hhrVB+SwVwhBdQBZLQHIhiwdN3mpLgDu8mbda/9iyYeZeQcym+IJHlS/I9eZuv0Twg3qGrr968J1OjMP91VOn9n98Wm6ef/GndKtFzXaasuy2Vr1PvZGwTDAfqxmpChpjOMcKqFhb81jn5qOhzlhB3S1Ey4cvBW0TvtVc9OjqRq28mjyHljArAk2av5F8U9G8Tc/AFZLAzRYFgAA</values>
+        <values>H4sIAAAAAAAA/+1YXW/aPBT+K5WvKa9DSBp6Vw1V2rR3m/qxm1JFxj5pPZkki5OtDPHfdxw7JIOO0ZVK7dQbhI+/nvP4eTg2VwsiBTkmMAz9AD+OEp96A49GEEYRH1HGozAMhj7pkZTNAEeyPC+yb0zFBTCdpdiBjcr04Fchda7Y/HMb4bdSiQJScnx13SM5K3CVEgpyvFjr2hWGYlNQOPTE4Tg4a3D8FmA5z02HLguZ3rj2e7fMeRPMCmFgDXoE7kpIBSCehCkNPTJjqWBlVsxXEVxafExVG7iVaWkTnrE7LX/gfl5IzcAEMEXu2Fg1Y8eUDSdjVjJEUvGyKlbEZZKDtuQISFilyjfdmB3wMS8lJllPKdlUNbMzVc3SD5YRslqgczCVRhCQm0wNdJdHcn6bfT9rUJ7KtCbFdaqMM7VqsRKpm1alwbMglbxYY9lGNngGBTPcMZ7hOWEkNocl610Q9Kx/o7DRT1T2HdFpeZP2GTcZ9vEEWP8U4+M6/JkV0qT7Py6Dk812l6n8WsFbo6NwMA1HNBKHIqHTw2HkB4eMAz2E0AsgECEPPJ8se0TP9RvFtG6JwhOKv1YmTUubIyi2HJspvJB5eYKgvoHjYtlzLqJeMoDRaECnHqU+pVHAaeTD1D8Kj3wmontEmkhQYr8m2gHFholOHYzfwXMWqptxPehXG9XzDz7Yjr1bKaL0JXkJN3+MlZ7GIQ9Xu6XgD5LnW8UGncLxJauK9GkUvwOIRvHvLIp1wa+D+xu9+696//f1fhRtkxqnraQK4CiMjtAXi8scMYOIvT6vCqSpXC73oP4dIDXqP2swrWN0ehcZr+qzkGJN8GPXc/B23Cqeble81cUugvcHr3J/lnLnwTZtJaNWSqJCklDdXcFPiMU+IccTkmYpTEhvQsyo2GirDuMIRLjqqGOLxXJpI1XB3AJep9nOFmyu65Ga34KolI3+Eolr8bv4Pvy2AyeN38YVHIwtKZs0Nc+SBqflRW7UmnM3oF7pvwvZrTnB3mrO8CVVnMe+Vp7uERI3V2fjMPyheIJXxnCr/qAjttU1nmepkCYD3bGnvfyDPoMvwEt9otTl1T01qo/IMVcMYXVAWS2X15smetRaD7PfDumvyh26Rv+JDmfD9m8DN6lrwfbPBtfp7DfcVwF8YTe+5+m//VttyrderXirLctma6672BsFw4D6sZ6xouQxjXOsXYa9DfN8WnU8zAk7oGuccOHgraF12q+b9z1z6mlrzxzvgSXHmuBezb8q/tko/vonUvcSKgoWAAA=</values>
     </sys_hub_action_instance_v2>
     <sys_hub_alias_mapping action="delete_multiple" query="source_id=9d9f02ccc337b6501bf5fe1d050131cb"/>
     <sys_hub_action_instance_v2 action="INSERT_OR_UPDATE">
@@ -1101,16 +1053,16 @@
         <display_text/>
         <flow display_value="Patient Discharge Approval flow">cd9f02ccc337b6501bf5fe1d05013187</flow>
         <generation_source/>
-        <order>8</order>
+        <order>7</order>
         <parent_ui_id>77b9cdc8-baaf-479d-9aa7-8bd2564baeeb</parent_ui_id>
         <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>9d9f02ccc337b6501bf5fe1d050131d0</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <ui_id>48971e3d-84d4-40dc-9576-e120b6972d10</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+VVXW/aMBT9K5WfoyghgApvUxHSpK6d2o2Xrooc+wYsOR+zHQpD/PddJ06IoGJU6gta3u6Xfc7JPcnLjghOpmQIPAgn4ZhFYRQNgmBwOwyTcZSEAx5RgJB4JKcZYKcCViiO8ZrKyiZ2u58lpwZ4HPqsUgpys99jnQtdSrpduDbMsJWQHOtk+vLqkZIqPNGAItPdUelSSJImILH1qcV0jNFsSxvzglUZ4opFm7x3kzNXufk6wwoOWThh4BHYGMg5IJCUSg0eyWiOLAu1JVOjKkwooPwxl9uuYyVy0xDN6EaLP3jzMLB9KSAz5kTowtgJ1KTTGTX0GU9mplKdXoVgoBtNOKS0kuaun2saHksjirwZMTSR7XQhqyx/aBQh3QG991FpBAGl5WmRN7TS51Xx9tSCnIu8lsRRlAWjsouoMUoklbFwdgQk1BpntCxFvoxLVaxFPYxQMn8pMfBTWbzhnVosc58yi9tHVak/x/ysTi+oEpbENzwGh/ce0Vt9J6nWByqoYfy7skgaYo5CXKtQSxDXm2CHmRKl+YJXrcEB33tu6ZPRuQ1jk8NC9c48LP4mDiej4SiIYp1RZVgcxCU1wmp5sv3fu8LHTHABxNYEP+pX/z5k54OT3H1/9uahKTgXjD7NBbfX5AJH4+pt8K/lDwZnP6+9Tar3XfcWXxv83P+qgiDiiZDSshRaV3C69mc6P+aDC9C2PpgLkFy/A781AWQI0UDc0DkygiveLFyx+yV8mhvCcVA/V+SJ/+bP8PoXCbMtNRAJAAA=</values>
@@ -1125,16 +1077,16 @@
         <display_text/>
         <flow display_value="Patient Discharge Approval flow">cd9f02ccc337b6501bf5fe1d05013187</flow>
         <generation_source/>
-        <order>3</order>
+        <order>2</order>
         <parent_ui_id/>
         <sys_class_name>sys_hub_action_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>d99f02ccc337b6501bf5fe1d050131cd</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <ui_id>024f2c2a-b1e9-45cc-9037-e07b88292d54</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+1TXW/aMBT9K5WfUZQQQIW3qQhpUtdObcdLV1mOfQOWnI/ZDoUh/vuuEydQ2iEq9WGVxgvy/bDPOTnncUukIBMyABFG42jE4yiO+2HYvxxEyShOor6IGUBEeiRnGeCkBl5ogecVU5UrbLc/SsEsCBoFvNIacrvbYV9IUyq2mfsxrPClVAL7ZPL41CMl03ijBU0m26PWuZAUS0Dh6F2L6Rij3ZTuLApeZYiLyrZ47TenvnPxdYodXHJworBHYG0hF4BAUqYM9EjGcmRZ6A2ZWF1hQQMTt7nadBNLmduGaMbWRv7Glwehm0sBmXEvQnekXqCmnE6ZZfd4M7eV7vQqJAfTaCIgZZWyV4e1ZuC2tLLImxXLEtVuF6rK8ptGEdJdcPA9KoMgoHQ8HfKGVnq/LJ7vWpAzmdeSeIqq4Ex1J2atlkllHZwtAQW1xhkrS5kvaKmLlayXEUoWLBQeglQVz/imkYs8YNzhDlBVFsywPq3Lc6alI/ENr8HlXY+YjblSzJg9FdSQ/qockoaYp0BrFWoJaO0Et8y1LO0XfGoFHviu500f9k86DPaGqr1uDkxvLDr+ZxWGsUikUjVfBIH/r51/cvZ9mTgDcZuJmQQlzBsUfCYsZAjSAm0ovYzFg29ezH2zS8aHRSMahfXvf0D+3YAkw1N24+O9uw7u3IdkTaPxcDAMY2oypi2nIS2ZlU7LVyH53jXel4gzILaJeKg//duQ21Ac164Pdy9umoYPw/DDsnD5mVLgaXz6GPzN/E9/ABlRA4cUCQAA</values>
@@ -1153,17 +1105,17 @@
         <flow_variables_assigned/>
         <generation_source/>
         <logic_definition display_value="Else">1f781bf3c32232002841b63b12d3aee6</logic_definition>
-        <order>7</order>
+        <order>6</order>
         <outputs_assigned/>
         <parent_ui_id/>
         <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>419f02ccc337b6501bf5fe1d050131ca</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <ui_id>77b9cdc8-baaf-479d-9aa7-8bd2564baeeb</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/6tWyi8tKSgtKQ7JdywuzkzPU7KKjtVRyswDiUHYZYlFmYlJOalQbkpqcmZxZn5eCEjME0ldSmVeYm5mMrJQeX5RdlpOfjlCrBYAD1ouqHEAAAA=</values>
@@ -1180,17 +1132,17 @@
         <flow_variables_assigned/>
         <generation_source/>
         <logic_definition display_value="If">af4e1945c3e232002841b63b12d3ae3e</logic_definition>
-        <order>5</order>
+        <order>4</order>
         <outputs_assigned/>
         <parent_ui_id/>
         <sys_class_name>sys_hub_flow_logic_instance_v2</sys_class_name>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:54</sys_created_on>
         <sys_id>4d9f02ccc337b6501bf5fe1d050131c7</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
         <ui_id>705193ea-0ce6-4dac-bdfb-296d159ad603</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+1VXWvbMBT9K0PPjvFH7CV5KymFQbfCWvqyFXMtyYmYLHmWnDQL+e+7shwnrBlbWR/3Zh3pXp1zdA/eE93ZprPmQV8ZI1aKLL48BUQoh+H3niioOVkQqhUTVmhV9EBANiA7t4GfTJhGwu7xhNC1kKzlQ7cGWqyxvCWL/S9bgmFBFUEVz2lM0yRPkyhKZtO4zNMyTlgKHFJsKKHkEo8ujzTe3fZI8Ft+dtc43NhWqNWwvh263B9B3TLHKo4Cwp8tV4wjnwqk4QGpQTGwut2NSMuB3Sl5AtZCWS+4hmcjfuCFSZa5gxVHiXRwY1wWg1Merq7BAlLpqO3a0TgtKDfeHMYr6KRdnmP+wF3jpPoSC6U8VmvZ1eqTd4SMDc4epjNIgjdOqaM+6Kju13r7+cjyRqjelWFTagpyXIFF78rOOj57wiWvsVFRQ9Ogo0XT6o3oi5FLHa4kLsJK6i1e6qYrBOqIh2gshDeIX/fwI7TCqfiIbbDY0yzBCFr0k4jt0CZODgExO7OUYMxJJLpbfO8cRS95EFd4f1wJbUVjr/DmDR90HIKXg3020/t9liQQx/N8Qln+fjKd8elkXpbzSR7Hs5TFtJpmUYhsUS/Iwliw/HD42kVRyjyKg/QiGG/V9nXpmkNWZXGUXU7XNL+Urgu5emWkkj9Eyr3nXyYqiqL/kfrnSAlT+CAM2vrL3zBRTy4+/s7RayoMUntw2IfjH8Vt7HC4BD2Htrr95kSdsMNPREGEYZsGAAA=</values>
@@ -1280,18 +1232,18 @@
         <binding_strategy>com.snc.process_flow.engine.binding.OncePerUniqueChange</binding_strategy>
         <plan>{"type":"PlanProxy","persistor":{"@class":".ChunkingPlanPersistor","table":"sys_flow_trigger_plan","id":"519f02ccc337b6501bf5fe1d050131fb","name":"plan","plan_signature":null}}</plan>
         <plan_id>66770a8cc3f3b6501bf5fe1d050131f7</plan_id>
-        <snapshot>cd9f02ccc337b6501bf5fe1d05013187</snapshot>
+        <snapshot>1eb8ac3cc33bfa501bf5fe1d050131f3</snapshot>
         <sys_created_by>godwin</sys_created_by>
         <sys_created_on>2026-03-18 13:23:55</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>519f02ccc337b6501bf5fe1d050131fb</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_overrides/>
         <sys_scope/>
         <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-18 14:03:09</sys_updated_on>
-        <trigger display_value="">44981680c3b7b6501bf5fe1d0501315e</trigger>
+        <sys_updated_on>2026-03-20 13:49:08</sys_updated_on>
+        <trigger display_value="">5a88e43cc33bfa501bf5fe1d050131ee</trigger>
     </sys_flow_trigger_plan>
     <sys_flow_subflow_plan action="delete_multiple" query="plan_id=66770a8cc3f3b6501bf5fe1d050131f7"/>
 </record_update>
