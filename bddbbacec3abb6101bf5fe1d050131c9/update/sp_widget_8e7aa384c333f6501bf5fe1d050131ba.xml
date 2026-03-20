@@ -1,31 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($scope, spUtil) {
+        <client_script><![CDATA[api.controller = function($scope, spUtil) {
     var c = this;
+    
+    c.data = c.data || {};
+    c.data.approvals = c.data.approvals || [];
+    c.filteredApprovals = []; // New local array for bulletproof UI rendering
+
     c.currentPage = 1;
-    c.pageSize = 5;
+    c.pageSize = 6; 
     c.filter = 'pending';
     c.showModal = false;
     c.activeRejectId = '';
 
+    // --- THE BULLETPROOF FILTER ENGINE ---
+    c.updateLocalFilters = function() {
+        var rawData = c.data.approvals || [];
+        
+        c.filteredApprovals = rawData.filter(function(item) {
+            var state = item.state ? item.state.toLowerCase() : '';
+            
+            // 1. Force Status Filter locally (Overrides bad server responses)
+            var matchStatus = true;
+            if (c.filter === 'pending') {
+                matchStatus = (state === 'requested' || state === 'pending');
+            } else if (c.filter === 'processed') {
+                matchStatus = (state === 'approved' || state === 'rejected' || state === 'processed');
+            }
+
+            // 2. Force Search Filter locally
+            var matchSearch = true;
+            if (c.searchQuery) {
+                var term = c.searchQuery.toLowerCase();
+                matchSearch = item.display_name && item.display_name.toLowerCase().includes(term);
+            }
+
+            return matchStatus && matchSearch;
+        });
+    };
+
+    // Run the filter immediately on load
+    c.updateLocalFilters();
+
+    // Pagination Helpers
+    c.getMin = function(a, b) { return Math.min(a, b); };
+    c.getTotalPages = function() { return Math.ceil(c.filteredApprovals.length / c.pageSize) || 1; };
+    c.prevPage = function() { if (c.currentPage > 1) c.currentPage--; };
+    c.nextPage = function() { if (c.currentPage < c.getTotalPages()) c.currentPage++; };
+
+    // Hybrid Action: Instantly filter local data, then fetch from server to sync
     c.setFilter = function(val) {
         c.filter = val;
+        c.currentPage = 1; 
+        c.updateLocalFilters(); // Instant visual snap
+
         c.server.get({action: 'fetch', filter: c.filter}).then(function(r) {
-            c.data.approvals = r.data.approvals;
+            c.data.approvals = r.data.approvals || [];
+            c.updateLocalFilters(); // Background sync
         });
     };
 
     c.updateSearch = function() {
+        c.currentPage = 1; 
+        c.updateLocalFilters(); // Instant visual snap
+        
         c.server.get({action: 'fetch', filter: c.filter, searchQuery: c.searchQuery}).then(function(r) {
-            c.data.approvals = r.data.approvals;
+            c.data.approvals = r.data.approvals || [];
+            c.updateLocalFilters(); // Background sync
         });
     };
 
     c.approve = function(id) {
         c.server.get({action: 'approve', targetId: id}).then(function() {
             spUtil.addInfoMessage("Request Approved");
-            c.setFilter(c.filter);
+            c.setFilter(c.filter); 
         });
     };
 
@@ -42,162 +91,217 @@
             comment: c.rejectComment
         }).then(function() {
             c.showModal = false;
-            spUtil.addErrorMessage("Request Rejected");
-            c.setFilter(c.filter);
+            spUtil.addInfoMessage("Request Rejected"); 
+            c.setFilter(c.filter); 
         });
     };
-}]]></client_script>
+};]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* containr and panel */
-.panel {
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  background-color: #ffffff;
-}
-
-.panel-heading {
-  background-color: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 20px;
-}
-
-.panel-heading h4 {
-  color: #1e293b;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: -0.5px;
-}
-
-/* serach bar */
-.form-control {
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  padding: 10px 15px;
-  transition: all 0.3s ease;
-}
-
-.form-control:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-/* Tthe tabs */
-.nav-tabs {
-  border-bottom: 1px solid #e2e8f0;
-  background: #f8fafc;
-  padding: 0 10px;
-}
-
-.nav-tabs &gt; li &gt; a {
-  border: none;
-  color: #64748b;
-  font-weight: 600;
-  padding: 15px 25px;
-  transition: color 0.3s;
-}
-
-.nav-tabs &gt; li.active &gt; a, 
-.nav-tabs &gt; li.active &gt; a:hover {
-  border: none;
-  border-bottom: 3px solid #3b82f6;
-  color: #3b82f6;
-  background: transparent;
-}
-
-/* table */
-.custom-table {
-  margin-bottom: 0;
-}
-
-.custom-table thead th {
-  background-color: #ffffff;
-  color: #94a3b8;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
-  padding: 15px 20px;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.custom-table tbody td {
-  padding: 18px 20px;
-  vertical-align: middle;
-  color: #334155;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.custom-table tbody tr:hover {
-  background-color: #f8fafc;
-}
-
-/* status */
-.label {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 11px;
-}
-
-.label-warning { background-color: #fef3c7; color: #92400e; } /* Requested */
-.label-success { background-color: #dcfce7; color: #166534; } /* Approved */
-.label-danger  { background-color: #fee2e2; color: #991b1b; } /* Rejected */
-
-/* btn */
-.btn {
-  border-radius: 8px;
-  font-weight: 600;
-  padding: 8px 16px;
-  transition: transform 0.1s ease;
-}
-
-.btn:active { transform: scale(0.95); }
-
-.btn-success { background-color: #10b981; border: none; }
-.btn-danger  { background-color: #ef4444; border: none; }
-
-/* paginationr */
-.panel-footer {
-  background-color: #ffffff;
-  border-top: 1px solid #f1f5f9;
-  padding: 15px;
-  color: #64748b;
-}
-
-/* modal  */
-.custom-modal-overlay {
-  position: fixed; 
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(15, 23, 42, 0.6); 
-  backdrop-filter: blur(4px);
-  z-index: 9999; 
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  animation: fadeIn 0.2s ease-out;
-}
-
-.custom-modal {
-  background: #ffffff; 
-  padding: 30px; 
-  border-radius: 16px; 
-  width: 100%;
-  max-width: 450px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.custom-modal h4 {
-  margin-top: 0;
-  font-weight: 700;
-  color: #1e293b;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}</css>
+        <css>/* --- Global Wrapper --- */&#13;
+.sc-approval-wrapper {&#13;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;&#13;
+  color: #1e293b;&#13;
+  padding: 20px;&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  min-height: calc(100vh - 40px);&#13;
+}&#13;
+&#13;
+.sc-approval-panel {&#13;
+  background: #ffffff;&#13;
+  border-radius: 16px;&#13;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);&#13;
+  margin-bottom: 24px;&#13;
+  border: 1px solid #e2e8f0;&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  flex-grow: 1; &#13;
+  overflow: hidden;&#13;
+}&#13;
+&#13;
+/* --- Header &amp; Search --- */&#13;
+.sc-approval-header {&#13;
+  padding: 20px 24px 16px 24px;&#13;
+  background-color: #fbfcfe;&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+  align-items: center;&#13;
+  flex-wrap: wrap;&#13;
+  gap: 16px;&#13;
+}&#13;
+&#13;
+.sc-approval-title {&#13;
+  margin: 0;&#13;
+  font-size: 18px;&#13;
+  font-weight: 700;&#13;
+  color: #1e293b;&#13;
+}&#13;
+&#13;
+.sc-approval-search {&#13;
+  position: relative;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  width: 100%;&#13;
+  max-width: 300px;&#13;
+}&#13;
+&#13;
+.sc-approval-search-icon { position: absolute; left: 16px; color: #94a3b8; }&#13;
+&#13;
+.sc-approval-input {&#13;
+  width: 100%; height: 42px; padding: 0 16px 0 44px;&#13;
+  border: 1px solid #cbd5e1; border-radius: 10px;&#13;
+  font-size: 13px; color: #1e293b; transition: all 0.2s; font-family: inherit;&#13;
+}&#13;
+&#13;
+.sc-approval-input:focus { border-color: #1961ED; outline: none; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); }&#13;
+&#13;
+/* --- HIGH VISIBILITY PILL TABS --- */&#13;
+.sc-approval-tabs-container {&#13;
+  padding: 0 24px 20px 24px;&#13;
+  background-color: #fbfcfe;&#13;
+  border-bottom: 1px solid #e2e8f0;&#13;
+}&#13;
+&#13;
+.sc-approval-tabs {&#13;
+  display: inline-flex;&#13;
+  background-color: #f1f5f9;&#13;
+  padding: 6px;&#13;
+  border-radius: 12px;&#13;
+  border: 1px solid #e2e8f0;&#13;
+  gap: 4px;&#13;
+}&#13;
+&#13;
+.sc-approval-tab {&#13;
+  background: transparent;&#13;
+  border: none;&#13;
+  color: #64748b;&#13;
+  font-weight: 600;&#13;
+  font-size: 14px;&#13;
+  padding: 10px 24px;&#13;
+  border-radius: 8px;&#13;
+  cursor: pointer;&#13;
+  transition: all 0.2s;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  gap: 8px;&#13;
+  font-family: inherit;&#13;
+}&#13;
+&#13;
+.sc-approval-tab i { font-size: 15px; opacity: 0.8; }&#13;
+&#13;
+.sc-approval-tab:hover:not(.active) { color: #1e293b; background: rgba(255, 255, 255, 0.6); }&#13;
+&#13;
+.sc-approval-tab.active {&#13;
+  background: #ffffff;&#13;
+  color: #1961ED;&#13;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);&#13;
+}&#13;
+&#13;
+/* --- Table --- */&#13;
+.sc-approval-table-wrapper { width: 100%; overflow-x: auto; flex-grow: 1;}&#13;
+.sc-approval-table { width: 100%; border-collapse: collapse; text-align: left; }&#13;
+&#13;
+.sc-approval-table th { &#13;
+  background-color: #ffffff; color: #94a3b8; font-size: 12px; font-weight: 700; &#13;
+  text-transform: uppercase; padding: 16px 24px; border-bottom: 1px solid #e2e8f0; letter-spacing: 0.5px;&#13;
+}&#13;
+&#13;
+.sc-approval-table td { padding: 16px 24px; border-bottom: 1px solid #f1f5f9; font-size: 14px; vertical-align: middle;}&#13;
+.sc-approval-table tbody tr { transition: background-color 0.2s; }&#13;
+.sc-approval-table tbody tr:hover { background-color: #f8fafc; }&#13;
+&#13;
+.sc-fw-bold { font-weight: 600; color: #1e293b; }&#13;
+.sc-text-muted { color: #64748b; font-size: 13px; }&#13;
+&#13;
+/* --- Badges --- */&#13;
+.sc-badge {&#13;
+  padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; &#13;
+  text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; white-space: nowrap;&#13;
+}&#13;
+&#13;
+.badge-requested { background: #fef3c7; color: #b45309; } /* Amber */&#13;
+.badge-approved { background: #dcfce7; color: #15803d; }  /* Green */&#13;
+.badge-rejected { background: #fee2e2; color: #b91c1c; }  /* Red */&#13;
+&#13;
+/* --- Action Buttons --- */&#13;
+.sc-action-group { display: flex; gap: 8px; }&#13;
+&#13;
+.sc-btn {&#13;
+  border: none; border-radius: 8px; font-weight: 600; font-size: 12px;&#13;
+  padding: 6px 12px; cursor: pointer; transition: all 0.2s; font-family: inherit;&#13;
+  display: flex; align-items: center; gap: 6px;&#13;
+}&#13;
+&#13;
+.sc-btn-approve { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0;}&#13;
+.sc-btn-approve:hover { background: #15803d; color: #ffffff; }&#13;
+&#13;
+.sc-btn-reject { background: #ffffff; color: #b91c1c; border: 1px solid #fecaca;}&#13;
+.sc-btn-reject:hover { background: #fee2e2; }&#13;
+&#13;
+/* --- Empty State --- */&#13;
+.sc-empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;}&#13;
+.sc-empty-state i { font-size: 40px; margin-bottom: 12px; color: #cbd5e1; }&#13;
+.sc-empty-state p { margin: 0; font-weight: 500; font-size: 14px; }&#13;
+&#13;
+/* --- Pagination --- */&#13;
+.sc-pagination-wrapper { &#13;
+  display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-top: 1px solid #e2e8f0; background: #fff;&#13;
+  margin-top: auto; &#13;
+}&#13;
+.sc-pagination-info { font-size: 13px; color: #64748b; font-weight: 500; }&#13;
+.sc-pagination-controls { display: flex; align-items: center; gap: 12px;}&#13;
+.sc-page-text { font-size: 13px; font-weight: 600; color: #475569; }&#13;
+&#13;
+.sc-btn-page {&#13;
+  background: #ffffff; border: 1px solid #e2e8f0; color: #475569; border-radius: 8px; &#13;
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;&#13;
+}&#13;
+.sc-btn-page:hover:not([disabled]) { background: #f1f5f9; color: #1e293b; }&#13;
+.sc-btn-page[disabled] { opacity: 0.3; cursor: not-allowed; }&#13;
+&#13;
+/* --- Modal --- */&#13;
+.sc-modal-overlay {&#13;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;&#13;
+  background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px);&#13;
+  z-index: 9999; display: flex; justify-content: center; align-items: center;&#13;
+  animation: fadeIn 0.2s ease-out; font-family: 'Poppins', 'Inter', system-ui, sans-serif;&#13;
+}&#13;
+&#13;
+.sc-modal {&#13;
+  background: #ffffff; border-radius: 16px; width: 100%; max-width: 450px;&#13;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);&#13;
+  overflow: hidden;&#13;
+}&#13;
+&#13;
+.sc-modal-header {&#13;
+  display: flex; justify-content: space-between; align-items: center;&#13;
+  padding: 20px 24px; border-bottom: 1px solid #f1f5f9;&#13;
+}&#13;
+.sc-modal-header h4 { margin: 0; font-weight: 700; color: #1e293b; font-size: 16px; }&#13;
+.sc-modal-close { background: none; border: none; color: #94a3b8; font-size: 16px; cursor: pointer; transition: 0.2s; }&#13;
+.sc-modal-close:hover { color: #ef4444; }&#13;
+&#13;
+.sc-modal-body { padding: 24px; }&#13;
+.sc-modal-body label { font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px; display: block; }&#13;
+.sc-textarea {&#13;
+  width: 100%; height: 100px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px;&#13;
+  font-size: 14px; color: #1e293b; font-family: inherit; resize: vertical; outline: none; transition: 0.2s; box-sizing: border-box;&#13;
+}&#13;
+.sc-textarea:focus { border-color: #1961ED; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); }&#13;
+&#13;
+.sc-modal-footer {&#13;
+  padding: 16px 24px; background: #f8fafc; border-top: 1px solid #f1f5f9;&#13;
+  display: flex; justify-content: flex-end; gap: 12px;&#13;
+}&#13;
+&#13;
+.sc-btn-default { background: #ffffff; border: 1px solid #cbd5e1; color: #475569; padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.2s; }&#13;
+.sc-btn-default:hover { background: #f1f5f9; color: #1e293b; }&#13;
+&#13;
+.sc-btn-danger { background: #ef4444; border: none; color: #ffffff; padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.2s; }&#13;
+.sc-btn-danger:hover:not([disabled]) { background: #dc2626; }&#13;
+.sc-btn-danger[disabled] { opacity: 0.5; cursor: not-allowed; }&#13;
+&#13;
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -270,65 +374,102 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-18 20:01:21</sys_created_on>
         <sys_id>8e7aa384c333f6501bf5fe1d050131ba</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Reception Approval</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_8e7aa384c333f6501bf5fe1d050131ba</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-18 20:11:37</sys_updated_on>
-        <template><![CDATA[<div class="panel panel-default">
-  <div class="panel-heading">
-    <div class="row">
-      <div class="col-md-6"><h4>SmartCare Approvals</h4></div>
-      <div class="col-md-6">
-        <input type="text" class="form-control" placeholder="Search approvals..." ng-model="c.searchQuery" ng-change="c.updateSearch()">
+        <sys_updated_on>2026-03-19 13:44:52</sys_updated_on>
+        <template><![CDATA[<div class="sc-approval-wrapper">
+  
+  <div class="sc-approval-panel">
+    <div class="sc-approval-header">
+      <h3 class="sc-approval-title">SmartCare Approvals</h3>
+      <div class="sc-approval-search">
+        <i class="fa fa-search sc-approval-search-icon"></i>
+        <input type="text" class="sc-approval-input" placeholder="Search approvals..." ng-model="c.searchQuery" ng-change="c.updateSearch()" ng-model-options="{debounce: 300}">
+      </div>
+    </div>
+
+    <div class="sc-approval-tabs-container">
+      <div class="sc-approval-tabs">
+        <button class="sc-approval-tab" ng-class="{'active': c.filter == 'pending'}" ng-click="c.setFilter('pending')">
+          <i class="fa fa-clock-o"></i> Pending Requests
+        </button>
+        <button class="sc-approval-tab" ng-class="{'active': c.filter == 'processed'}" ng-click="c.setFilter('processed')">
+          <i class="fa fa-history"></i> History
+        </button>
+      </div>
+    </div>
+
+    <div class="sc-approval-table-wrapper" ng-if="c.filteredApprovals.length > 0">
+      <table class="sc-approval-table">
+        <thead>
+          <tr>
+            <th>Request Details</th>
+            <th>Date Requested</th>
+            <th>Status</th>
+            <th ng-if="c.filter == 'pending'">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in c.filteredApprovals | limitTo: c.pageSize : (c.currentPage - 1) * c.pageSize">
+            <td class="sc-fw-bold">{{item.display_name}}</td>
+            <td class="sc-text-muted">{{item.created}}</td>
+            <td>
+              <span class="sc-badge" ng-class="{'badge-requested': item.state=='Requested', 'badge-approved': item.state=='Approved', 'badge-rejected': item.state=='Rejected'}">
+                {{item.state}}
+              </span>
+            </td>
+            <td ng-if="c.filter == 'pending'">
+              <div class="sc-action-group">
+                <button class="sc-btn sc-btn-approve" title="Approve" ng-click="c.approve(item.sys_id)">
+                  <i class="fa fa-check"></i> Approve
+                </button>
+                <button class="sc-btn sc-btn-reject" title="Reject" ng-click="c.openRejectModal(item.sys_id)">
+                  <i class="fa fa-times"></i> Reject
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="sc-empty-state" ng-if="!c.filteredApprovals || c.filteredApprovals.length == 0">
+      <i class="fa fa-check-circle-o"></i>
+      <p>No approvals found for this category.</p>
+    </div>
+
+    <div class="sc-pagination-wrapper" ng-if="c.filteredApprovals.length > 0">
+      <div class="sc-pagination-info">
+        Showing {{(c.currentPage - 1) * c.pageSize + 1}} - {{c.getMin(c.currentPage * c.pageSize, c.filteredApprovals.length)}} of {{c.filteredApprovals.length}}
+      </div>
+      <div class="sc-pagination-controls">
+        <button class="sc-btn-page" ng-disabled="c.currentPage == 1" ng-click="c.prevPage()"><i class="fa fa-chevron-left"></i></button>
+        <span class="sc-page-text">Page {{c.currentPage}} of {{c.getTotalPages()}}</span>
+        <button class="sc-btn-page" ng-disabled="c.currentPage >= c.getTotalPages()" ng-click="c.nextPage()"><i class="fa fa-chevron-right"></i></button>
       </div>
     </div>
   </div>
 
-  <ul class="nav nav-tabs">
-    <li ng-class="{'active': c.filter == 'pending'}"><a href ng-click="c.setFilter('pending')">Pending</a></li>
-    <li ng-class="{'active': c.filter == 'processed'}"><a href ng-click="c.setFilter('processed')">History</a></li>
-  </ul>
-
-  <table class="table table-hover custom-table">
-    <thead>
-      <tr>
-        <th>Request</th>
-        <th>Date Requested</th>
-        <th>Status</th>
-        <th ng-if="c.filter == 'pending'">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in data.approvals | limitTo: c.pageSize : (c.currentPage - 1) * c.pageSize">
-        <td>{{item.display_name}}</td>
-        <td>{{item.created}}</td>
-        <td><span class="label" ng-class="{'label-warning': item.state=='Requested', 'label-success': item.state=='Approved', 'label-danger': item.state=='Rejected'}">{{item.state}}</span></td>
-        <td ng-if="c.filter == 'pending'">
-          <button class="btn btn-success btn-sm" ng-click="c.approve(item.sys_id)">Approve</button>
-          <button class="btn btn-danger btn-sm" ng-click="c.openRejectModal(item.sys_id)">Reject</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="panel-footer text-center">
-    <button class="btn btn-default btn-xs" ng-disabled="c.currentPage == 1" ng-click="c.currentPage = c.currentPage - 1">Prev</button>
-    <span>Page {{c.currentPage}}</span>
-    <button class="btn btn-default btn-xs" ng-disabled="c.currentPage >= data.approvals.length/c.pageSize" ng-click="c.currentPage = c.currentPage + 1">Next</button>
-  </div>
 </div>
 
-<div ng-if="c.showModal" class="custom-modal-overlay">
-  <div class="custom-modal">
-    <h4>Rejection Reason</h4>
-    <textarea class="form-control" ng-model="c.rejectComment" placeholder="Please provide a reason..."></textarea>
-    <div class="text-right m-t">
-      <button class="btn btn-default" ng-click="c.showModal = false">Cancel</button>
-      <button class="btn btn-danger" ng-disabled="!c.rejectComment" ng-click="c.confirmReject()">Confirm Rejection</button>
+<div ng-if="c.showModal" class="sc-modal-overlay">
+  <div class="sc-modal">
+    <div class="sc-modal-header">
+      <h4>Rejection Reason</h4>
+      <button class="sc-modal-close" ng-click="c.showModal = false"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="sc-modal-body">
+      <label>Please provide a reason for rejection:</label>
+      <textarea class="sc-textarea" ng-model="c.rejectComment" placeholder="Type reason here..."></textarea>
+    </div>
+    <div class="sc-modal-footer">
+      <button class="sc-btn-default" ng-click="c.showModal = false">Cancel</button>
+      <button class="sc-btn-danger" ng-disabled="!c.rejectComment" ng-click="c.confirmReject()">Confirm Rejection</button>
     </div>
   </div>
 </div>]]></template>

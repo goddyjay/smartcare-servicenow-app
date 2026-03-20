@@ -12,7 +12,7 @@
                 <element inactive_on_update="false" label="Moderate" sequence="1" value="moderate"/>
             </choice>
         </element>
-        <element label="Vitals Description" max_length="100000000" name="vitals_description" type="string"/>
+        <element label="Vitals Description" max_length="16777216" name="vitals_description" type="string"/>
         <element label="Symptoms" max_length="40" name="symptoms" type="string"/>
         <element attributes="encode_utf8=false" label="Patient ID" max_length="32" name="u_reference_2" reference="sys_user" type="reference"/>
         <element choice="3" label="Gender" max_length="40" name="gender" type="choice">

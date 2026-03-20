@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column">
+    <sp_column action="DELETE">
+        <class_name/>
+        <order>3</order>
+        <semantic_tag/>
+        <size>4</size>
+        <size_lg/>
+        <size_sm/>
+        <size_xs/>
+        <sp_row display_value="1">433b7f2fc363f2501bf5fe1d05013185</sp_row>
+        <sys_class_name>sp_column</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 07:57:17</sys_created_on>
+        <sys_id>073b7f2fc363f2501bf5fe1d05013190</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>3</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_column_073b7f2fc363f2501bf5fe1d05013190</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-17 07:57:17</sys_updated_on>
+    </sp_column>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sp_column_073b7f2fc363f2501bf5fe1d05013190</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_column"><sp_column action="INSERT_OR_UPDATE"><class_name/><order>3</order><semantic_tag/><size>4</size><size_lg/><size_sm/><size_xs/><sp_row display_value="1">433b7f2fc363f2501bf5fe1d05013185</sp_row><sys_class_name>sp_column</sys_class_name><sys_created_by>yeabsira</sys_created_by><sys_created_on>2026-03-17 07:57:17</sys_created_on><sys_id>073b7f2fc363f2501bf5fe1d05013190</sys_id><sys_mod_count>0</sys_mod_count><sys_name>3</sys_name><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>sp_column_073b7f2fc363f2501bf5fe1d05013190</sys_update_name><sys_updated_by>yeabsira</sys_updated_by><sys_updated_on>2026-03-17 07:57:17</sys_updated_on></sp_column></record_update>]]></payload>
+        <payload_hash>53114846</payload_hash>
+        <record_name>3</record_name>
+        <reverted_from/>
+        <source>2db308d7c3e3fe101bf5fe1d05013116</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 07:57:17</sys_created_on>
+        <sys_id>c33b7f2fc363f2501bf5fe1d05013193</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19cfacc96370000001</sys_recorded_at>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-17 07:57:17</sys_updated_on>
+        <type>Column</type>
+        <update_guid>833b7f2f7b63f2506b567225e8934992</update_guid>
+        <update_guid_history>833b7f2f7b63f2506b567225e8934992:53114846</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="3">d568af60c333fa501bf5fe1d05013140</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-20 09:08:54</sys_created_on>
+        <sys_db_object display_value="" name="sp_column">sp_column</sys_db_object>
+        <sys_id>20e5329293b74f269cea2092a60238c9</sys_id>
+        <sys_metadata>073b7f2fc363f2501bf5fe1d05013190</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>3</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sp_column_073b7f2fc363f2501bf5fe1d05013190</sys_update_name>
+        <sys_update_version display_value="sp_column_073b7f2fc363f2501bf5fe1d05013190">c33b7f2fc363f2501bf5fe1d05013193</sys_update_version>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-20 09:08:54</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

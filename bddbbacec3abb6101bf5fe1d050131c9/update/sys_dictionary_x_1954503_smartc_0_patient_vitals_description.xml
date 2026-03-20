@@ -34,7 +34,7 @@
         <function_field>false</function_field>
         <internal_type display_value="String">string</internal_type>
         <mandatory>false</mandatory>
-        <max_length>100000000</max_length>
+        <max_length>16777216</max_length>
         <name>x_1954503_smartc_0_patient</name>
         <next_element/>
         <primary>false</primary>
@@ -57,8 +57,8 @@
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_dictionary_x_1954503_smartc_0_patient_vitals_description</sys_update_name>
-        <sys_updated_by>franklin</sys_updated_by>
-        <sys_updated_on>2026-03-18 08:06:47</sys_updated_on>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-19 09:43:32</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

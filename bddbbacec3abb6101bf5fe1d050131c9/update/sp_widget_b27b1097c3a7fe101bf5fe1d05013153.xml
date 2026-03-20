@@ -4,28 +4,75 @@
         <client_script><![CDATA[api.controller = function(spModal, spUtil) {
     var c = this;
 
-    // initialze the object
-    c.search = {
-        bedId: '',
-        statusValue: '',
-        ward: '',
-        bedTypeValue: ''
+    // Translation Dictionary for Backend Values -> UI Labels
+    var wardMap = {
+        'ICU': 'ICU',
+        '100': 'Emergency',
+        '200': 'Cardiology',
+        '300': 'Neurology',
+        '400': 'Orthopedics',
+        '500': 'General Med',
+        '600': 'Maternity'
     };
 
-    // clear filter Logic
+    c.getWardLabel = function(wardValue) {
+        if (!wardValue) return 'Unassigned';
+        return wardMap[wardValue.toString()] || wardValue;
+    };
+
+    c.search = { bedId: '', statusValue: '', ward: '', bedTypeValue: '' };
+    c.currentPage = 1;
+    c.pageSize = 15; // UPDATED: Now supports 15 beds (5 columns x 3 rows)
+    c.filteredBeds = [];
+    c.totalPages = 1;
+
+    c.setFilter = function(filterType, value) {
+        c.search[filterType] = value;
+        c.updateFilters();
+    };
+
+    c.getMin = function(a, b) { return Math.min(a, b); };
+
+    c.updateFilters = function() {
+        if (!c.data.beds) return;
+
+        c.filteredBeds = c.data.beds.filter(function(bed) {
+            var searchStr = c.search.bedId.toLowerCase();
+            var bedIdMatch = bed.bedId ? bed.bedId.toLowerCase().includes(searchStr) : false;
+            var nameMatch = bed.patientName ? bed.patientName.toLowerCase().includes(searchStr) : false;
+            var matchSearch = !searchStr || bedIdMatch || nameMatch;
+
+            var matchStatus = !c.search.statusValue || bed.statusValue === c.search.statusValue;
+            
+            // Cast to string to ensure safe matching against backend values
+            var matchWard = !c.search.ward || (bed.ward && bed.ward.toString().toLowerCase() === c.search.ward.toLowerCase());
+            var matchType = !c.search.bedTypeValue || (bed.bedTypeValue && bed.bedTypeValue.toString() === c.search.bedTypeValue);
+            
+            return matchSearch && matchStatus && matchWard && matchType;
+        });
+
+        c.totalPages = Math.ceil(c.filteredBeds.length / c.pageSize) || 1;
+        if (c.currentPage > c.totalPages) c.currentPage = c.totalPages > 0 ? c.totalPages : 1;
+    };
+
+    c.getPageArray = function() {
+        var pages = [];
+        for (var i = 1; i <= c.totalPages; i++) pages.push(i);
+        return pages;
+    };
+    c.goToPage = function(pageNum) { c.currentPage = pageNum; };
+    c.prevPage = function() { if (c.currentPage > 1) c.currentPage--; };
+    c.nextPage = function() { if (c.currentPage < c.totalPages) c.currentPage++; };
+
     c.clearFilters = function() {
-        c.search = {
-            bedId: '',
-            statusValue: '',
-            ward: '',
-            bedTypeValue: ''
-        };
+        c.search = { bedId: '', statusValue: '', ward: '', bedTypeValue: '' };
+        c.updateFilters();
     };
 
-    // discharge Logic
+    c.updateFilters();
+
     c.confirmDischarge = function(bed) {
-        bed.showMenu = false; // hide the menu overlay when clicked
-        
+        bed.showMenu = false; 
         spModal.confirm("Are you sure you want to discharge " + bed.patientName + "? This will make the bed available.").then(function(confirmed) {
             if (confirmed) {
                 c.data.action = 'dischargePatient';
@@ -34,220 +81,175 @@
                 c.server.update().then(function() {
                     c.data.action = null; 
                     spUtil.addInfoMessage(bed.patientName + " has been discharged.");
+                    c.updateFilters(); 
                 });
             }
         });
     };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* ── DASHBOARD BASE ── */
-.hospital-dashboard { 
-  padding: 30px; 
-  background: #f8fafc; 
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
-}
-
-/* ── CONTROLS PANEL (SEARCH &amp; FILTERS) ── */
-.controls-panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  background: #ffffff;
-  padding: 20px 24px;
-  border-radius: 16px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  border: 1px solid #f1f5f9;
-}
-
-.search-wrapper { flex: 1; position: relative; }
-.filters-wrapper { display: flex; gap: 12px; align-items: center; }
-
-.filter-input, .filter-select {
-  height: 42px;
-  padding: 0 14px;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  font-size: 13px;
-  color: #1e293b;
-  background-color: #f8fafc;
-  transition: 0.2s;
-}
-
-.filter-input:focus, .filter-select:focus {
-  border-color: #6366f1;
-  background-color: #fff;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
-
-.clear-btn {
-  background: #fff;
-  color: #64748b;
-  border: 1px solid #e2e8f0;
-  padding: 0 16px;
-  height: 42px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.clear-btn:hover { background: #f1f5f9; color: #1e293b; }
-
-/* ── GRID &amp; MODERN CARDS ── */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-  gap: 20px; 
-}
-
-.modern-card {
-  min-height: 150px; 
-  background: #ffffff;
-  border-radius: 16px;
-  border: 1px solid #f1f5f9;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.modern-card:hover { 
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.05);
-}
-
-/* Status Accents */
-.status-available { border-top: 4px solid #22c55e; } /* Emerald Green */
-.status-occupied { border-top: 4px solid #6366f1; } /* Indigo */
-
-/* ── CARD HEADER ── */
-.card-header-modern {
-  padding: 12px 16px; 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(248, 250, 252, 0.5);
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.bed-id-pill {
-  background: #1e293b;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.bed-type-text {
-  font-size: 10px;
-  color: #94a3b8;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* ── CARD BODY ── */
-.card-body-modern { 
-  padding: 16px; 
-  flex-grow: 1;
-}
-
-.patient-name-modern {
-  margin: 0 0 4px 0;
-  font-size: 16px;
-  color: #1e293b;
-  font-weight: 700;
-}
-
-.dept-label-modern {
-  margin: 0 0 12px 0;
-  font-size: 12px;
-  color: #64748b;
-}
-
-/* Severity Indicators */
-.severity-pill {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
-}
-
-.critical { background: #fff1f2; color: #e11d48; } 
-.high { background: #fff7ed; color: #ea580c; }  
-.moderate { background: #eff6ff; color: #2563eb; }
-.low { background: #f0fdf4; color: #16a34a; }
-
-/* avaiable bed */
-.available-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 8px;
-  color: #22c55e;
-}
-
-.status-dot {
-  width: 10px; height: 10px;
-  background-color: #22c55e; 
-  border-radius: 50%;
-}
-
-@keyframes pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-}
-
-.vacant-text-modern { font-size: 14px; font-weight: 600; color: #16a34a; margin: 0; }
-
-/* context */
-.menu-container { position: relative; }
-.kebab-icon {
-  cursor: pointer;
-  width: 28px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  transition: 0.2s;
-}
-.kebab-icon:hover { background: #e2e8f0; }
-
-.context-menu {
-  position: absolute;
-  top: 32px; right: 0;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  z-index: 100;
-  min-width: 160px;
-  padding: 8px;
-}
-
-.context-item {
-  width: 100%;
-  padding: 10px 12px;
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  border-radius: 8px;
-}
-
-.text-danger { color: #e11d48; }
-.context-item:hover { background-color: #fff1f2; }</css>
+        <css>/* ── BASE WRAPPER ── */&#13;
+.sc-bed-dashboard { &#13;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;&#13;
+  color: #1e293b;&#13;
+  padding-bottom: 20px; &#13;
+  /* NEW: Forces the dashboard to fill the screen, allowing pagination to stick to bottom */&#13;
+  display: flex;&#13;
+  flex-direction: column;&#13;
+  min-height: calc(100vh - 80px);&#13;
+}&#13;
+&#13;
+/* ── TOP CONTROLS &amp; FILTERS ── */&#13;
+.sc-bed-controls-header {&#13;
+  background: #ffffff;&#13;
+  padding: 20px 24px;&#13;
+  border-radius: 16px;&#13;
+  margin-bottom: 24px;&#13;
+  border: 1px solid #e2e8f0;&#13;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);&#13;
+}&#13;
+&#13;
+.sc-bed-search-row { &#13;
+  display: flex; &#13;
+  gap: 16px; &#13;
+  align-items: center;&#13;
+  flex-wrap: wrap; &#13;
+}&#13;
+&#13;
+.sc-bed-search-bar { flex: 1; min-width: 280px; position: relative; display: flex; align-items: center; }&#13;
+.sc-bed-search-icon { position: absolute; left: 16px; color: #94a3b8; }&#13;
+&#13;
+.sc-bed-search-bar input {&#13;
+  width: 100%; height: 44px; padding: 0 16px 0 44px;&#13;
+  border: 1px solid #cbd5e1; border-radius: 12px;&#13;
+  font-size: 14px; color: #1e293b; transition: all 0.2s; font-family: inherit; box-sizing: border-box;&#13;
+}&#13;
+&#13;
+/* Custom Dropdown Styling */&#13;
+.sc-bed-select {&#13;
+  height: 44px; padding: 0 36px 0 16px; border: 1px solid #cbd5e1;&#13;
+  border-radius: 12px; font-size: 13px; font-weight: 500;&#13;
+  color: #1e293b; background-color: #f8fafc; transition: all 0.2s;&#13;
+  font-family: inherit; cursor: pointer;&#13;
+  appearance: none; -webkit-appearance: none;&#13;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");&#13;
+  background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; min-width: 160px;&#13;
+}&#13;
+&#13;
+.sc-bed-select:hover { background-color: #ffffff; border-color: #94a3b8; }&#13;
+.sc-bed-search-bar input:focus, .sc-bed-select:focus { border-color: #1961ED; background-color: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); }&#13;
+&#13;
+.sc-bed-btn-clear {&#13;
+  background: #ffffff; border: 1px solid #cbd5e1; color: #475569;&#13;
+  padding: 0 20px; height: 44px; font-weight: 600; cursor: pointer; border-radius: 12px; font-size: 13px; transition: 0.2s; white-space: nowrap;&#13;
+}&#13;
+&#13;
+.sc-bed-btn-clear:hover { background: #f8fafc; border-color: #94a3b8; color: #1e293b; }&#13;
+&#13;
+/* ── THE GRID &amp; CARDS (5 Columns) ── */&#13;
+.sc-bed-grid {&#13;
+  display: grid;&#13;
+  grid-template-columns: repeat(5, 1fr); &#13;
+  gap: 16px; &#13;
+  align-content: flex-start; /* Keeps rows packed at the top */&#13;
+}&#13;
+&#13;
+.sc-bed-card {&#13;
+  background: #ffffff; border-radius: 14px; border: 1px solid #e2e8f0;&#13;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column;&#13;
+  overflow: hidden; transition: transform 0.2s; min-height: 150px; &#13;
+}&#13;
+&#13;
+.sc-bed-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }&#13;
+&#13;
+/* ── MAPPED SMOOTH COLORS (Bulletproofed for Numbers and Text) ── */&#13;
+.sc-bed-card-header {&#13;
+  padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; color: #ffffff; background: #94a3b8; &#13;
+}&#13;
+&#13;
+/* Fallbacks */&#13;
+.ward-default .sc-bed-card-header, .ward- .sc-bed-card-header { background: #94a3b8; } &#13;
+&#13;
+/* Mapped to handle both numeric values and string labels */&#13;
+.ward-icu .sc-bed-card-header { background: #e86464; } &#13;
+.ward-100 .sc-bed-card-header, .ward-emergency .sc-bed-card-header { background: #a87df5; } &#13;
+.ward-200 .sc-bed-card-header, .ward-cardiology .sc-bed-card-header { background: #f28b82; } &#13;
+.ward-300 .sc-bed-card-header, .ward-neurology .sc-bed-card-header { background: #4db6ac; } &#13;
+.ward-400 .sc-bed-card-header, .ward-orthopedics .sc-bed-card-header { background: #d99a5a; } &#13;
+.ward-500 .sc-bed-card-header, .ward-general .sc-bed-card-header, .ward-general\ med .sc-bed-card-header { background: #4f8cf5; } &#13;
+.ward-600 .sc-bed-card-header, .ward-maternity .sc-bed-card-header { background: #f08cb6; } &#13;
+&#13;
+.sc-bed-header-left { display: flex; align-items: center; }&#13;
+.sc-bed-id-text { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; } &#13;
+.sc-bed-header-right { display: flex; align-items: center; gap: 8px; }&#13;
+.sc-bed-header-icon { font-size: 16px; opacity: 0.8; }&#13;
+&#13;
+/* ── KEBAB MENU ── */&#13;
+.sc-bed-menu-wrapper { position: relative; }&#13;
+.sc-bed-kebab {&#13;
+  cursor: pointer; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;&#13;
+  border-radius: 6px; color: #ffffff; font-size: 18px; transition: 0.2s; opacity: 0.9;&#13;
+}&#13;
+.sc-bed-kebab:hover { background: rgba(255, 255, 255, 0.2); opacity: 1; }&#13;
+&#13;
+.sc-bed-context-menu {&#13;
+  position: absolute; top: 28px; right: 0; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;&#13;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 100; min-width: 160px; padding: 6px;&#13;
+}&#13;
+.sc-bed-context-item {&#13;
+  width: 100%; padding: 8px 12px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: 600;&#13;
+  border-radius: 6px; color: #1e293b;&#13;
+}&#13;
+.sc-bed-text-danger { color: #dc2626; }&#13;
+.sc-bed-context-item:hover { background: #f1f5f9; }&#13;
+&#13;
+/* ── CARD BODY ── */&#13;
+.sc-bed-card-body { padding: 14px; flex-grow: 1; display: flex; flex-direction: column; }&#13;
+.sc-bed-status-area { margin-bottom: 12px; }&#13;
+.sc-bed-status-badge { font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }&#13;
+.badge-occupied { background: #eff6ff; color: #1d4ed8; } &#13;
+.badge-ready { background: #dcfce7; color: #15803d; }&#13;
+&#13;
+.sc-bed-patient-info { flex-grow: 1; display: flex; flex-direction: column; min-height: 60px; }&#13;
+.sc-bed-patient-name { margin: 0 0 2px 0; font-size: 15px; color: #1e293b; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }&#13;
+.sc-bed-dept-text { margin: 0 0 8px 0; font-size: 12px; color: #64748b; font-weight: 500;}&#13;
+&#13;
+.sc-bed-severity-text { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto; }&#13;
+.severity-text-critical { color: #dc2626; } &#13;
+.severity-text-high { color: #ea580c; }  &#13;
+.severity-text-moderate { color: #2563eb; }&#13;
+.severity-text-low { color: #16a34a; }&#13;
+&#13;
+.sc-bed-empty-state-box { display: flex; align-items: center; justify-content: center; height: 100%; min-height: 60px; }&#13;
+.sc-bed-empty-icon { font-size: 42px; color: #cbd5e1; } &#13;
+&#13;
+/* ── PAGINATION (FIXED TO BOTTOM) ── */&#13;
+.sc-bed-no-results { padding: 40px; text-align: center; color: #64748b; font-weight: 500; }&#13;
+&#13;
+.sc-bed-pagination-wrapper {&#13;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px; &#13;
+  /* NEW: Pushes pagination to the absolute bottom of the screen */&#13;
+  margin-top: auto; &#13;
+  padding-top: 30px;&#13;
+}&#13;
+&#13;
+.sc-bed-pagination-info { font-size: 13px; color: #64748b; font-weight: 500; }&#13;
+&#13;
+.sc-bed-pagination-controls { &#13;
+  display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; &#13;
+  background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);&#13;
+}&#13;
+&#13;
+.sc-bed-page-numbers { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 4px; margin: 0 8px; }&#13;
+&#13;
+.sc-bed-btn-page, .sc-bed-btn-page-num {&#13;
+  background: transparent; border: none; color: #475569; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;&#13;
+  cursor: pointer; transition: all 0.2s; font-family: inherit; display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px;&#13;
+}&#13;
+&#13;
+.sc-bed-btn-page:hover:not([disabled]), .sc-bed-btn-page-num:hover { background: #f1f5f9; color: #1e293b; }&#13;
+.sc-bed-btn-page[disabled] { opacity: 0.3; cursor: not-allowed; }&#13;
+.sc-bed-btn-page-num.active { background: #1961ED; color: #ffffff; border-color: #1961ED;}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -311,35 +313,42 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-15 21:01:29</sys_created_on>
         <sys_id>b27b1097c3a7fe101bf5fe1d05013153</sys_id>
-        <sys_mod_count>34</sys_mod_count>
+        <sys_mod_count>43</sys_mod_count>
         <sys_name>SmartCare Bed Tile</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_b27b1097c3a7fe101bf5fe1d05013153</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-18 20:43:55</sys_updated_on>
-        <template><![CDATA[<div class="hospital-dashboard">
+        <sys_updated_on>2026-03-19 08:45:44</sys_updated_on>
+        <template><![CDATA[<div class="sc-bed-dashboard">
   
-  <div class="controls-panel">
-    <div class="search-wrapper">
-      <input type="text" ng-model="c.search.bedId" placeholder="Search Bed ID..." class="filter-input">
-    </div>
-    <div class="filters-wrapper">
-      <select ng-model="c.search.statusValue" class="filter-select">
+  <div class="sc-bed-controls-header">
+    <div class="sc-bed-search-row">
+      
+      <div class="sc-bed-search-bar">
+        <i class="fa fa-search sc-bed-search-icon"></i>
+        <input type="text" ng-model="c.search.bedId" ng-change="c.updateFilters()" placeholder="Search Bed ID or Patient Name...">
+      </div>
+
+      <select ng-model="c.search.ward" ng-change="c.updateFilters()" class="sc-bed-select">
+        <option value="">All Departments</option>
+        <option value="ICU">ICU</option>
+        <option value="100">Emergency</option>
+        <option value="200">Cardiology</option>
+        <option value="300">Neurology</option>
+        <option value="400">Orthopedics</option>
+        <option value="500">General Med</option>
+        <option value="600">Maternity</option>
+      </select>
+
+      <select ng-model="c.search.statusValue" ng-change="c.updateFilters()" class="sc-bed-select">
         <option value="">All Statuses</option>
         <option value="available">Available</option>
         <option value="occupied">Occupied</option>
       </select>
 
-      <select ng-model="c.search.ward" class="filter-select">
-        <option value="">All Wards</option>
-        <option value="icu">ICU</option>
-        <option value="emergency">Emergency</option>
-        <option value="general">General Ward</option>
-      </select>
-
-      <select ng-model="c.search.bedTypeValue" class="filter-select">
+      <select ng-model="c.search.bedTypeValue" ng-change="c.updateFilters()" class="sc-bed-select">
         <option value="">All Bed Types</option>
         <option value="100">General</option>
         <option value="200">ICU</option>
@@ -347,47 +356,80 @@
         <option value="400">Pediatrics</option>
       </select>
 
-      <button class="clear-btn" ng-click="c.clearFilters()">Clear Filters</button>
+      <button class="sc-bed-btn-clear" ng-click="c.clearFilters()">
+        <i class="fa fa-sliders"></i> Clear
+      </button>
+      
     </div>
   </div>
 
-  <div class="grid-container">
-    <div ng-repeat="bed in data.beds | filter:{bedId: c.search.bedId, statusValue: c.search.statusValue, ward: c.search.ward, bedTypeValue: c.search.bedTypeValue}" 
-         class="modern-card ward-{{bed.ward}}" 
-         ng-class="{'status-available': bed.statusValue == 'available', 'status-occupied': bed.statusValue == 'occupied'}">
+  <div class="sc-bed-grid">
+    <div ng-repeat="bed in c.filteredBeds | limitTo: c.pageSize : (c.currentPage - 1) * c.pageSize" 
+         class="sc-bed-card ward-{{(bed.ward | lowercase) || 'default'}}">
       
-      <div class="card-header-modern">
-        <div class="header-left">
-          <span class="bed-id-pill">{{bed.bedId}}</span>
-          <span class="bed-type-text">{{bed.bedTypeLabel}}</span>
+      <div class="sc-bed-card-header">
+        <div class="sc-bed-header-left">
+          <span class="sc-bed-id-text">{{bed.bedId}} {{c.getWardLabel(bed.ward) | uppercase}}</span>
         </div>
         
-        <div class="menu-container" ng-if="bed.statusValue == 'occupied'">
-          <div class="kebab-icon" ng-click="bed.showMenu = !bed.showMenu">&#8942;</div>
+        <div class="sc-bed-header-right">
+          <i class="fa fa-bed sc-bed-header-icon" ng-if="bed.statusValue != 'occupied'"></i>
           
-          <div class="context-menu" ng-show="bed.showMenu">
-            <button class="context-item text-danger" ng-click="c.confirmDischarge(bed)">
-              Discharge Patient
-            </button>
+          <div class="sc-bed-menu-wrapper" ng-if="bed.statusValue == 'occupied'">
+            <div class="sc-bed-kebab" ng-click="bed.showMenu = !bed.showMenu">&#8942;</div>
+            <div class="sc-bed-context-menu" ng-show="bed.showMenu">
+              <button class="sc-bed-context-item sc-bed-text-danger" ng-click="c.confirmDischarge(bed)">
+                <i class="fa fa-sign-out" style="margin-right: 8px;"></i> Discharge
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="card-body-modern">
-        <div ng-if="bed.patientName" class="occupied-state">
-          <h2 class="patient-name-modern">{{bed.patientName}}</h2>
-          <p class="dept-label-modern">{{bed.dept}}</p>
-          <span class="severity-pill" ng-class="bed.severity">{{bed.severity}}</span>
+      <div class="sc-bed-card-body">
+        <div class="sc-bed-status-area">
+          <span class="sc-bed-status-badge" ng-class="{'badge-occupied': bed.statusValue == 'occupied', 'badge-ready': bed.statusValue == 'available'}">
+            {{bed.statusValue == 'occupied' ? 'OCCUPIED' : 'READY FOR ADMISSION'}}
+          </span>
+        </div>
+
+        <div class="sc-bed-patient-info" ng-if="bed.statusValue == 'occupied'">
+          <h3 class="sc-bed-patient-name">{{bed.patientName}}</h3>
+          <p class="sc-bed-dept-text">{{bed.dept}}</p>
+          <span class="sc-bed-severity-text severity-text-{{bed.severity | lowercase}}">{{bed.severity}}</span>
         </div>
         
-        <div ng-if="!bed.patientName" class="available-state">
-       <!--   <div class="status-dot"></div> -->
-          <h3 class="vacant-text-modern">Ready for Admission</h3>
+        <div class="sc-bed-patient-info sc-bed-empty-state-box" ng-if="bed.statusValue != 'occupied'">
+          <i class="fa fa-bed sc-bed-empty-icon"></i>
         </div>
       </div>
       
     </div>
   </div>
+
+  <div class="sc-bed-no-results" ng-if="c.filteredBeds.length == 0">
+    <p>No beds match your current filters.</p>
+  </div>
+
+  <div class="sc-bed-pagination-wrapper" ng-if="c.filteredBeds.length > 0">
+    <div class="sc-bed-pagination-info">Showing {{(c.currentPage - 1) * c.pageSize + 1}}-{{c.getMin(c.currentPage * c.pageSize, c.filteredBeds.length)}} of {{c.filteredBeds.length}} beds</div>
+    
+    <div class="sc-bed-pagination-controls">
+      <button class="sc-bed-btn-page" ng-disabled="c.currentPage == 1" ng-click="c.prevPage()">&larr;</button>
+      
+      <div class="sc-bed-page-numbers">
+        <button class="sc-bed-btn-page-num" 
+                ng-repeat="page in c.getPageArray() track by $index" 
+                ng-class="{'active': page == c.currentPage}" 
+                ng-click="c.goToPage(page)">
+          {{page}}
+        </button>
+      </div>
+
+      <button class="sc-bed-btn-page" ng-disabled="c.currentPage == c.totalPages" ng-click="c.nextPage()">&rarr;</button>
+    </div>
+  </div>
+
 </div>]]></template>
     </sp_widget>
 </record_update>

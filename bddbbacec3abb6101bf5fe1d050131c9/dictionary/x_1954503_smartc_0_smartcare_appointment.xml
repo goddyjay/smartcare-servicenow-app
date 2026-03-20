@@ -11,7 +11,7 @@
         <element label="Appointment Time" max_length="40" name="appointment_time" type="glide_time"/>
         <element label="Doctor" max_length="32" name="doctor" reference="sys_user" type="reference"/>
         <element label="Appointment Date" max_length="40" name="appointment_date" type="glide_date"/>
-        <element label="Patient" max_length="32" name="patient" reference="x_1954503_smartc_0_patient" type="reference"/>
+        <element label="Patient" max_length="32" name="patient" type="string"/>
         <index name="index">
             <element name="doctor"/>
         </index>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Patient Information " section_id="f6102fdcc3bf3a501bf5fe1d050131e5" sys_domain="global" table="x_1954503_smartc_0_patient" version="3" view="adminview2">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>full_name</element>
+            <position>0</position>
+            <sys_created_by>yeabsira</sys_created_by>
+            <sys_created_on>2026-03-19 13:58:28</sys_created_on>
+            <sys_id>d111ef50c3ff3a501bf5fe1d05013124</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="fa102fdcc3bf3a501bf5fe1d05013187">f6102fdcc3bf3a501bf5fe1d050131e5</sys_ui_section>
+            <sys_updated_by>yeabsira</sys_updated_by>
+            <sys_updated_on>2026-03-19 13:58:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>email</element>
+            <position>1</position>
+            <sys_created_by>yeabsira</sys_created_by>
+            <sys_created_on>2026-03-19 13:58:28</sys_created_on>
+            <sys_id>5111ef50c3ff3a501bf5fe1d05013125</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="fa102fdcc3bf3a501bf5fe1d05013187">f6102fdcc3bf3a501bf5fe1d050131e5</sys_ui_section>
+            <sys_updated_by>yeabsira</sys_updated_by>
+            <sys_updated_on>2026-03-19 13:58:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <position>2</position>
+            <sys_created_by>yeabsira</sys_created_by>
+            <sys_created_on>2026-03-19 13:58:28</sys_created_on>
+            <sys_id>dd11ef50c3ff3a501bf5fe1d05013125</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="fa102fdcc3bf3a501bf5fe1d05013187">f6102fdcc3bf3a501bf5fe1d050131e5</sys_ui_section>
+            <sys_updated_by>yeabsira</sys_updated_by>
+            <sys_updated_on>2026-03-19 13:58:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>3</position>
+            <sys_created_by>yeabsira</sys_created_by>
+            <sys_created_on>2026-03-19 13:58:28</sys_created_on>
+            <sys_id>5d11ef50c3ff3a501bf5fe1d05013126</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="fa102fdcc3bf3a501bf5fe1d05013187">f6102fdcc3bf3a501bf5fe1d050131e5</sys_ui_section>
+            <sys_updated_by>yeabsira</sys_updated_by>
+            <sys_updated_on>2026-03-19 13:58:28</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>age</element>
+            <position>4</position>
+            <sys_created_by>yeabsira</sys_created_by>
+            <sys_created_on>2026-03-19 13:58:28</sys_created_on>
+            <sys_id>d911ef50c3ff3a501bf5fe1d05013127</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="fa102fdcc3bf3a501bf5fe1d05013187">f6102fdcc3bf3a501bf5fe1d050131e5</sys_ui_section>
+            <sys_updated_by>yeabsira</sys_updated_by>
+            <sys_updated_on>2026-03-19 13:58:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>gender</element>
+            <position>5</position>
+            <sys_created_by>yeabsira</sys_created_by>
+            <sys_created_on>2026-03-19 13:58:28</sys_created_on>
+            <sys_id>5911ef50c3ff3a501bf5fe1d05013128</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Patient Information " display_value="Patient Information " name="x_1954503_smartc_0_patient" sys_domain="global" view="fa102fdcc3bf3a501bf5fe1d05013187">f6102fdcc3bf3a501bf5fe1d050131e5</sys_ui_section>
+            <sys_updated_by>yeabsira</sys_updated_by>
+            <sys_updated_on>2026-03-19 13:58:28</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Patient Information </caption>
+            <header>false</header>
+            <name>x_1954503_smartc_0_patient</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>yeabsira</sys_created_by>
+            <sys_created_on>2026-03-19 13:54:12</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f6102fdcc3bf3a501bf5fe1d050131e5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_1954503_smartc_0_patient</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+            <sys_update_name>sys_ui_section_f6102fdcc3bf3a501bf5fe1d050131e5</sys_update_name>
+            <sys_updated_by>yeabsira</sys_updated_by>
+            <sys_updated_on>2026-03-19 13:54:12</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="adminview2" name="adminview2">fa102fdcc3bf3a501bf5fe1d05013187</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

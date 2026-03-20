@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
     <sp_header_footer action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope, $window) {
+        <client_script><![CDATA[api.controller = function($scope, $window, $location) {
   var c = this;
   
+  c.pageId = $location.search().id || 'smartcare_hostpital_dashboard';
   c.showUserMenu = false;
   c.showNotifTray = false;
+
+  // --- NEW: SPA Instant Navigation ---
+  c.navigate = function(page, event) {
+    if (event) event.preventDefault(); // Stop the hard browser reload
+    c.pageId = page;                   // Instantly shift the active tab UI
+    $location.search('id', page);      // Soft-route the portal content
+  };
 
   // Toggle Notifications
   c.toggleNotifTray = function(e) {
@@ -43,24 +51,24 @@
   });
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* ── 1. SIDEBAR SHELL ── */&#13;
+        <css>/* ── 1. SIDEBAR SHELL (THEMED TO IMAGE) ── */&#13;
 .ward-sidebar {&#13;
   position: fixed;&#13;
   top: 0; left: 0;&#13;
-  width: 260px;&#13;
+  width: 280px; &#13;
   height: 100vh;&#13;
-  background: #ffffff;&#13;
-  border-right: 1px solid #f0f2f5;&#13;
+  background: #1961ED; &#13;
+  border-right: none;&#13;
   display: flex;&#13;
   flex-direction: column;&#13;
-  font-family: 'Inter', system-ui, sans-serif;&#13;
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;&#13;
   z-index: 1000;&#13;
   box-sizing: border-box;&#13;
 }&#13;
 &#13;
 /* ── 2. BRANDING &amp; LOGO ── */&#13;
 .sidebar-brand { &#13;
-  padding: 30px 24px; &#13;
+  padding: 30px 24px 20px 24px; &#13;
 }&#13;
 &#13;
 .brand-logo { &#13;
@@ -69,27 +77,24 @@
   gap: 12px; &#13;
 }&#13;
 &#13;
-/* Update these specific sections in your stylesheet */&#13;
-&#13;
 .brand-icon {&#13;
   width: 42px;&#13;
   height: 42px;&#13;
-  background: #ffffff; /* Replaced gradient with clean white */&#13;
+  background: #ffffff; &#13;
   border-radius: 12px;&#13;
   display: flex;&#13;
   align-items: center;&#13;
   justify-content: center;&#13;
   overflow: hidden;&#13;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer, neutral shadow */&#13;
-  border: 1px solid #f0f2f5; /* Subtle border to define the white box */&#13;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); &#13;
   flex-shrink: 0;&#13;
 }&#13;
 &#13;
 .brand-icon img {&#13;
   width: 100%;&#13;
   height: 100%;&#13;
-  object-fit: contain; /* Professional scaling for transparent logos */&#13;
-  padding: 6px;        /* Balance the logo inside the box */&#13;
+  object-fit: contain; &#13;
+  padding: 6px;        &#13;
 }&#13;
 &#13;
 .brand-text {&#13;
@@ -98,141 +103,62 @@
   justify-content: center;&#13;
 }&#13;
 &#13;
-.brand-name { font-weight: 700; font-size: 18px; color: #1e293b; line-height: 1.1; }&#13;
-.brand-tag { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }&#13;
+.brand-name { font-weight: 700; font-size: 20px; color: #ffffff; line-height: 1.1; }&#13;
+.brand-tag { font-size: 10px; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }&#13;
 &#13;
 /* ── 3. NAVIGATION ── */&#13;
 .nav-section-label {&#13;
-  font-size: 11px; font-weight: 700; color: #cbd5e1;&#13;
+  font-size: 11px; font-weight: 700; color: rgba(255, 255, 255, 0.5);&#13;
   text-transform: uppercase; letter-spacing: 1.5px;&#13;
   padding: 10px 24px;&#13;
 }&#13;
 &#13;
-.sidebar-nav { list-style: none; padding: 0 14px; margin: 0; flex: 1; }&#13;
+.sidebar-nav { list-style: none; padding: 0 16px; margin: 0; flex: 1; }&#13;
+&#13;
+.sidebar-nav li { margin-bottom: 4px; }&#13;
 &#13;
 .sidebar-nav li a {&#13;
-  display: flex; align-items: center; gap: 12px;&#13;
-  padding: 12px;&#13;
-  color: #64748b; text-decoration: none;&#13;
-  font-size: 14px; font-weight: 500;&#13;
-  border-radius: 10px;&#13;
+  display: flex; align-items: center; gap: 14px;&#13;
+  padding: 14px 16px;&#13;
+  color: rgba(255, 255, 255, 0.7); &#13;
+  text-decoration: none;&#13;
+  font-size: 15px; font-weight: 500;&#13;
+  border-radius: 12px; &#13;
   transition: all 0.2s ease;&#13;
 }&#13;
 &#13;
 .nav-icon {&#13;
-  width: 32px; height: 32px;&#13;
+  width: 24px; height: 24px;&#13;
   display: flex; align-items: center; justify-content: center;&#13;
-  border-radius: 8px; background: #f8fafc;&#13;
+  font-size: 18px;&#13;
   transition: 0.2s;&#13;
 }&#13;
 &#13;
-/* Hover &amp; Active States */&#13;
-.sidebar-nav li a:hover { background: #fdf2f8; color: #db2777; }&#13;
-.sidebar-nav li.active a { background: #eef2ff; color: #4f46e5; }&#13;
-.sidebar-nav li.active .nav-icon { background: #4f46e5; color: #fff; }&#13;
-.nav-divider { height: 1px; background: #f1f5f9; margin: 15px 10px; list-style: none; }&#13;
-&#13;
-/* ── 4. USER CARD &amp; FOOTER ── */&#13;
-.sidebar-footer { padding: 20px 14px; border-top: 1px solid #f1f5f9; }&#13;
-.user-card {&#13;
-  display: flex; align-items: center; gap: 12px;&#13;
-  padding: 12px; background: #f8fafc; border-radius: 14px;&#13;
-  position: relative;&#13;
-}&#13;
-.user-avatar {&#13;
-  width: 36px; height: 36px;&#13;
-  background: #e0e7ff; color: #4338ca;&#13;
-  border-radius: 10px; font-weight: 700; font-size: 13px;&#13;
-  display: flex; align-items: center; justify-content: center;&#13;
-}&#13;
-.user-name { font-size: 13px; font-weight: 600; color: #1e293b; }&#13;
-.user-role { font-size: 11px; color: #64748b; }&#13;
-.user-status {&#13;
-  position: absolute; bottom: 12px; left: 42px;&#13;
-  width: 10px; height: 10px;&#13;
-  background: #22c55e; border: 2px solid #fff; border-radius: 50%;&#13;
+/* Hover &amp; Active States matching the design */&#13;
+.sidebar-nav li a:hover { &#13;
+  background: rgba(255, 255, 255, 0.1); &#13;
+  color: #ffffff; &#13;
 }&#13;
 &#13;
-/* ── 5. PATIENT REGISTRATION FORM (Fixes Cropping) ── */&#13;
-.form-container {&#13;
-  background: #ffffff;&#13;
-  border-radius: 24px;&#13;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);&#13;
-  max-width: 850px;&#13;
-  margin: 40px auto;&#13;
-  border: 1px solid #f1f5f9;&#13;
-  overflow: hidden;&#13;
+.sidebar-nav li.active a { &#13;
+  background: #ffffff; &#13;
+  color: #1961ED; &#13;
+  font-weight: 600;&#13;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);&#13;
 }&#13;
 &#13;
-.form-header { padding: 32px 40px 20px; }&#13;
-.form-header h3 { margin: 0; color: #1e293b; font-size: 24px; font-weight: 700; }&#13;
-.form-header p { margin: 8px 0 0; color: #94a3b8; font-size: 14px; }&#13;
+.sidebar-nav li.active .nav-icon { color: #1961ED; }&#13;
 &#13;
-form { padding: 0 40px 30px; }&#13;
-.form-row { display: flex; gap: 24px; margin-bottom: 20px; }&#13;
-.form-group { flex: 1; display: flex; flex-direction: column; }&#13;
+.nav-divider { height: 1px; background: rgba(255, 255, 255, 0.15); margin: 15px 10px; list-style: none; }&#13;
 &#13;
-label { font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px; }&#13;
-.required { color: #f43f5e; }&#13;
 &#13;
-/* Fixed Inputs to prevent vertical cropping */&#13;
-.form-control {&#13;
-  height: 48px;&#13;
-  padding: 0 16px;&#13;
-  line-height: 48px;&#13;
-  border: 1px solid #e2e8f0;&#13;
-  border-radius: 14px;&#13;
-  font-size: 14px;&#13;
-  color: #1e293b;&#13;
-  background-color: #f8fafc;&#13;
-  transition: all 0.2s ease;&#13;
-  box-sizing: border-box;&#13;
-}&#13;
-&#13;
-/* Custom adjustment for Select dropdowns to center text */&#13;
-select.form-control {&#13;
-  padding-right: 30px;&#13;
-  cursor: pointer;&#13;
-}&#13;
-&#13;
-textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#13;
-&#13;
-.form-control:focus {&#13;
-  border-color: #6366f1;&#13;
-  background-color: #ffffff;&#13;
-  outline: none;&#13;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);&#13;
-}&#13;
-&#13;
-.form-footer {&#13;
-  padding: 24px 40px;&#13;
-  background-color: #fbfcfe;&#13;
-  display: flex;&#13;
-  justify-content: flex-end;&#13;
-  gap: 16px;&#13;
-  border-top: 1px solid #f1f5f9;&#13;
-}&#13;
-&#13;
-.btn-clear { background: transparent; border: none; color: #94a3b8; font-weight: 600; cursor: pointer; }&#13;
-&#13;
-.btn-submit {&#13;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);&#13;
-  border: none; color: #ffffff;&#13;
-  height: 48px; padding: 0 32px;&#13;
-  border-radius: 14px; font-weight: 600;&#13;
-  cursor: pointer;&#13;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);&#13;
-  transition: all 0.2s;&#13;
-}&#13;
-&#13;
-.btn-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3); }&#13;
-/* ── FOOTER CONTAINER ── */&#13;
+/* ── 4. SIDEBAR FOOTER ── */&#13;
 .sidebar-footer {&#13;
-  padding: 16px;&#13;
-  border-top: 1px solid #f1f5f9;&#13;
-  margin-top: auto; /* Pushes footer to bottom */&#13;
+  padding: 20px 16px;&#13;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);&#13;
+  margin-top: auto; &#13;
   position: relative;&#13;
-  background: #fff;&#13;
+  background: transparent;&#13;
 }&#13;
 &#13;
 .footer-grid {&#13;
@@ -241,57 +167,61 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
   gap: 10px;&#13;
 }&#13;
 &#13;
-/* ── BUTTONS &amp; BADGES ── */&#13;
 .btn-icon-round {&#13;
-  width: 42px; height: 42px;&#13;
+  width: 44px; height: 44px;&#13;
   border-radius: 12px;&#13;
-  background: #f8fafc;&#13;
-  border: 1px solid #e2e8f0;&#13;
-  color: #64748b;&#13;
+  background: rgba(255, 255, 255, 0.1); &#13;
+  border: 1px solid rgba(255, 255, 255, 0.1);&#13;
+  color: #ffffff;&#13;
   cursor: pointer;&#13;
   position: relative;&#13;
   display: flex; align-items: center; justify-content: center;&#13;
+  transition: 0.2s;&#13;
 }&#13;
 &#13;
-.btn-icon-round:hover { background: #f1f5f9; color: #6366f1; }&#13;
+.btn-icon-round:hover { background: rgba(255, 255, 255, 0.2); }&#13;
 &#13;
 .badge-dot {&#13;
   position: absolute; top: 10px; right: 10px;&#13;
   width: 8px; height: 8px;&#13;
   background: #f43f5e;&#13;
   border-radius: 50%;&#13;
-  border: 2px solid #fff;&#13;
+  border: 2px solid #1961ED;&#13;
 }&#13;
 &#13;
-/* ── PROFILE TRIGGER ── */&#13;
 .profile-trigger {&#13;
-  display: flex; align-items: center; gap: 8px;&#13;
-  padding: 6px; background: #f8fafc;&#13;
+  display: flex; align-items: center; gap: 10px;&#13;
+  padding: 6px; background: rgba(255, 255, 255, 0.1);&#13;
   border-radius: 12px; cursor: pointer; flex: 1;&#13;
+  transition: 0.2s;&#13;
+  border: 1px solid rgba(255, 255, 255, 0.1);&#13;
 }&#13;
+&#13;
+.profile-trigger:hover { background: rgba(255, 255, 255, 0.2); }&#13;
 &#13;
 .user-avatar-circle {&#13;
   width: 32px; height: 32px;&#13;
-  background: #6366f1; color: #fff;&#13;
-  border-radius: 8px; font-weight: 700; font-size: 11px;&#13;
+  background: #ffffff; color: #1961ED;&#13;
+  border-radius: 8px; font-weight: 700; font-size: 13px;&#13;
   display: flex; align-items: center; justify-content: center;&#13;
 }&#13;
 &#13;
-.user-full-name { font-size: 12px; font-weight: 700; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }&#13;
-.user-status-text { font-size: 9px; color: #94a3b8; text-transform: uppercase; }&#13;
+.user-full-name { font-size: 13px; font-weight: 600; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }&#13;
+.user-status-text { font-size: 10px; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; }&#13;
 &#13;
-/* ── RIGHT-SIDE FLYOUTS (FIXED) ── */&#13;
+/* ── 5. RIGHT-SIDE FLYOUT TRAYS ── */&#13;
 .side-tray {&#13;
   position: fixed;&#13;
-  left: 270px; /* Sidebar Width (260px) + Gap */&#13;
+  left: 295px; &#13;
   bottom: 20px;&#13;
-  width: 280px;&#13;
+  width: 300px;&#13;
   background: #ffffff;&#13;
   border-radius: 16px;&#13;
-  box-shadow: 10px 10px 40px rgba(0,0,0,0.1);&#13;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);&#13;
   border: 1px solid #f1f5f9;&#13;
   z-index: 9999;&#13;
   animation: traySlide 0.3s ease-out;&#13;
+  color: #1e293b;&#13;
 }&#13;
 &#13;
 @keyframes traySlide {&#13;
@@ -300,76 +230,45 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
 }&#13;
 &#13;
 .tray-title {&#13;
-  padding: 14px 18px;&#13;
-  font-weight: 800; font-size: 14px; color: #1e293b;&#13;
-  border-bottom: 1px solid #f1f5f9; background: #fbfcfe;&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+  align-items: center;&#13;
+  padding: 16px 20px;&#13;
+  background: #fbfcfe;&#13;
+  border-bottom: 1px solid #f1f5f9;&#13;
+  font-weight: 700; font-size: 14px; color: #1e293b;&#13;
   border-radius: 16px 16px 0 0;&#13;
 }&#13;
 &#13;
-.tray-inner { padding: 10px; max-height: 350px; overflow-y: auto; }&#13;
-&#13;
-.alert-card {&#13;
-  padding: 10px; border-radius: 10px; margin-bottom: 4px;&#13;
+.clear-all-link {&#13;
+  background: none; border: none; color: #1961ED;&#13;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;&#13;
+  cursor: pointer; padding: 4px 8px; border-radius: 6px; transition: 0.2s;&#13;
 }&#13;
+&#13;
+.clear-all-link:hover { background: #eef2ff; }&#13;
+&#13;
+.tray-inner { padding: 12px; max-height: 350px; overflow-y: auto; }&#13;
+&#13;
+.alert-card { padding: 12px; border-radius: 10px; margin-bottom: 4px; transition: 0.2s;}&#13;
 .alert-card:hover { background: #f8fafc; }&#13;
 .alert-card strong { font-size: 13px; display: block; color: #1e293b; }&#13;
 .alert-card p { font-size: 12px; color: #64748b; margin: 4px 0 0; line-height: 1.4; }&#13;
 .alert-card small { font-size: 10px; color: #cbd5e1; display: block; margin-top: 5px; }&#13;
 &#13;
-/* ── TRAY ACTIONS ── */&#13;
+.empty-tray-msg { text-align: center; padding: 40px 20px; color: #cbd5e1; }&#13;
+.empty-tray-msg i { font-size: 32px; margin-bottom: 10px; color: #f1f5f9; }&#13;
+.empty-tray-msg p { font-size: 13px; margin: 0; }&#13;
+&#13;
 .tray-action {&#13;
   width: 100%; padding: 12px; border: none; background: transparent;&#13;
   text-align: left; font-size: 13px; font-weight: 600;&#13;
   border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px;&#13;
-  color: #475569;&#13;
+  color: #475569; transition: 0.2s;&#13;
 }&#13;
-.tray-action:hover { background: #f1f5f9; color: #6366f1; }&#13;
+.tray-action:hover { background: #f1f5f9; color: #1961ED; }&#13;
 .tray-action.logout-danger { color: #f43f5e; margin-top: 5px; }&#13;
-.tray-action.logout-danger:hover { background: #fff1f2; }&#13;
-&#13;
-.tray-title {&#13;
-  display: flex;&#13;
-  justify-content: space-between;&#13;
-  align-items: center;&#13;
-  padding: 14px 18px;&#13;
-  background: #fbfcfe;&#13;
-  border-bottom: 1px solid #f1f5f9;&#13;
-}&#13;
-&#13;
-.clear-all-link {&#13;
-  background: none;&#13;
-  border: none;&#13;
-  color: #6366f1;&#13;
-  font-size: 11px;&#13;
-  font-weight: 700;&#13;
-  text-transform: uppercase;&#13;
-  cursor: pointer;&#13;
-  padding: 4px 8px;&#13;
-  border-radius: 6px;&#13;
-  transition: 0.2s;&#13;
-}&#13;
-&#13;
-.clear-all-link:hover {&#13;
-  background: #eef2ff;&#13;
-  color: #4338ca;&#13;
-}&#13;
-&#13;
-.empty-tray-msg {&#13;
-  text-align: center;&#13;
-  padding: 40px 20px;&#13;
-  color: #cbd5e1;&#13;
-}&#13;
-&#13;
-.empty-tray-msg i {&#13;
-  font-size: 32px;&#13;
-  margin-bottom: 10px;&#13;
-  color: #f1f5f9;&#13;
-}&#13;
-&#13;
-.empty-tray-msg p {&#13;
-  font-size: 13px;&#13;
-  margin: 0;&#13;
-}</css>
+.tray-action.logout-danger:hover { background: #fff1f2; }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -389,9 +288,42 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
     var user = gs.getUser();
     var userId = gs.getUserID();
     
-    // User Profile Metadata
+    // 1. Define Roles securely on the server
+    var isSystemAdmin = gs.hasRole('admin');
+    var isSmartCareAdmin = gs.hasRole('x_1954503_smartc_0.admin');
+    var isDoctor = gs.hasRole('x_1954503_smartc_0.doctor');
+    var isNurse = gs.hasRole('x_1954503_smartc_0.nurse');
+
+    data.isAdmin = isSystemAdmin || isSmartCareAdmin;
+    data.isDoctor = isDoctor;
+    data.isNurse = isNurse;
+
+    // 2. Set Visibility Flags
+    // Admins see everything EXCEPT My Patients
+    data.showDashboard = data.isAdmin;
+    data.showRegister = data.isAdmin;
+    data.showViewPatients = data.isAdmin;
+    data.showReceptionApproval = data.isAdmin;
+    
+    // Doctors, Nurses, and Admins can all see Bed Management
+    data.showBedManagement = data.isAdmin || data.isDoctor || data.isNurse;
+    
+    // ONLY Doctors and Nurses can see My Patients
+    data.showMyPatients = data.isDoctor || data.isNurse;
+
+    // 3. User Profile Metadata
     data.userName = user.getDisplayName();
-    data.userRole = gs.hasRole('admin') ? 'Administrator' : 'Ward Staff';
+    
+    if (data.isAdmin) {
+        data.userRole = 'Administrator';
+    } else if (data.isDoctor) {
+        data.userRole = 'Doctor';
+    } else if (data.isNurse) {
+        data.userRole = 'Nurse';
+    } else {
+        data.userRole = 'Ward Staff';
+    }
+    
     data.userId = userId;
     
     var first = user.getFirstName() ? user.getFirstName().charAt(0) : "S";
@@ -437,14 +369,14 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-16 09:47:15</sys_created_on>
         <sys_id>6f2a4bd7c32f32501bf5fe1d050131b6</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>42</sys_mod_count>
         <sys_name>SmartCare Sidebar Wrapper</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_header_footer_6f2a4bd7c32f32501bf5fe1d050131b6</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-18 20:06:47</sys_updated_on>
+        <sys_updated_on>2026-03-19 13:13:18</sys_updated_on>
         <template><![CDATA[<div class="ward-sidebar">
   <div class="sidebar-brand">
     <div class="brand-logo">
@@ -461,41 +393,44 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
   <div class="nav-section-label">Main Menu</div>
 
   <ul class="sidebar-nav">
-    <li>
-      <a href="?id=smartcare_hostpital_dashboard">
+    <li ng-if="data.showDashboard" ng-class="{ 'active': c.pageId == 'smartcare_hostpital_dashboard' }">
+      <a href="?id=smartcare_hostpital_dashboard" ng-click="c.navigate('smartcare_hostpital_dashboard', $event)">
         <span class="nav-icon"><i class="fa fa-th-large"></i></span>
         <span class="nav-label">Dashboard</span>
       </a>
     </li>
-    <li>
-      <a href="?id=register_new_patient">
+    <li ng-if="data.showRegister" ng-class="{ 'active': c.pageId == 'register_new_patient' }">
+      <a href="?id=register_new_patient" ng-click="c.navigate('register_new_patient', $event)">
         <span class="nav-icon"><i class="fa fa-user-plus"></i></span>
         <span class="nav-label">Register Patient</span>
       </a>
     </li>
-    <li>
-      <a href="?id=view_patient_page">
+    <li ng-if="data.showViewPatients" ng-class="{ 'active': c.pageId == 'view_patient_page' }">
+      <a href="?id=view_patient_page" ng-click="c.navigate('view_patient_page', $event)">
         <span class="nav-icon"><i class="fa fa-users"></i></span>
         <span class="nav-label">View Patients</span>
       </a>
     </li>
-    <div class="nav-divider"></div>
-    <li>
-      <a href="?id=ward_bed_board">
+    
+    <div class="nav-divider" ng-if="data.isAdmin"></div>
+    
+    <li ng-if="data.showBedManagement" ng-class="{ 'active': c.pageId == 'ward_bed_board' }">
+      <a href="?id=ward_bed_board" ng-click="c.navigate('ward_bed_board', $event)">
         <span class="nav-icon"><i class="fa fa-bed"></i></span>
         <span class="nav-label">Bed Management</span>
       </a>
     </li>
     
-    <li>
-      <a href="?id=smartcare_my_patients_page">
-        <span class="nav-icon"><i class="fa fa-bed"></i></span>
+    <li ng-if="data.showMyPatients" ng-class="{ 'active': c.pageId == 'smartcare_my_patients_page' }">
+      <a href="?id=smartcare_my_patients_page" ng-click="c.navigate('smartcare_my_patients_page', $event)">
+        <span class="nav-icon"><i class="fa fa-stethoscope"></i></span>
         <span class="nav-label">My Patients</span>
       </a>
     </li>
-    <li>
-      <a href="?id=reception_approval_page">
-        <span class="nav-icon"><i class="fa fa-bed"></i></span>
+
+    <li ng-if="data.showReceptionApproval" ng-class="{ 'active': c.pageId == 'reception_approval_page' }">
+      <a href="?id=reception_approval_page" ng-click="c.navigate('reception_approval_page', $event)">
+        <span class="nav-icon"><i class="fa fa-check-square-o"></i></span>
         <span class="nav-label">Reception Approval</span>
       </a>
     </li>
@@ -510,10 +445,10 @@ textarea.form-control { height: auto; padding: 12px 16px; line-height: 1.5; }&#1
       </button>
 
       <div class="profile-trigger" ng-click="c.toggleUserMenu($event)">
-        <div class="user-avatar-circle">{{data.userInitials}}</div>
+        <div class="user-avatar-circle">{{data.userInitials || 'U'}}</div>
         <div class="user-meta">
-          <div class="user-full-name">{{data.userName}}</div>
-          <div class="user-status-text">{{data.userRole}}</div>
+          <div class="user-full-name">{{data.userName || 'User Name'}}</div>
+          <div class="user-status-text">{{data.userRole || 'Role'}}</div>
         </div>
       </div>
     </div>

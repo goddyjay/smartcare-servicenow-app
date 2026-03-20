@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $http) {
+  var c = this;
+
+  // expose server data on both c and $scope (html uses c.*)
+  c.stats      = c.data.stats || {};
+  var SN_INSTANCE = c.data.instance || '';
+  var SN_TABLE    = c.data.snTable  || '';
+
+  // modal state
+  c.modalOpen   = false;
+  c.formState   = 'form'; // 'form' | 'success' | 'error'
+  c.submitting  = false;
+  c.errorDetail = '';
+  c.successName = '';
+  c.successRef  = '';
+  c.minDate     = '';
+  c.fieldErrors = {};
+
+  // form model
+  c.form = {
+    name: '', phone: '', email: '',
+    dept: '', doctor: '', date: '', time: '', notes: ''
+  };
+
+  // doctor dropdown
+  c.doctors    = [];
+  c.docLoading = false;
+  var _doctorsCache = {};
+
+  // ── modal helpers ──────────────────────────────────
+  c.openModal = function() {
+    c.modalOpen = true;
+    c.formState = 'form';
+    c.minDate   = new Date().toISOString().split('T')[0];
+    _prewarmDoctors();
+  };
+
+  c.closeModal = function() {
+    c.modalOpen = false;
+    setTimeout(function() {
+      $scope.$apply(function() {
+        c.formState   = 'form';
+        c.submitting  = false;
+        c.form        = { name:'', phone:'', email:'', dept:'', doctor:'', date:'', time:'', notes:'' };
+        c.doctors     = [];
+        c.fieldErrors = {};
+      });
+    }, 350);
+  };
+
+  c.overlayClick = function($event) {
+    if (angular.element($event.target).hasClass('sc-modal-overlay')) {
+      c.closeModal();
+    }
+  };
+
+  c.retryForm = function() {
+    c.formState  = 'form';
+    c.submitting = false;
+  };
+
+  // ── doctor fetch ───────────────────────────────────
+  function _prewarmDoctors() {
+    if (Object.keys(_doctorsCache).length > 0) return;
+    $http.get('/api/now/table/sys_user_grmember', {
+      params: {
+        sysparm_query: 'group.name=SmartCare Hospital Doctors^user.active=true',
+        sysparm_fields: 'user.sys_id,user.name,user.u_medical_department',
+        sysparm_display_value: 'false',
+        sysparm_limit: 200
+      }
+    }).then(function(res) {
+      var rows = (res.data && res.data.result) ? res.data.result : [];
+      rows.forEach(function(row) {
+        var dept  = row['user.u_medical_department'] || 'Unknown';
+        var name  = row['user.name'] || 'Unknown Doctor';
+        var sysId = row['user.sys_id'] || '';
+        if (!_doctorsCache[dept]) _doctorsCache[dept] = [];
+        _doctorsCache[dept].push({ name: name, sys_id: sysId });
+      });
+    });
+  }
+
+  c.filterDoctorsByDept = function() {
+    var dept = c.form.dept;
+    c.form.doctor = '';
+    c.doctors     = [];
+    if (!dept) return;
+
+    c.docLoading = true;
+
+    function populateDoctors() {
+      c.docLoading = false;
+      c.doctors    = _doctorsCache[dept] || [];
+    }
+
+    if (Object.keys(_doctorsCache).length > 0) {
+      populateDoctors();
+      return;
+    }
+
+    $http.get('/api/now/table/sys_user_grmember', {
+      params: {
+        sysparm_query: 'group.name=SmartCare Hospital Doctors^user.active=true',
+        sysparm_fields: 'user.sys_id,user.name,user.u_medical_department',
+        sysparm_display_value: 'false',
+        sysparm_limit: 200
+      }
+    }).then(function(res) {
+      var rows = (res.data && res.data.result) ? res.data.result : [];
+      rows.forEach(function(row) {
+        var d  = row['user.u_medical_department'] || 'Unknown';
+        var n  = row['user.name'] || 'Unknown Doctor';
+        var id = row['user.sys_id'] || '';
+        if (!_doctorsCache[d]) _doctorsCache[d] = [];
+        _doctorsCache[d].push({ name: n, sys_id: id });
+      });
+    }).finally(function() { populateDoctors(); });
+  };
+
+  // ── submit appointment ─────────────────────────────
+  c.submitAppointment = function() {
+    var f = c.form;
+    c.fieldErrors = {};
+    var valid = true;
+    ['name','phone','dept','doctor','date','time'].forEach(function(k) {
+      if (!f[k]) { c.fieldErrors[k] = true; valid = false; }
+    });
+    if (!valid) return;
+
+    c.submitting = true;
+
+    var notesText = 'Department: ' + f.dept + ' | Phone: ' + f.phone;
+    if (f.email) notesText += ' | Email: ' + f.email;
+    if (f.notes) notesText += ' | Reason: ' + f.notes;
+
+    var payload = {
+      patient:          f.name,
+      appointment_date: f.date,
+      appointment_time: f.time,
+      status:           'scheduled',
+      notes:            notesText,
+      doctor:           f.doctor
+    };
+
+    $http.post('/api/now/table/' + SN_TABLE, payload, {
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+    }).then(function(res) {
+      var sid = (res.data && res.data.result && res.data.result.sys_id) ? res.data.result.sys_id : 'N/A';
+      c.successName = f.name;
+      c.successRef  = 'SC-' + sid.substring(0, 8).toUpperCase();
+      c.formState   = 'success';
+    }).catch(function(err) {
+      var msg = err.data ? JSON.stringify(err.data).substring(0, 200) : 'HTTP ' + (err.status || 'ERR');
+      c.errorDetail = msg;
+      c.formState   = 'error';
+    }).finally(function() {
+      c.submitting = false;
+    });
+  };
+
+  // ── scroll animations ──────────────────────────────
+  function initScrollAnimations() {
+    var els = document.querySelectorAll('.sc-dcard,.sc-doc-card,.sc-tcard,.sc-qcard,.sc-why-item,.sc-jstep');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var delay = parseInt(entry.target.dataset.i || 0) * 85;
+          setTimeout(function() {
+            entry.target.style.opacity   = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, delay);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    els.forEach(function(el, i) {
+      el.style.opacity    = '0';
+      el.style.transform  = 'translateY(20px)';
+      el.style.transition = 'opacity .5s ease, transform .5s ease';
+      el.dataset.i        = i % 6;
+      obs.observe(el);
+    });
+
+    $scope.$on('$destroy', function() { obs.disconnect(); });
+  }
+
+  // ── counter animations ─────────────────────────────
+  function animateCounter(el) {
+    var raw    = el.textContent.trim();
+    var num    = parseInt(raw.replace(/[^0-9]/g, ''), 10);
+    if (isNaN(num) || num === 0) return;
+    var suffix = raw.replace(/[0-9,]/g, '');
+    var start  = null, dur = 1500;
+    function tick(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1), ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(ease * num).toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function initCounters() {
+    var cObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCounter(e.target); cObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    setTimeout(function() {
+      document.querySelectorAll('.sc-tn').forEach(function(el) { cObs.observe(el); });
+    }, 1500);
+    $scope.$on('$destroy', function() { cObs.disconnect(); });
+  }
+
+  // boot animations after render
+  setTimeout(function() {
+    initScrollAnimations();
+    initCounters();
+  }, 300);
+
+  // keyboard: Escape closes modal
+  function onKeyDown(e) {
+    if (e.key === 'Escape') $scope.$apply(function() { c.closeModal(); });
+  }
+  document.addEventListener('keydown', onKeyDown);
+  $scope.$on('$destroy', function() { document.removeEventListener('keydown', onKeyDown); });
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap');&#13;
+&#13;
+.sc-widget *, .sc-widget *::before, .sc-widget *::after { box-sizing: border-box; margin: 0; padding: 0; }&#13;
+/* Force 16px base — SNow portal Bootstrap uses 14px which shrinks all rem values */&#13;
+.sc-widget { font-family: 'Inter', sans-serif; font-size: 16px !important; color: #1a2b45; background: #fff; line-height: 1.65; overflow-x: hidden; }&#13;
+/* Reset Bootstrap heading overrides inside the widget */&#13;
+.sc-widget h1, .sc-widget h2, .sc-widget h3 { font-family: 'Playfair Display', serif; font-weight: 800; line-height: 1.15; margin: 0; border: none; padding: 0; }&#13;
+.sc-widget a { text-decoration: none; color: inherit; }&#13;
+.sc-widget img { display: block; max-width: 100%; }&#13;
+.sc-widget ul, .sc-widget ol { padding: 0; margin: 0; }&#13;
+.sc-widget button, .sc-widget input, .sc-widget select, .sc-widget textarea { font-family: 'Inter', sans-serif; }&#13;
+&#13;
+/* CSS VARIABLES (as literals for widget compat) */&#13;
+/* --navy:#0b2545 --blue:#0d5eaf --blue-m:#1971d2 --blue-lt:#e8f2fc --teal:#00a99d --teal-lt:#e4f7f6 */&#13;
+&#13;
+/* ─── TOP STRIP ─── */&#13;
+.sc-strip { background: #0b2545; padding: 7px 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 12.4px; color: rgba(255,255,255,.68); }&#13;
+.sc-strip-left { display: flex; align-items: center; gap: 1.4rem; }&#13;
+.sc-strip-item { display: flex; align-items: center; gap: 5px; }&#13;
+.sc-strip-item svg { width: 13px; height: 13px; fill: #00a99d; }&#13;
+.sc-emerg { display: flex; align-items: center; gap: 6px; background: #dc2626; color: #fff; padding: 3px 12px; border-radius: 100px; font-weight: 700; font-size: 11.5px; letter-spacing: .05em; }&#13;
+.sc-emerg::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: sc-blink 1.2s infinite; }&#13;
+@keyframes sc-blink { 0%,100%{opacity:1} 50%{opacity:.3} }&#13;
+&#13;
+/* ─── NAVBAR ─── */&#13;
+.sc-nav { position: sticky; top: 0; z-index: 999; background: #fff; border-bottom: 1px solid #dce8f5; height: 74px; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(11,37,69,.07); }&#13;
+.sc-logo img { height: 48px; width: auto; }&#13;
+.sc-nav-menu { display: flex; gap: .1rem; list-style: none; }&#13;
+.sc-nav-menu a { color: #1a2b45; font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 7px; transition: all .2s; }&#13;
+.sc-nav-menu a:hover { background: #e8f2fc; color: #0d5eaf; }&#13;
+.sc-nav-btns { display: flex; gap: .7rem; align-items: center; }&#13;
+.sc-nb-outline { border: 1.5px solid #0d5eaf; color: #0d5eaf; padding: 7px 17px; border-radius: 8px; font-size: 13.4px; font-weight: 600; transition: all .2s; }&#13;
+.sc-nb-outline:hover { background: #0d5eaf; color: #fff; }&#13;
+.sc-nb-fill { background: #0d5eaf; color: #fff; padding: 8px 20px; border-radius: 8px; font-size: 13.4px; font-weight: 700; transition: all .2s; box-shadow: 0 3px 14px rgba(13,94,175,.3); cursor: pointer; border: none; }&#13;
+.sc-nb-fill:hover { background: #0b2545; transform: translateY(-1px); }&#13;
+&#13;
+/* ─── HERO ─── */&#13;
+.sc-hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }&#13;
+.sc-hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1800&amp;q=80') center 30%/cover; }&#13;
+.sc-hero-ov { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(11,37,69,.9) 0%, rgba(11,37,69,.65) 52%, rgba(13,94,175,.28) 100%); }&#13;
+.sc-hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 0 2rem; width: 100%; }&#13;
+.sc-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #7ed8d3; font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; animation: sc-up .7s ease both; }&#13;
+.sc-hero-eyebrow span { width: 28px; height: 1.5px; background: #00a99d; }&#13;
+.sc-hero h1 { font-size: clamp(41.6px, 5.5vw, 68.8px); font-weight: 800; color: #fff; line-height: 1.08; letter-spacing: -.025em; max-width: 640px; margin-bottom: 20px; animation: sc-up .7s .1s ease both; }&#13;
+.sc-hero h1 em { font-style: italic; color: #7ed8d3; }&#13;
+.sc-hero-sub { font-size: 17.3px; color: rgba(255,255,255,.76); max-width: 490px; line-height: 1.78; font-weight: 300; margin-bottom: 38px; animation: sc-up .7s .2s ease both; }&#13;
+.sc-hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; animation: sc-up .7s .3s ease both; }&#13;
+@keyframes sc-up { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }&#13;
+&#13;
+.sc-btn-teal { background: #00a99d; color: #fff; padding: 14px 32px; border-radius: 10px; font-weight: 700; font-size: 15.2px; display: inline-flex; align-items: center; gap: 8px; transition: all .25s; box-shadow: 0 6px 24px rgba(0,169,157,.45); cursor: pointer; border: none; }&#13;
+.sc-btn-teal:hover { background: #009088; transform: translateY(-3px); }&#13;
+.sc-btn-ghost { background: transparent; border: 2px solid rgba(255,255,255,.42); color: #fff; padding: 14px 32px; border-radius: 10px; font-weight: 600; font-size: 15.2px; display: inline-flex; align-items: center; gap: 8px; transition: all .25s; }&#13;
+.sc-btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.12); transform: translateY(-3px); }&#13;
+.sc-btn-teal svg, .sc-btn-ghost svg { width: 18px; height: 18px; fill: currentColor; }&#13;
+&#13;
+/* floating card */&#13;
+.sc-hero-float { position: absolute; right: 4rem; bottom: 3.5rem; z-index: 3; background: #fff; border-radius: 16px; padding: 1.6rem; width: 285px; box-shadow: 0 24px 64px rgba(11,37,69,.15); animation: sc-up .8s .55s ease both; }&#13;
+.sc-hf-head { font-size: 11.2px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #0d5eaf; margin-bottom: 13.6px; }&#13;
+.sc-hf-row { display: flex; align-items: center; gap: 10px; padding: 8.8px 0; border-bottom: 1px solid #dce8f5; }&#13;
+.sc-hf-row:last-of-type { border: none; }&#13;
+.sc-hf-ico { width: 36px; height: 36px; border-radius: 8px; background: #e8f2fc; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }&#13;
+.sc-hf-ico svg { width: 18px; height: 18px; fill: #0d5eaf; }&#13;
+.sc-hf-lbl { font-size: 11.2px; color: #566983; }&#13;
+.sc-hf-val { font-size: 14px; font-weight: 700; color: #0b2545; }&#13;
+.sc-hf-btn { margin-top: 1rem; width: 100%; padding: 10.9px; background: #0d5eaf; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; transition: background .2s; }&#13;
+.sc-hf-btn:hover { background: #0b2545; }&#13;
+&#13;
+/* ─── TRUST BAR ─── */&#13;
+.sc-trust { background: #0b2545; padding: 1.6rem 2rem; }&#13;
+.sc-trust-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,.08); border-radius: 12px; overflow: hidden; }&#13;
+.sc-trust-cell { background: rgba(11,37,69,.85); padding: 1.35rem 1.5rem; display: flex; align-items: center; gap: 12px; }&#13;
+.sc-ti { width: 44px; height: 44px; border-radius: 10px; background: rgba(0,169,157,.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }&#13;
+.sc-ti svg { width: 22px; height: 22px; fill: #00a99d; }&#13;
+.sc-tn { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #fff; line-height: 1; }&#13;
+.sc-tl { font-size: 12.2px; color: rgba(255,255,255,.5); margin-top: 2px; }&#13;
+&#13;
+/* ─── SHARED ─── */&#13;
+.sc-section { padding: 5rem 2rem; }&#13;
+.sc-cnt { max-width: 1200px; margin: 0 auto; }&#13;
+.sc-pill { display: inline-block; padding: 4px 14px; border-radius: 100px; font-size: .7rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; background: #e8f2fc; color: #0d5eaf; margin-bottom: .7rem; }&#13;
+.sc-pill.t { background: #e4f7f6; color: #00a99d; }&#13;
+.sc-sh { font-size: clamp(28px, 3.5vw, 40px); font-weight: 800; color: #0b2545; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 12.8px; }&#13;
+.sc-sp { font-size: 16px; color: #566983; line-height: 1.75; max-width: 500px; margin-bottom: 44px; }&#13;
+.sc-center { text-align: center; }&#13;
+.sc-center .sc-sp { margin-left: auto; margin-right: auto; }&#13;
+.sc-row-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }&#13;
+.sc-see-all { color: #0d5eaf; font-weight: 700; font-size: .875rem; display: flex; align-items: center; gap: 5px; }&#13;
+.sc-see-all svg { width: 14px; height: 14px; fill: #0d5eaf; }&#13;
+&#13;
+/* ─── QUICK ACCESS ─── */&#13;
+.sc-quick { background: #f7fafd; padding: 3.5rem 2rem; }&#13;
+.sc-qgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }&#13;
+.sc-qcard { background: #fff; border-radius: 12px; border: 1px solid #dce8f5; padding: 1.75rem 1.4rem; display: flex; flex-direction: column; align-items: flex-start; gap: .85rem; box-shadow: 0 2px 10px rgba(11,37,69,.07); cursor: pointer; transition: all .28s; position: relative; overflow: hidden; }&#13;
+.sc-qcard:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(11,37,69,.15); border-color: transparent; }&#13;
+.sc-qcard:hover .sc-qi { background: #0d5eaf; }&#13;
+.sc-qcard:hover .sc-qi svg { fill: #fff; }&#13;
+.sc-qbar { position: absolute; top: 0; left: 0; right: 0; height: 4px; }&#13;
+.sc-qi { width: 48px; height: 48px; border-radius: 10px; background: #e8f2fc; display: flex; align-items: center; justify-content: center; transition: all .28s; }&#13;
+.sc-qi svg { width: 22px; height: 22px; fill: #0d5eaf; transition: fill .28s; }&#13;
+.sc-qcard h4 { font-family: 'Inter', sans-serif; font-size: 15.2px; font-weight: 700; color: #0b2545; }&#13;
+.sc-qcard p { font-size: 12.8px; color: #566983; }&#13;
+.sc-qarr { margin-top: auto; align-self: flex-end; width: 28px; height: 28px; border-radius: 50%; background: #f7fafd; display: flex; align-items: center; justify-content: center; }&#13;
+.sc-qarr svg { width: 14px; height: 14px; fill: #566983; }&#13;
+&#13;
+/* ─── DEPARTMENTS ─── */&#13;
+.sc-depts { background: #fff; }&#13;
+.sc-dgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }&#13;
+.sc-dcard { border-radius: 12px; overflow: hidden; border: 1px solid #dce8f5; box-shadow: 0 2px 10px rgba(11,37,69,.07); transition: all .3s; cursor: pointer; display: flex; flex-direction: column; }&#13;
+.sc-dcard:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(11,37,69,.15); border-color: transparent; }&#13;
+.sc-dcard-img { position: relative; overflow: hidden; }&#13;
+.sc-dcard-img img { width: 100%; height: 190px; object-fit: cover; transition: transform .5s; }&#13;
+.sc-dcard:hover .sc-dcard-img img { transform: scale(1.06); }&#13;
+.sc-dcard-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,37,69,.5) 0%, transparent 55%); }&#13;
+.sc-dbody { padding: 1.4rem 1.5rem; flex: 1; display: flex; flex-direction: column; }&#13;
+.sc-dtag { display: inline-block; font-size: 10.7px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #0d5eaf; background: #e8f2fc; padding: 3px 10px; border-radius: 100px; margin-bottom: 8.8px; }&#13;
+.sc-dbody h3 { font-family: 'Inter', sans-serif; font-size: 15.7px; font-weight: 700; color: #0b2545; margin-bottom: 5.6px; }&#13;
+.sc-dbody p { font-size: 13.1px; color: #566983; line-height: 1.65; flex: 1; }&#13;
+.sc-dlink { margin-top: 1rem; font-size: 12.8px; font-weight: 700; color: #0d5eaf; display: flex; align-items: center; gap: 5px; transition: gap .2s; }&#13;
+.sc-dcard:hover .sc-dlink { gap: 9px; }&#13;
+.sc-dlink svg { width: 14px; height: 14px; fill: #0d5eaf; }&#13;
+&#13;
+/* ─── DOCTORS ─── */&#13;
+.sc-docs { background: #f7fafd; }&#13;
+.sc-doc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }&#13;
+.sc-doc-card { background: #fff; border-radius: 12px; border: 1px solid #dce8f5; overflow: hidden; box-shadow: 0 2px 10px rgba(11,37,69,.07); transition: all .3s; }&#13;
+.sc-doc-card:hover { transform: translateY(-5px); box-shadow: 0 24px 64px rgba(11,37,69,.15); }&#13;
+.sc-doc-photo { position: relative; }&#13;
+.sc-doc-photo img { width: 100%; height: 220px; object-fit: cover; object-position: top; }&#13;
+.sc-doc-avail { position: absolute; bottom: 10px; left: 10px; background: #fff; border-radius: 100px; padding: 4px 10px; font-size: 10.9px; font-weight: 700; display: flex; align-items: center; gap: 5px; color: #15803d; }&#13;
+.sc-doc-avail::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }&#13;
+.sc-doc-body { padding: 19px 21px; }&#13;
+.sc-doc-spec { font-size: 11.2px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #00a99d; margin-bottom: 4.8px; }&#13;
+.sc-doc-body h3 { font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 700; color: #0b2545; margin-bottom: 2.4px; }&#13;
+.sc-doc-qual { font-size: 12px; color: #566983; margin-bottom: 14.4px; }&#13;
+.sc-doc-btn { width: 100%; padding: 8.8px; border-radius: 8px; border: 1.5px solid #0d5eaf; color: #0d5eaf; background: transparent; font-weight: 700; font-size: 12.8px; cursor: pointer; transition: all .2s; }&#13;
+.sc-doc-btn:hover { background: #0d5eaf; color: #fff; }&#13;
+&#13;
+/* ─── WHY US ─── */&#13;
+.sc-why { background: #0b2545; position: relative; overflow: hidden; padding: 5rem 2rem; }&#13;
+.sc-why::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,169,157,.1) 0%, transparent 70%); top: -200px; right: -100px; }&#13;
+.sc-why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; }&#13;
+.sc-why-left { position: relative; }&#13;
+.sc-why-left img { width: 100%; height: 500px; object-fit: cover; border-radius: 16px; box-shadow: 0 24px 64px rgba(11,37,69,.15); }&#13;
+.sc-why-badge { position: absolute; bottom: -20px; right: -20px; background: #00a99d; color: #fff; border-radius: 14px; padding: 1.4rem 1.6rem; text-align: center; box-shadow: 0 8px 36px rgba(11,37,69,.11); }&#13;
+.sc-why-badge strong { font-family: 'Playfair Display', serif; font-size: 35.2px; font-weight: 800; display: block; line-height: 1; }&#13;
+.sc-why-badge span { font-size: 12.2px; opacity: .88; }&#13;
+.sc-why .sc-pill { background: rgba(0,169,157,.15); color: #7ed8d3; }&#13;
+.sc-why .sc-sh { color: #fff; }&#13;
+.sc-why .sc-sp { color: rgba(255,255,255,.6); margin-bottom: 2rem; }&#13;
+.sc-why-list { display: flex; flex-direction: column; gap: 1rem; }&#13;
+.sc-why-item { display: flex; gap: 1rem; align-items: flex-start; background: rgba(255,255,255,.05); border-radius: 10px; padding: 1.1rem 1.2rem; border: 1px solid rgba(255,255,255,.07); transition: background .25s; }&#13;
+.sc-why-item:hover { background: rgba(255,255,255,.09); }&#13;
+.sc-wii { width: 42px; height: 42px; border-radius: 9px; background: rgba(0,169,157,.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }&#13;
+.sc-wii svg { width: 20px; height: 20px; fill: #00a99d; }&#13;
+.sc-wit { font-family: 'Inter', sans-serif; font-size: 14.7px; font-weight: 700; color: #fff; margin-bottom: 3px; }&#13;
+.sc-wid { font-size: 12.8px; color: rgba(255,255,255,.52); line-height: 1.6; }&#13;
+&#13;
+/* ─── JOURNEY ─── */&#13;
+.sc-journey { background: #f7fafd; }&#13;
+.sc-jsteps { display: grid; grid-template-columns: repeat(6,1fr); gap: 0; margin-top: 3rem; position: relative; }&#13;
+.sc-jsteps::before { content: ''; position: absolute; top: 35px; left: calc(8.33% + 10px); right: calc(8.33% + 10px); height: 2px; background: #dce8f5; }&#13;
+.sc-jstep { display: flex; flex-direction: column; align-items: center; text-align: center; }&#13;
+.sc-jcircle { width: 70px; height: 70px; border-radius: 50%; background: #fff; border: 2px solid #dce8f5; display: flex; align-items: center; justify-content: center; margin-bottom: .9rem; position: relative; z-index: 1; transition: all .3s; box-shadow: 0 2px 10px rgba(11,37,69,.07); }&#13;
+.sc-jcircle svg { width: 26px; height: 26px; fill: #566983; transition: fill .3s; }&#13;
+.sc-jstep:hover .sc-jcircle { background: #0d5eaf; border-color: #0d5eaf; box-shadow: 0 0 0 8px rgba(13,94,175,.12); }&#13;
+.sc-jstep:hover .sc-jcircle svg { fill: #fff; }&#13;
+.sc-jnum { position: absolute; top: -5px; right: -5px; width: 22px; height: 22px; border-radius: 50%; background: #00a99d; color: #fff; font-size: .64rem; font-weight: 800; display: flex; align-items: center; justify-content: center; }&#13;
+.sc-jlbl { font-family: 'Inter', sans-serif; font-size: 13.4px; font-weight: 700; color: #0b2545; margin-bottom: 4px; }&#13;
+.sc-jdsc { font-size: 11.5px; color: #566983; max-width: 82px; line-height: 1.5; }&#13;
+&#13;
+/* ─── TESTIMONIALS ─── */&#13;
+.sc-testi { background: #fff; }&#13;
+.sc-tgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }&#13;
+.sc-tcard { background: #f7fafd; border-radius: 12px; border: 1px solid #dce8f5; padding: 2rem; transition: all .3s; }&#13;
+.sc-tcard:hover { box-shadow: 0 8px 36px rgba(11,37,69,.11); transform: translateY(-4px); }&#13;
+.sc-tq { font-size: 48px; line-height: 1; color: #e8f2fc; font-family: Georgia, serif; margin-bottom: 6.4px; }&#13;
+.sc-tstars { color: #f59e0b; font-size: 13.6px; letter-spacing: 2px; margin-bottom: 11.2px; }&#13;
+.sc-ttext { font-size: 14.1px; color: #566983; line-height: 1.75; font-style: italic; margin-bottom: 20.8px; }&#13;
+.sc-tauthor { display: flex; align-items: center; gap: 10px; }&#13;
+.sc-tavatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid #dce8f5; }&#13;
+.sc-tname { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #0b2545; }&#13;
+.sc-trole { font-size: 11.5px; color: #566983; }&#13;
+&#13;
+/* ─── APPOINTMENT CTA ─── */&#13;
+.sc-appt-cta { background: linear-gradient(120deg, #0d5eaf 0%, #0b2545 100%); padding: 5rem 2rem; text-align: center; position: relative; overflow: hidden; }&#13;
+.sc-appt-cta::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: rgba(255,255,255,.04); top: -220px; left: -120px; }&#13;
+.sc-appt-cta::after { content: ''; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: rgba(0,169,157,.1); bottom: -210px; right: -60px; }&#13;
+.sc-appt-cta h2 { font-size: clamp(28.8px, 3.5vw, 44.8px); color: #fff; margin-bottom: 14.4px; position: relative; z-index: 1; }&#13;
+.sc-appt-cta p { color: rgba(255,255,255,.7); font-size: 16.8px; max-width: 470px; margin: 0 auto 40px; line-height: 1.7; position: relative; z-index: 1; }&#13;
+.sc-appt-form { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }&#13;
+.sc-appt-form select, .sc-appt-form input[type="date"], .sc-appt-form input[type="text"] { padding: 12.5px 18.4px; border-radius: 9px; border: none; background: rgba(255,255,255,.14); color: #fff; font-family: 'Inter', sans-serif; font-size: 14px; backdrop-filter: blur(6px); outline: none; min-width: 175px; }&#13;
+.sc-appt-form select option { color: #0b2545; background: #fff; }&#13;
+.sc-appt-form ::placeholder { color: rgba(255,255,255,.6); }&#13;
+.sc-appt-form button { padding: 12.5px 32px; background: #00a99d; color: #fff; border: none; border-radius: 9px; font-weight: 700; font-size: 15.2px; cursor: pointer; transition: all .2s; }&#13;
+.sc-appt-form button:hover { background: #009088; transform: translateY(-2px); }&#13;
+&#13;
+/* ─── FOOTER ─── */&#13;
+.sc-footer { background: #0b2545; color: rgba(255,255,255,.62); }&#13;
+.sc-foot-top { padding: 4rem 2rem 3rem; }&#13;
+.sc-fgrid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem; }&#13;
+.sc-fbrand img { height: 48px; width: auto; }&#13;
+.sc-fbrand p { font-size: 13.3px; line-height: 1.78; margin: 13.6px 0 19.2px; max-width: 255px; }&#13;
+.sc-faccred { display: inline-flex; align-items: center; gap: 7px; background: rgba(0,169,157,.14); border: 1px solid rgba(0,169,157,.24); padding: 5px 12px; border-radius: 6px; font-size: 11.5px; color: #7ed8d3; font-weight: 600; }&#13;
+.sc-faccred svg { width: 13px; height: 13px; fill: #00a99d; }&#13;
+.sc-fcol h4 { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 700; color: #fff; margin-bottom: 1rem; letter-spacing: .06em; text-transform: uppercase; }&#13;
+.sc-flinks { list-style: none; display: flex; flex-direction: column; gap: .5rem; }&#13;
+.sc-flinks a { color: rgba(255,255,255,.52); font-size: 13.3px; transition: color .2s; }&#13;
+.sc-flinks a:hover { color: #fff; }&#13;
+.sc-fcontact { display: flex; flex-direction: column; gap: .7rem; }&#13;
+.sc-fci { display: flex; align-items: flex-start; gap: 9px; font-size: 13.1px; }&#13;
+.sc-fci svg { width: 15px; height: 15px; fill: #00a99d; flex-shrink: 0; margin-top: 3px; }&#13;
+.sc-foot-bottom { border-top: 1px solid rgba(255,255,255,.07); padding: 22.4px 2rem; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; flex-wrap: wrap; gap: .75rem; }&#13;
+.sc-fbot-links { display: flex; gap: 1.4rem; }&#13;
+.sc-fbot-links a { color: rgba(255,255,255,.38); transition: color .2s; }&#13;
+.sc-fbot-links a:hover { color: #fff; }&#13;
+&#13;
+/* ─── MODAL ─── */&#13;
+.sc-modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(11,37,69,0.72); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity .3s ease; }&#13;
+.sc-modal-overlay.open { opacity: 1; pointer-events: all; }&#13;
+.sc-modal-box { background: #fff; border-radius: 20px; width: 100%; max-width: 580px; box-shadow: 0 32px 80px rgba(11,37,69,.28); overflow: hidden; transform: translateY(24px) scale(0.97); transition: transform .35s cubic-bezier(.34,1.4,.64,1), opacity .3s ease; opacity: 0; }&#13;
+.sc-modal-overlay.open .sc-modal-box { transform: translateY(0) scale(1); opacity: 1; }&#13;
+.sc-modal-head { background: linear-gradient(120deg, #0d5eaf 0%, #0b2545 100%); padding: 1.6rem 2rem; position: relative; }&#13;
+.sc-modal-head h3 { color: #fff; font-family: 'Playfair Display', serif; font-size: 22.4px; font-weight: 800; margin-bottom: 4.8px; }&#13;
+.sc-modal-head p { color: rgba(255,255,255,.68); font-size: 13.4px; }&#13;
+.sc-modal-close { position: absolute; top: 19px; right: 22px; background: rgba(255,255,255,.12); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: background .2s; }&#13;
+.sc-modal-close:hover { background: rgba(255,255,255,.25); }&#13;
+.sc-modal-body { padding: 28.8px 32px; }&#13;
+.sc-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }&#13;
+.sc-form-row.full { grid-template-columns: 1fr; }&#13;
+.sc-form-group { display: flex; flex-direction: column; gap: 6.4px; position: relative; }&#13;
+.sc-form-group label { font-size: 12.5px; font-weight: 700; color: #0b2545; letter-spacing: .04em; text-transform: uppercase; }&#13;
+.sc-form-group input, .sc-form-group select, .sc-form-group textarea { padding: 11.2px 15.2px; border-radius: 9px; border: 1.5px solid #dce8f5; font-family: 'Inter', sans-serif; font-size: 14.4px; color: #1a2b45; background: #fff; outline: none; transition: border-color .2s, box-shadow .2s; width: 100%; }&#13;
+.sc-form-group input:focus, .sc-form-group select:focus, .sc-form-group textarea:focus { border-color: #0d5eaf; box-shadow: 0 0 0 3px rgba(13,94,175,.12); }&#13;
+.sc-form-group input.sc-err, .sc-form-group select.sc-err { border-color: #dc2626; }&#13;
+.sc-form-group textarea { resize: vertical; min-height: 72px; }&#13;
+.sc-modal-submit { width: 100%; padding: 14.4px; border: none; border-radius: 10px; background: #0d5eaf; color: #fff; font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: all .25s; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; }&#13;
+.sc-modal-submit:hover { background: #0b2545; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,94,175,.35); }&#13;
+.sc-modal-submit:disabled { background: #566983; cursor: not-allowed; transform: none; box-shadow: none; }&#13;
+.sc-modal-divider { border: none; border-top: 1px solid #dce8f5; margin: 1.2rem 0; }&#13;
+.sc-modal-success, .sc-modal-error { display: none; text-align: center; padding: 2.5rem 2rem; }&#13;
+.sc-modal-success.show, .sc-modal-error.show { display: block; }&#13;
+.sc-modal-form-area.hidden { display: none; }&#13;
+.sc-success-icon { width: 64px; height: 64px; border-radius: 50%; background: #e4f7f6; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; }&#13;
+.sc-success-icon svg { width: 30px; height: 30px; fill: #00a99d; }&#13;
+.sc-error-icon { width: 64px; height: 64px; border-radius: 50%; background: #fef2f2; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; }&#13;
+.sc-error-icon svg { width: 30px; height: 30px; fill: #dc2626; }&#13;
+.sc-modal-success h4, .sc-modal-error h4 { font-size: 19.2px; color: #0b2545; margin-bottom: 8px; }&#13;
+.sc-modal-success p, .sc-modal-error p { font-size: 14px; color: #566983; line-height: 1.7; }&#13;
+.sc-doc-loading-badge { position: absolute; right: 10px; top: 32px; font-size: .7rem; color: #0d5eaf; display: flex; align-items: center; gap: 4px; }&#13;
+.sc-sn-note { font-size: .72rem; color: #566983; text-align: center; margin-top: .85rem; display: flex; align-items: center; justify-content: center; gap: 5px; }&#13;
+.sc-sn-note svg { width: 13px; height: 13px; fill: #00a99d; }&#13;
+.sc-spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: sc-spin .7s linear infinite; display: inline-block; }&#13;
+.sc-spinner-sm { width: 12px; height: 12px; border: 2px solid rgba(13,94,175,.25); border-top-color: #0d5eaf; border-radius: 50%; animation: sc-spin .7s linear infinite; display: inline-block; }&#13;
+@keyframes sc-spin { to { transform: rotate(360deg) } }&#13;
+&#13;
+/* ─── RESPONSIVE ─── */&#13;
+@media(max-width:1040px) {&#13;
+  .sc-hero-float { display: none; }&#13;
+  .sc-why-grid { grid-template-columns: 1fr; }&#13;
+  .sc-why-left { display: none; }&#13;
+}&#13;
+@media(max-width:900px) {&#13;
+  .sc-qgrid, .sc-doc-grid { grid-template-columns: repeat(2,1fr); }&#13;
+  .sc-dgrid { grid-template-columns: repeat(2,1fr); }&#13;
+  .sc-trust-inner { grid-template-columns: repeat(2,1fr); }&#13;
+  .sc-jsteps { grid-template-columns: repeat(3,1fr); gap: 1.5rem; }&#13;
+  .sc-jsteps::before { display: none; }&#13;
+  .sc-tgrid { grid-template-columns: repeat(2,1fr); }&#13;
+  .sc-fgrid { grid-template-columns: 1fr 1fr; }&#13;
+  .sc-nb-outline { display: none; }&#13;
+}&#13;
+@media(max-width:620px) {&#13;
+  .sc-strip { flex-direction: column; gap: .5rem; text-align: center; }&#13;
+  .sc-qgrid, .sc-doc-grid, .sc-dgrid, .sc-trust-inner, .sc-tgrid { grid-template-columns: 1fr; }&#13;
+  .sc-jsteps { grid-template-columns: repeat(2,1fr); }&#13;
+  .sc-fgrid { grid-template-columns: 1fr; }&#13;
+  .sc-nav-menu { display: none; }&#13;
+  .sc-form-row { grid-template-columns: 1fr; }&#13;
+}&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>test_la</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // expose instance url so client can build api paths
+  data.instance = 'https://dev194259.service-now.com';
+  data.snTable  = 'x_1954503_smartc_0_smartcare_appointment';
+
+  var stats = {
+    specialists:  '50+',
+    departments:  '15+',
+    patients:     '0',
+    emergency:    '24/7',
+    doctorsOnDuty:'Doctors Available',
+    bedsReady:    'Beds Available',
+    waitTime:     '~12 minutes'
+  };
+
+  // 1. doctors in SmartCare Hospital Doctors group
+  try {
+    var grDr = new GlideRecord('sys_user_grmember');
+    grDr.addEncodedQuery('group.name=SmartCare Hospital Doctors^user.active=true');
+    grDr.setLimit(500);
+    grDr.query();
+    var drCount = 0;
+    while (grDr.next()) drCount++;
+    stats.doctorsOnDuty = drCount + ' Specialist' + (drCount !== 1 ? 's' : '') + ' Available';
+    stats.specialists   = (drCount >= 500 ? '500+' : drCount + '+');
+  } catch(e) { /* keep defaults */ }
+
+  // 2. available beds
+  try {
+    var grBed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
+    grBed.addEncodedQuery('available=true');
+    grBed.setLimit(1000);
+    grBed.query();
+    var bedCount = 0;
+    while (grBed.next()) bedCount++;
+    if (bedCount === 0) {
+      // try without filter
+      var grBed2 = new GlideRecord('x_1954503_smartc_0_hospital_bed');
+      grBed2.setLimit(1000);
+      grBed2.query();
+      while (grBed2.next()) bedCount++;
+    }
+    stats.bedsReady = bedCount + ' Bed' + (bedCount !== 1 ? 's' : '') + ' Ready';
+  } catch(e) { /* keep defaults */ }
+
+  // 3. total patients
+  try {
+    var grPat = new GlideRecord('x_1954503_smartc_0_patient');
+    grPat.setLimit(10000);
+    grPat.query();
+    var patCount = 0;
+    while (grPat.next()) patCount++;
+    stats.patients = patCount > 0 ? patCount.toLocaleString() + '+' : '0';
+  } catch(e) { /* keep defaults */ }
+
+  // 4. medical departments (from sys_choice)
+  try {
+    var grDept = new GlideRecord('sys_choice');
+    grDept.addEncodedQuery('name=sys_user^element=u_medical_department^inactive=false');
+    grDept.setLimit(50);
+    grDept.query();
+    var deptCount = 0;
+    while (grDept.next()) deptCount++;
+    stats.departments = deptCount > 0 ? deptCount + '+' : '15+';
+  } catch(e) { /* keep defaults */ }
+
+  // 5. emergency cases
+  try {
+    var grEmg = new GlideRecord('x_1954503_smartc_0_emergency_cases');
+    grEmg.setLimit(10000);
+    grEmg.query();
+    var emgCount = 0;
+    while (grEmg.next()) emgCount++;
+    stats.emergency = emgCount > 0 ? emgCount.toLocaleString() + '+' : '24/7';
+  } catch(e) { /* keep defaults */ }
+
+  data.stats = stats;
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-19 17:47:32</sys_created_on>
+        <sys_id>62a4d86cc3777a501bf5fe1d050131d9</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>test_la</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_widget_62a4d86cc3777a501bf5fe1d050131d9</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-20 09:41:01</sys_updated_on>
+        <template><![CDATA[<div class="sc-widget">
+
+<!-- TOP STRIP -->
+<div class="sc-strip">
+  <div class="sc-strip-left">
+    <div class="sc-strip-item"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2z"/></svg>+234 800 SMARTCARE</div>
+    <div class="sc-strip-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>info@smartcarehospital.com</div>
+    <div class="sc-strip-item"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>Mon–Fri 7am–9pm</div>
+  </div>
+  <div class="sc-emerg">⚡ Emergency: 080-SMART-911</div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="sc-nav">
+  <a href="javascript:void(0)" class="sc-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="200" height="60">
+      <rect x="0" y="2" width="56" height="56" rx="12" fill="#0b2545"/>
+      <rect x="22" y="8" width="12" height="42" rx="2" fill="white" opacity="0.95"/>
+      <rect x="8" y="26" width="40" height="12" rx="2" fill="white" opacity="0.95"/>
+      <polyline points="8,32 17,32 21,24 25,40 28,28 31,36 34,32 48,32" fill="none" stroke="#00a99d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="66" y="30" font-family="'Segoe UI',Arial,sans-serif" font-size="22" font-weight="800" fill="#0b2545" letter-spacing="-0.5">SmartCare</text>
+      <text x="67" y="46" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="600" fill="#00a99d" letter-spacing="3">HOSPITAL</text>
+    </svg>
+  </a>
+  <ul class="sc-nav-menu">
+    <li><a href="#sc-home">Home</a></li>
+    <li><a href="#sc-departments">Departments</a></li>
+    <li><a href="#sc-doctors">Our Doctors</a></li>
+    <li><a href="#sc-why">About Us</a></li>
+    <li><a href="javascript:void(0)" ng-click="c.openModal()">Appointments</a></li>
+    <li><a href="#sc-contact">Contact</a></li>
+  </ul>
+  <div class="sc-nav-btns">
+    <a href="javascript:void(0)" class="sc-nb-outline">Patient Portal</a>
+    <button class="sc-nb-fill" ng-click="c.openModal()">Book Appointment</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="sc-hero" id="sc-home">
+  <div class="sc-hero-bg"></div>
+  <div class="sc-hero-ov"></div>
+  <div class="sc-hero-inner">
+    <div class="sc-hero-eyebrow"><span></span>Accredited · Trusted · Compassionate</div>
+    <h1>Your Health,<br>Our <em>Highest</em> Priority</h1>
+    <p class="sc-hero-sub">SmartCare Hospital delivers world-class medical care through cutting-edge technology and a team of compassionate specialists dedicated entirely to you.</p>
+    <div class="sc-hero-actions">
+      <button class="sc-btn-teal" ng-click="c.openModal()">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+        Book an Appointment
+      </button>
+      <a href="#sc-departments" class="sc-btn-ghost">
+        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+        Explore Departments
+      </a>
+    </div>
+  </div>
+  <div class="sc-hero-float">
+    <div class="sc-hf-head">Today at SmartCare</div>
+    <div class="sc-hf-row">
+      <div class="sc-hf-ico"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+      <div><div class="sc-hf-lbl">Doctors on Duty</div><div class="sc-hf-val">{{c.stats.doctorsOnDuty}}</div></div>
+    </div>
+    <div class="sc-hf-row">
+      <div class="sc-hf-ico"><svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4z"/></svg></div>
+      <div><div class="sc-hf-lbl">Beds Available</div><div class="sc-hf-val">{{c.stats.bedsReady}}</div></div>
+    </div>
+    <div class="sc-hf-row">
+      <div class="sc-hf-ico"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+      <div><div class="sc-hf-lbl">OPD Wait Time</div><div class="sc-hf-val">{{c.stats.waitTime}}</div></div>
+    </div>
+    <button class="sc-hf-btn" ng-click="c.openModal()">Check In Now →</button>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="sc-trust">
+  <div class="sc-trust-inner">
+    <div class="sc-trust-cell"><div class="sc-ti"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><div class="sc-tn">{{c.stats.specialists}}</div><div class="sc-tl">Specialist Consultants</div></div></div>
+    <div class="sc-trust-cell"><div class="sc-ti"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-3H8a1 1 0 0 1 0-2h3V7a1 1 0 0 1 1-1z"/></svg></div><div><div class="sc-tn">{{c.stats.departments}}</div><div class="sc-tl">Medical Departments</div></div></div>
+    <div class="sc-trust-cell"><div class="sc-ti"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg></div><div><div class="sc-tn">{{c.stats.patients}}</div><div class="sc-tl">Patients Treated</div></div></div>
+    <div class="sc-trust-cell"><div class="sc-ti"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/></svg></div><div><div class="sc-tn">{{c.stats.emergency}}</div><div class="sc-tl">Emergency Cases</div></div></div>
+  </div>
+</div>
+
+<!-- QUICK ACCESS -->
+<section class="sc-quick" id="sc-services">
+  <div class="sc-cnt">
+    <div class="sc-row-head">
+      <div><div class="sc-pill">Patient Services</div><h2 class="sc-sh" style="margin-bottom:0">What Can We Help You With?</h2></div>
+      <p style="color:#566983;font-size:.875rem;max-width:280px">Fast access to the services our patients need most every day.</p>
+    </div>
+    <div class="sc-qgrid">
+      <div class="sc-qcard" ng-click="c.openModal()"><div class="sc-qbar" style="background:#0d5eaf"></div><div class="sc-qi"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div><h4>Book Appointment</h4><p>Schedule with any specialist in under 2 minutes online.</p><div class="sc-qarr"><svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div>
+      <div class="sc-qcard"><div class="sc-qbar" style="background:#00a99d"></div><div class="sc-qi" style="background:#e4f7f6"><svg viewBox="0 0 24 24" style="fill:#00a99d"><path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div><h4>Find a Doctor</h4><p>Search our consultant team by name or speciality.</p><div class="sc-qarr"><svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div>
+      <div class="sc-qcard"><div class="sc-qbar" style="background:#0b2545"></div><div class="sc-qi" style="background:#eef0f5"><svg viewBox="0 0 24 24" style="fill:#0b2545"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><h4>Billing &amp; Payments</h4><p>View and settle your hospital bills securely online.</p><div class="sc-qarr"><svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div>
+      <div class="sc-qcard"><div class="sc-qbar" style="background:#dc2626"></div><div class="sc-qi" style="background:#fef2f2"><svg viewBox="0 0 24 24" style="fill:#dc2626"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div><h4>Emergency Services</h4><p>24/7 emergency care with rapid response teams on standby.</p><div class="sc-qarr"><svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section class="sc-section sc-depts" id="sc-departments">
+  <div class="sc-cnt">
+    <div class="sc-center"><div class="sc-pill">Clinical Specialties</div><h2 class="sc-sh">Our Medical Departments</h2><p class="sc-sp">Expert care across a comprehensive range of specialties — all under one roof, for every stage of life.</p></div>
+    <div class="sc-dgrid">
+      <div class="sc-dcard"><div class="sc-dcard-img"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=75" alt="Cardiology" loading="lazy"></div><div class="sc-dbody"><div class="sc-dtag">Cardiology</div><h3>Heart &amp; Cardiovascular Care</h3><p>State-of-the-art diagnostics and treatment for all heart conditions, from routine screening to complex intervention.</p><div class="sc-dlink">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div></div>
+      <div class="sc-dcard"><div class="sc-dcard-img"><img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=600&q=75" alt="Neurology" loading="lazy"></div><div class="sc-dbody"><div class="sc-dtag">Neurology</div><h3>Brain &amp; Nervous System</h3><p>Comprehensive neurological care covering stroke, epilepsy, headache disorders, and neurodegenerative conditions.</p><div class="sc-dlink">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div></div>
+      <div class="sc-dcard"><div class="sc-dcard-img"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=75" alt="Orthopaedics" loading="lazy"></div><div class="sc-dbody"><div class="sc-dtag">Orthopaedics</div><h3>Bone, Joint &amp; Spine</h3><p>Expert surgical and non-surgical management of musculoskeletal conditions, sports injuries, and joint replacements.</p><div class="sc-dlink">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div></div>
+      <div class="sc-dcard"><div class="sc-dcard-img"><img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&q=75" alt="Paediatrics" loading="lazy"></div><div class="sc-dbody"><div class="sc-dtag">Paediatrics</div><h3>Children's Health</h3><p>Dedicated paediatric specialists providing compassionate, family-centred care for newborns through to adolescents.</p><div class="sc-dlink">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div></div>
+      <div class="sc-dcard"><div class="sc-dcard-img"><img src="https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=600&q=75" alt="General Medicine" loading="lazy"></div><div class="sc-dbody"><div class="sc-dtag">General Medicine</div><h3>Comprehensive Primary Care</h3><p>Comprehensive medical care focused on diagnosis, treatment, and prevention of a wide range of adult health conditions.</p><div class="sc-dlink">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div></div>
+      <div class="sc-dcard"><div class="sc-dcard-img"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=75" alt="Maternity" loading="lazy"></div><div class="sc-dbody"><div class="sc-dtag">Maternity</div><h3>Women's Health &amp; Maternity</h3><p>Comprehensive obstetric and gynaecological care supporting women at every stage of life with warmth and expertise.</p><div class="sc-dlink">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section class="sc-section sc-docs" id="sc-doctors">
+  <div class="sc-cnt">
+    <div class="sc-row-head">
+      <div><div class="sc-pill">Meet the Team</div><h2 class="sc-sh" style="margin-bottom:0">Our Consultant Doctors</h2></div>
+      <a href="javascript:void(0)" class="sc-see-all">View All Doctors <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
+    </div>
+    <div class="sc-doc-grid">
+      <div class="sc-doc-card"><div class="sc-doc-photo"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=75" alt="Dr. Adeyemi" loading="lazy"><div class="sc-doc-avail">Available Today</div></div><div class="sc-doc-body"><div class="sc-doc-spec">Cardiology</div><h3>Dr. Emeka Adeyemi</h3><div class="sc-doc-qual">MBBS, FWACP · 14 yrs experience</div><button class="sc-doc-btn" ng-click="c.openModal()">Book Consultation</button></div></div>
+      <div class="sc-doc-card"><div class="sc-doc-photo"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=75" alt="Dr. Okonkwo" loading="lazy"><div class="sc-doc-avail">Available Today</div></div><div class="sc-doc-body"><div class="sc-doc-spec">Neurology</div><h3>Dr. Ngozi Okonkwo</h3><div class="sc-doc-qual">MBBS, MRCP · 11 yrs experience</div><button class="sc-doc-btn" ng-click="c.openModal()">Book Consultation</button></div></div>
+      <div class="sc-doc-card"><div class="sc-doc-photo"><img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=75" alt="Dr. Balogun" loading="lazy"><div class="sc-doc-avail">Available Today</div></div><div class="sc-doc-body"><div class="sc-doc-spec">Paediatrics</div><h3>Dr. Sola Balogun</h3><div class="sc-doc-qual">MBBS, FMCP · 9 yrs experience</div><button class="sc-doc-btn" ng-click="c.openModal()">Book Consultation</button></div></div>
+      <div class="sc-doc-card"><div class="sc-doc-photo"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=75" alt="Dr. Eze" loading="lazy"><div class="sc-doc-avail">Available Today</div></div><div class="sc-doc-body"><div class="sc-doc-spec">Orthopaedics</div><h3>Dr. Chukwudi Eze</h3><div class="sc-doc-qual">MBBS, FRCS · 16 yrs experience</div><button class="sc-doc-btn" ng-click="c.openModal()">Book Consultation</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SMARTCARE -->
+<section class="sc-why" id="sc-why">
+  <div class="sc-why-grid">
+    <div class="sc-why-left">
+      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=700&q=80" alt="SmartCare Hospital">
+      <div class="sc-why-badge"><strong>15+</strong><span>Years of Excellence</span></div>
+    </div>
+    <div>
+      <div class="sc-pill">Why Choose Us</div>
+      <h2 class="sc-sh">A Hospital Built Around <em>You</em></h2>
+      <p class="sc-sp">At SmartCare Hospital, every decision — from equipment to staffing — is made with one goal: providing you and your family the finest possible care.</p>
+      <div class="sc-why-list">
+        <div class="sc-why-item"><div class="sc-wii"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/></svg></div><div><div class="sc-wit">JCI-Accredited Facility</div><div class="sc-wid">We meet international standards of patient safety, care quality, and clinical governance.</div></div></div>
+        <div class="sc-why-item"><div class="sc-wii"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-3H8a1 1 0 0 1 0-2h3V7a1 1 0 0 1 1-1z"/></svg></div><div><div class="sc-wit">Advanced Medical Technology</div><div class="sc-wid">MRI, CT, Digital X-Ray, and a fully equipped ICU with smart monitoring systems.</div></div></div>
+        <div class="sc-why-item"><div class="sc-wii"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><div class="sc-wit">Expert Multidisciplinary Teams</div><div class="sc-wid">Specialists collaborate closely to deliver holistic, coordinated care for every patient.</div></div></div>
+        <div class="sc-why-item"><div class="sc-wii"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div><div><div class="sc-wit">Minimal Wait Times</div><div class="sc-wid">Smart scheduling and real-time management keep wait times low and your time respected.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATIENT JOURNEY -->
+<section class="sc-section sc-journey">
+  <div class="sc-cnt">
+    <div class="sc-center"><div class="sc-pill t">Patient Experience</div><h2 class="sc-sh">Your Journey at SmartCare</h2><p class="sc-sp">From the moment you arrive, every step is thoughtfully designed for your comfort, safety, and fast recovery.</p></div>
+    <div class="sc-jsteps">
+      <div class="sc-jstep"><div class="sc-jcircle"><div class="sc-jnum">1</div><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg></div><div class="sc-jlbl">Arrival</div><div class="sc-jdsc">Check in at reception or via our app</div></div>
+      <div class="sc-jstep"><div class="sc-jcircle"><div class="sc-jnum">2</div><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div><div class="sc-jlbl">Triage</div><div class="sc-jdsc">Vitals recorded &amp; urgency assessed</div></div>
+      <div class="sc-jstep"><div class="sc-jcircle"><div class="sc-jnum">3</div><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 0 2h-3v3a1 1 0 0 1-2 0v-3H8a1 1 0 0 1 0-2h3V7a1 1 0 0 1 1-1z"/></svg></div><div class="sc-jlbl">Consultation</div><div class="sc-jdsc">See your assigned consultant</div></div>
+      <div class="sc-jstep"><div class="sc-jcircle"><div class="sc-jnum">4</div><svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4z"/></svg></div><div class="sc-jlbl">Admission</div><div class="sc-jdsc">Bed assigned, care begins</div></div>
+      <div class="sc-jstep"><div class="sc-jcircle"><div class="sc-jnum">5</div><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div class="sc-jlbl">Discharge</div><div class="sc-jdsc">Doctor sign-off &amp; care summary</div></div>
+      <div class="sc-jstep"><div class="sc-jcircle"><div class="sc-jnum">6</div><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div class="sc-jlbl">Billing</div><div class="sc-jdsc">Invoice settled online or at desk</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sc-section sc-testi">
+  <div class="sc-cnt">
+    <div class="sc-center"><div class="sc-pill t">Patient Stories</div><h2 class="sc-sh">What Our Patients Say</h2><p class="sc-sp">Thousands of patients and families trust SmartCare Hospital with their most important moments.</p></div>
+    <div class="sc-tgrid">
+      <div class="sc-tcard"><div class="sc-tq">"</div><div class="sc-tstars">★★★★★</div><p class="sc-ttext">From the moment I walked in, the staff made me feel cared for. My surgery went perfectly and the recovery support was exceptional. I cannot recommend SmartCare enough.</p><div class="sc-tauthor"><img class="sc-tavatar" src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&q=75" alt="Priscilla"><div><div class="sc-tname">Priscilla Aikude</div><div class="sc-trole">Orthopaedic Patient, 2024</div></div></div></div>
+      <div class="sc-tcard"><div class="sc-tq">"</div><div class="sc-tstars">★★★★★</div><p class="sc-ttext">My mother was admitted for a cardiac episode. The cardiology team worked tirelessly. She's fully recovered now and we are forever grateful to everyone at SmartCare Hospital.</p><div class="sc-tauthor"><img class="sc-tavatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=75" alt="Regina"><div><div class="sc-tname">Regina Blackson</div><div class="sc-trole">Family Member, Cardiology Ward</div></div></div></div>
+      <div class="sc-tcard"><div class="sc-tq">"</div><div class="sc-tstars">★★★★★</div><p class="sc-ttext">The maternity ward team were absolute angels. My delivery was smooth and I felt completely safe and heard throughout. The facilities are beautiful and spotlessly clean.</p><div class="sc-tauthor"><img class="sc-tavatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=75" alt="Catherine"><div><div class="sc-tname">Catherine Ameh</div><div class="sc-trole">Maternity Patient, 2024</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT CTA -->
+<section class="sc-appt-cta" id="sc-appointment">
+  <h2>Ready to See a Specialist?</h2>
+  <p>Book your appointment online in minutes. Our team is ready to provide the care you deserve.</p>
+  <div class="sc-appt-form">
+    <select><option value="">Select Department</option><option>Cardiology</option><option>Neurology</option><option>Orthopaedics</option><option>Paediatrics</option><option>General Medicine</option><option>Maternity</option></select>
+    <input type="date">
+    <input type="text" placeholder="Your Full Name">
+    <button ng-click="c.openModal()">Book Appointment →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="sc-footer" id="sc-contact">
+  <div class="sc-foot-top">
+    <div class="sc-fgrid">
+      <div class="sc-fbrand">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" width="180" height="60">
+          <rect x="0" y="2" width="56" height="56" rx="12" fill="#0d5eaf"/>
+          <rect x="22" y="8" width="12" height="42" rx="2" fill="white" opacity="0.95"/>
+          <rect x="8" y="26" width="40" height="12" rx="2" fill="white" opacity="0.95"/>
+          <polyline points="8,32 17,32 21,24 25,40 28,28 31,36 34,32 48,32" fill="none" stroke="#00a99d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="66" y="30" font-family="'Segoe UI',Arial,sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.5">SmartCare</text>
+          <text x="67" y="46" font-family="'Segoe UI',Arial,sans-serif" font-size="10" font-weight="600" fill="#00a99d" letter-spacing="3">HOSPITAL</text>
+        </svg>
+        <p>SmartCare Hospital delivers exceptional medical care built on compassion, cutting-edge technology, and decades of clinical expertise — serving Lagos and beyond.</p>
+        <div class="sc-faccred"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>JCI Accredited Hospital</div>
+      </div>
+      <div class="sc-fcol"><h4>Quick Links</h4><ul class="sc-flinks"><li><a href="javascript:void(0)">About SmartCare</a></li><li><a href="javascript:void(0)">Our Departments</a></li><li><a href="javascript:void(0)">Find a Doctor</a></li><li><a href="javascript:void(0)">Patient Portal</a></li><li><a href="javascript:void(0)">Book Appointment</a></li><li><a href="javascript:void(0)">Emergency Services</a></li></ul></div>
+      <div class="sc-fcol"><h4>Patient Services</h4><ul class="sc-flinks"><li><a href="javascript:void(0)">Inpatient Admission</a></li><li><a href="javascript:void(0)">Outpatient Clinic</a></li><li><a href="javascript:void(0)">Diagnostic Imaging</a></li><li><a href="javascript:void(0)">Laboratory Services</a></li><li><a href="javascript:void(0)">Pharmacy</a></li><li><a href="javascript:void(0)">Billing &amp; Insurance</a></li></ul></div>
+      <div class="sc-fcol"><h4>Contact Us</h4><div class="sc-fcontact"><div class="sc-fci"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>12 Medical District Ave, Victoria Island, Lagos</span></div><div class="sc-fci"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2z"/></svg><span>+234 800 SMARTCARE</span></div><div class="sc-fci"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><span>info@smartcarehospital.com</span></div><div class="sc-fci"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg><span>Mon–Fri: 7am–9pm · Emergency: 24/7</span></div></div></div>
+    </div>
+  </div>
+  <div class="sc-foot-bottom">
+    <span>© 2025 SmartCare Hospital. All rights reserved. Registered with the Medical and Dental Council of Nigeria.</span>
+    <div class="sc-fbot-links"><a href="javascript:void(0)">Privacy Policy</a><a href="javascript:void(0)">Terms of Use</a><a href="javascript:void(0)">Complaints</a><a href="javascript:void(0)">Accessibility</a></div>
+  </div>
+</footer>
+
+<!-- APPOINTMENT MODAL -->
+<div class="sc-modal-overlay" ng-class="{'open': c.modalOpen}" ng-click="c.overlayClick($event)">
+  <div class="sc-modal-box">
+    <div class="sc-modal-head">
+      <h3>Book Your Appointment</h3>
+      <p>We'll confirm your slot within 2 hours via phone or email.</p>
+      <button class="sc-modal-close" ng-click="c.closeModal()">&times;</button>
+    </div>
+    <div class="sc-modal-body">
+
+      <!-- FORM -->
+      <div class="sc-modal-form-area" ng-class="{'hidden': c.formState !== 'form'}">
+        <div class="sc-form-row">
+          <div class="sc-form-group"><label>Full Name *</label><input type="text" ng-model="c.form.name" ng-class="{'sc-err': c.fieldErrors.name}" placeholder="e.g. Amara Osei"></div>
+          <div class="sc-form-group"><label>Phone Number *</label><input type="tel" ng-model="c.form.phone" ng-class="{'sc-err': c.fieldErrors.phone}" placeholder="+234 800 000 0000"></div>
+        </div>
+        <div class="sc-form-row">
+          <div class="sc-form-group"><label>Email Address</label><input type="email" ng-model="c.form.email" placeholder="you@email.com"></div>
+          <div class="sc-form-group"><label>Department *</label>
+            <select ng-model="c.form.dept" ng-class="{'sc-err': c.fieldErrors.dept}" ng-change="c.filterDoctorsByDept()">
+              <option value="">Select Department</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Maternity">Maternity</option>
+              <option value="Emergency">Emergency</option>
+              <option value="General Medicine">General Medicine</option>
+            </select>
+          </div>
+        </div>
+        <div class="sc-form-row">
+          <div class="sc-form-group" style="position:relative">
+            <label>Select Doctor *</label>
+            <select ng-model="c.form.doctor" ng-class="{'sc-err': c.fieldErrors.doctor}" ng-disabled="!c.form.dept || c.docLoading">
+              <option value="">{{c.form.dept ? (c.docLoading ? 'Loading doctors…' : (c.doctors.length ? 'Select Doctor' : 'No doctors found')) : '— Select a department first —'}}</option>
+              <option ng-repeat="doc in c.doctors" value="{{doc.sys_id}}">{{doc.name}}</option>
+            </select>
+            <div class="sc-doc-loading-badge" ng-show="c.docLoading"><span class="sc-spinner-sm"></span> Loading…</div>
+          </div>
+          <div class="sc-form-group"><label>Preferred Time *</label>
+            <select ng-model="c.form.time" ng-class="{'sc-err': c.fieldErrors.time}">
+              <option value="">Select Time</option>
+              <option value="08:00:00">8:00 AM</option><option value="09:00:00">9:00 AM</option>
+              <option value="10:00:00">10:00 AM</option><option value="11:00:00">11:00 AM</option>
+              <option value="12:00:00">12:00 PM</option><option value="13:00:00">1:00 PM</option>
+              <option value="14:00:00">2:00 PM</option><option value="15:00:00">3:00 PM</option>
+              <option value="16:00:00">4:00 PM</option><option value="17:00:00">5:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="sc-form-row">
+          <div class="sc-form-group"><label>Preferred Date *</label><input type="date" ng-model="c.form.date" ng-class="{'sc-err': c.fieldErrors.date}" min="{{c.minDate}}"></div>
+          <div class="sc-form-group"></div>
+        </div>
+        <div class="sc-form-row full">
+          <div class="sc-form-group"><label>Reason for Visit / Notes</label><textarea ng-model="c.form.notes" placeholder="Briefly describe your symptoms or reason for your visit…"></textarea></div>
+        </div>
+        <hr class="sc-modal-divider">
+        <button class="sc-modal-submit" ng-click="c.submitAppointment()" ng-disabled="c.submitting">
+          <span ng-if="!c.submitting"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg> Confirm Appointment</span>
+          <span ng-if="c.submitting"><span class="sc-spinner"></span> Submitting...</span>
+        </button>
+        <div class="sc-sn-note"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>Secured &amp; stored in SmartCare Hospital's ServiceNow system</div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="sc-modal-success" ng-class="{'show': c.formState === 'success'}">
+        <div class="sc-success-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+        <h4>Appointment Requested!</h4>
+        <p>Thank you, <strong>{{c.successName}}</strong>. Your appointment has been logged in our system. Our team will contact you within 2 hours to confirm your slot.</p>
+        <p style="margin-top:.75rem;font-size:.8rem">Reference ID: <strong style="color:#0d5eaf;font-family:monospace">{{c.successRef}}</strong></p>
+        <button ng-click="c.closeModal()" style="margin-top:1.5rem;padding:.7rem 2rem;border-radius:8px;border:1.5px solid #0d5eaf;color:#0d5eaf;background:transparent;font-weight:700;cursor:pointer;font-size:.875rem">Close</button>
+      </div>
+
+      <!-- ERROR -->
+      <div class="sc-modal-error" ng-class="{'show': c.formState === 'error'}">
+        <div class="sc-error-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+        <h4>Submission Failed</h4>
+        <p>We couldn't save your appointment right now. Please try again or call <strong>+234 800 SMARTCARE</strong>.</p>
+        <p class="sc-modal-error-detail" style="font-size:.75rem;color:#dc2626;margin-top:.5rem;font-family:monospace">{{c.errorDetail}}</p>
+        <div style="display:flex;gap:.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap">
+          <button ng-click="c.retryForm()" style="padding:.7rem 1.5rem;border-radius:8px;background:#0d5eaf;color:#fff;border:none;font-weight:700;cursor:pointer">Try Again</button>
+          <button ng-click="c.closeModal()" style="padding:.7rem 1.5rem;border-radius:8px;border:1.5px solid #dce8f5;color:#566983;background:transparent;font-weight:700;cursor:pointer">Close</button>
+        </div>
+      </div>
+
+    </div><!-- /modal-body -->
+  </div><!-- /modal-box -->
+</div><!-- /modal-overlay -->
+
+</div><!-- /sc-widget -->
+]]></template>
+    </sp_widget>
+</record_update>

@@ -7,8 +7,15 @@
         <async_load_trigger>viewport</async_load_trigger>
         <class_name/>
         <color>default</color>
-        <css/>
-        <glyph/>
+        <css>.chart-container {&#13;
+    max-height: 230px !important;&#13;
+    width: auto !important;&#13;
+    margin: 0 auto;&#13;
+}&#13;
+svg {&#13;
+    max-height: 300px !important;&#13;
+}</css>
+        <glyph>empty</glyph>
         <id/>
         <order>1</order>
         <placeholder_dimensions>{&#13;	"mobile": {&#13;		"height": "250px",&#13;		"width": "100%"&#13;	},&#13;	"desktop": {&#13;		"height": "250px",&#13;		"width": "100%"&#13;	},&#13;	"tablet": {&#13;		"height": "250px",&#13;		"width": "100%"&#13;	}&#13;}</placeholder_dimensions>
@@ -38,14 +45,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-17 11:57:09</sys_created_on>
         <sys_id>e422f8ffc32bf2501bf5fe1d05013196</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_instance_e422f8ffc32bf2501bf5fe1d05013196</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-17 20:13:18</sys_updated_on>
+        <sys_updated_on>2026-03-20 08:38:07</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters><![CDATA[{

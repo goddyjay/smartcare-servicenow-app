@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="DELETE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>SmartCare Home - Container 2</name>
+        <order>2</order>
+        <semantic_tag/>
+        <sp_page display_value="smartcare_index">6aa73f67c363f2501bf5fe1d050131aa</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-17 07:57:14</sys_created_on>
+        <sys_id>123b7f2fc363f2501bf5fe1d05013131</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>SmartCare Home - Container 2</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_container_123b7f2fc363f2501bf5fe1d05013131</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-20 09:07:54</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sp_container_123b7f2fc363f2501bf5fe1d05013131</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container"><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>SmartCare Home - Container 2</name><order>2</order><semantic_tag/><sp_page display_value="smartcare_index">6aa73f67c363f2501bf5fe1d050131aa</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>yeabsira</sys_created_by><sys_created_on>2026-03-17 07:57:14</sys_created_on><sys_id>123b7f2fc363f2501bf5fe1d05013131</sys_id><sys_mod_count>2</sys_mod_count><sys_name>SmartCare Home - Container 2</sys_name><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>sp_container_123b7f2fc363f2501bf5fe1d05013131</sys_update_name><sys_updated_by>yeabsira</sys_updated_by><sys_updated_on>2026-03-20 09:07:54</sys_updated_on><title/><width>container</width></sp_container></record_update>]]></payload>
+        <payload_hash>140750942</payload_hash>
+        <record_name>SmartCare Home - Container 2</record_name>
+        <reverted_from/>
+        <source>2db308d7c3e3fe101bf5fe1d05013116</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-20 09:07:54</sys_created_on>
+        <sys_id>2e28e760c333fa501bf5fe1d0501310f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d0a8051040000001</sys_recorded_at>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-20 09:07:54</sys_updated_on>
+        <type>Container</type>
+        <update_guid>a628e7604433fa5009cfb9ea6e705a0e</update_guid>
+        <update_guid_history>a628e7604433fa5009cfb9ea6e705a0e:140750942,ed28a7601933fa504e2fb39489e8b457:1591055999,d23b7f2f6363f250451fd5807b431a33:-1253606240</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="SmartCare Home - Container 2">5d68af60c333fa501bf5fe1d0501312f</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-20 09:08:54</sys_created_on>
+        <sys_db_object display_value="" name="sp_container">sp_container</sys_db_object>
+        <sys_id>16fb0c5ea1ac40b591bb7e5ea5ab44f9</sys_id>
+        <sys_metadata>123b7f2fc363f2501bf5fe1d05013131</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SmartCare Home - Container 2</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sp_container_123b7f2fc363f2501bf5fe1d05013131</sys_update_name>
+        <sys_update_version display_value="sp_container_123b7f2fc363f2501bf5fe1d05013131">2e28e760c333fa501bf5fe1d0501310f</sys_update_version>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-20 09:08:54</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
