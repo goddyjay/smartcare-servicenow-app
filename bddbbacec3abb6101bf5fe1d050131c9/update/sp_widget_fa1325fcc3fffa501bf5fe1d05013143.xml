@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function(spUtil) {
+    var c = this;
+
+    // Failsafe Initialization
+    c.data = c.data || {};
+    c.data.appointments = c.data.appointments || [];
+    c.filteredAppointments = [];
+
+    // State Variables
+    c.searchQuery = '';
+    c.filterStatus = ''; // Empty string means "All"
+    c.currentPage = 1;
+    c.pageSize = 8; 
+    c.totalPages = 1;
+    
+    // Modal State
+    c.showModal = false;
+    c.selectedAppt = {};
+
+    // EXACT DB Status Map
+    var statusMap = {
+        'scheduled': 'Scheduled',
+        'completed': 'Completed',
+        'cancelled': 'Cancelled'
+    };
+
+    c.getStatusLabel = function(val) {
+        if (!val) return 'Unknown';
+        return statusMap[val.toString().toLowerCase()] || val;
+    };
+
+    // --- BULLETPROOF LOCAL FILTER ENGINE ---
+    c.updateLocalFilters = function() {
+        var rawData = c.data.appointments || [];
+        
+        c.filteredAppointments = rawData.filter(function(item) {
+            
+            // 1. Search Logic (Checks both Patient and Doctor names)
+            var matchSearch = true;
+            if (c.searchQuery) {
+                var term = c.searchQuery.toLowerCase();
+                var patMatch = item.patient && item.patient.toLowerCase().includes(term);
+                var docMatch = item.doctor && item.doctor.toLowerCase().includes(term);
+                matchSearch = patMatch || docMatch;
+            }
+
+            // 2. Status Pill Filter
+            var matchStatus = true;
+            if (c.filterStatus) {
+                var stat = item.status ? item.status.toLowerCase() : '';
+                matchStatus = (stat === c.filterStatus);
+            }
+
+            return matchSearch && matchStatus;
+        });
+
+        // Update Pagination logic based on filtered results
+        c.totalPages = Math.ceil(c.filteredAppointments.length / c.pageSize) || 1;
+        if (c.currentPage > c.totalPages) {
+            c.currentPage = c.totalPages > 0 ? c.totalPages : 1;
+        }
+    };
+
+    // Run filter immediately on load
+    c.updateLocalFilters();
+
+    // Pagination Controls
+    c.getMin = function(a, b) { return Math.min(a, b); };
+    c.prevPage = function() { if (c.currentPage > 1) c.currentPage--; };
+    c.nextPage = function() { if (c.currentPage < c.totalPages) c.currentPage++; };
+
+    c.setFilter = function(status) {
+        c.filterStatus = status;
+        c.currentPage = 1; 
+        c.updateLocalFilters(); 
+    };
+
+    // --- MODAL CONTROLS & SAVE LOGIC ---
+    c.viewDetails = function(appt) {
+        // Use angular.copy so changes in the modal don't instantly reflect in the table behind it
+        c.selectedAppt = angular.copy(appt);
+        c.selectedAppt.newStatus = appt.status; // Bind the dropdown to the current status
+        c.showModal = true;
+    };
+
+    c.closeModal = function() {
+        c.showModal = false;
+        c.selectedAppt = {};
+    };
+
+    c.saveStatus = function() {
+        c.server.get({
+            action: 'update_status',
+            sys_id: c.selectedAppt.sys_id,
+            newStatus: c.selectedAppt.newStatus
+        }).then(function(r) {
+            c.showModal = false;
+            spUtil.addInfoMessage("Appointment status updated to " + c.getStatusLabel(c.selectedAppt.newStatus));
+            
+            // The server script returns a fresh list of appointments, so we resync the local array
+            c.data.appointments = r.data.appointments || [];
+            c.updateLocalFilters();
+        });
+    };
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* --- Global Wrapper --- */
+.sc-appt-wrapper {
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  color: #1e293b;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 40px);
+}
+
+.sc-appt-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+  overflow: hidden;
+}
+
+/* --- Header &amp; Search --- */
+.sc-appt-header {
+  padding: 20px 24px 16px 24px;
+  background-color: #fbfcfe;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sc-appt-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.sc-appt-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.sc-appt-search-icon { position: absolute; left: 16px; color: #94a3b8; }
+
+.sc-appt-input {
+  width: 100%; height: 42px; padding: 0 16px 0 44px;
+  border: 1px solid #cbd5e1; border-radius: 10px;
+  font-size: 13px; color: #1e293b; transition: all 0.2s; font-family: inherit;
+}
+
+.sc-appt-input:focus { border-color: #1961ED; outline: none; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); }
+
+/* --- HIGH VISIBILITY PILL TABS --- */
+.sc-appt-tabs-container {
+  padding: 0 24px 20px 24px;
+  background-color: #fbfcfe;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sc-appt-tabs {
+  display: inline-flex;
+  background-color: #f1f5f9;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.sc-appt-tab {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.sc-appt-tab:hover:not(.active) { color: #1e293b; background: rgba(255, 255, 255, 0.6); }
+
+.sc-appt-tab.active {
+  background: #ffffff;
+  color: #1961ED;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Table --- */
+.sc-appt-table-wrapper { width: 100%; overflow-x: auto; flex-grow: 1;}
+.sc-appt-table { width: 100%; border-collapse: collapse; text-align: left; }
+
+.sc-appt-table th { 
+  background-color: #ffffff; color: #94a3b8; font-size: 12px; font-weight: 700; 
+  text-transform: uppercase; padding: 16px 24px; border-bottom: 1px solid #e2e8f0; letter-spacing: 0.5px;
+}
+
+.sc-appt-table td { padding: 16px 24px; border-bottom: 1px solid #f1f5f9; font-size: 14px; vertical-align: middle;}
+.sc-appt-table tbody tr { transition: background-color 0.2s; }
+.sc-appt-table tbody tr:hover { background-color: #f8fafc; }
+
+.sc-fw-bold { font-weight: 600; color: #1e293b; }
+.sc-text-muted { color: #64748b; font-size: 13px; }
+
+/* --- Badges --- */
+.sc-badge {
+  padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; 
+  text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; white-space: nowrap;
+}
+
+/* Beautiful Status Colors */
+.badge-scheduled { background: #e0f2fe; color: #0369a1; }   /* Blue */
+.badge-completed { background: #dcfce7; color: #15803d; }   /* Green */
+.badge-cancelled { background: #fee2e2; color: #b91c1c; }   /* Red */
+
+/* --- Action Buttons --- */
+.sc-btn-view {
+  background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8;
+  padding: 6px 14px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; transition: 0.2s;
+}
+.sc-btn-view:hover { background: #1961ED; color: #ffffff; border-color: #1961ED; }
+
+/* --- Empty State --- */
+.sc-empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.sc-empty-state i { font-size: 40px; margin-bottom: 12px; color: #cbd5e1; }
+.sc-empty-state p { margin: 0; font-weight: 500; font-size: 14px; }
+
+/* --- Pagination --- */
+.sc-pagination-wrapper { 
+  display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-top: 1px solid #e2e8f0; background: #fff;
+  margin-top: auto; 
+}
+.sc-pagination-info { font-size: 13px; color: #64748b; font-weight: 500; }
+.sc-pagination-controls { display: flex; align-items: center; gap: 12px;}
+.sc-page-text { font-size: 13px; font-weight: 600; color: #475569; }
+
+.sc-btn-page {
+  background: #ffffff; border: 1px solid #e2e8f0; color: #475569; border-radius: 8px; 
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;
+}
+.sc-btn-page:hover:not([disabled]) { background: #f1f5f9; color: #1e293b; }
+.sc-btn-page[disabled] { opacity: 0.3; cursor: not-allowed; }
+
+/* =========================================================
+   MODAL STYLING
+   ========================================================= */
+.sc-modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px);
+  z-index: 9999; display: flex; justify-content: center; align-items: center;
+  animation: fadeIn 0.2s ease-out; font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+}
+
+.sc-modal {
+  background: #ffffff; border-radius: 16px; width: 100%; max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.sc-modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 24px; border-bottom: 1px solid #f1f5f9;
+}
+.sc-modal-header h4 { margin: 0; font-weight: 700; color: #1e293b; font-size: 18px; }
+.sc-modal-close { background: none; border: none; color: #94a3b8; font-size: 18px; cursor: pointer; transition: 0.2s; }
+.sc-modal-close:hover { color: #ef4444; }
+
+.sc-modal-body { padding: 24px; }
+
+/* Grid for compact details */
+.sc-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.sc-modal-block { display: flex; flex-direction: column; gap: 4px; }
+.sc-modal-block-full { display: flex; flex-direction: column; gap: 6px; }
+
+.sc-modal-body label { 
+  font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin: 0; 
+}
+.sc-modal-body p { margin: 0; font-size: 15px; font-weight: 600; color: #1e293b; }
+
+.sc-modal-divider { border-top: 1px solid #f1f5f9; margin: 20px 0; }
+
+.sc-notes-box {
+  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;
+  font-size: 14px; color: #475569; line-height: 1.5; min-height: 80px; white-space: pre-wrap;
+}
+
+/* Modifiable Dropdown */
+.sc-modal-select {
+  width: 100%; height: 44px; padding: 0 16px; border: 1px solid #cbd5e1;
+  border-radius: 10px; font-size: 14px; color: #1e293b; font-family: inherit;
+  font-weight: 500; cursor: pointer; background-color: #f8fafc; transition: all 0.2s;
+}
+.sc-modal-select:focus { border-color: #1961ED; outline: none; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); background-color: #ffffff; }
+
+.sc-modal-footer {
+  padding: 16px 24px; background: #fbfcfe; border-top: 1px solid #f1f5f9;
+  display: flex; justify-content: flex-end; align-items: center;
+}
+
+.sc-btn-default { 
+  background: #ffffff; border: 1px solid #cbd5e1; color: #475569; padding: 8px 24px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.2s; 
+}
+.sc-btn-default:hover { background: #f1f5f9; color: #1e293b; }
+
+.sc-btn-primary {
+  background: #1961ED; border: none; color: #ffffff; padding: 8px 24px;
+  border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.2s;
+}
+.sc-btn-primary:hover:not([disabled]) { background: #1d4ed8; }
+.sc-btn-primary[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>appointment</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    var userId = gs.getUserID();
+    
+    // --- NEW: Handle Status Update ---
+    if (input && input.action == 'update_status') {
+        var updateGR = new GlideRecord('x_1954503_smartc_0_smartcare_appointment');
+        if (updateGR.get(input.sys_id)) {
+            updateGR.setValue('status', input.newStatus);
+            updateGR.update();
+        }
+    }
+
+    data.appointments = [];
+
+    // Basic Role Security
+    var isDoctor = gs.hasRole('x_1954503_smartc_0.doctor');
+    var isAdmin = gs.hasRole('admin') || gs.hasRole('x_1954503_smartc_0.admin');
+    
+    var apptGR = new GlideRecord('x_1954503_smartc_0_smartcare_appointment');
+    
+    // If user is a doctor (and not an admin), only show them their own appointments
+    if (isDoctor && !isAdmin) {
+        apptGR.addQuery('doctor', userId);
+    }
+    
+    // Order by newest appointments first
+    apptGR.orderByDesc('appointment_date');
+    apptGR.query();
+
+    while (apptGR.next()) {
+        
+        // THE FIX: ServiceNow stores Time fields as 1970-01-01 HH:mm:ss. We strip the date out.
+        var rawTime = apptGR.getDisplayValue('appointment_time') || 'Not Set';
+        var cleanTime = rawTime.replace('1970-01-01 ', ''); 
+
+        data.appointments.push({
+            sys_id: apptGR.getUniqueValue(),
+            patient: apptGR.getValue('patient') || 'Unknown', 
+            doctor: apptGR.getDisplayValue('doctor') || 'Unassigned', 
+            date: apptGR.getDisplayValue('appointment_date') || 'Not Set',
+            time: cleanTime, // Pushing the clean time here
+            status: (apptGR.getValue('status') || 'scheduled').toLowerCase(),
+            notes: apptGR.getValue('notes') || 'No additional notes provided.'
+        });
+    }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-20 18:06:24</sys_created_on>
+        <sys_id>fa1325fcc3fffa501bf5fe1d05013143</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>appointment</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sp_widget_fa1325fcc3fffa501bf5fe1d05013143</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-20 18:38:04</sys_updated_on>
+        <template><![CDATA[<div class="sc-appt-wrapper">
+  
+  <div class="sc-appt-panel">
+    <div class="sc-appt-header">
+      <h3 class="sc-appt-title">Appointment Schedule</h3>
+      <div class="sc-appt-search">
+        <i class="fa fa-search sc-appt-search-icon"></i>
+        <input type="text" class="sc-appt-input" placeholder="Search patient or doctor..." ng-model="c.searchQuery" ng-change="c.updateLocalFilters()" ng-model-options="{debounce: 300}">
+      </div>
+    </div>
+
+    <div class="sc-appt-tabs-container">
+      <div class="sc-appt-tabs">
+        <button class="sc-appt-tab" ng-class="{'active': c.filterStatus == ''}" ng-click="c.setFilter('')">
+          All Appointments
+        </button>
+        <button class="sc-appt-tab" ng-class="{'active': c.filterStatus == 'scheduled'}" ng-click="c.setFilter('scheduled')">
+          Scheduled
+        </button>
+        <button class="sc-appt-tab" ng-class="{'active': c.filterStatus == 'completed'}" ng-click="c.setFilter('completed')">
+          Completed
+        </button>
+        <button class="sc-appt-tab" ng-class="{'active': c.filterStatus == 'cancelled'}" ng-click="c.setFilter('cancelled')">
+          Cancelled
+        </button>
+      </div>
+    </div>
+
+    <div class="sc-appt-table-wrapper" ng-if="c.filteredAppointments.length > 0">
+      <table class="sc-appt-table">
+        <thead>
+          <tr>
+            <th>Patient Name</th>
+            <th>Assigned Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="appt in c.filteredAppointments | limitTo: c.pageSize : (c.currentPage - 1) * c.pageSize">
+            <td class="sc-fw-bold">{{appt.patient}}</td>
+            <td>{{appt.doctor}}</td>
+            <td class="sc-text-muted"><i class="fa fa-calendar-o" style="margin-right: 6px;"></i>{{appt.date}}</td>
+            <td class="sc-text-muted"><i class="fa fa-clock-o" style="margin-right: 6px;"></i>{{appt.time}}</td>
+            <td>
+              <span class="sc-badge" ng-class="'badge-' + appt.status">
+                {{c.getStatusLabel(appt.status)}}
+              </span>
+            </td>
+            <td>
+              <button class="sc-btn-view" ng-click="c.viewDetails(appt)">
+                View Details
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="sc-empty-state" ng-if="!c.filteredAppointments || c.filteredAppointments.length == 0">
+      <i class="fa fa-calendar-times-o"></i>
+      <p>No appointments found matching your filters.</p>
+    </div>
+
+    <div class="sc-pagination-wrapper" ng-if="c.filteredAppointments.length > 0">
+      <div class="sc-pagination-info">
+        Showing {{(c.currentPage - 1) * c.pageSize + 1}} - {{c.getMin(c.currentPage * c.pageSize, c.filteredAppointments.length)}} of {{c.filteredAppointments.length}}
+      </div>
+      <div class="sc-pagination-controls">
+        <button class="sc-btn-page" ng-disabled="c.currentPage == 1" ng-click="c.prevPage()"><i class="fa fa-chevron-left"></i></button>
+        <span class="sc-page-text">Page {{c.currentPage}} of {{c.totalPages}}</span>
+        <button class="sc-btn-page" ng-disabled="c.currentPage >= c.totalPages" ng-click="c.nextPage()"><i class="fa fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div ng-if="c.showModal" class="sc-modal-overlay">
+  <div class="sc-modal">
+    <div class="sc-modal-header">
+      <h4>Appointment Details</h4>
+      <button class="sc-modal-close" ng-click="c.closeModal()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="sc-modal-body">
+      
+      <div class="sc-modal-grid">
+        <div class="sc-modal-block">
+          <label>Patient Name</label>
+          <p>{{c.selectedAppt.patient}}</p>
+        </div>
+        <div class="sc-modal-block">
+          <label>Doctor</label>
+          <p>{{c.selectedAppt.doctor}}</p>
+        </div>
+        <div class="sc-modal-block">
+          <label>Date</label>
+          <p>{{c.selectedAppt.date}}</p>
+        </div>
+        <div class="sc-modal-block">
+          <label>Time</label>
+          <p>{{c.selectedAppt.time}}</p>
+        </div>
+      </div>
+
+      <div class="sc-modal-divider"></div>
+
+      <div class="sc-modal-block-full">
+        <label>Update Status</label>
+        <select class="sc-modal-select" ng-model="c.selectedAppt.newStatus">
+          <option value="scheduled">Scheduled</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+
+      <div class="sc-modal-block-full" style="margin-top: 16px;">
+        <label>Appointment Notes</label>
+        <div class="sc-notes-box">
+          {{c.selectedAppt.notes}}
+        </div>
+      </div>
+
+    </div>
+    <div class="sc-modal-footer" style="gap: 12px;">
+      <button class="sc-btn-default" ng-click="c.closeModal()">Close</button>
+      
+      <button class="sc-btn-primary" 
+              ng-disabled="c.selectedAppt.newStatus == c.selectedAppt.status" 
+              ng-click="c.saveStatus()">
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
