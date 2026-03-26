@@ -4,7 +4,7 @@
         <client_script><![CDATA[api.controller = function(spModal, spUtil) {
     var c = this;
 
-    // Translation Dictionary for Backend Values -> UI Labels
+    
     var wardMap = {
         'ICU': 'ICU',
         '100': 'Emergency',
@@ -22,7 +22,7 @@
 
     c.search = { bedId: '', statusValue: '', ward: '', bedTypeValue: '' };
     c.currentPage = 1;
-    c.pageSize = 15; // UPDATED: Now supports 15 beds (5 columns x 3 rows)
+    c.pageSize = 15; 
     c.filteredBeds = [];
     c.totalPages = 1;
 
@@ -44,7 +44,7 @@
 
             var matchStatus = !c.search.statusValue || bed.statusValue === c.search.statusValue;
             
-            // Cast to string to ensure safe matching against backend values
+            
             var matchWard = !c.search.ward || (bed.ward && bed.ward.toString().toLowerCase() === c.search.ward.toLowerCase());
             var matchType = !c.search.bedTypeValue || (bed.bedTypeValue && bed.bedTypeValue.toString() === c.search.bedTypeValue);
             
@@ -88,167 +88,164 @@
     };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* ── BASE WRAPPER ── */&#13;
-.sc-bed-dashboard { &#13;
-  font-family: 'Poppins', 'Inter', system-ui, sans-serif;&#13;
-  color: #1e293b;&#13;
-  padding-bottom: 20px; &#13;
-  /* NEW: Forces the dashboard to fill the screen, allowing pagination to stick to bottom */&#13;
-  display: flex;&#13;
-  flex-direction: column;&#13;
-  min-height: calc(100vh - 80px);&#13;
-}&#13;
-&#13;
-/* ── TOP CONTROLS &amp; FILTERS ── */&#13;
-.sc-bed-controls-header {&#13;
-  background: #ffffff;&#13;
-  padding: 20px 24px;&#13;
-  border-radius: 16px;&#13;
-  margin-bottom: 24px;&#13;
-  border: 1px solid #e2e8f0;&#13;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);&#13;
-}&#13;
-&#13;
-.sc-bed-search-row { &#13;
-  display: flex; &#13;
-  gap: 16px; &#13;
-  align-items: center;&#13;
-  flex-wrap: wrap; &#13;
-}&#13;
-&#13;
-.sc-bed-search-bar { flex: 1; min-width: 280px; position: relative; display: flex; align-items: center; }&#13;
-.sc-bed-search-icon { position: absolute; left: 16px; color: #94a3b8; }&#13;
-&#13;
-.sc-bed-search-bar input {&#13;
-  width: 100%; height: 44px; padding: 0 16px 0 44px;&#13;
-  border: 1px solid #cbd5e1; border-radius: 12px;&#13;
-  font-size: 14px; color: #1e293b; transition: all 0.2s; font-family: inherit; box-sizing: border-box;&#13;
-}&#13;
-&#13;
-/* Custom Dropdown Styling */&#13;
-.sc-bed-select {&#13;
-  height: 44px; padding: 0 36px 0 16px; border: 1px solid #cbd5e1;&#13;
-  border-radius: 12px; font-size: 13px; font-weight: 500;&#13;
-  color: #1e293b; background-color: #f8fafc; transition: all 0.2s;&#13;
-  font-family: inherit; cursor: pointer;&#13;
-  appearance: none; -webkit-appearance: none;&#13;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");&#13;
-  background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; min-width: 160px;&#13;
-}&#13;
-&#13;
-.sc-bed-select:hover { background-color: #ffffff; border-color: #94a3b8; }&#13;
-.sc-bed-search-bar input:focus, .sc-bed-select:focus { border-color: #1961ED; background-color: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); }&#13;
-&#13;
-.sc-bed-btn-clear {&#13;
-  background: #ffffff; border: 1px solid #cbd5e1; color: #475569;&#13;
-  padding: 0 20px; height: 44px; font-weight: 600; cursor: pointer; border-radius: 12px; font-size: 13px; transition: 0.2s; white-space: nowrap;&#13;
-}&#13;
-&#13;
-.sc-bed-btn-clear:hover { background: #f8fafc; border-color: #94a3b8; color: #1e293b; }&#13;
-&#13;
-/* ── THE GRID &amp; CARDS (5 Columns) ── */&#13;
-.sc-bed-grid {&#13;
-  display: grid;&#13;
-  grid-template-columns: repeat(5, 1fr); &#13;
-  gap: 16px; &#13;
-  align-content: flex-start; /* Keeps rows packed at the top */&#13;
-}&#13;
-&#13;
-.sc-bed-card {&#13;
-  background: #ffffff; border-radius: 14px; border: 1px solid #e2e8f0;&#13;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column;&#13;
-  overflow: hidden; transition: transform 0.2s; min-height: 150px; &#13;
-}&#13;
-&#13;
-.sc-bed-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }&#13;
-&#13;
-/* ── MAPPED SMOOTH COLORS (Bulletproofed for Numbers and Text) ── */&#13;
-.sc-bed-card-header {&#13;
-  padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; color: #ffffff; background: #94a3b8; &#13;
-}&#13;
-&#13;
-/* Fallbacks */&#13;
-.ward-default .sc-bed-card-header, .ward- .sc-bed-card-header { background: #94a3b8; } &#13;
-&#13;
-/* Mapped to handle both numeric values and string labels */&#13;
-.ward-icu .sc-bed-card-header { background: #e86464; } &#13;
-.ward-100 .sc-bed-card-header, .ward-emergency .sc-bed-card-header { background: #a87df5; } &#13;
-.ward-200 .sc-bed-card-header, .ward-cardiology .sc-bed-card-header { background: #f28b82; } &#13;
-.ward-300 .sc-bed-card-header, .ward-neurology .sc-bed-card-header { background: #4db6ac; } &#13;
-.ward-400 .sc-bed-card-header, .ward-orthopedics .sc-bed-card-header { background: #d99a5a; } &#13;
-.ward-500 .sc-bed-card-header, .ward-general .sc-bed-card-header, .ward-general\ med .sc-bed-card-header { background: #4f8cf5; } &#13;
-.ward-600 .sc-bed-card-header, .ward-maternity .sc-bed-card-header { background: #f08cb6; } &#13;
-&#13;
-.sc-bed-header-left { display: flex; align-items: center; }&#13;
-.sc-bed-id-text { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; } &#13;
-.sc-bed-header-right { display: flex; align-items: center; gap: 8px; }&#13;
-.sc-bed-header-icon { font-size: 16px; opacity: 0.8; }&#13;
-&#13;
-/* ── KEBAB MENU ── */&#13;
-.sc-bed-menu-wrapper { position: relative; }&#13;
-.sc-bed-kebab {&#13;
-  cursor: pointer; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;&#13;
-  border-radius: 6px; color: #ffffff; font-size: 18px; transition: 0.2s; opacity: 0.9;&#13;
-}&#13;
-.sc-bed-kebab:hover { background: rgba(255, 255, 255, 0.2); opacity: 1; }&#13;
-&#13;
-.sc-bed-context-menu {&#13;
-  position: absolute; top: 28px; right: 0; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;&#13;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 100; min-width: 160px; padding: 6px;&#13;
-}&#13;
-.sc-bed-context-item {&#13;
-  width: 100%; padding: 8px 12px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: 600;&#13;
-  border-radius: 6px; color: #1e293b;&#13;
-}&#13;
-.sc-bed-text-danger { color: #dc2626; }&#13;
-.sc-bed-context-item:hover { background: #f1f5f9; }&#13;
-&#13;
-/* ── CARD BODY ── */&#13;
-.sc-bed-card-body { padding: 14px; flex-grow: 1; display: flex; flex-direction: column; }&#13;
-.sc-bed-status-area { margin-bottom: 12px; }&#13;
-.sc-bed-status-badge { font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }&#13;
-.badge-occupied { background: #eff6ff; color: #1d4ed8; } &#13;
-.badge-ready { background: #dcfce7; color: #15803d; }&#13;
-&#13;
-.sc-bed-patient-info { flex-grow: 1; display: flex; flex-direction: column; min-height: 60px; }&#13;
-.sc-bed-patient-name { margin: 0 0 2px 0; font-size: 15px; color: #1e293b; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }&#13;
-.sc-bed-dept-text { margin: 0 0 8px 0; font-size: 12px; color: #64748b; font-weight: 500;}&#13;
-&#13;
-.sc-bed-severity-text { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto; }&#13;
-.severity-text-critical { color: #dc2626; } &#13;
-.severity-text-high { color: #ea580c; }  &#13;
-.severity-text-moderate { color: #2563eb; }&#13;
-.severity-text-low { color: #16a34a; }&#13;
-&#13;
-.sc-bed-empty-state-box { display: flex; align-items: center; justify-content: center; height: 100%; min-height: 60px; }&#13;
-.sc-bed-empty-icon { font-size: 42px; color: #cbd5e1; } &#13;
-&#13;
-/* ── PAGINATION (FIXED TO BOTTOM) ── */&#13;
-.sc-bed-no-results { padding: 40px; text-align: center; color: #64748b; font-weight: 500; }&#13;
-&#13;
-.sc-bed-pagination-wrapper {&#13;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 10px; &#13;
-  /* NEW: Pushes pagination to the absolute bottom of the screen */&#13;
-  margin-top: auto; &#13;
-  padding-top: 30px;&#13;
-}&#13;
-&#13;
-.sc-bed-pagination-info { font-size: 13px; color: #64748b; font-weight: 500; }&#13;
-&#13;
-.sc-bed-pagination-controls { &#13;
-  display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; &#13;
-  background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);&#13;
-}&#13;
-&#13;
-.sc-bed-page-numbers { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 4px; margin: 0 8px; }&#13;
-&#13;
-.sc-bed-btn-page, .sc-bed-btn-page-num {&#13;
-  background: transparent; border: none; color: #475569; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;&#13;
-  cursor: pointer; transition: all 0.2s; font-family: inherit; display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px;&#13;
-}&#13;
-&#13;
-.sc-bed-btn-page:hover:not([disabled]), .sc-bed-btn-page-num:hover { background: #f1f5f9; color: #1e293b; }&#13;
-.sc-bed-btn-page[disabled] { opacity: 0.3; cursor: not-allowed; }&#13;
+        <css>
+.sc-bed-dashboard { 
+  font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+  color: #1e293b;
+  padding-bottom: 20px; 
+ 
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
+}
+
+
+.sc-bed-controls-header {
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.sc-bed-search-row { 
+  display: flex; 
+  gap: 16px; 
+  align-items: center;
+  flex-wrap: wrap; 
+}
+
+.sc-bed-search-bar { flex: 1; min-width: 280px; position: relative; display: flex; align-items: center; }
+.sc-bed-search-icon { position: absolute; left: 16px; color: #94a3b8; }
+
+.sc-bed-search-bar input {
+  width: 100%; height: 44px; padding: 0 16px 0 44px;
+  border: 1px solid #cbd5e1; border-radius: 12px;
+  font-size: 14px; color: #1e293b; transition: all 0.2s; font-family: inherit; box-sizing: border-box;
+}
+
+
+.sc-bed-select {
+  height: 44px; padding: 0 36px 0 16px; border: 1px solid #cbd5e1;
+  border-radius: 12px; font-size: 13px; font-weight: 500;
+  color: #1e293b; background-color: #f8fafc; transition: all 0.2s;
+  font-family: inherit; cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; min-width: 160px;
+}
+
+.sc-bed-select:hover { background-color: #ffffff; border-color: #94a3b8; }
+.sc-bed-search-bar input:focus, .sc-bed-select:focus { border-color: #1961ED; background-color: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); }
+
+.sc-bed-btn-clear {
+  background: #ffffff; border: 1px solid #cbd5e1; color: #475569;
+  padding: 0 20px; height: 44px; font-weight: 600; cursor: pointer; border-radius: 12px; font-size: 13px; transition: 0.2s; white-space: nowrap;
+}
+
+.sc-bed-btn-clear:hover { background: #f8fafc; border-color: #94a3b8; color: #1e293b; }
+
+
+.sc-bed-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 16px; 
+  align-content: flex-start; 
+}
+
+.sc-bed-card {
+  background: #ffffff; border-radius: 14px; border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column;
+  overflow: hidden; transition: transform 0.2s; min-height: 150px; 
+}
+
+.sc-bed-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+
+
+.sc-bed-card-header {
+  padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; color: #ffffff; background: #94a3b8; 
+}
+
+
+.ward-default .sc-bed-card-header, .ward- .sc-bed-card-header { background: #94a3b8; } 
+
+
+.ward-icu .sc-bed-card-header { background: #e86464; } 
+.ward-100 .sc-bed-card-header, .ward-emergency .sc-bed-card-header { background: #a87df5; } 
+.ward-200 .sc-bed-card-header, .ward-cardiology .sc-bed-card-header { background: #f28b82; } 
+.ward-300 .sc-bed-card-header, .ward-neurology .sc-bed-card-header { background: #4db6ac; } 
+.ward-400 .sc-bed-card-header, .ward-orthopedics .sc-bed-card-header { background: #d99a5a; } 
+.ward-500 .sc-bed-card-header, .ward-general .sc-bed-card-header, .ward-general\ med .sc-bed-card-header { background: #4f8cf5; } 
+.ward-600 .sc-bed-card-header, .ward-maternity .sc-bed-card-header { background: #f08cb6; } 
+
+.sc-bed-header-left { display: flex; align-items: center; }
+.sc-bed-id-text { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; } 
+.sc-bed-header-right { display: flex; align-items: center; gap: 8px; }
+.sc-bed-header-icon { font-size: 16px; opacity: 0.8; }
+
+
+.sc-bed-menu-wrapper { position: relative; }
+.sc-bed-kebab {
+  cursor: pointer; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; color: #ffffff; font-size: 18px; transition: 0.2s; opacity: 0.9;
+}
+.sc-bed-kebab:hover { background: rgba(255, 255, 255, 0.2); opacity: 1; }
+
+.sc-bed-context-menu {
+  position: absolute; top: 28px; right: 0; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 100; min-width: 160px; padding: 6px;
+}
+.sc-bed-context-item {
+  width: 100%; padding: 8px 12px; background: none; border: none; text-align: left; cursor: pointer; font-size: 13px; font-weight: 600;
+  border-radius: 6px; color: #1e293b;
+}
+.sc-bed-text-danger { color: #dc2626; }
+.sc-bed-context-item:hover { background: #f1f5f9; }
+
+.sc-bed-card-body { padding: 14px; flex-grow: 1; display: flex; flex-direction: column; }
+.sc-bed-status-area { margin-bottom: 12px; }
+.sc-bed-status-badge { font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-occupied { background: #eff6ff; color: #1d4ed8; } 
+.badge-ready { background: #dcfce7; color: #15803d; }
+
+.sc-bed-patient-info { flex-grow: 1; display: flex; flex-direction: column; min-height: 60px; }
+.sc-bed-patient-name { margin: 0 0 2px 0; font-size: 15px; color: #1e293b; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sc-bed-dept-text { margin: 0 0 8px 0; font-size: 12px; color: #64748b; font-weight: 500;}
+
+.sc-bed-severity-text { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-top: auto; }
+.severity-text-critical { color: #dc2626; } 
+.severity-text-high { color: #ea580c; }  
+.severity-text-moderate { color: #2563eb; }
+.severity-text-low { color: #16a34a; }
+
+.sc-bed-empty-state-box { display: flex; align-items: center; justify-content: center; height: 100%; min-height: 60px; }
+.sc-bed-empty-icon { font-size: 42px; color: #cbd5e1; } 
+
+.sc-bed-no-results { padding: 40px; text-align: center; color: #64748b; font-weight: 500; }
+
+.sc-bed-pagination-wrapper {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px; 
+  margin-top: auto; 
+  padding-top: 30px;
+}
+
+.sc-bed-pagination-info { font-size: 13px; color: #64748b; font-weight: 500; }
+
+.sc-bed-pagination-controls { 
+  display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; 
+  background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.sc-bed-page-numbers { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 4px; margin: 0 8px; }
+
+.sc-bed-btn-page, .sc-bed-btn-page-num {
+  background: transparent; border: none; color: #475569; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; font-family: inherit; display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px;
+}
+
+.sc-bed-btn-page:hover:not([disabled]), .sc-bed-btn-page-num:hover { background: #f1f5f9; color: #1e293b; }
+.sc-bed-btn-page[disabled] { opacity: 0.3; cursor: not-allowed; }
 .sc-bed-btn-page-num.active { background: #1961ED; color: #ffffff; border-color: #1961ED;}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -268,7 +265,7 @@
         <script><![CDATA[(function() {
     var userId = gs.getUserID();
     
-    // 1. Define Roles securely
+
     var isAdmin = gs.hasRole('admin') || gs.hasRole('x_1954503_smartc_0.admin');
     var isDoctor = gs.hasRole('x_1954503_smartc_0.doctor');
     var isNurse = gs.hasRole('x_1954503_smartc_0.nurse');
@@ -297,24 +294,22 @@
         if (patientSysId) {
             patientGR = new GlideRecord('x_1954503_smartc_0_patient');
             if (patientGR.get(patientSysId)) {
-                // Check if the logged-in user is the assigned doctor or nurse
+                
                 if (isDoctor && patientGR.getValue('assigned_doctor') == userId) {
                     isMyPatient = true;
                 } else if (isNurse && (patientGR.getValue('assigned_nurse') == userId || patientGR.getValue('u_assigned_nurse') == userId)) {
-                    isMyPatient = true; // Checking both nurse fields just to be safe based on your previous scripts
+                    isMyPatient = true; 
                 }
             }
         }
 
-        // 3. --- ROLE-BASED FILTERING LOGIC ---
-        // If the user is NOT an admin, they ONLY get to see the bed IF it is occupied by their assigned patient.
-        if (!isAdmin) {
+       if (!isAdmin) {
             if (!isMyPatient) {
-                continue; // This skips the bed entirely and moves to the next one in the database
+                continue; 
             }
         }
 
-        // 4. If we pass the security filter, build the bed object for the UI
+        
         var bedObj = {};
         bedObj.bedId = bedGR.getValue('bed_id') || "N/A";
         bedObj.ward = (bedGR.getValue('ward') || '').toLowerCase();
@@ -340,14 +335,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-15 21:01:29</sys_created_on>
         <sys_id>b27b1097c3a7fe101bf5fe1d05013153</sys_id>
-        <sys_mod_count>46</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>SmartCare Bed Tile</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_b27b1097c3a7fe101bf5fe1d05013153</sys_update_name>
-        <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-20 12:29:25</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-26 16:50:37</sys_updated_on>
         <template><![CDATA[<div class="sc-bed-dashboard">
   
   <div class="sc-bed-controls-header">

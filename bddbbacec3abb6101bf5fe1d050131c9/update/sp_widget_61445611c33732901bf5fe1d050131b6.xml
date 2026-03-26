@@ -14,7 +14,7 @@
     c.pageSize = 8; 
     c.totalPages = 1;
     
-    // Modal States
+  
     c.showModal = false;
     c.showCheckInModal = false;
     c.isCheckInSuccess = false; 
@@ -72,7 +72,7 @@
         c.updateLocalFilters(); 
     };
 
-    // --- VIEW DETAILS MODAL ---
+   
     c.viewDetails = function(appt) {
         c.selectedAppt = angular.copy(appt);
         c.selectedAppt.newStatus = appt.status; 
@@ -98,7 +98,7 @@
         });
     };
 
-    // --- INLINE CHECK-IN & ID GENERATION ---
+  
     c.openCheckIn = function(appt) {
         c.checkInData = angular.copy(appt);
         c.isCheckInSuccess = false; 
@@ -118,7 +118,7 @@
         });
     };
 
-    // --- PRINT ID LOGIC ---
+    // --- print id logic ---
     c.printID = function() {
         var printContents = document.getElementById('printable-id').innerHTML;
         var printWindow = window.open('', '_blank', 'width=800,height=600');
@@ -146,7 +146,7 @@
         printWindow.document.write('</body></html>');
         printWindow.document.close();
         
-        // THE FIX: Added printWindow.close() after the print command!
+        //  Added printWindow.close() after the print command!
         setTimeout(function() {
             printWindow.focus();
             printWindow.print();
@@ -155,8 +155,7 @@
     };
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* --- ID Card Generation &amp; Check-In Success Styles --- */
-/* --- Global Wrapper --- */
+        <css>
 .sc-appt-wrapper {
   font-family: 'Poppins', 'Inter', system-ui, sans-serif;
   color: #1e293b;
@@ -178,7 +177,6 @@
   overflow: hidden;
 }
 
-/* --- Header &amp; Search --- */
 .sc-appt-header {
   padding: 20px 24px 16px 24px;
   background-color: #fbfcfe;
@@ -214,7 +212,6 @@
 
 .sc-appt-input:focus { border-color: #1961ED; outline: none; box-shadow: 0 0 0 3px rgba(25, 97, 237, 0.1); }
 
-/* --- HIGH VISIBILITY PILL TABS --- */
 .sc-appt-tabs-container {
   padding: 0 24px 20px 24px;
   background-color: #fbfcfe;
@@ -252,7 +249,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* --- Table --- */
+
 .sc-appt-table-wrapper { width: 100%; overflow-x: auto; flex-grow: 1;}
 .sc-appt-table { width: 100%; border-collapse: collapse; text-align: left; }
 
@@ -268,30 +265,29 @@
 .sc-fw-bold { font-weight: 600; color: #1e293b; }
 .sc-text-muted { color: #64748b; font-size: 13px; }
 
-/* --- Badges --- */
+
 .sc-badge {
   padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; 
   text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; white-space: nowrap;
 }
 
-/* Beautiful Status Colors */
 .badge-scheduled { background: #e0f2fe; color: #0369a1; }   /* Blue */
 .badge-completed { background: #dcfce7; color: #15803d; }   /* Green */
 .badge-cancelled { background: #fee2e2; color: #b91c1c; }   /* Red */
 
-/* --- Action Buttons --- */
+
 .sc-btn-view {
   background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8;
   padding: 6px 14px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; transition: 0.2s;
 }
 .sc-btn-view:hover { background: #1961ED; color: #ffffff; border-color: #1961ED; }
 
-/* --- Empty State --- */
+
 .sc-empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;}
 .sc-empty-state i { font-size: 40px; margin-bottom: 12px; color: #cbd5e1; }
 .sc-empty-state p { margin: 0; font-weight: 500; font-size: 14px; }
 
-/* --- Pagination --- */
+
 .sc-pagination-wrapper { 
   display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-top: 1px solid #e2e8f0; background: #fff;
   margin-top: auto; 
@@ -307,9 +303,7 @@
 .sc-btn-page:hover:not([disabled]) { background: #f1f5f9; color: #1e293b; }
 .sc-btn-page[disabled] { opacity: 0.3; cursor: not-allowed; }
 
-/* =========================================================
-   MODAL STYLING
-   ========================================================= */
+
 .sc-modal-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px);
@@ -333,7 +327,7 @@
 
 .sc-modal-body { padding: 24px; }
 
-/* Grid for compact details */
+
 .sc-modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -355,7 +349,7 @@
   font-size: 14px; color: #475569; line-height: 1.5; min-height: 80px; white-space: pre-wrap;
 }
 
-/* Modifiable Dropdown */
+
 .sc-modal-select {
   width: 100%; height: 44px; padding: 0 16px; border: 1px solid #cbd5e1;
   border-radius: 10px; font-size: 14px; color: #1e293b; font-family: inherit;
@@ -382,7 +376,7 @@
 
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 .sc-modal-large {
-  max-width: 650px; /* Wider modal for the ID card */
+  max-width: 650px;
 }
 
 .sc-modal-alert-info {
@@ -414,12 +408,12 @@
 }
 .sc-success-alert i { font-size: 20px; color: #10b981; }
 
-/* ── ID CARD SCALING &amp; POSITIONING ── */
+
 .id-card-preview {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  height: 290px; /* Crucial: limits height so scaled card doesn't leave whitespace */
+  height: 290px; 
 }
 
 .id-card-wrapper {
@@ -479,14 +473,14 @@
   color: #1e293b;
 }
 
-/* Action Group */
+
 .sc-action-group {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-/* Green Check-In Button */
+
 .sc-btn-checkin {
   background: #dcfce7;
   border: 1px solid #bbf7d0;
@@ -537,7 +531,7 @@
         <script><![CDATA[(function() {
     var userId = gs.getUserID();
     
-    // --- 1. HANDLE STATUS UPDATE ---
+    
     if (input && input.action == 'update_status') {
         var updateGR = new GlideRecord('x_1954503_smartc_0_smartcare_appointment');
         if (updateGR.get(input.sys_id)) {
@@ -546,7 +540,7 @@
         }
     }
 
-    // --- 2. HANDLE INLINE CHECK-IN & ID GENERATION ---
+    
     if (input && input.action == 'check_in') {
         var pGr = new GlideRecord('x_1954503_smartc_0_patient');
         pGr.initialize();
@@ -556,7 +550,7 @@
         pGr.setValue('age', input.checkInData.age); 
         pGr.setValue('gender', input.checkInData.gender); 
         
-        // This is now automatically populated from the doctor's profile!
+       
         if (input.checkInData.department_value) {
             pGr.setValue('medical_department', input.checkInData.department_value); 
         }
@@ -614,7 +608,7 @@
         var docDeptDisplay = 'Unassigned';
         var docDeptValueForPatient = '';
 
-        // --- NEW: FETCH DOCTOR'S DEPARTMENT FROM USER TABLE ---
+       
         if (docId) {
             var usrGr = new GlideRecord('sys_user');
             if (usrGr.get(docId)) {
@@ -622,7 +616,7 @@
                 docDeptDisplay = usrGr.getDisplayValue('u_medical_department') || rawDept || 'Unassigned';
                 
                 if (rawDept) {
-                    // This perfectly converts "General Medicine" to "general_medicine" for the Patient table
+                   
                     docDeptValueForPatient = rawDept.toLowerCase().replace(/ /g, '_');
                 }
             }
@@ -634,8 +628,8 @@
             age: apptGR.getValue('age') || '--', 
             gender: apptGR.getValue('gender') || '--',
             
-            department: docDeptDisplay,            // The pretty label for the UI (e.g. "General Medicine")
-            department_value: docDeptValueForPatient, // The backend value (e.g. "general_medicine")
+            department: docDeptDisplay,            
+            department_value: docDeptValueForPatient, 
             
             doctor: apptGR.getDisplayValue('doctor') || 'Unassigned', 
             doctor_sys_id: docId, 
@@ -651,14 +645,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-22 10:56:49</sys_created_on>
         <sys_id>61445611c33732901bf5fe1d050131b6</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>appointment-cloned</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_61445611c33732901bf5fe1d050131b6</sys_update_name>
-        <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-22 12:36:57</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-26 16:43:52</sys_updated_on>
         <template><![CDATA[<div class="sc-appt-wrapper">
   
   <div class="sc-appt-panel">
