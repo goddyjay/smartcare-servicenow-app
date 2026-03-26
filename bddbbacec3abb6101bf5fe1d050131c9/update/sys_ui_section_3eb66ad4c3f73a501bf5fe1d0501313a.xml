@@ -3,84 +3,140 @@
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>severity</element>
             <position>0</position>
-            <sys_created_by>yeabsira</sys_created_by>
-            <sys_created_on>2026-03-19 09:43:33</sys_created_on>
-            <sys_id>0bb66ad4c3f73a501bf5fe1d05013161</sys_id>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>843de7ddc3bf32901bf5fe1d050131b0</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
-            <sys_updated_by>yeabsira</sys_updated_by>
-            <sys_updated_on>2026-03-19 09:43:33</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>state</element>
             <position>1</position>
-            <sys_created_by>yeabsira</sys_created_by>
-            <sys_created_on>2026-03-19 09:43:33</sys_created_on>
-            <sys_id>03b66ad4c3f73a501bf5fe1d05013163</sys_id>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>4c3de7ddc3bf32901bf5fe1d050131b1</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
-            <sys_updated_by>yeabsira</sys_updated_by>
-            <sys_updated_on>2026-03-19 09:43:33</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>lab_tests</element>
+            <position>2</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>c83de7ddc3bf32901bf5fe1d050131b2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>check_in_time</element>
-            <position>2</position>
-            <sys_created_by>yeabsira</sys_created_by>
-            <sys_created_on>2026-03-19 09:43:33</sys_created_on>
-            <sys_id>8fb66ad4c3f73a501bf5fe1d05013163</sys_id>
+            <position>3</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>483de7ddc3bf32901bf5fe1d050131b3</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
-            <sys_updated_by>yeabsira</sys_updated_by>
-            <sys_updated_on>2026-03-19 09:43:33</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>consultation_notes</element>
+            <position>4</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>c43de7ddc3bf32901bf5fe1d050131b4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>3</position>
-            <sys_created_by>yeabsira</sys_created_by>
-            <sys_created_on>2026-03-19 09:43:33</sys_created_on>
-            <sys_id>c3b66ad4c3f73a501bf5fe1d05013171</sys_id>
+            <position>5</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>443de7ddc3bf32901bf5fe1d050131b5</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
-            <sys_updated_by>yeabsira</sys_updated_by>
-            <sys_updated_on>2026-03-19 09:43:33</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>symptoms</element>
-            <position>4</position>
-            <sys_created_by>yeabsira</sys_created_by>
-            <sys_created_on>2026-03-19 09:43:33</sys_created_on>
-            <sys_id>43b66ad4c3f73a501bf5fe1d05013172</sys_id>
+            <position>6</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>c03de7ddc3bf32901bf5fe1d050131b6</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
-            <sys_updated_by>yeabsira</sys_updated_by>
-            <sys_updated_on>2026-03-19 09:43:33</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>vitals_description</element>
-            <position>5</position>
-            <sys_created_by>yeabsira</sys_created_by>
-            <sys_created_on>2026-03-19 09:43:33</sys_created_on>
-            <sys_id>cfb66ad4c3f73a501bf5fe1d05013172</sys_id>
+            <position>7</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>403de7ddc3bf32901bf5fe1d050131b7</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
-            <sys_updated_by>yeabsira</sys_updated_by>
-            <sys_updated_on>2026-03-19 09:43:33</sys_updated_on>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>prescriptions</element>
+            <position>8</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>cc3de7ddc3bf32901bf5fe1d050131b7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>diagnosis</element>
+            <position>9</position>
+            <sys_created_by>godwin</sys_created_by>
+            <sys_created_on>2026-03-22 17:25:17</sys_created_on>
+            <sys_id>4c3de7ddc3bf32901bf5fe1d050131b8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Medical details " display_value="Medical details " name="x_1954503_smartc_0_patient" sys_domain="global" view="72b62ad4c3f73a501bf5fe1d050131da">3eb66ad4c3f73a501bf5fe1d0501313a</sys_ui_section>
+            <sys_updated_by>godwin</sys_updated_by>
+            <sys_updated_on>2026-03-22 17:25:17</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

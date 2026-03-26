@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope, $http) {
+        <client_script><![CDATA[api.controller = function($scope) {
   var c = this;
 
-  // expose server data on both c and $scope (html uses c.*)
-  c.stats      = c.data.stats || {};
-  var SN_INSTANCE = c.data.instance || '';
-  var SN_TABLE    = c.data.snTable  || '';
+  // server gives us stats and the full doctors map up front
+  c.stats        = c.data.stats        || {};
+  var _doctorsMap = c.data.doctorsByDept || {}; // { dept: [{name, sys_id}] }
+  // log the exact dept keys from the DB so you can compare vs HTML option values
+  console.log('[SmartCare] doctorsByDept keys:', c.data.doctorDepts || Object.keys(_doctorsMap));
 
   // modal state
   c.modalOpen   = false;
@@ -22,20 +23,19 @@
   // form model
   c.form = {
     name: '', phone: '', email: '',
+    gender: '', age: '',
     dept: '', doctor: '', date: '', time: '', notes: ''
   };
 
-  // doctor dropdown
+  // doctor dropdown (populated from server-provided map, no REST calls needed)
   c.doctors    = [];
   c.docLoading = false;
-  var _doctorsCache = {};
 
   // ── modal helpers ──────────────────────────────────
   c.openModal = function() {
     c.modalOpen = true;
     c.formState = 'form';
     c.minDate   = new Date().toISOString().split('T')[0];
-    _prewarmDoctors();
   };
 
   c.closeModal = function() {
@@ -62,100 +62,58 @@
     c.submitting = false;
   };
 
-  // ── doctor fetch ───────────────────────────────────
-  function _prewarmDoctors() {
-    if (Object.keys(_doctorsCache).length > 0) return;
-    $http.get('/api/now/table/sys_user_grmember', {
-      params: {
-        sysparm_query: 'group.name=SmartCare Hospital Doctors^user.active=true',
-        sysparm_fields: 'user.sys_id,user.name,user.u_medical_department',
-        sysparm_display_value: 'false',
-        sysparm_limit: 200
-      }
-    }).then(function(res) {
-      var rows = (res.data && res.data.result) ? res.data.result : [];
-      rows.forEach(function(row) {
-        var dept  = row['user.u_medical_department'] || 'Unknown';
-        var name  = row['user.name'] || 'Unknown Doctor';
-        var sysId = row['user.sys_id'] || '';
-        if (!_doctorsCache[dept]) _doctorsCache[dept] = [];
-        _doctorsCache[dept].push({ name: name, sys_id: sysId });
-      });
-    });
-  }
-
+  // ── doctor filter (purely from server-provided data, no $http) ─────
   c.filterDoctorsByDept = function() {
-    var dept = c.form.dept;
+    var dept      = c.form.dept;
     c.form.doctor = '';
-    c.doctors     = [];
-    if (!dept) return;
-
-    c.docLoading = true;
-
-    function populateDoctors() {
-      c.docLoading = false;
-      c.doctors    = _doctorsCache[dept] || [];
-    }
-
-    if (Object.keys(_doctorsCache).length > 0) {
-      populateDoctors();
-      return;
-    }
-
-    $http.get('/api/now/table/sys_user_grmember', {
-      params: {
-        sysparm_query: 'group.name=SmartCare Hospital Doctors^user.active=true',
-        sysparm_fields: 'user.sys_id,user.name,user.u_medical_department',
-        sysparm_display_value: 'false',
-        sysparm_limit: 200
-      }
-    }).then(function(res) {
-      var rows = (res.data && res.data.result) ? res.data.result : [];
-      rows.forEach(function(row) {
-        var d  = row['user.u_medical_department'] || 'Unknown';
-        var n  = row['user.name'] || 'Unknown Doctor';
-        var id = row['user.sys_id'] || '';
-        if (!_doctorsCache[d]) _doctorsCache[d] = [];
-        _doctorsCache[d].push({ name: n, sys_id: id });
-      });
-    }).finally(function() { populateDoctors(); });
+    c.doctors     = dept ? (_doctorsMap[dept] || []) : [];
   };
 
-  // ── submit appointment ─────────────────────────────
+  // ── submit appointment via server.update() (no REST, no 401) ───────
   c.submitAppointment = function() {
     var f = c.form;
     c.fieldErrors = {};
     var valid = true;
-    ['name','phone','dept','doctor','date','time'].forEach(function(k) {
+    ['name','phone','gender','age','dept','doctor','date','time'].forEach(function(k) {
       if (!f[k]) { c.fieldErrors[k] = true; valid = false; }
     });
+    // debug — open DevTools console to see exactly what the form contains on submit
+    console.log('[SmartCare] form on submit:', JSON.stringify(f));
+    console.log('[SmartCare] fieldErrors:', JSON.stringify(c.fieldErrors));
     if (!valid) return;
 
     c.submitting = true;
 
-    var notesText = 'Department: ' + f.dept + ' | Phone: ' + f.phone;
-    if (f.email) notesText += ' | Email: ' + f.email;
-    if (f.notes) notesText += ' | Reason: ' + f.notes;
+    // c.server.get() sends custom params as `input` on the server side
+    c.server.get({
+      action: 'submitAppointment',
+      form: {
+        name:   f.name,
+        phone:  f.phone,
+        email:  f.email,
+        gender: f.gender,
+        age:    f.age,
+        dept:   f.dept,
+        doctor: f.doctor,
+        date:   f.date,
+        time:   f.time,
+        notes:  f.notes
+      }
+    }).then(function(response) {
+      // c.server.get() passes the fresh data as a .then() argument — c.data is NOT auto-updated
+      var serverData = (response && response.data) ? response.data : (response || {});
+      var result = serverData.submitResult || {};
 
-    var payload = {
-      patient:          f.name,
-      appointment_date: f.date,
-      appointment_time: f.time,
-      status:           'scheduled',
-      notes:            notesText,
-      doctor:           f.doctor
-    };
-
-    $http.post('/api/now/table/' + SN_TABLE, payload, {
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-    }).then(function(res) {
-      var sid = (res.data && res.data.result && res.data.result.sys_id) ? res.data.result.sys_id : 'N/A';
-      c.successName = f.name;
-      c.successRef  = 'SC-' + sid.substring(0, 8).toUpperCase();
-      c.formState   = 'success';
+      if (result.ok) {
+        c.successName = f.name;
+        c.successRef  = 'SC-' + (result.sys_id || '').substring(0, 8).toUpperCase();
+        c.formState   = 'success';
+      } else {
+        c.errorDetail = result.error || 'Unexpected error from server';
+        c.formState   = 'error';
+      }
     }).catch(function(err) {
-      var msg = err.data ? JSON.stringify(err.data).substring(0, 200) : 'HTTP ' + (err.status || 'ERR');
-      c.errorDetail = msg;
+      c.errorDetail = err ? String(err) : 'Server call failed';
       c.formState   = 'error';
     }).finally(function() {
       c.submitting = false;
@@ -528,31 +486,44 @@
         <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
-  // expose instance url so client can build api paths
-  data.instance = 'https://dev194259.service-now.com';
-  data.snTable  = 'x_1954503_smartc_0_smartcare_appointment';
+  data.snTable = 'x_1954503_smartc_0_smartcare_appointment';
 
   var stats = {
-    specialists:  '50+',
-    departments:  '15+',
-    patients:     '0',
-    emergency:    '24/7',
-    doctorsOnDuty:'Doctors Available',
-    bedsReady:    'Beds Available',
-    waitTime:     '~12 minutes'
+    specialists:   '50+',
+    departments:   '15+',
+    patients:      '0',
+    emergency:     '24/7',
+    doctorsOnDuty: 'Doctors Available',
+    bedsReady:     'Beds Available',
+    waitTime:      '~12 minutes'
   };
 
   // 1. doctors in SmartCare Hospital Doctors group
+  //    build a map: dept -> [{name, sys_id}]
+  var doctorsByDept = {};
   try {
     var grDr = new GlideRecord('sys_user_grmember');
     grDr.addEncodedQuery('group.name=SmartCare Hospital Doctors^user.active=true');
     grDr.setLimit(500);
     grDr.query();
     var drCount = 0;
-    while (grDr.next()) drCount++;
+    while (grDr.next()) {
+      drCount++;
+      // getDisplayValue for dot-walked fields, getValue('user') for the reference sys_id
+      var dept  = grDr.getDisplayValue('user.u_medical_department') || 'Unknown';
+      var name  = grDr.getDisplayValue('user.name') || 'Unknown Doctor';
+      // getValue on a reference field returns the referenced record's sys_id directly
+      var sysId = grDr.getValue('user') || name; // fallback to name so value is never empty
+      if (!doctorsByDept[dept]) doctorsByDept[dept] = [];
+      doctorsByDept[dept].push({ name: name, sys_id: sysId });
+    }
     stats.doctorsOnDuty = drCount + ' Specialist' + (drCount !== 1 ? 's' : '') + ' Available';
     stats.specialists   = (drCount >= 500 ? '500+' : drCount + '+');
   } catch(e) { /* keep defaults */ }
+
+  data.doctorsByDept = doctorsByDept;
+  // debug: list of department keys found, so you can compare vs HTML option values
+  data.doctorDepts = Object.keys(doctorsByDept);
 
   // 2. available beds
   try {
@@ -604,6 +575,39 @@
   } catch(e) { /* keep defaults */ }
 
   data.stats = stats;
+
+  // ── handle appointment submission from client ──────────────────────
+  if (input && input.action === 'submitAppointment') {
+    var f = input.form;
+    var result = { ok: false, sys_id: '', error: '' };
+    try {
+      var notesText = 'Department: ' + f.dept + ' | Phone: ' + f.phone;
+      if (f.email) notesText += ' | Email: ' + f.email;
+      if (f.notes) notesText += ' | Reason: ' + f.notes;
+
+      var grAppt = new GlideRecord('x_1954503_smartc_0_smartcare_appointment');
+      grAppt.initialize();
+      grAppt.setValue('patient',          f.name);
+      grAppt.setValue('appointment_date', f.date);
+      grAppt.setValue('appointment_time', f.time);
+      grAppt.setValue('status',           'scheduled');
+      grAppt.setValue('notes',            notesText);
+      grAppt.setValue('doctor',           f.doctor);
+      if (f.gender) grAppt.setValue('gender', f.gender);
+      if (f.age)    grAppt.setValue('age',    f.age);
+      var newSysId = grAppt.insert();
+      if (newSysId) {
+        result.ok     = true;
+        result.sys_id = newSysId;
+      } else {
+        result.error = 'Insert returned no sys_id';
+      }
+    } catch(e) {
+      result.error = e.message || String(e);
+    }
+    data.submitResult = result;
+  }
+
 })();
 ]]></script>
         <servicenow>false</servicenow>
@@ -611,14 +615,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-19 17:47:32</sys_created_on>
         <sys_id>62a4d86cc3777a501bf5fe1d050131d9</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>test_la</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_widget_62a4d86cc3777a501bf5fe1d050131d9</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-20 19:03:14</sys_updated_on>
+        <sys_updated_on>2026-03-22 11:41:38</sys_updated_on>
         <template><![CDATA[<div class="sc-widget">
 
 <!-- TOP STRIP -->
@@ -855,6 +859,16 @@
           <div class="sc-form-group"><label>Phone Number *</label><input type="tel" ng-model="c.form.phone" ng-class="{'sc-err': c.fieldErrors.phone}" placeholder="+234 800 000 0000"></div>
         </div>
         <div class="sc-form-row">
+          <div class="sc-form-group"><label>Gender *</label>
+            <select ng-model="c.form.gender" ng-class="{'sc-err': c.fieldErrors.gender}">
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="sc-form-group"><label>Age *</label><input type="number" ng-model="c.form.age" ng-class="{'sc-err': c.fieldErrors.age}" placeholder="e.g. 34" min="0" max="120"></div>
+        </div>
+        <div class="sc-form-row">
           <div class="sc-form-group"><label>Email Address</label><input type="email" ng-model="c.form.email" placeholder="you@email.com"></div>
           <div class="sc-form-group"><label>Department *</label>
             <select ng-model="c.form.dept" ng-class="{'sc-err': c.fieldErrors.dept}" ng-change="c.filterDoctorsByDept()">
@@ -871,9 +885,9 @@
         <div class="sc-form-row">
           <div class="sc-form-group" style="position:relative">
             <label>Select Doctor *</label>
-            <select ng-model="c.form.doctor" ng-class="{'sc-err': c.fieldErrors.doctor}" ng-disabled="!c.form.dept || c.docLoading">
+            <select ng-model="c.form.doctor" ng-class="{'sc-err': c.fieldErrors.doctor}" ng-disabled="!c.form.dept || c.docLoading"
+                    ng-options="doc.sys_id as doc.name for doc in c.doctors">
               <option value="">{{c.form.dept ? (c.docLoading ? 'Loading doctors…' : (c.doctors.length ? 'Select Doctor' : 'No doctors found')) : '— Select a department first —'}}</option>
-              <option ng-repeat="doc in c.doctors" value="{{doc.sys_id}}">{{doc.name}}</option>
             </select>
             <div class="sc-doc-loading-badge" ng-show="c.docLoading"><span class="sc-spinner-sm"></span> Loading…</div>
           </div>

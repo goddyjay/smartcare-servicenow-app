@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
+    <sys_ui_policy action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <conditions/>
+        <description/>
+        <global>true</global>
+        <inherit>false</inherit>
+        <isolate_script>true</isolate_script>
+        <model_id/>
+        <model_table/>
+        <on_load>true</on_load>
+        <order>500</order>
+        <reverse_if_false>true</reverse_if_false>
+        <run_scripts>true</run_scripts>
+        <script_false><![CDATA[function onCondition() {
+
+}]]></script_false>
+        <script_true><![CDATA[function onCondition() {
+    // This checks if the current user has your specific doctor role
+    var isDoctor = g_user.hasRole('x_1954503_smartc_0.doctor');
+    
+   
+    g_form.setReadOnly('diagnosis', !isDoctor);
+    g_form.setReadOnly('lab_tests', !isDoctor);
+    g_form.setReadOnly('prescriptions', !isDoctor);
+}]]></script_true>
+        <set_values/>
+        <short_description>Make doctors field not editable by other roles.</short_description>
+        <sys_class_name>sys_ui_policy</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-23 07:31:35</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9c9e2269c3b7b2901bf5fe1d05013175</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Make doctors field not editable by other roles.</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_ui_policy_9c9e2269c3b7b2901bf5fe1d05013175</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-23 08:29:31</sys_updated_on>
+        <table>x_1954503_smartc_0_patient</table>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_ui_policy>
+</record_update>

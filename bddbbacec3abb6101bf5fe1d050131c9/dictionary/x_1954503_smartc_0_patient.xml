@@ -12,8 +12,10 @@
                 <element inactive_on_update="false" label="Moderate" sequence="1" value="moderate"/>
             </choice>
         </element>
+        <element label="Lab Tests" max_length="40" name="lab_tests" type="string"/>
         <element label="Vitals Description" max_length="16777216" name="vitals_description" type="string"/>
         <element label="Symptoms" max_length="40" name="symptoms" type="string"/>
+        <element label="Prescriptions" max_length="40" name="prescriptions" type="string"/>
         <element attributes="encode_utf8=false" label="Patient ID" max_length="32" name="u_reference_2" reference="sys_user" type="reference"/>
         <element choice="3" label="Gender" max_length="40" name="gender" type="choice">
             <choice>
@@ -22,6 +24,8 @@
             </choice>
         </element>
         <element display="true" label="Full Name" max_length="40" name="full_name" type="string"/>
+        <element label="Consultation Notes" max_length="40" name="consultation_notes" type="string"/>
+        <element label="Diagnosis" max_length="40" name="diagnosis" type="string"/>
         <element choice="1" default="registered" label="State" max_length="40" name="state" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Admitted" value="admitted"/>

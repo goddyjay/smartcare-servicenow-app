@@ -29,7 +29,7 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous) {
 
-    if (current.getValue('status') == 'discharged') {
+    if (current.getValue('state') == 'discharged') {
 
         var bed = new GlideRecord('x_1954503_smartc_0_hospital_bed');
         bed.addQuery('assigned_patient', current.getUniqueValue());
@@ -54,15 +54,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>4b797a76c36b3e101bf5fe1d050131c8</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>SmartCare Bed Release</sys_name>
         <sys_overrides/>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sys_script_4b797a76c36b3e101bf5fe1d050131c8</sys_update_name>
-        <sys_updated_by>godwin</sys_updated_by>
-        <sys_updated_on>2026-03-14 20:33:32</sys_updated_on>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-24 08:09:09</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

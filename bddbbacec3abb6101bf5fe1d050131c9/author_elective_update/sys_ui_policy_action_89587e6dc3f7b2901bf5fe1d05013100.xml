@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="DELETE">
+        <cleared>false</cleared>
+        <disabled>true</disabled>
+        <field>consultation_notes</field>
+        <field_message/>
+        <field_message_type>none</field_message_type>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-23 08:13:05</sys_created_on>
+        <sys_id>89587e6dc3f7b2901bf5fe1d05013100</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>consultation_notes</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_update_name>sys_ui_policy_action_89587e6dc3f7b2901bf5fe1d05013100</sys_update_name>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-23 08:13:05</sys_updated_on>
+        <table>x_1954503_smartc_0_patient</table>
+        <ui_policy display_value="Make doctors field not editable by other roles.">9c9e2269c3b7b2901bf5fe1d05013175</ui_policy>
+        <value/>
+        <value_action>ignore</value_action>
+        <visible>ignore</visible>
+    </sys_ui_policy_action>
+    <sys_translated_text action="DELETE" query="documentkey=89587e6dc3f7b2901bf5fe1d05013100"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</application>
+        <file_path/>
+        <instance_id>d1095432db8eb55092f5684e139619ea</instance_id>
+        <instance_name>dev194259</instance_name>
+        <name>sys_ui_policy_action_89587e6dc3f7b2901bf5fe1d05013100</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action"><sys_ui_policy_action action="INSERT_OR_UPDATE"><cleared>false</cleared><disabled>true</disabled><field>consultation_notes</field><field_message/><field_message_type>none</field_message_type><mandatory>ignore</mandatory><sys_class_name>sys_ui_policy_action</sys_class_name><sys_created_by>yeabsira</sys_created_by><sys_created_on>2026-03-23 08:13:05</sys_created_on><sys_id>89587e6dc3f7b2901bf5fe1d05013100</sys_id><sys_mod_count>0</sys_mod_count><sys_name>consultation_notes</sys_name><sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package><sys_policy/><sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope><sys_update_name>sys_ui_policy_action_89587e6dc3f7b2901bf5fe1d05013100</sys_update_name><sys_updated_by>yeabsira</sys_updated_by><sys_updated_on>2026-03-23 08:13:05</sys_updated_on><table>x_1954503_smartc_0_patient</table><ui_policy display_value="Make doctors field not editable by other roles.">9c9e2269c3b7b2901bf5fe1d05013175</ui_policy><value/><value_action>ignore</value_action><visible>ignore</visible></sys_ui_policy_action><sys_translated_text action="delete_multiple" query="documentkey=89587e6dc3f7b2901bf5fe1d05013100"/></record_update>]]></payload>
+        <payload_hash>1931102565</payload_hash>
+        <record_name>consultation_notes</record_name>
+        <reverted_from/>
+        <source>2db308d7c3e3fe101bf5fe1d05013116</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-23 08:13:05</sys_created_on>
+        <sys_id>fc68be6dc3f7b2901bf5fe1d050131c7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d19c1331b0000001</sys_recorded_at>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-23 08:13:05</sys_updated_on>
+        <type>UI Policy Action</type>
+        <update_guid>3c687e6d19f7b290a3486b2710a1b451</update_guid>
+        <update_guid_history>3c687e6d19f7b290a3486b2710a1b451:1931102565</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>yeabsira</sys_created_by>
+        <sys_created_on>2026-03-23 08:19:19</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_policy_action">sys_ui_policy_action</sys_db_object>
+        <sys_id>21652c9a59c14662965403e89e6db044</sys_id>
+        <sys_metadata>89587e6dc3f7b2901bf5fe1d05013100</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>consultation_notes</sys_name>
+        <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
+        <sys_parent display_value="Make doctors field not editable by other roles.">9c9e2269c3b7b2901bf5fe1d05013175</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
+        <sys_scope_delete display_value="">6945869ed1974cf698de477935adcdc1</sys_scope_delete>
+        <sys_update_name>sys_ui_policy_action_89587e6dc3f7b2901bf5fe1d05013100</sys_update_name>
+        <sys_update_version display_value="sys_ui_policy_action_89587e6dc3f7b2901bf5fe1d05013100">fc68be6dc3f7b2901bf5fe1d050131c7</sys_update_version>
+        <sys_updated_by>yeabsira</sys_updated_by>
+        <sys_updated_on>2026-03-23 08:19:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

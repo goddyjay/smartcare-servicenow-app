@@ -51,7 +51,7 @@
   });
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* ── 1. SIDEBAR SHELL (THEMED TO IMAGE) ── */&#13;
+        <css>/* ── sidebar shell ── */&#13;
 .ward-sidebar {&#13;
   position: fixed;&#13;
   top: 0; left: 0;&#13;
@@ -66,7 +66,7 @@
   box-sizing: border-box;&#13;
 }&#13;
 &#13;
-/* ── 2. BRANDING &amp; LOGO ── */&#13;
+/* ── branding logo ── */&#13;
 .sidebar-brand { &#13;
   padding: 30px 24px 20px 24px; &#13;
 }&#13;
@@ -106,7 +106,7 @@
 .brand-name { font-weight: 700; font-size: 20px; color: #ffffff; line-height: 1.1; }&#13;
 .brand-tag { font-size: 10px; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }&#13;
 &#13;
-/* ── 3. NAVIGATION ── */&#13;
+/* ── navigation ── */&#13;
 .nav-section-label {&#13;
   font-size: 11px; font-weight: 700; color: rgba(255, 255, 255, 0.5);&#13;
   text-transform: uppercase; letter-spacing: 1.5px;&#13;
@@ -134,7 +134,7 @@
   transition: 0.2s;&#13;
 }&#13;
 &#13;
-/* Hover &amp; Active States matching the design */&#13;
+/* hover active issues */&#13;
 .sidebar-nav li a:hover { &#13;
   background: rgba(255, 255, 255, 0.1); &#13;
   color: #ffffff; &#13;
@@ -152,7 +152,7 @@
 .nav-divider { height: 1px; background: rgba(255, 255, 255, 0.15); margin: 15px 10px; list-style: none; }&#13;
 &#13;
 &#13;
-/* ── 4. SIDEBAR FOOTER ── */&#13;
+/* ── sidebarfooter*/&#13;
 .sidebar-footer {&#13;
   padding: 20px 16px;&#13;
   border-top: 1px solid rgba(255, 255, 255, 0.15);&#13;
@@ -209,7 +209,7 @@
 .user-full-name { font-size: 13px; font-weight: 600; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }&#13;
 .user-status-text { font-size: 10px; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; }&#13;
 &#13;
-/* ── 5. RIGHT-SIDE FLYOUT TRAYS ── */&#13;
+/* ── trays ── */&#13;
 .side-tray {&#13;
   position: fixed;&#13;
   left: 295px; &#13;
@@ -304,7 +304,8 @@
     data.showRegister = data.isAdmin;
     data.showViewPatients = data.isAdmin;
 	data.showAppointment = data.isAdmin;
-    data.showReceptionApproval = data.isAdmin || data.isDoctor;
+	data.showDocApproval = data.isDoctor
+    data.showReceptionApproval = data.isAdmin;
     
     // Doctors, Nurses, and Admins can all see Bed Management
     data.showBedManagement = data.isAdmin || data.isDoctor || data.isNurse;
@@ -370,14 +371,14 @@
         <sys_created_by>yeabsira</sys_created_by>
         <sys_created_on>2026-03-16 09:47:15</sys_created_on>
         <sys_id>6f2a4bd7c32f32501bf5fe1d050131b6</sys_id>
-        <sys_mod_count>51</sys_mod_count>
+        <sys_mod_count>54</sys_mod_count>
         <sys_name>SmartCare Sidebar Wrapper</sys_name>
         <sys_package display_value="SmartCare Health Managment System" source="x_1954503_smartc_0">bddbbacec3abb6101bf5fe1d050131c9</sys_package>
         <sys_policy/>
         <sys_scope display_value="SmartCare Health Managment System">bddbbacec3abb6101bf5fe1d050131c9</sys_scope>
         <sys_update_name>sp_header_footer_6f2a4bd7c32f32501bf5fe1d050131b6</sys_update_name>
         <sys_updated_by>yeabsira</sys_updated_by>
-        <sys_updated_on>2026-03-21 16:32:17</sys_updated_on>
+        <sys_updated_on>2026-03-25 16:34:19</sys_updated_on>
         <template><![CDATA[<div class="ward-sidebar">
   <div class="sidebar-brand">
     <div class="brand-logo">
@@ -446,6 +447,13 @@
       <a href="?id=reception_approval_page" ng-click="c.navigate('reception_approval_page', $event)">
         <span class="nav-icon"><i class="fa fa-check-square-o"></i></span>
         <span class="nav-label">Reception Approval</span>
+      </a>
+    </li>
+    
+    <li ng-if="data.showDocApproval" ng-class="{ 'active': c.pageId == 'reception_approval_page' }">
+      <a href="?id=reception_approval_page" ng-click="c.navigate('reception_approval_page', $event)">
+        <span class="nav-icon"><i class="fa fa-check-square-o"></i></span>
+        <span class="nav-label">Discharge Approval</span>
       </a>
     </li>
   </ul>
